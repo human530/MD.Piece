@@ -555,13 +555,29 @@
   "fdr": "Benjamini-Hochberg，於 M3 的雙尾 p 值上"
  },
  "control_check": {
-  "positive_hits": [],
-  "n_positive": 0,
+  "positive_hits": [
+   "藥_鈣調磷酸酶",
+   "藥_PPI"
+  ],
+  "n_positive": 2,
+  "n_positive_scanned": 5,
+  "n_negative_scanned": 3,
   "negative_hits": [],
   "n_negative": 0,
-  "has_power": false,
+  "caveat_indication_bias": "陰性對照乾淨只排除**一般就醫行為**偏誤，**不排除適應症混淆**——為特定疾病開的藥仍會與該疾病的併發症關聯。判讀個別藥物時必須逐一評估其適應症。",
+  "has_power": true,
   "bias_free": true,
-  "interpretation": "❌ 陽性對照未被掃出——方法缺乏偵測力，其餘結果不可信"
+  "interpretation": "✅ 陽性對照被掃出、陰性對照未被掃出——結果可信度較高",
+  "control_check_superseded": {
+   "positive_hits": [],
+   "n_positive": 0,
+   "negative_hits": [],
+   "n_negative": 0,
+   "has_power": false,
+   "bias_free": true,
+   "interpretation": "❌ 陽性對照未被掃出——方法缺乏偵測力，其餘結果不可信"
+  },
+  "correction_note": "原區塊於 2026-08-31 掃描時寫入，當時 control_check 以個別藥名比對類別名故永不命中；程式已於 commit 994c834 改為類別名集合，但 results 檔未重算。2026-09-06 以現行 exwas.control_check() 對同一份 results 重算；與 docs/EXWAS_REPORT.md（陽性 2/5、陰性 0/3）一致。"
  },
  "arsenic_builtin_control": {
   "arsenobetaine_significant": false,
