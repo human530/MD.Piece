@@ -1,0 +1,52 @@
+{
+  "dataset": "thyroid pathology ultrasound batch 1",
+  "variant": "frozen_resnet18_gated_attention_mil",
+  "patients": 601,
+  "auc": 0.4886937983567682,
+  "auc_ci_95": [
+    0.44075883750776035,
+    0.5369243841238639
+  ],
+  "balanced_accuracy_at_0_5": 0.4763036864924426,
+  "brier": 0.29185660321693313,
+  "selection": "epoch selected in an inner patient split; all metrics from untouched outer patients",
+  "folds": [
+    {
+      "fold": 1,
+      "patients": 121,
+      "selected_epochs": 10,
+      "inner_validation_auc": 0.5919732441471572,
+      "outer_auc": 0.44185360094451
+    },
+    {
+      "fold": 2,
+      "patients": 120,
+      "selected_epochs": 1,
+      "inner_validation_auc": 0.6135265700483092,
+      "outer_auc": 0.453639383871942
+    },
+    {
+      "fold": 3,
+      "patients": 120,
+      "selected_epochs": 2,
+      "inner_validation_auc": 0.5829307568438004,
+      "outer_auc": 0.47780126849894294
+    },
+    {
+      "fold": 4,
+      "patients": 120,
+      "selected_epochs": 2,
+      "inner_validation_auc": 0.5270049099836334,
+      "outer_auc": 0.562799043062201
+    },
+    {
+      "fold": 5,
+      "patients": 120,
+      "selected_epochs": 3,
+      "inner_validation_auc": 0.5859247135842881,
+      "outer_auc": 0.5311004784688995
+    }
+  ],
+  "claim_boundary": "development only; Batch 2 remains locked",
+  "created_at": "2026-08-30T12:52:33+0800"
+}

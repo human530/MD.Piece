@@ -1,0 +1,61 @@
+{
+ "seed": 20260818,
+ "calibration_seed": 20261818,
+ "n_cal": 3000,
+ "lambda0": {
+  "lambda0": 0.00024447213772400535,
+  "rate_24m": 0.28933333333333333,
+  "rate_52w": 0.165,
+  "target_range": [
+   0.273,
+   0.306
+  ],
+  "target_mid": 0.2895,
+  "in_range": true,
+  "check_52w": 0.32142857142857145,
+  "dev_52w": -0.15642857142857144,
+  "clamped": null,
+  "n_cal": 3000,
+  "mech_flare_24m": {
+   "bifurcation": 0.9811066126855601,
+   "continuous_deterioration": 0.0,
+   "exogenous_shock": 0.044642857142857144,
+   "noise_amplification": 0.1625,
+   "stable": 0.005777007510109763,
+   "stochastic_escape": 0.8
+  },
+  "jump_24m": 0.334
+ },
+ "biopsy": {
+  "noise_sd": 0.4,
+  "threshold": 0.18921019085181726,
+  "sensitivity": 0.9423963133640553,
+  "specificity": 0.8602251407129456,
+  "dist": 0.08968932014535815,
+  "reachable": true,
+  "plausible": {
+   "sensitivity": [
+    0.7150858470818455,
+    1.0
+   ],
+   "specificity": [
+    0.6878096927137647,
+    0.9745346033522668
+   ],
+   "counts": {
+    "tp": 11,
+    "fn": 0,
+    "tn": 22,
+    "fp": 3
+   }
+  }
+ },
+ "static": {
+  "kappa": 0.5,
+  "c": 0.7107257416069375,
+  "in_range": true,
+  "grid": null
+ },
+ "params_hash": "bbe8e5b2d4de3fe9",
+ "seconds": 9.389732837677002
+}

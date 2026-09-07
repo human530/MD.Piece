@@ -1,0 +1,27 @@
+{
+  "train_dataset": "BUS-BRA",
+  "external_dataset": "TCIA BREAST-LESIONS-USG",
+  "external_source": "https://doi.org/10.7937/9WKK-Q141",
+  "variant": "expert_mask_interpretable_sensitivity",
+  "patients": 252,
+  "counts": {
+    "benign": 154,
+    "malignant": 98
+  },
+  "auc": 0.8072488735754042,
+  "auc_ci_95": [
+    0.7532109256812476,
+    0.8586429682590447
+  ],
+  "balanced_accuracy_at_0_5": 0.7374768089053803,
+  "brier": 0.2240204041216426,
+  "verification_subgroups": {
+    "confirmed by biopsy": {
+      "patients": 197,
+      "auc": 0.7813852813852814
+    }
+  },
+  "protocol": "model fit once on all BUS-BRA patients; no TCIA tuning or calibration",
+  "claim_boundary": "expert tumor masks are required; this validates breast lesion malignancy only, not kidney etiology",
+  "evaluated_once_at": "2026-08-30T12:07:54+0800"
+}

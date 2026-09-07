@@ -1,0 +1,69 @@
+{
+  "_meta": {
+    "title": "腎病病因階層模型設計（標籤規則、封存集、評估協定）——唯一數值真相來源",
+    "date": "2026-08-30",
+    "rule": "value/source/status；資料檔 manifest 由 scout 查證後寫入 params/manifest.json；標籤規則事前鎖定，看過測試結果後不得回改。"
+  },
+
+  "population": {
+    "value": {"age_min": 20, "kidney_damage": "eGFR<60（CKD-EPI 2021 無種族係數）或 尿白蛋白/肌酸酐 ACR≥30 mg/g"},
+    "source": "KDIGO 2024 CKD 定義之標記閾值（eGFR 60、ACR 30 為指引標準值）；成人下限為本研究設定",
+    "status": "anchored"
+  },
+
+  "labels": {
+    "value": {
+      "priority": ["immune", "infection", "metabolic"],
+      "priority_note": "共病重疊時的歸類順位（免疫>感染>代謝：盛行率越低的標籤越優先，避免全被糖尿病吃掉）；重疊個案數另表列出，並做「排除重疊」敏感度分析。",
+      "immune": "ANA 陽性（IFA ≥1:80）或任一特異自體抗體陽性（dsDNA/Sm/RNP/SSA/SSB…，依 NHANES 2003-04 自體抗體檔實際變數）",
+      "infection": "HBsAg 陽性 或 HCV RNA 陽性（Ab 陽性而 RNA 缺值者列敏感度分析）",
+      "metabolic": "問卷醫師診斷糖尿病（DIQ010=1）或 HbA1c≥6.5%",
+      "excluded": "三類皆非之腎損傷者＝『其他/未歸類』——不硬塞進三類，另報人數與特徵摘要"
+    },
+    "source": "本研究設定之操作型定義（NHANES 為共病代理標籤，非切片病因；ANA 1:80 與 HbA1c 6.5% 為通行臨床閾值）",
+    "status": "study_defined"
+  },
+
+  "archive_sets": {
+    "value": {
+      "immune_label_sources": ["ANA 及所有特異自體抗體變數"],
+      "infection_label_sources": ["HBsAg", "HBcAb", "HCV Ab", "HCV RNA", "其他肝炎血清學"],
+      "metabolic_label_sources": ["HbA1c", "空腹血糖", "口服葡萄糖耐受", "胰島素", "DIQ 問卷全部"],
+      "kidney_definition_sources_policy": "肌酸酐/eGFR/ACR 用於定義族群（納入條件），三類共用，不洩漏類別資訊——保留為特徵並在報告標註此設計決定"
+    },
+    "source": "通道消耗規則：定義標籤的檢驗不得作為該任務特徵，否則 AUC 循環（同 kidney_triage 指示 一之一之精神）",
+    "status": "study_defined"
+  },
+
+  "features_policy": {
+    "value": "封存集以外的**全部**可得檢驗通道都納入（使用者核心要求：不指定、全範圍看）——CBC 全項、生化全項、脂質、鐵代謝、維生素、CRP、尿液常規…；缺值=NaN；對數轉換右偏項；全世代標準化",
+    "source": "使用者核心概念＋通道消耗規則",
+    "status": "study_defined"
+  },
+
+  "models": {
+    "value": {
+      "baseline": "SimpleImputer(median)+StandardScaler+LogisticRegression(l2, class_weight=balanced)——可解釋錨點",
+      "main": "HistGradientBoostingClassifier（原生 NaN、class_weight=balanced）＋等張校準",
+      "structure": "Level1 三類 one-vs-rest ＋ 多類；Level2 於各類內部（標籤可得才建）",
+      "attribution": "係數（baseline）＋ permutation importance（main）＋ 逐標記單變量 AUC；與文獻錨點對照分『已知重現/候選未知』"
+    },
+    "source": "本研究設定；AUC 目標驅動『設計』不驅動『事後調整』",
+    "status": "study_defined"
+  },
+
+  "evaluation": {
+    "value": {
+      "protocol": "分層 5 折巢狀 CV（外層評估、內層若有超參數）＋ 週期外推檢查（若跨 NHANES 週期：留一週期外測）",
+      "primary": "各類 one-vs-rest AUROC（95% bootstrap CI，1000 次）＋ 多類平衡正確率",
+      "per_prevalence": "PPV/NPV 依實際盛行率換算",
+      "leakage_probe": "M0 型基準：只用『哪些檢驗有做』的指示變數（NHANES 隨機缺席較弱，仍照做並報告）",
+      "auc_target": {"value": 0.9, "note": "設計目標；跑出多少報多少，未達不回頭調"},
+      "no_peeking": "外層測試折的結果只計算一次；任何特徵/模型/閾值選擇只在內層"
+    },
+    "source": "本研究設定（事前鎖定）",
+    "status": "study_defined"
+  },
+
+  "seed": {"value": 20260830, "source": "本研究設定", "status": "study_defined"}
+}

@@ -1,0 +1,998 @@
+{
+ "created_note": "以 HEADER RECORD 魔術位元組驗證，非狀態碼／大小",
+ "channels": {
+  "藥物": {
+   "role": "exposure_drug",
+   "files": {
+    "1999-2000": {
+     "key": "RXQ_RX.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/RXQ_RX.xpt",
+     "cycle": "1999-2000",
+     "role": "exposure_drug",
+     "channel": "藥物"
+    },
+    "2001-2002": {
+     "key": "RXQ_RX_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/RXQ_RX_B.xpt",
+     "cycle": "2001-2002",
+     "role": "exposure_drug",
+     "channel": "藥物"
+    },
+    "2003-2004": {
+     "key": "RXQ_RX_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/RXQ_RX_C.xpt",
+     "cycle": "2003-2004",
+     "role": "exposure_drug",
+     "channel": "藥物"
+    },
+    "2005-2006": {
+     "key": "RXQ_RX_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/RXQ_RX_D.xpt",
+     "cycle": "2005-2006",
+     "role": "exposure_drug",
+     "channel": "藥物"
+    },
+    "2007-2008": {
+     "key": "RXQ_RX_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/RXQ_RX_E.xpt",
+     "cycle": "2007-2008",
+     "role": "exposure_drug",
+     "channel": "藥物"
+    },
+    "2009-2010": {
+     "key": "RXQ_RX_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/RXQ_RX_F.xpt",
+     "cycle": "2009-2010",
+     "role": "exposure_drug",
+     "channel": "藥物"
+    },
+    "2011-2012": {
+     "key": "RXQ_RX_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/RXQ_RX_G.xpt",
+     "cycle": "2011-2012",
+     "role": "exposure_drug",
+     "channel": "藥物"
+    },
+    "2013-2014": {
+     "key": "RXQ_RX_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/RXQ_RX_H.xpt",
+     "cycle": "2013-2014",
+     "role": "exposure_drug",
+     "channel": "藥物"
+    },
+    "2015-2016": {
+     "key": "RXQ_RX_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/RXQ_RX_I.xpt",
+     "cycle": "2015-2016",
+     "role": "exposure_drug",
+     "channel": "藥物"
+    },
+    "2017-2018": {
+     "key": "RXQ_RX_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/RXQ_RX_J.xpt",
+     "cycle": "2017-2018",
+     "role": "exposure_drug",
+     "channel": "藥物"
+    }
+   }
+  },
+  "血金屬": {
+   "role": "exposure_metal",
+   "files": {
+    "1999-2000": {
+     "key": "LAB06.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB06.xpt",
+     "cycle": "1999-2000",
+     "role": "exposure_metal",
+     "channel": "血金屬"
+    },
+    "2001-2002": {
+     "key": "L06_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L06_B.xpt",
+     "cycle": "2001-2002",
+     "role": "exposure_metal",
+     "channel": "血金屬"
+    },
+    "2003-2004": {
+     "key": "L06BMT_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L06BMT_C.xpt",
+     "cycle": "2003-2004",
+     "role": "exposure_metal",
+     "channel": "血金屬"
+    },
+    "2005-2006": {
+     "key": "PBCD_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PBCD_D.xpt",
+     "cycle": "2005-2006",
+     "role": "exposure_metal",
+     "channel": "血金屬"
+    },
+    "2007-2008": {
+     "key": "PBCD_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/PBCD_E.xpt",
+     "cycle": "2007-2008",
+     "role": "exposure_metal",
+     "channel": "血金屬"
+    },
+    "2009-2010": {
+     "key": "PBCD_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/PBCD_F.xpt",
+     "cycle": "2009-2010",
+     "role": "exposure_metal",
+     "channel": "血金屬"
+    },
+    "2011-2012": {
+     "key": "PBCD_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PBCD_G.xpt",
+     "cycle": "2011-2012",
+     "role": "exposure_metal",
+     "channel": "血金屬"
+    },
+    "2013-2014": {
+     "key": "PBCD_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/PBCD_H.xpt",
+     "cycle": "2013-2014",
+     "role": "exposure_metal",
+     "channel": "血金屬"
+    },
+    "2015-2016": {
+     "key": "PBCD_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/PBCD_I.xpt",
+     "cycle": "2015-2016",
+     "role": "exposure_metal",
+     "channel": "血金屬"
+    },
+    "2017-2018": {
+     "key": "PBCD_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/PBCD_J.xpt",
+     "cycle": "2017-2018",
+     "role": "exposure_metal",
+     "channel": "血金屬"
+    }
+   }
+  },
+  "尿金屬": {
+   "role": "exposure_metal",
+   "files": {
+    "2005-2006": {
+     "key": "UHM_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/UHM_D.xpt",
+     "cycle": "2005-2006",
+     "role": "exposure_metal",
+     "channel": "尿金屬"
+    },
+    "2007-2008": {
+     "key": "UHM_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/UHM_E.xpt",
+     "cycle": "2007-2008",
+     "role": "exposure_metal",
+     "channel": "尿金屬"
+    },
+    "2009-2010": {
+     "key": "UHM_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/UHM_F.xpt",
+     "cycle": "2009-2010",
+     "role": "exposure_metal",
+     "channel": "尿金屬"
+    },
+    "2011-2012": {
+     "key": "UHM_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/UHM_G.xpt",
+     "cycle": "2011-2012",
+     "role": "exposure_metal",
+     "channel": "尿金屬"
+    },
+    "2013-2014": {
+     "key": "UM_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/UM_H.xpt",
+     "cycle": "2013-2014",
+     "role": "exposure_metal",
+     "channel": "尿金屬"
+    },
+    "2015-2016": {
+     "key": "UM_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/UM_I.xpt",
+     "cycle": "2015-2016",
+     "role": "exposure_metal",
+     "channel": "尿金屬"
+    },
+    "2017-2018": {
+     "key": "UM_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/UM_J.xpt",
+     "cycle": "2017-2018",
+     "role": "exposure_metal",
+     "channel": "尿金屬"
+    }
+   }
+  },
+  "尿砷": {
+   "role": "exposure_metal",
+   "files": {
+    "2005-2006": {
+     "key": "UAS_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/UAS_D.xpt",
+     "cycle": "2005-2006",
+     "role": "exposure_metal",
+     "channel": "尿砷"
+    },
+    "2007-2008": {
+     "key": "UAS_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/UAS_E.xpt",
+     "cycle": "2007-2008",
+     "role": "exposure_metal",
+     "channel": "尿砷"
+    },
+    "2009-2010": {
+     "key": "UAS_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/UAS_F.xpt",
+     "cycle": "2009-2010",
+     "role": "exposure_metal",
+     "channel": "尿砷"
+    },
+    "2011-2012": {
+     "key": "UAS_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/UAS_G.xpt",
+     "cycle": "2011-2012",
+     "role": "exposure_metal",
+     "channel": "尿砷"
+    },
+    "2013-2014": {
+     "key": "UAS_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/UAS_H.xpt",
+     "cycle": "2013-2014",
+     "role": "exposure_metal",
+     "channel": "尿砷"
+    },
+    "2015-2016": {
+     "key": "UAS_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/UAS_I.xpt",
+     "cycle": "2015-2016",
+     "role": "exposure_metal",
+     "channel": "尿砷"
+    },
+    "2017-2018": {
+     "key": "UAS_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/UAS_J.xpt",
+     "cycle": "2017-2018",
+     "role": "exposure_metal",
+     "channel": "尿砷"
+    }
+   }
+  },
+  "PFAS": {
+   "role": "exposure_chem",
+   "files": {
+    "2003-2004": {
+     "key": "L24PFC_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L24PFC_C.xpt",
+     "cycle": "2003-2004",
+     "role": "exposure_chem",
+     "channel": "PFAS"
+    },
+    "2005-2006": {
+     "key": "PFC_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PFC_D.xpt",
+     "cycle": "2005-2006",
+     "role": "exposure_chem",
+     "channel": "PFAS"
+    },
+    "2007-2008": {
+     "key": "PFC_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/PFC_E.xpt",
+     "cycle": "2007-2008",
+     "role": "exposure_chem",
+     "channel": "PFAS"
+    },
+    "2009-2010": {
+     "key": "PFC_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/PFC_F.xpt",
+     "cycle": "2009-2010",
+     "role": "exposure_chem",
+     "channel": "PFAS"
+    },
+    "2011-2012": {
+     "key": "PFC_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PFC_G.xpt",
+     "cycle": "2011-2012",
+     "role": "exposure_chem",
+     "channel": "PFAS"
+    },
+    "2013-2014": {
+     "key": "PFAS_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/PFAS_H.xpt",
+     "cycle": "2013-2014",
+     "role": "exposure_chem",
+     "channel": "PFAS"
+    },
+    "2015-2016": {
+     "key": "PFAS_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/PFAS_I.xpt",
+     "cycle": "2015-2016",
+     "role": "exposure_chem",
+     "channel": "PFAS"
+    },
+    "2017-2018": {
+     "key": "PFAS_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/PFAS_J.xpt",
+     "cycle": "2017-2018",
+     "role": "exposure_chem",
+     "channel": "PFAS"
+    }
+   }
+  },
+  "塑化劑": {
+   "role": "exposure_chem",
+   "files": {
+    "1999-2000": {
+     "key": "PHPYPA.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/PHPYPA.xpt",
+     "cycle": "1999-2000",
+     "role": "exposure_chem",
+     "channel": "塑化劑"
+    },
+    "2001-2002": {
+     "key": "PHPYPA_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/PHPYPA_B.xpt",
+     "cycle": "2001-2002",
+     "role": "exposure_chem",
+     "channel": "塑化劑"
+    },
+    "2003-2004": {
+     "key": "L24PH_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L24PH_C.xpt",
+     "cycle": "2003-2004",
+     "role": "exposure_chem",
+     "channel": "塑化劑"
+    },
+    "2005-2006": {
+     "key": "PHTHTE_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PHTHTE_D.xpt",
+     "cycle": "2005-2006",
+     "role": "exposure_chem",
+     "channel": "塑化劑"
+    },
+    "2007-2008": {
+     "key": "PHTHTE_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/PHTHTE_E.xpt",
+     "cycle": "2007-2008",
+     "role": "exposure_chem",
+     "channel": "塑化劑"
+    },
+    "2009-2010": {
+     "key": "PHTHTE_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/PHTHTE_F.xpt",
+     "cycle": "2009-2010",
+     "role": "exposure_chem",
+     "channel": "塑化劑"
+    },
+    "2011-2012": {
+     "key": "PHTHTE_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PHTHTE_G.xpt",
+     "cycle": "2011-2012",
+     "role": "exposure_chem",
+     "channel": "塑化劑"
+    },
+    "2013-2014": {
+     "key": "PHTHTE_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/PHTHTE_H.xpt",
+     "cycle": "2013-2014",
+     "role": "exposure_chem",
+     "channel": "塑化劑"
+    },
+    "2015-2016": {
+     "key": "PHTHTE_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/PHTHTE_I.xpt",
+     "cycle": "2015-2016",
+     "role": "exposure_chem",
+     "channel": "塑化劑"
+    },
+    "2017-2018": {
+     "key": "PHTHTE_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/PHTHTE_J.xpt",
+     "cycle": "2017-2018",
+     "role": "exposure_chem",
+     "channel": "塑化劑"
+    }
+   }
+  },
+  "農藥": {
+   "role": "exposure_chem",
+   "files": {
+    "2001-2002": {
+     "key": "L26PP_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L26PP_B.xpt",
+     "cycle": "2001-2002",
+     "role": "exposure_chem",
+     "channel": "農藥"
+    },
+    "2005-2006": {
+     "key": "PP_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PP_D.xpt",
+     "cycle": "2005-2006",
+     "role": "exposure_chem",
+     "channel": "農藥"
+    },
+    "2007-2008": {
+     "key": "PP_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/PP_E.xpt",
+     "cycle": "2007-2008",
+     "role": "exposure_chem",
+     "channel": "農藥"
+    },
+    "2009-2010": {
+     "key": "PP_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/PP_F.xpt",
+     "cycle": "2009-2010",
+     "role": "exposure_chem",
+     "channel": "農藥"
+    },
+    "2011-2012": {
+     "key": "PP_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PP_G.xpt",
+     "cycle": "2011-2012",
+     "role": "exposure_chem",
+     "channel": "農藥"
+    },
+    "2013-2014": {
+     "key": "UPHOPM_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/UPHOPM_H.xpt",
+     "cycle": "2013-2014",
+     "role": "exposure_chem",
+     "channel": "農藥"
+    },
+    "2015-2016": {
+     "key": "UPHOPM_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/UPHOPM_I.xpt",
+     "cycle": "2015-2016",
+     "role": "exposure_chem",
+     "channel": "農藥"
+    },
+    "2017-2018": {
+     "key": "UPHOPM_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/UPHOPM_J.xpt",
+     "cycle": "2017-2018",
+     "role": "exposure_chem",
+     "channel": "農藥"
+    }
+   }
+  },
+  "職業": {
+   "role": "exposure_occ",
+   "files": {
+    "1999-2000": {
+     "key": "OCQ.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/OCQ.xpt",
+     "cycle": "1999-2000",
+     "role": "exposure_occ",
+     "channel": "職業"
+    },
+    "2001-2002": {
+     "key": "OCQ_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/OCQ_B.xpt",
+     "cycle": "2001-2002",
+     "role": "exposure_occ",
+     "channel": "職業"
+    },
+    "2003-2004": {
+     "key": "OCQ_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/OCQ_C.xpt",
+     "cycle": "2003-2004",
+     "role": "exposure_occ",
+     "channel": "職業"
+    },
+    "2005-2006": {
+     "key": "OCQ_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/OCQ_D.xpt",
+     "cycle": "2005-2006",
+     "role": "exposure_occ",
+     "channel": "職業"
+    },
+    "2007-2008": {
+     "key": "OCQ_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/OCQ_E.xpt",
+     "cycle": "2007-2008",
+     "role": "exposure_occ",
+     "channel": "職業"
+    },
+    "2009-2010": {
+     "key": "OCQ_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/OCQ_F.xpt",
+     "cycle": "2009-2010",
+     "role": "exposure_occ",
+     "channel": "職業"
+    },
+    "2011-2012": {
+     "key": "OCQ_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/OCQ_G.xpt",
+     "cycle": "2011-2012",
+     "role": "exposure_occ",
+     "channel": "職業"
+    },
+    "2013-2014": {
+     "key": "OCQ_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/OCQ_H.xpt",
+     "cycle": "2013-2014",
+     "role": "exposure_occ",
+     "channel": "職業"
+    },
+    "2015-2016": {
+     "key": "OCQ_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/OCQ_I.xpt",
+     "cycle": "2015-2016",
+     "role": "exposure_occ",
+     "channel": "職業"
+    },
+    "2017-2018": {
+     "key": "OCQ_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/OCQ_J.xpt",
+     "cycle": "2017-2018",
+     "role": "exposure_occ",
+     "channel": "職業"
+    }
+   }
+  },
+  "血壓": {
+   "role": "covariate",
+   "files": {
+    "1999-2000": {
+     "key": "BPX.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/BPX.xpt",
+     "cycle": "1999-2000",
+     "role": "covariate",
+     "channel": "血壓"
+    },
+    "2001-2002": {
+     "key": "BPX_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BPX_B.xpt",
+     "cycle": "2001-2002",
+     "role": "covariate",
+     "channel": "血壓"
+    },
+    "2003-2004": {
+     "key": "BPX_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/BPX_C.xpt",
+     "cycle": "2003-2004",
+     "role": "covariate",
+     "channel": "血壓"
+    },
+    "2005-2006": {
+     "key": "BPX_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BPX_D.xpt",
+     "cycle": "2005-2006",
+     "role": "covariate",
+     "channel": "血壓"
+    },
+    "2007-2008": {
+     "key": "BPX_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/BPX_E.xpt",
+     "cycle": "2007-2008",
+     "role": "covariate",
+     "channel": "血壓"
+    },
+    "2009-2010": {
+     "key": "BPX_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/BPX_F.xpt",
+     "cycle": "2009-2010",
+     "role": "covariate",
+     "channel": "血壓"
+    },
+    "2011-2012": {
+     "key": "BPX_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BPX_G.xpt",
+     "cycle": "2011-2012",
+     "role": "covariate",
+     "channel": "血壓"
+    },
+    "2013-2014": {
+     "key": "BPX_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/BPX_H.xpt",
+     "cycle": "2013-2014",
+     "role": "covariate",
+     "channel": "血壓"
+    },
+    "2015-2016": {
+     "key": "BPX_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/BPX_I.xpt",
+     "cycle": "2015-2016",
+     "role": "covariate",
+     "channel": "血壓"
+    },
+    "2017-2018": {
+     "key": "BPX_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BPX_J.xpt",
+     "cycle": "2017-2018",
+     "role": "covariate",
+     "channel": "血壓"
+    }
+   }
+  },
+  "體位": {
+   "role": "covariate",
+   "files": {
+    "1999-2000": {
+     "key": "BMX.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/BMX.xpt",
+     "cycle": "1999-2000",
+     "role": "covariate",
+     "channel": "體位"
+    },
+    "2001-2002": {
+     "key": "BMX_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BMX_B.xpt",
+     "cycle": "2001-2002",
+     "role": "covariate",
+     "channel": "體位"
+    },
+    "2003-2004": {
+     "key": "BMX_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/BMX_C.xpt",
+     "cycle": "2003-2004",
+     "role": "covariate",
+     "channel": "體位"
+    },
+    "2005-2006": {
+     "key": "BMX_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BMX_D.xpt",
+     "cycle": "2005-2006",
+     "role": "covariate",
+     "channel": "體位"
+    },
+    "2007-2008": {
+     "key": "BMX_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/BMX_E.xpt",
+     "cycle": "2007-2008",
+     "role": "covariate",
+     "channel": "體位"
+    },
+    "2009-2010": {
+     "key": "BMX_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/BMX_F.xpt",
+     "cycle": "2009-2010",
+     "role": "covariate",
+     "channel": "體位"
+    },
+    "2011-2012": {
+     "key": "BMX_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BMX_G.xpt",
+     "cycle": "2011-2012",
+     "role": "covariate",
+     "channel": "體位"
+    },
+    "2013-2014": {
+     "key": "BMX_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/BMX_H.xpt",
+     "cycle": "2013-2014",
+     "role": "covariate",
+     "channel": "體位"
+    },
+    "2015-2016": {
+     "key": "BMX_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/BMX_I.xpt",
+     "cycle": "2015-2016",
+     "role": "covariate",
+     "channel": "體位"
+    },
+    "2017-2018": {
+     "key": "BMX_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BMX_J.xpt",
+     "cycle": "2017-2018",
+     "role": "covariate",
+     "channel": "體位"
+    }
+   }
+  },
+  "抽菸": {
+   "role": "covariate",
+   "files": {
+    "1999-2000": {
+     "key": "SMQ.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/SMQ.xpt",
+     "cycle": "1999-2000",
+     "role": "covariate",
+     "channel": "抽菸"
+    },
+    "2001-2002": {
+     "key": "SMQ_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/SMQ_B.xpt",
+     "cycle": "2001-2002",
+     "role": "covariate",
+     "channel": "抽菸"
+    },
+    "2003-2004": {
+     "key": "SMQ_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/SMQ_C.xpt",
+     "cycle": "2003-2004",
+     "role": "covariate",
+     "channel": "抽菸"
+    },
+    "2005-2006": {
+     "key": "SMQ_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/SMQ_D.xpt",
+     "cycle": "2005-2006",
+     "role": "covariate",
+     "channel": "抽菸"
+    },
+    "2007-2008": {
+     "key": "SMQ_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/SMQ_E.xpt",
+     "cycle": "2007-2008",
+     "role": "covariate",
+     "channel": "抽菸"
+    },
+    "2009-2010": {
+     "key": "SMQ_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/SMQ_F.xpt",
+     "cycle": "2009-2010",
+     "role": "covariate",
+     "channel": "抽菸"
+    },
+    "2011-2012": {
+     "key": "SMQ_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/SMQ_G.xpt",
+     "cycle": "2011-2012",
+     "role": "covariate",
+     "channel": "抽菸"
+    },
+    "2013-2014": {
+     "key": "SMQ_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/SMQ_H.xpt",
+     "cycle": "2013-2014",
+     "role": "covariate",
+     "channel": "抽菸"
+    },
+    "2015-2016": {
+     "key": "SMQ_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/SMQ_I.xpt",
+     "cycle": "2015-2016",
+     "role": "covariate",
+     "channel": "抽菸"
+    },
+    "2017-2018": {
+     "key": "SMQ_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/SMQ_J.xpt",
+     "cycle": "2017-2018",
+     "role": "covariate",
+     "channel": "抽菸"
+    }
+   }
+  },
+  "酒精": {
+   "role": "covariate",
+   "files": {
+    "1999-2000": {
+     "key": "ALQ.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/ALQ.xpt",
+     "cycle": "1999-2000",
+     "role": "covariate",
+     "channel": "酒精"
+    },
+    "2001-2002": {
+     "key": "ALQ_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/ALQ_B.xpt",
+     "cycle": "2001-2002",
+     "role": "covariate",
+     "channel": "酒精"
+    },
+    "2003-2004": {
+     "key": "ALQ_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/ALQ_C.xpt",
+     "cycle": "2003-2004",
+     "role": "covariate",
+     "channel": "酒精"
+    },
+    "2005-2006": {
+     "key": "ALQ_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/ALQ_D.xpt",
+     "cycle": "2005-2006",
+     "role": "covariate",
+     "channel": "酒精"
+    },
+    "2007-2008": {
+     "key": "ALQ_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/ALQ_E.xpt",
+     "cycle": "2007-2008",
+     "role": "covariate",
+     "channel": "酒精"
+    },
+    "2009-2010": {
+     "key": "ALQ_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/ALQ_F.xpt",
+     "cycle": "2009-2010",
+     "role": "covariate",
+     "channel": "酒精"
+    },
+    "2011-2012": {
+     "key": "ALQ_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/ALQ_G.xpt",
+     "cycle": "2011-2012",
+     "role": "covariate",
+     "channel": "酒精"
+    },
+    "2013-2014": {
+     "key": "ALQ_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/ALQ_H.xpt",
+     "cycle": "2013-2014",
+     "role": "covariate",
+     "channel": "酒精"
+    },
+    "2015-2016": {
+     "key": "ALQ_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/ALQ_I.xpt",
+     "cycle": "2015-2016",
+     "role": "covariate",
+     "channel": "酒精"
+    },
+    "2017-2018": {
+     "key": "ALQ_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/ALQ_J.xpt",
+     "cycle": "2017-2018",
+     "role": "covariate",
+     "channel": "酒精"
+    }
+   }
+  },
+  "腎病問卷": {
+   "role": "label_check",
+   "files": {
+    "1999-2000": {
+     "key": "KIQ.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/KIQ.xpt",
+     "cycle": "1999-2000",
+     "role": "label_check",
+     "channel": "腎病問卷"
+    },
+    "2001-2002": {
+     "key": "KIQ_U_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/KIQ_U_B.xpt",
+     "cycle": "2001-2002",
+     "role": "label_check",
+     "channel": "腎病問卷"
+    },
+    "2003-2004": {
+     "key": "KIQ_U_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/KIQ_U_C.xpt",
+     "cycle": "2003-2004",
+     "role": "label_check",
+     "channel": "腎病問卷"
+    },
+    "2005-2006": {
+     "key": "KIQ_U_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/KIQ_U_D.xpt",
+     "cycle": "2005-2006",
+     "role": "label_check",
+     "channel": "腎病問卷"
+    },
+    "2007-2008": {
+     "key": "KIQ_U_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/KIQ_U_E.xpt",
+     "cycle": "2007-2008",
+     "role": "label_check",
+     "channel": "腎病問卷"
+    },
+    "2009-2010": {
+     "key": "KIQ_U_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/KIQ_U_F.xpt",
+     "cycle": "2009-2010",
+     "role": "label_check",
+     "channel": "腎病問卷"
+    },
+    "2011-2012": {
+     "key": "KIQ_U_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/KIQ_U_G.xpt",
+     "cycle": "2011-2012",
+     "role": "label_check",
+     "channel": "腎病問卷"
+    },
+    "2013-2014": {
+     "key": "KIQ_U_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/KIQ_U_H.xpt",
+     "cycle": "2013-2014",
+     "role": "label_check",
+     "channel": "腎病問卷"
+    },
+    "2015-2016": {
+     "key": "KIQ_U_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/KIQ_U_I.xpt",
+     "cycle": "2015-2016",
+     "role": "label_check",
+     "channel": "腎病問卷"
+    },
+    "2017-2018": {
+     "key": "KIQ_U_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/KIQ_U_J.xpt",
+     "cycle": "2017-2018",
+     "role": "label_check",
+     "channel": "腎病問卷"
+    }
+   }
+  },
+  "醫療狀況": {
+   "role": "label_check",
+   "files": {
+    "1999-2000": {
+     "key": "MCQ.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/MCQ.xpt",
+     "cycle": "1999-2000",
+     "role": "label_check",
+     "channel": "醫療狀況"
+    },
+    "2001-2002": {
+     "key": "MCQ_B.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/MCQ_B.xpt",
+     "cycle": "2001-2002",
+     "role": "label_check",
+     "channel": "醫療狀況"
+    },
+    "2003-2004": {
+     "key": "MCQ_C.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/MCQ_C.xpt",
+     "cycle": "2003-2004",
+     "role": "label_check",
+     "channel": "醫療狀況"
+    },
+    "2005-2006": {
+     "key": "MCQ_D.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/MCQ_D.xpt",
+     "cycle": "2005-2006",
+     "role": "label_check",
+     "channel": "醫療狀況"
+    },
+    "2007-2008": {
+     "key": "MCQ_E.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/MCQ_E.xpt",
+     "cycle": "2007-2008",
+     "role": "label_check",
+     "channel": "醫療狀況"
+    },
+    "2009-2010": {
+     "key": "MCQ_F.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/MCQ_F.xpt",
+     "cycle": "2009-2010",
+     "role": "label_check",
+     "channel": "醫療狀況"
+    },
+    "2011-2012": {
+     "key": "MCQ_G.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/MCQ_G.xpt",
+     "cycle": "2011-2012",
+     "role": "label_check",
+     "channel": "醫療狀況"
+    },
+    "2013-2014": {
+     "key": "MCQ_H.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/MCQ_H.xpt",
+     "cycle": "2013-2014",
+     "role": "label_check",
+     "channel": "醫療狀況"
+    },
+    "2015-2016": {
+     "key": "MCQ_I.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/MCQ_I.xpt",
+     "cycle": "2015-2016",
+     "role": "label_check",
+     "channel": "醫療狀況"
+    },
+    "2017-2018": {
+     "key": "MCQ_J.xpt",
+     "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/MCQ_J.xpt",
+     "cycle": "2017-2018",
+     "role": "label_check",
+     "channel": "醫療狀況"
+    }
+   }
+  }
+ },
+ "missing": [
+  "尿金屬｜1999-2000",
+  "尿金屬｜2001-2002",
+  "尿金屬｜2003-2004",
+  "尿砷｜1999-2000",
+  "尿砷｜2001-2002",
+  "尿砷｜2003-2004",
+  "PFAS｜1999-2000",
+  "PFAS｜2001-2002",
+  "農藥｜1999-2000",
+  "農藥｜2003-2004"
+ ],
+ "n_files": 130
+}

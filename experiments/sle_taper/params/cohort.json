@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "title": "世代生成設定 v2（基線臨床特徵分布、易感度連結、切片評分、觀測情境）",
+    "note": "數值界線一律引用 params/thresholds.json；本檔放分布形狀與連結結構。減藥世代＝臨床緩解、正考慮停藥者（De Rosa／WIN-Lupus 納入條件）。"
+  },
+  "baseline_features": {
+    "upcr_g_per_g":        {"dist": "lognormal", "median": 0.25, "sigma_log": 0.5, "clip": [0.02, 0.5], "source": "本研究設定：完全緩解 <0.5 g/day 內的分布", "status": "study_defined"},
+    "egfr":                {"dist": "normal", "mean": 95, "sd": 15, "clip": [45, 130], "source": "本研究設定", "status": "study_defined"},
+    "c3_mg_dl":            {"dist": "normal", "mean": 100, "sd": 20, "clip": [50, 160], "source": "本研究設定", "status": "study_defined"},
+    "anti_dsdna_iu_ml":    {"dist": "lognormal", "median": 30, "sigma_log": 1.0, "clip": [1, 800], "source": "本研究設定", "status": "study_defined"},
+    "disease_duration_yr": {"dist": "lognormal", "median": 6.0, "sigma_log": 0.4, "clip": [3, 30], "source": "本研究設定：下界由 WIN-Lupus（維持 2–3 年）與 De Rosa（≥36 個月＋≥12 個月緩解）納入條件推得", "status": "study_defined"},
+    "prior_flares":        {"dist": "poisson", "lam": 1.0, "clip": [0, 6], "source": "本研究設定", "status": "study_defined"},
+    "chronicity_index":    {"dist": "poisson", "lam": 1.5, "clip": [0, 12], "source": "本研究設定：Ning 2026 Table 1 切片時 CI 中位 0（0–2）供參；此為減藥前重複切片之慢性化", "status": "study_defined"}
+  },
+  "susceptibility_link": {
+    "note": "基線特徵只透過機制歸屬機率與結局相關：P(機制|s) ∝ share_m·exp(κ·tilt_m·s)，tilt=+1（分岔／越障／連續惡化）、−1（穩定）、0（其餘）；s 為基線特徵的加權標準化和；μ_i 純由機制決定。方向為假設。",
+    "weights": {"disease_duration_yr": 1.0, "prior_flares": 1.0, "c3_mg_dl": -0.5, "anti_dsdna_iu_ml": 0.5},
+    "log_transform": ["anti_dsdna_iu_ml", "disease_duration_yr", "upcr_g_per_g"],
+    "source": "本研究設定", "status": "study_defined"
+  },
+  "biopsy_score": {
+    "note": "v2 肆之四：B = q[x(t0), μ_i, chronicity, duration] + εB；切片參考規則 = B 與病程的固定線性規則，效能於校準集內落在 De Rosa 計數推得的可信範圍",
+    "weights": {"mu": 1.0, "x0": 0.5, "chronicity_index": 0.1, "disease_duration_yr": 0.05},
+    "noise_sd": {"value": null, "scan": [0.1, 0.2, 0.4], "note": "εB 之 SD（x 單位）；null = 於校準集內選使敏感度／特異度落入可信範圍中點者"},
+    "source": "本研究設定", "status": "study_defined"
+  },
+  "observation_scenarios": {
+    "default": {"indicator": "x", "interval": "weekly", "meas_error": "small", "irregular": false, "symptom_driven": false, "treatment_intervention": false},
+    "list": ["default", "irregular", "symptom_driven", "treatment_intervention", "upcr_marker"],
+    "irregular": {"indicator": "x", "interval": "weekly", "meas_error": "small", "irregular": true, "symptom_driven": false, "treatment_intervention": false},
+    "symptom_driven": {"indicator": "x", "interval": "monthly", "meas_error": "small", "irregular": true, "symptom_driven": true, "treatment_intervention": false},
+    "treatment_intervention": {"indicator": "x", "interval": "weekly", "meas_error": "small", "irregular": false, "symptom_driven": false, "treatment_intervention": true},
+    "upcr_marker": {"indicator": "upcr", "interval": "weekly", "meas_error": "small", "irregular": false, "symptom_driven": false, "treatment_intervention": false},
+    "source": "本研究設定（v2 肆之三 觀測情境）", "status": "study_defined"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "dataset": "Annotated Ultrasound Liver (AUL)",
+  "task": "benign versus malignant liver lesion",
+  "selected_feature_variant": "whole_roi_expanded_radiomics_sensitivity",
+  "selected_classifier": "RBF_C10.0",
+  "selected_development_auc": 0.874389367816092,
+  "selection_rule": "highest development OOF AUROC; all v4 configurations reported",
+  "version": 4,
+  "status": "development_gate_not_met",
+  "holdout_gate": "development OOF AUROC >= 0.9",
+  "frozen_at": "2026-08-30T14:13:32+0800"
+}

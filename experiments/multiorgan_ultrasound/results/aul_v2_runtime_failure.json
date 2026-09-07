@@ -1,0 +1,10 @@
+{
+  "dataset": "Annotated Ultrasound Liver (AUL) development",
+  "attempt": "v2 nonlinear battery, first execution",
+  "status": "runtime_failure_before_result_write",
+  "failure": "Python 3.14 removed ast.Num; joblib 1.3.2 entered an incompatible multi-core path when HistGradientBoosting started",
+  "holdout_accessed": false,
+  "partial_scores_claimed": false,
+  "remediation": "set numerical thread environment variables before importing sklearn and rerun the full battery",
+  "at": "2026-08-30T13:33:00+0800"
+}

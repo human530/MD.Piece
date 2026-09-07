@@ -1,0 +1,2651 @@
+{
+  "dataset": "Annotated Ultrasound Liver (AUL)",
+  "source": "https://doi.org/10.5281/zenodo.7272660",
+  "task": "benign versus malignant liver lesion",
+  "archives": {
+    "Benign.zip": {
+      "md5": "c37fef0cb2730236a79ef57e5315995e",
+      "sha256": "8f07a4d9f4c90e6cb7e080579822e36d8f60b5bafd3faa19a2cb98a1ef6e0d62"
+    },
+    "Malignant.zip": {
+      "md5": "63894a9e5654a69c3b94bda84071dfb0",
+      "sha256": "2c1491d61f3e8f71ec60c4aa406ad5321d1915165a1ad8a64867987751d021f7"
+    },
+    "Normal.zip": {
+      "md5": "a7e16299b2cf12ca4a6c3468d2e4978f",
+      "sha256": "2eb16a965a30feed102412e3e73e54002ae22e352f439744108b2c9df94b7b16"
+    }
+  },
+  "development_patients": 508,
+  "development_counts": {
+    "Malignant": 348,
+    "Benign": 160
+  },
+  "holdout_patients_unopened": 127,
+  "model": "frozen ImageNet ResNet-18 whole/20%-padded expert mass ROI and/or 18 mask features; LR plus fixed nonlinear sensitivity models",
+  "mask_features": [
+    "area_fraction",
+    "bbox_extent",
+    "bbox_aspect",
+    "centroid_x",
+    "centroid_y",
+    "perimeter_normalized",
+    "compactness",
+    "eccentricity",
+    "radial_irregularity",
+    "lesion_mean",
+    "lesion_std",
+    "lesion_p10",
+    "lesion_p50",
+    "lesion_p90",
+    "lesion_entropy",
+    "lesion_gradient_mean",
+    "ring_mean",
+    "lesion_ring_contrast"
+  ],
+  "expanded_radiomics": [
+    "area_fraction",
+    "bbox_extent",
+    "bbox_aspect",
+    "centroid_x",
+    "centroid_y",
+    "perimeter_normalized",
+    "compactness",
+    "eccentricity",
+    "radial_irregularity",
+    "lesion_mean",
+    "lesion_std",
+    "lesion_p10",
+    "lesion_p50",
+    "lesion_p90",
+    "lesion_entropy",
+    "lesion_gradient_mean",
+    "ring_mean",
+    "lesion_ring_contrast",
+    "solidity",
+    "radial_p10",
+    "radial_p50",
+    "radial_p90",
+    "radial_skew",
+    "lesion_iqr",
+    "lesion_mad",
+    "lesion_skew",
+    "lesion_kurtosis",
+    "gradient_std",
+    "gradient_p50",
+    "gradient_p90",
+    "ring_std",
+    "absolute_ring_contrast",
+    "glcm_contrast",
+    "glcm_dissimilarity",
+    "glcm_homogeneity",
+    "glcm_energy",
+    "glcm_correlation",
+    "glcm_entropy"
+  ],
+  "runs": [
+    {
+      "feature_variant": "whole_image_primary",
+      "classifier": "LR",
+      "config": "whole_image_primary__LR",
+      "patients": 508,
+      "auc": 0.7877693965517242,
+      "auc_ci_95": [
+        0.7460847372801792,
+        0.8296953796503618
+      ],
+      "balanced_accuracy_at_0_5": 0.7217313218390804,
+      "brier": 0.20482119194340265,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7745535714285714
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.7714285714285714
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8620535714285715
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.786231884057971
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7395833333333333
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_roi_sensitivity",
+      "classifier": "LR",
+      "config": "expert_mass_roi_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.7705459770114941,
+      "auc_ci_95": [
+        0.7232358677896823,
+        0.8147727988620698
+      ],
+      "balanced_accuracy_at_0_5": 0.6881106321839081,
+      "brier": 0.2095668541850407,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7799107142857142
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8044642857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7375
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.764945652173913
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7667572463768116
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_features_sensitivity",
+      "classifier": "LR",
+      "config": "expert_mass_features_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.777514367816092,
+      "auc_ci_95": [
+        0.7287327656412531,
+        0.8226809261265922
+      ],
+      "balanced_accuracy_at_0_5": 0.7345545977011494,
+      "brier": 0.18394398146579768,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7049107142857143
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8553571428571428
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7825892857142858
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8365036231884058
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7436594202898551
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_plus_roi_sensitivity",
+      "classifier": "LR",
+      "config": "whole_plus_roi_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.8304238505747127,
+      "auc_ci_95": [
+        0.7887336005682097,
+        0.8676840633661476
+      ],
+      "balanced_accuracy_at_0_5": 0.7670977011494253,
+      "brier": 0.16854026939612904,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8187500000000001
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.859375
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8482142857142858
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8383152173913042
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8038949275362319
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_plus_mass_features_sensitivity",
+      "classifier": "LR",
+      "config": "whole_plus_mass_features_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.8063757183908045,
+      "auc_ci_95": [
+        0.7670512519952114,
+        0.8456964878419178
+      ],
+      "balanced_accuracy_at_0_5": 0.7200431034482759,
+      "brier": 0.19814620446676534,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7897321428571429
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.7950892857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8665178571428571
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8147644927536232
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7622282608695652
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_mass_features_sensitivity",
+      "classifier": "LR",
+      "config": "roi_plus_mass_features_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.7955459770114943,
+      "auc_ci_95": [
+        0.7489005625013863,
+        0.8368780215369696
+      ],
+      "balanced_accuracy_at_0_5": 0.7286637931034483,
+      "brier": 0.19243633717296102,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7986607142857143
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8370535714285714
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7464285714285714
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.7989130434782609
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8034420289855073
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_mass_features_sensitivity",
+      "classifier": "LR",
+      "config": "whole_roi_mass_features_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.8359375,
+      "auc_ci_95": [
+        0.7964008269640398,
+        0.8727125060043025
+      ],
+      "balanced_accuracy_at_0_5": 0.7644755747126437,
+      "brier": 0.1664903972360881,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8276785714285715
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8687500000000001
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.846875
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8419384057971014
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8129528985507246
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_expanded_radiomics_sensitivity",
+      "classifier": "LR",
+      "config": "expert_expanded_radiomics_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.7820043103448276,
+      "auc_ci_95": [
+        0.7329079319405508,
+        0.8287902953316745
+      ],
+      "balanced_accuracy_at_0_5": 0.725933908045977,
+      "brier": 0.1818476331807088,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7607142857142857
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8129464285714286
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.796875
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8795289855072465
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.712409420289855
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_expanded_radiomics_sensitivity",
+      "classifier": "LR",
+      "config": "roi_plus_expanded_radiomics_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.8036637931034483,
+      "auc_ci_95": [
+        0.7594123558109744,
+        0.8442316113379728
+      ],
+      "balanced_accuracy_at_0_5": 0.7366020114942529,
+      "brier": 0.18817955922882643,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8102678571428572
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.828125
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.75
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8197463768115941
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8206521739130435
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_expanded_radiomics_sensitivity",
+      "classifier": "LR",
+      "config": "whole_roi_expanded_radiomics_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.8417923850574712,
+      "auc_ci_95": [
+        0.803852187426913,
+        0.8775482855527832
+      ],
+      "balanced_accuracy_at_0_5": 0.7594109195402299,
+      "brier": 0.16576867811083826,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8299107142857143
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8714285714285714
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.846875
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.855072463768116
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8156702898550725
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_hog_sensitivity",
+      "classifier": "LR",
+      "config": "expert_mass_hog_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.6329022988505748,
+      "auc_ci_95": [
+        0.5819698033707865,
+        0.6847771193150887
+      ],
+      "balanced_accuracy_at_0_5": 0.5853807471264367,
+      "brier": 0.30357611029423065,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.6339285714285714
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.6205357142857142
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.6080357142857142
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.6666666666666666
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.6345108695652174
+        }
+      ]
+    },
+    {
+      "feature_variant": "hog_plus_expanded_radiomics_sensitivity",
+      "classifier": "LR",
+      "config": "hog_plus_expanded_radiomics_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.7304058908045976,
+      "auc_ci_95": [
+        0.6866174907379597,
+        0.7746478666207732
+      ],
+      "balanced_accuracy_at_0_5": 0.6448635057471265,
+      "brier": 0.25028981241981213,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7562500000000001
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.7174107142857142
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7004464285714286
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8048007246376812
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.6689311594202898
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_sensitivity",
+      "classifier": "LR",
+      "config": "whole_roi_hog_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.8338002873563217,
+      "auc_ci_95": [
+        0.7936192820853881,
+        0.8711617643896534
+      ],
+      "balanced_accuracy_at_0_5": 0.7478448275862069,
+      "brier": 0.17550586332433804,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.842857142857143
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8799107142857143
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8120535714285715
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8432971014492754
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7916666666666667
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_radiomics_sensitivity",
+      "classifier": "LR",
+      "config": "whole_roi_hog_radiomics_sensitivity__LR",
+      "patients": 508,
+      "auc": 0.8375718390804597,
+      "auc_ci_95": [
+        0.7973845349547644,
+        0.8751003898298125
+      ],
+      "balanced_accuracy_at_0_5": 0.7464080459770115,
+      "brier": 0.17168370743243902,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8459821428571428
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8839285714285714
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8187500000000001
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8491847826086956
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7889492753623188
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_features_sensitivity",
+      "classifier": "RBF_C0.1",
+      "config": "expert_mass_features_sensitivity__RBF_C0.1",
+      "patients": 508,
+      "auc": 0.7661997126436781,
+      "auc_ci_95": [
+        0.7195627129668604,
+        0.8101834693913182
+      ],
+      "balanced_accuracy_at_0_5": 0.6961566091954023,
+      "brier": 0.17056573495808344,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7459821428571429
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8285714285714285
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7995535714285714
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8084239130434783
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7192028985507247
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_mass_features_sensitivity",
+      "classifier": "RBF_C0.1",
+      "config": "roi_plus_mass_features_sensitivity__RBF_C0.1",
+      "patients": 508,
+      "auc": 0.7815373563218392,
+      "auc_ci_95": [
+        0.7346546826436404,
+        0.8238150416551525
+      ],
+      "balanced_accuracy_at_0_5": 0.6847701149425287,
+      "brier": 0.16255186924925027,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7950892857142858
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8513392857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7763392857142858
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8387681159420289
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.6915760869565217
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_mass_features_sensitivity",
+      "classifier": "RBF_C0.1",
+      "config": "whole_roi_mass_features_sensitivity__RBF_C0.1",
+      "patients": 508,
+      "auc": 0.7981860632183908,
+      "auc_ci_95": [
+        0.7531976720492631,
+        0.8388088182471264
+      ],
+      "balanced_accuracy_at_0_5": 0.7149066091954024,
+      "brier": 0.16060645957869826,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.797767857142857
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8531250000000001
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8120535714285715
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8867753623188406
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7146739130434783
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C0.1",
+      "config": "expert_expanded_radiomics_sensitivity__RBF_C0.1",
+      "patients": 508,
+      "auc": 0.772350933908046,
+      "auc_ci_95": [
+        0.7274924142906625,
+        0.8163452042748918
+      ],
+      "balanced_accuracy_at_0_5": 0.7151580459770115,
+      "brier": 0.16790595909646894,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7683035714285715
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8303571428571429
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8200892857142857
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8269927536231885
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.683197463768116
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C0.1",
+      "config": "roi_plus_expanded_radiomics_sensitivity__RBF_C0.1",
+      "patients": 508,
+      "auc": 0.7897090517241379,
+      "auc_ci_95": [
+        0.7429268900523497,
+        0.8315211515930837
+      ],
+      "balanced_accuracy_at_0_5": 0.6963362068965517,
+      "brier": 0.15983826031990553,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8004464285714286
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.853125
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7924107142857143
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8555253623188406
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.6915760869565217
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C0.1",
+      "config": "whole_roi_expanded_radiomics_sensitivity__RBF_C0.1",
+      "patients": 508,
+      "auc": 0.8006465517241379,
+      "auc_ci_95": [
+        0.7557922748418593,
+        0.8407029437290283
+      ],
+      "balanced_accuracy_at_0_5": 0.7094109195402298,
+      "brier": 0.159922590532885,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8004464285714286
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8575892857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8138392857142858
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8899456521739131
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7155797101449276
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_hog_sensitivity",
+      "classifier": "RBF_C0.1",
+      "config": "expert_mass_hog_sensitivity__RBF_C0.1",
+      "patients": 508,
+      "auc": 0.4265804597701149,
+      "auc_ci_95": [
+        0.37492899732611623,
+        0.47940061383030347
+      ],
+      "balanced_accuracy_at_0_5": 0.5,
+      "brier": 0.21723016619084284,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.25535714285714284
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.21562499999999996
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.5022321428571429
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.2658514492753623
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.296195652173913
+        }
+      ]
+    },
+    {
+      "feature_variant": "hog_plus_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C0.1",
+      "config": "hog_plus_expanded_radiomics_sensitivity__RBF_C0.1",
+      "patients": 508,
+      "auc": 0.5019037356321839,
+      "auc_ci_95": [
+        0.44302888664111567,
+        0.563318922279181
+      ],
+      "balanced_accuracy_at_0_5": 0.5,
+      "brier": 0.21674081286296307,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7866071428571428
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8508928571428571
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.5705357142857144
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.18840579710144928
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.26041666666666663
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_sensitivity",
+      "classifier": "RBF_C0.1",
+      "config": "whole_roi_hog_sensitivity__RBF_C0.1",
+      "patients": 508,
+      "auc": 0.7271372126436781,
+      "auc_ci_95": [
+        0.6805205707296066,
+        0.7722164614756178
+      ],
+      "balanced_accuracy_at_0_5": 0.5,
+      "brier": 0.2065416689914941,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.796875
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.872767857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.771875
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8872282608695652
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7486413043478262
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_radiomics_sensitivity",
+      "classifier": "RBF_C0.1",
+      "config": "whole_roi_hog_radiomics_sensitivity__RBF_C0.1",
+      "patients": 508,
+      "auc": 0.741846264367816,
+      "auc_ci_95": [
+        0.694742057999294,
+        0.7861302906179712
+      ],
+      "balanced_accuracy_at_0_5": 0.5,
+      "brier": 0.2038487878336715,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8008928571428571
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8736607142857142
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7745535714285714
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8890398550724637
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.75
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_features_sensitivity",
+      "classifier": "RBF_C1.0",
+      "config": "expert_mass_features_sensitivity__RBF_C1.0",
+      "patients": 508,
+      "auc": 0.7901939655172413,
+      "auc_ci_95": [
+        0.7446300691794595,
+        0.8333517635067508
+      ],
+      "balanced_accuracy_at_0_5": 0.695905172413793,
+      "brier": 0.16349973012557997,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.721875
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8160714285714286
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8183035714285715
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8555253623188406
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7828351449275363
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_mass_features_sensitivity",
+      "classifier": "RBF_C1.0",
+      "config": "roi_plus_mass_features_sensitivity__RBF_C1.0",
+      "patients": 508,
+      "auc": 0.8394576149425286,
+      "auc_ci_95": [
+        0.7998669317550919,
+        0.8750088014929908
+      ],
+      "balanced_accuracy_at_0_5": 0.7124640804597702,
+      "brier": 0.143710104641204,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.821875
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9066964285714285
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8294642857142857
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8840579710144927
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7871376811594203
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_mass_features_sensitivity",
+      "classifier": "RBF_C1.0",
+      "config": "whole_roi_mass_features_sensitivity__RBF_C1.0",
+      "patients": 508,
+      "auc": 0.8581357758620689,
+      "auc_ci_95": [
+        0.8203084406664706,
+        0.8910356890509574
+      ],
+      "balanced_accuracy_at_0_5": 0.7454022988505746,
+      "brier": 0.1358494267552664,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.825
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9075892857142858
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8776785714285715
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9193840579710145
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7998188405797101
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C1.0",
+      "config": "expert_expanded_radiomics_sensitivity__RBF_C1.0",
+      "patients": 508,
+      "auc": 0.7902119252873563,
+      "auc_ci_95": [
+        0.7453579797534541,
+        0.8347265282297007
+      ],
+      "balanced_accuracy_at_0_5": 0.7110272988505747,
+      "brier": 0.16169676783132073,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7504464285714285
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8245535714285714
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.846875
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8731884057971016
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7182971014492754
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C1.0",
+      "config": "roi_plus_expanded_radiomics_sensitivity__RBF_C1.0",
+      "patients": 508,
+      "auc": 0.844701867816092,
+      "auc_ci_95": [
+        0.806578636075781,
+        0.8799248994649536
+      ],
+      "balanced_accuracy_at_0_5": 0.7184626436781609,
+      "brier": 0.1420240488165261,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8321428571428571
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9008928571428572
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8357142857142856
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.891983695652174
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7939311594202898
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C1.0",
+      "config": "whole_roi_expanded_radiomics_sensitivity__RBF_C1.0",
+      "patients": 508,
+      "auc": 0.8610272988505746,
+      "auc_ci_95": [
+        0.8237857924481473,
+        0.893442270262595
+      ],
+      "balanced_accuracy_at_0_5": 0.7470905172413793,
+      "brier": 0.13487969358296245,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8290178571428571
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9073660714285715
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8794642857142857
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.919836956521739
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8038949275362318
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_hog_sensitivity",
+      "classifier": "RBF_C1.0",
+      "config": "expert_mass_hog_sensitivity__RBF_C1.0",
+      "patients": 508,
+      "auc": 0.7195492097701149,
+      "auc_ci_95": [
+        0.6686813023197594,
+        0.7666136542006737
+      ],
+      "balanced_accuracy_at_0_5": 0.6398347701149425,
+      "brier": 0.18508293157070901,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7638392857142857
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.7973214285714286
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.6165178571428571
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.7488677536231885
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.6961050724637682
+        }
+      ]
+    },
+    {
+      "feature_variant": "hog_plus_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C1.0",
+      "config": "hog_plus_expanded_radiomics_sensitivity__RBF_C1.0",
+      "patients": 508,
+      "auc": 0.7849317528735632,
+      "auc_ci_95": [
+        0.7418684639333039,
+        0.8269122769286044
+      ],
+      "balanced_accuracy_at_0_5": 0.6970905172413793,
+      "brier": 0.16419105202204368,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.815625
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8656250000000001
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7160714285714286
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8428442028985508
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7323369565217391
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_sensitivity",
+      "classifier": "RBF_C1.0",
+      "config": "whole_roi_hog_sensitivity__RBF_C1.0",
+      "patients": 508,
+      "auc": 0.8436512212643678,
+      "auc_ci_95": [
+        0.8043198952993843,
+        0.8785466270393625
+      ],
+      "balanced_accuracy_at_0_5": 0.7288433908045977,
+      "brier": 0.14383374704707155,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8379464285714286
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9174107142857142
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8410714285714287
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9008152173913042
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7817028985507245
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_radiomics_sensitivity",
+      "classifier": "RBF_C1.0",
+      "config": "whole_roi_hog_radiomics_sensitivity__RBF_C1.0",
+      "patients": 508,
+      "auc": 0.847216235632184,
+      "auc_ci_95": [
+        0.8082862704046077,
+        0.8818167110569549
+      ],
+      "balanced_accuracy_at_0_5": 0.7274066091954023,
+      "brier": 0.1424047887617396,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8441964285714286
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9183035714285714
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8450892857142858
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9053442028985507
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.782608695652174
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_features_sensitivity",
+      "classifier": "RBF_C10.0",
+      "config": "expert_mass_features_sensitivity__RBF_C10.0",
+      "patients": 508,
+      "auc": 0.7609734195402299,
+      "auc_ci_95": [
+        0.7136143636104384,
+        0.8067810259383421
+      ],
+      "balanced_accuracy_at_0_5": 0.6573994252873563,
+      "brier": 0.1743577082404247,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7080357142857143
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.7352678571428571
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7660714285714285
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8727355072463767
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7884963768115941
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_mass_features_sensitivity",
+      "classifier": "RBF_C10.0",
+      "config": "roi_plus_mass_features_sensitivity__RBF_C10.0",
+      "patients": 508,
+      "auc": 0.8359195402298851,
+      "auc_ci_95": [
+        0.7947095259528395,
+        0.874144518084978
+      ],
+      "balanced_accuracy_at_0_5": 0.7191451149425288,
+      "brier": 0.14262622240036713,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8348214285714286
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8745535714285715
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8446428571428573
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8609601449275363
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7948369565217391
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_mass_features_sensitivity",
+      "classifier": "RBF_C10.0",
+      "config": "whole_roi_mass_features_sensitivity__RBF_C10.0",
+      "patients": 508,
+      "auc": 0.870599856321839,
+      "auc_ci_95": [
+        0.832115377881029,
+        0.9035908621037959
+      ],
+      "balanced_accuracy_at_0_5": 0.7739583333333333,
+      "brier": 0.1247650979522239,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8482142857142857
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9013392857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8727678571428572
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9175724637681159
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8251811594202899
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C10.0",
+      "config": "expert_expanded_radiomics_sensitivity__RBF_C10.0",
+      "patients": 508,
+      "auc": 0.7827227011494252,
+      "auc_ci_95": [
+        0.7373155092885086,
+        0.8260538564244845
+      ],
+      "balanced_accuracy_at_0_5": 0.6970186781609196,
+      "brier": 0.16586813436141618,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.732142857142857
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.784375
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8183035714285715
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.860054347826087
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7631340579710145
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C10.0",
+      "config": "roi_plus_expanded_radiomics_sensitivity__RBF_C10.0",
+      "patients": 508,
+      "auc": 0.844683908045977,
+      "auc_ci_95": [
+        0.8049235884584051,
+        0.8806845021076409
+      ],
+      "balanced_accuracy_at_0_5": 0.719396551724138,
+      "brier": 0.1395597194779722,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8383928571428572
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8696428571428572
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8553571428571429
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.876358695652174
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8106884057971016
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C10.0",
+      "config": "whole_roi_expanded_radiomics_sensitivity__RBF_C10.0",
+      "patients": 508,
+      "auc": 0.874389367816092,
+      "auc_ci_95": [
+        0.8368814433883621,
+        0.9068138174254398
+      ],
+      "balanced_accuracy_at_0_5": 0.7696479885057471,
+      "brier": 0.12359956779173832,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8513392857142857
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9058035714285715
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8772321428571428
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9193840579710145
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8265398550724637
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_hog_sensitivity",
+      "classifier": "RBF_C10.0",
+      "config": "expert_mass_hog_sensitivity__RBF_C10.0",
+      "patients": 508,
+      "auc": 0.720294540229885,
+      "auc_ci_95": [
+        0.6707786325944907,
+        0.766137235316223
+      ],
+      "balanced_accuracy_at_0_5": 0.6357758620689655,
+      "brier": 0.18430632414664125,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7526785714285713
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.782142857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.6683035714285714
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.7432065217391305
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.6786684782608696
+        }
+      ]
+    },
+    {
+      "feature_variant": "hog_plus_expanded_radiomics_sensitivity",
+      "classifier": "RBF_C10.0",
+      "config": "hog_plus_expanded_radiomics_sensitivity__RBF_C10.0",
+      "patients": 508,
+      "auc": 0.7900682471264368,
+      "auc_ci_95": [
+        0.7470463198415376,
+        0.8316917004504187
+      ],
+      "balanced_accuracy_at_0_5": 0.7064655172413794,
+      "brier": 0.16087829890549815,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8290178571428573
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8611607142857143
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7566964285714286
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8448822463768116
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7269021739130435
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_sensitivity",
+      "classifier": "RBF_C10.0",
+      "config": "whole_roi_hog_sensitivity__RBF_C10.0",
+      "patients": 508,
+      "auc": 0.8559806034482758,
+      "auc_ci_95": [
+        0.8182719464309542,
+        0.8890384931521742
+      ],
+      "balanced_accuracy_at_0_5": 0.7593390804597702,
+      "brier": 0.1359215950486997,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8522321428571429
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9254464285714284
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8500000000000001
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8876811594202899
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7961956521739131
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_radiomics_sensitivity",
+      "classifier": "RBF_C10.0",
+      "config": "whole_roi_hog_radiomics_sensitivity__RBF_C10.0",
+      "patients": 508,
+      "auc": 0.8594109195402297,
+      "auc_ci_95": [
+        0.8212743346376112,
+        0.8926347728941514
+      ],
+      "balanced_accuracy_at_0_5": 0.7468390804597701,
+      "brier": 0.13387105596162288,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8616071428571428
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9299107142857144
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8517857142857143
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8942481884057972
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7998188405797102
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_features_sensitivity",
+      "classifier": "HGB",
+      "config": "expert_mass_features_sensitivity__HGB",
+      "patients": 508,
+      "auc": 0.7911458333333334,
+      "auc_ci_95": [
+        0.7437581219519745,
+        0.8362044024622679
+      ],
+      "balanced_accuracy_at_0_5": 0.7174209770114943,
+      "brier": 0.16737627522484497,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8191964285714286
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8200892857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7486607142857142
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.865036231884058
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7463768115942029
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_mass_features_sensitivity",
+      "classifier": "HGB",
+      "config": "roi_plus_mass_features_sensitivity__HGB",
+      "patients": 508,
+      "auc": 0.8369432471264368,
+      "auc_ci_95": [
+        0.7948604611076329,
+        0.8735572278148512
+      ],
+      "balanced_accuracy_at_0_5": 0.7489583333333334,
+      "brier": 0.14311878505257525,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8017857142857143
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8611607142857143
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8160714285714286
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9134963768115942
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8106884057971014
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_mass_features_sensitivity",
+      "classifier": "HGB",
+      "config": "whole_roi_mass_features_sensitivity__HGB",
+      "patients": 508,
+      "auc": 0.866864224137931,
+      "auc_ci_95": [
+        0.8295724345874161,
+        0.8984944445305214
+      ],
+      "balanced_accuracy_at_0_5": 0.7749640804597702,
+      "brier": 0.13071779981732018,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8383928571428572
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8745535714285715
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8946428571428572
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.933876811594203
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8351449275362319
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_expanded_radiomics_sensitivity",
+      "classifier": "HGB",
+      "config": "expert_expanded_radiomics_sensitivity__HGB",
+      "patients": 508,
+      "auc": 0.8014188218390804,
+      "auc_ci_95": [
+        0.7558252138499749,
+        0.8468302434003856
+      ],
+      "balanced_accuracy_at_0_5": 0.7354166666666666,
+      "brier": 0.16336990580885685,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7875
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.79375
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8022321428571428
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8704710144927535
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7789855072463767
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_expanded_radiomics_sensitivity",
+      "classifier": "HGB",
+      "config": "roi_plus_expanded_radiomics_sensitivity__HGB",
+      "patients": 508,
+      "auc": 0.8425826149425286,
+      "auc_ci_95": [
+        0.7992115977506619,
+        0.877088591364737
+      ],
+      "balanced_accuracy_at_0_5": 0.7477729885057471,
+      "brier": 0.14191060109579373,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8178571428571428
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8669642857142856
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8258928571428572
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9144021739130435
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8229166666666667
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_expanded_radiomics_sensitivity",
+      "classifier": "HGB",
+      "config": "whole_roi_expanded_radiomics_sensitivity__HGB",
+      "patients": 508,
+      "auc": 0.8675466954022989,
+      "auc_ci_95": [
+        0.8298301616451867,
+        0.8984210348031779
+      ],
+      "balanced_accuracy_at_0_5": 0.7758979885057471,
+      "brier": 0.13150240447932915,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.809375
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.890625
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8879464285714286
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9415760869565217
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8528079710144927
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_hog_sensitivity",
+      "classifier": "HGB",
+      "config": "expert_mass_hog_sensitivity__HGB",
+      "patients": 508,
+      "auc": 0.6774964080459771,
+      "auc_ci_95": [
+        0.6269466414957491,
+        0.7236876755843445
+      ],
+      "balanced_accuracy_at_0_5": 0.6053520114942529,
+      "brier": 0.20901666905259397,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7316964285714286
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.7433035714285714
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.6156250000000001
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.6829710144927535
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.6408514492753624
+        }
+      ]
+    },
+    {
+      "feature_variant": "hog_plus_expanded_radiomics_sensitivity",
+      "classifier": "HGB",
+      "config": "hog_plus_expanded_radiomics_sensitivity__HGB",
+      "patients": 508,
+      "auc": 0.7603268678160919,
+      "auc_ci_95": [
+        0.7102161263664496,
+        0.804572755938552
+      ],
+      "balanced_accuracy_at_0_5": 0.6999640804597701,
+      "brier": 0.17454302403176772,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7450892857142858
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8062499999999999
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7107142857142856
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.838768115942029
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7531702898550725
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_sensitivity",
+      "classifier": "HGB",
+      "config": "whole_roi_hog_sensitivity__HGB",
+      "patients": 508,
+      "auc": 0.840894396551724,
+      "auc_ci_95": [
+        0.8002779410565132,
+        0.8745430905578963
+      ],
+      "balanced_accuracy_at_0_5": 0.7454022988505746,
+      "brier": 0.14643924215994567,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8419642857142857
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8901785714285715
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8339285714285715
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9085144927536232
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7735507246376812
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_radiomics_sensitivity",
+      "classifier": "HGB",
+      "config": "whole_roi_hog_radiomics_sensitivity__HGB",
+      "patients": 508,
+      "auc": 0.8368354885057471,
+      "auc_ci_95": [
+        0.7950947276893877,
+        0.8711665383260767
+      ],
+      "balanced_accuracy_at_0_5": 0.7470905172413793,
+      "brier": 0.1495614468228602,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8241071428571429
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8982142857142856
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8075892857142857
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8967391304347825
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7971014492753623
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_features_sensitivity",
+      "classifier": "ExtraTrees",
+      "config": "expert_mass_features_sensitivity__ExtraTrees",
+      "patients": 508,
+      "auc": 0.8114942528735632,
+      "auc_ci_95": [
+        0.7705512929534848,
+        0.8515345154667484
+      ],
+      "balanced_accuracy_at_0_5": 0.7402298850574713,
+      "brier": 0.1640880039064302,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7834821428571428
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8741071428571429
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8209821428571429
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8673007246376813
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7604166666666667
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_mass_features_sensitivity",
+      "classifier": "ExtraTrees",
+      "config": "roi_plus_mass_features_sensitivity__ExtraTrees",
+      "patients": 508,
+      "auc": 0.841540948275862,
+      "auc_ci_95": [
+        0.8027423754162109,
+        0.8769557946473174
+      ],
+      "balanced_accuracy_at_0_5": 0.7040229885057472,
+      "brier": 0.14881108366900517,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8383928571428572
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8857142857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8629464285714286
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8899456521739131
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7708333333333333
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_mass_features_sensitivity",
+      "classifier": "ExtraTrees",
+      "config": "whole_roi_mass_features_sensitivity__ExtraTrees",
+      "patients": 508,
+      "auc": 0.847521551724138,
+      "auc_ci_95": [
+        0.8101695420454437,
+        0.8815648209169916
+      ],
+      "balanced_accuracy_at_0_5": 0.748778735632184,
+      "brier": 0.14620042399872024,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8401785714285714
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8955357142857143
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8736607142857142
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.90625
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.774909420289855
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_expanded_radiomics_sensitivity",
+      "classifier": "ExtraTrees",
+      "config": "expert_expanded_radiomics_sensitivity__ExtraTrees",
+      "patients": 508,
+      "auc": 0.8281968390804597,
+      "auc_ci_95": [
+        0.7873105551994165,
+        0.8668571428571429
+      ],
+      "balanced_accuracy_at_0_5": 0.7317887931034484,
+      "brier": 0.15187199838112259,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8066964285714286
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8790178571428571
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8674107142857144
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8967391304347826
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7436594202898551
+        }
+      ]
+    },
+    {
+      "feature_variant": "roi_plus_expanded_radiomics_sensitivity",
+      "classifier": "ExtraTrees",
+      "config": "roi_plus_expanded_radiomics_sensitivity__ExtraTrees",
+      "patients": 508,
+      "auc": 0.8460668103448276,
+      "auc_ci_95": [
+        0.8075545494646161,
+        0.8810434225699085
+      ],
+      "balanced_accuracy_at_0_5": 0.725897988505747,
+      "brier": 0.14555469911635696,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8455357142857143
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8910714285714285
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8705357142857143
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8976449275362319
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.761322463768116
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_expanded_radiomics_sensitivity",
+      "classifier": "ExtraTrees",
+      "config": "whole_roi_expanded_radiomics_sensitivity__ExtraTrees",
+      "patients": 508,
+      "auc": 0.8531429597701149,
+      "auc_ci_95": [
+        0.8161388116494671,
+        0.8866367580205202
+      ],
+      "balanced_accuracy_at_0_5": 0.7562140804597701,
+      "brier": 0.14361941314986656,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8486607142857143
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.9071428571428573
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8758928571428573
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9144021739130435
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7821557971014492
+        }
+      ]
+    },
+    {
+      "feature_variant": "expert_mass_hog_sensitivity",
+      "classifier": "ExtraTrees",
+      "config": "expert_mass_hog_sensitivity__ExtraTrees",
+      "patients": 508,
+      "auc": 0.7205100574712643,
+      "auc_ci_95": [
+        0.6717010041941868,
+        0.7654386332646873
+      ],
+      "balanced_accuracy_at_0_5": 0.5873204022988505,
+      "brier": 0.19302842599524267,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7736607142857144
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8013392857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.608482142857143
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.7690217391304348
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.688858695652174
+        }
+      ]
+    },
+    {
+      "feature_variant": "hog_plus_expanded_radiomics_sensitivity",
+      "classifier": "ExtraTrees",
+      "config": "hog_plus_expanded_radiomics_sensitivity__ExtraTrees",
+      "patients": 508,
+      "auc": 0.8038793103448276,
+      "auc_ci_95": [
+        0.7612645853240189,
+        0.8439058200772305
+      ],
+      "balanced_accuracy_at_0_5": 0.675323275862069,
+      "brier": 0.17007858727547703,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8241071428571428
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8745535714285715
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7424107142857144
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.873641304347826
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7395833333333334
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_sensitivity",
+      "classifier": "ExtraTrees",
+      "config": "whole_roi_hog_sensitivity__ExtraTrees",
+      "patients": 508,
+      "auc": 0.8339978448275862,
+      "auc_ci_95": [
+        0.795226740599556,
+        0.8689585358270383
+      ],
+      "balanced_accuracy_at_0_5": 0.7093390804597701,
+      "brier": 0.15325100131123437,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8388392857142858
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8915178571428573
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8415178571428572
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.911231884057971
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7667572463768116
+        }
+      ]
+    },
+    {
+      "feature_variant": "whole_roi_hog_radiomics_sensitivity",
+      "classifier": "ExtraTrees",
+      "config": "whole_roi_hog_radiomics_sensitivity__ExtraTrees",
+      "patients": 508,
+      "auc": 0.8361170977011494,
+      "auc_ci_95": [
+        0.7972341922899417,
+        0.870460493782166
+      ],
+      "balanced_accuracy_at_0_5": 0.7280890804597702,
+      "brier": 0.1515868196290904,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.8410714285714286
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.89375
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8504464285714286
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.9044384057971014
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7622282608695653
+        }
+      ]
+    }
+  ],
+  "selected_config": "whole_roi_expanded_radiomics_sensitivity__RBF_C10.0",
+  "claim_boundary": "single-source development only; expert variants require manual mass annotation",
+  "created_at": "2026-08-30T14:13:32+0800"
+}

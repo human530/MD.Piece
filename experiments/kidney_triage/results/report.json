@@ -1,0 +1,856 @@
+{
+ "seed": 20260828,
+ "n": 3998,
+ "stage0": {
+  "n_input": 4000,
+  "n_pass": 3998,
+  "n_excluded": 2,
+  "rule": "至少 1 次成套且 ['Cr'] 至少一次有值"
+ },
+ "feature_sets": {
+  "stages": {
+   "1": {
+    "M1": [
+     "L0_Cr",
+     "L0_BUN",
+     "L0_UPCR",
+     "L0_uRBC",
+     "L0_uRBC_dys",
+     "L0_uRBC_acan",
+     "L0_uRBC_cast",
+     "L0_uWBC",
+     "L0_NLR",
+     "L0_CRP",
+     "L0_SBP",
+     "L0_alb",
+     "L0_eos",
+     "L0_PLT"
+    ],
+    "M2": [
+     "L_Cr",
+     "L_BUN",
+     "L_UPCR",
+     "L_uRBC",
+     "L_uRBC_dys",
+     "L_uRBC_acan",
+     "L_uRBC_cast",
+     "L_uWBC",
+     "L_NLR",
+     "L_CRP",
+     "L_SBP",
+     "L_alb",
+     "L_eos",
+     "L_PLT",
+     "S_Cr",
+     "S_BUN",
+     "S_UPCR",
+     "S_uRBC",
+     "S_uRBC_dys",
+     "S_uRBC_acan",
+     "S_uRBC_cast",
+     "S_uWBC",
+     "S_NLR",
+     "S_CRP",
+     "S_SBP",
+     "S_alb",
+     "S_eos",
+     "S_PLT",
+     "R_Cr_UPCR",
+     "R_UPCR_alb",
+     "R_UPCR_uRBC",
+     "R_BUN_Cr",
+     "R_CRP_alb"
+    ],
+    "M3": [
+     "L_Cr",
+     "L_BUN",
+     "L_UPCR",
+     "L_uRBC",
+     "L_uRBC_dys",
+     "L_uRBC_acan",
+     "L_uRBC_cast",
+     "L_uWBC",
+     "L_NLR",
+     "L_CRP",
+     "L_SBP",
+     "L_alb",
+     "L_eos",
+     "L_PLT",
+     "S_Cr",
+     "S_BUN",
+     "S_UPCR",
+     "S_uRBC",
+     "S_uRBC_dys",
+     "S_uRBC_acan",
+     "S_uRBC_cast",
+     "S_uWBC",
+     "S_NLR",
+     "S_CRP",
+     "S_SBP",
+     "S_alb",
+     "S_eos",
+     "S_PLT",
+     "R_Cr_UPCR",
+     "R_UPCR_alb",
+     "R_UPCR_uRBC",
+     "R_BUN_Cr",
+     "R_CRP_alb"
+    ]
+   },
+   "2": {
+    "M1": [
+     "L0_Cr",
+     "L0_BUN",
+     "L0_UPCR",
+     "L0_uRBC",
+     "L0_uRBC_dys",
+     "L0_uRBC_acan",
+     "L0_uRBC_cast",
+     "L0_uWBC",
+     "L0_NLR",
+     "L0_CRP",
+     "L0_SBP",
+     "L0_alb",
+     "L0_eos",
+     "L0_PLT"
+    ],
+    "M2": [
+     "L_Cr",
+     "L_BUN",
+     "L_UPCR",
+     "L_uRBC",
+     "L_uRBC_dys",
+     "L_uRBC_acan",
+     "L_uRBC_cast",
+     "L_uWBC",
+     "L_NLR",
+     "L_CRP",
+     "L_SBP",
+     "L_alb",
+     "L_eos",
+     "L_PLT",
+     "S_Cr",
+     "S_BUN",
+     "S_UPCR",
+     "S_uRBC",
+     "S_uRBC_dys",
+     "S_uRBC_acan",
+     "S_uRBC_cast",
+     "S_uWBC",
+     "S_NLR",
+     "S_CRP",
+     "S_SBP",
+     "S_alb",
+     "S_eos",
+     "S_PLT",
+     "R_Cr_UPCR",
+     "R_UPCR_alb",
+     "R_UPCR_uRBC",
+     "R_BUN_Cr",
+     "R_CRP_alb"
+    ],
+    "M3": [
+     "L_Cr",
+     "L_BUN",
+     "L_UPCR",
+     "L_uRBC",
+     "L_uRBC_dys",
+     "L_uRBC_acan",
+     "L_uRBC_cast",
+     "L_uWBC",
+     "L_NLR",
+     "L_CRP",
+     "L_SBP",
+     "L_alb",
+     "L_eos",
+     "L_PLT",
+     "S_Cr",
+     "S_BUN",
+     "S_UPCR",
+     "S_uRBC",
+     "S_uRBC_dys",
+     "S_uRBC_acan",
+     "S_uRBC_cast",
+     "S_uWBC",
+     "S_NLR",
+     "S_CRP",
+     "S_SBP",
+     "S_alb",
+     "S_eos",
+     "S_PLT",
+     "R_Cr_UPCR",
+     "R_UPCR_alb",
+     "R_UPCR_uRBC",
+     "R_BUN_Cr",
+     "R_CRP_alb"
+    ]
+   },
+   "3": {
+    "M1": [
+     "L0_Cr",
+     "L0_BUN",
+     "L0_UPCR",
+     "L0_uRBC",
+     "L0_uWBC",
+     "L0_NLR",
+     "L0_CRP",
+     "L0_SBP",
+     "L0_alb",
+     "L0_eos",
+     "L0_PLT"
+    ],
+    "M2": [
+     "L_Cr",
+     "L_BUN",
+     "L_UPCR",
+     "L_uRBC",
+     "L_uWBC",
+     "L_NLR",
+     "L_CRP",
+     "L_SBP",
+     "L_alb",
+     "L_eos",
+     "L_PLT",
+     "S_Cr",
+     "S_BUN",
+     "S_UPCR",
+     "S_uRBC",
+     "S_uWBC",
+     "S_NLR",
+     "S_CRP",
+     "S_SBP",
+     "S_alb",
+     "S_eos",
+     "S_PLT",
+     "R_Cr_UPCR",
+     "R_UPCR_alb",
+     "R_UPCR_uRBC",
+     "R_BUN_Cr",
+     "R_CRP_alb"
+    ],
+    "M3": [
+     "L_Cr",
+     "L_BUN",
+     "L_UPCR",
+     "L_uRBC",
+     "L_uWBC",
+     "L_NLR",
+     "L_CRP",
+     "L_SBP",
+     "L_alb",
+     "L_eos",
+     "L_PLT",
+     "S_Cr",
+     "S_BUN",
+     "S_UPCR",
+     "S_uRBC",
+     "S_uWBC",
+     "S_NLR",
+     "S_CRP",
+     "S_SBP",
+     "S_alb",
+     "S_eos",
+     "S_PLT",
+     "R_Cr_UPCR",
+     "R_UPCR_alb",
+     "R_UPCR_uRBC",
+     "R_BUN_Cr",
+     "R_CRP_alb"
+    ]
+   }
+  },
+  "proxy_mode": true,
+  "morph_ok_share": 0.23111555777888945,
+  "morph_share_by_col": {
+   "uRBC_dys": 0.23111555777888945,
+   "uRBC_acan": 0.23161580790395198,
+   "uRBC_cast": 0.2313656828414207
+  }
+ },
+ "placeholders": [
+  "generator"
+ ],
+ "m0_sealed_at": "2026-08-30 01:31:04",
+ "removed_axes": [],
+ "stages": {
+  "1": {
+   "name": "急性度",
+   "label": "y_acute",
+   "train": {
+    "M0": {
+     "balanced_accuracy": 0.8122930293291676
+    },
+    "M1": {
+     "balanced_accuracy": 0.893495888908101,
+     "accuracy": 0.8928188638799571
+    },
+    "M2": {
+     "balanced_accuracy": 0.934735894393532,
+     "accuracy": 0.9374776705966417
+    },
+    "M3": {
+     "balanced_accuracy": 0.934735894393532,
+     "accuracy": 0.9374776705966417
+    },
+    "verdicts": {
+     "M2_vs_M0": {
+      "diff": 0.12304544203230465,
+      "lo": 0.10411124936571518,
+      "hi": 0.14140637072803022,
+      "significant": true,
+      "n_boot": 1000,
+      "verdict": "通過"
+     },
+     "M2_vs_M1": {
+      "diff": 0.0411834852655838,
+      "lo": 0.029862091588744217,
+      "hi": 0.05277491265511554,
+      "significant": true,
+      "n_boot": 1000,
+      "verdict": "有增額價值"
+     },
+     "M3_vs_random": {
+      "diff": 0.43493033555755867,
+      "lo": 0.42490641558120223,
+      "hi": 0.4449374374675018,
+      "significant": true,
+      "n_boot": 1000,
+      "verdict": "有獨立增益"
+     }
+    }
+   },
+   "removed": false,
+   "test": {
+    "threshold": 0.6,
+    "threshold_reachable": true,
+    "abstention_rate": 0.030025020850708906,
+    "answered_rate": 0.9699749791492911,
+    "answered": {
+     "accuracy": 0.9613069647463457,
+     "balanced_accuracy": 0.9635675354549913,
+     "per_class": {
+      "0": {
+       "n": 802,
+       "prevalence": 0.6895958727429062,
+       "recall": 0.9576059850374065,
+       "specificity": 0.9695290858725761,
+       "ppv": 0.9858793324775352,
+       "npv": 0.9114583333333333
+      },
+      "1": {
+       "n": 361,
+       "prevalence": 0.3104041272570937,
+       "recall": 0.9695290858725761,
+       "specificity": 0.9576059850374065,
+       "ppv": 0.9114583333333333,
+       "npv": 0.9858793324775352
+      }
+     },
+     "confusion": [
+      [
+       768,
+       34
+      ],
+      [
+       11,
+       350
+      ]
+     ],
+     "labels": [
+      "0",
+      "1"
+     ],
+     "n": 1163,
+     "balanced_accuracy_ci": {
+      "mean": 0.9635031753198824,
+      "lo": 0.9520647290524421,
+      "hi": 0.9741898681881952,
+      "n_boot": 1000
+     }
+    }
+   }
+  },
+  "2": {
+   "name": "部位",
+   "label": "y_site",
+   "train": {
+    "M0": {
+     "balanced_accuracy": 0.7866917469885983
+    },
+    "M1": {
+     "balanced_accuracy": 0.8838376439990263,
+     "accuracy": 0.8846016434440872
+    },
+    "M2": {
+     "balanced_accuracy": 0.912386235083952,
+     "accuracy": 0.917470525187567
+    },
+    "M3": {
+     "balanced_accuracy": 0.912386235083952,
+     "accuracy": 0.917470525187567
+    },
+    "verdicts": {
+     "M2_vs_M0": {
+      "diff": 0.12595484196609888,
+      "lo": 0.10349384409346798,
+      "hi": 0.14923902710290832,
+      "significant": true,
+      "n_boot": 1000,
+      "verdict": "通過"
+     },
+     "M2_vs_M1": {
+      "diff": 0.028311016985363983,
+      "lo": 0.012912167332598862,
+      "hi": 0.043889466176574486,
+      "significant": true,
+      "n_boot": 1000,
+      "verdict": "有增額價值"
+     },
+     "M3_vs_random": {
+      "diff": 0.5789218067313486,
+      "lo": 0.5638892680460351,
+      "hi": 0.5925158676204013,
+      "significant": true,
+      "n_boot": 1000,
+      "verdict": "有獨立增益"
+     }
+    }
+   },
+   "removed": false,
+   "test": {
+    "threshold": 0.6,
+    "threshold_reachable": true,
+    "abstention_rate": 0.05087572977481236,
+    "answered_rate": 0.9491242702251876,
+    "answered": {
+     "accuracy": 0.9349736379613357,
+     "balanced_accuracy": 0.9428909428909429,
+     "per_class": {
+      "腎小管間質": {
+       "n": 198,
+       "prevalence": 0.17398945518453426,
+       "recall": 0.9646464646464646,
+       "specificity": 0.9787234042553191,
+       "ppv": 0.90521327014218,
+       "npv": 0.9924487594390506
+      },
+      "腎絲球": {
+       "n": 814,
+       "prevalence": 0.7152899824253075,
+       "recall": 0.9275184275184275,
+       "specificity": 0.9753086419753086,
+       "ppv": 0.9895150720838795,
+       "npv": 0.8426666666666667
+      },
+      "血管": {
+       "n": 126,
+       "prevalence": 0.11072056239015818,
+       "recall": 0.9365079365079365,
+       "specificity": 0.9545454545454546,
+       "ppv": 0.7195121951219514,
+       "npv": 0.9917864476386038
+      }
+     },
+     "confusion": [
+      [
+       191,
+       4,
+       3
+      ],
+      [
+       16,
+       755,
+       43
+      ],
+      [
+       4,
+       4,
+       118
+      ]
+     ],
+     "labels": [
+      "腎小管間質",
+      "腎絲球",
+      "血管"
+     ],
+     "n": 1138,
+     "balanced_accuracy_ci": {
+      "mean": 0.9427788109553237,
+      "lo": 0.9240457561625185,
+      "hi": 0.9591361803581268,
+      "n_boot": 1000
+     }
+    }
+   }
+  },
+  "3": {
+   "name": "表現型",
+   "label": "y_pheno",
+   "train": {
+    "M0": {
+     "balanced_accuracy": 0.7123774975089633
+    },
+    "M1": {
+     "balanced_accuracy": 0.7391454351947415,
+     "accuracy": 0.7234726688102894
+    },
+    "M2": {
+     "balanced_accuracy": 0.807864514733533,
+     "accuracy": 0.7952840300107181
+    },
+    "M3": {
+     "balanced_accuracy": 0.807864514733533,
+     "accuracy": 0.7952840300107181
+    },
+    "verdicts": {
+     "M2_vs_M0": {
+      "diff": 0.09492089218063773,
+      "lo": 0.07206686524069716,
+      "hi": 0.11919515109666294,
+      "significant": true,
+      "n_boot": 1000,
+      "verdict": "通過"
+     },
+     "M2_vs_M1": {
+      "diff": 0.06846798037681066,
+      "lo": 0.053077141017786426,
+      "hi": 0.08287292713867493,
+      "significant": true,
+      "n_boot": 1000,
+      "verdict": "有增額價值"
+     },
+     "M3_vs_random": {
+      "diff": 0.5574531288394332,
+      "lo": 0.5416398010219586,
+      "hi": 0.5737143437195742,
+      "significant": true,
+      "n_boot": 1000,
+      "verdict": "有獨立增益"
+     }
+    }
+   },
+   "removed": false,
+   "test": {
+    "threshold": 0.6,
+    "threshold_reachable": true,
+    "abstention_rate": 0.19015846538782322,
+    "answered_rate": 0.8098415346121768,
+    "answered": {
+     "accuracy": 0.8465499485066942,
+     "balanced_accuracy": 0.8553987894104174,
+     "per_class": {
+      "孤立血尿": {
+       "n": 117,
+       "prevalence": 0.12049433573635428,
+       "recall": 0.8547008547008547,
+       "specificity": 0.9215456674473068,
+       "ppv": 0.5988023952095809,
+       "npv": 0.9788557213930349
+      },
+      "慢性": {
+       "n": 315,
+       "prevalence": 0.32440782698249226,
+       "recall": 0.8634920634920635,
+       "specificity": 0.9695121951219512,
+       "ppv": 0.9315068493150684,
+       "npv": 0.9366715758468336
+      },
+      "腎炎症候群": {
+       "n": 324,
+       "prevalence": 0.3336766220391349,
+       "recall": 0.7685185185185185,
+       "specificity": 0.9505409582689336,
+       "ppv": 0.8861209964412813,
+       "npv": 0.891304347826087
+      },
+      "腎病症候群": {
+       "n": 215,
+       "prevalence": 0.22142121524201855,
+       "recall": 0.9348837209302325,
+       "specificity": 0.9603174603174603,
+       "ppv": 0.8701298701298702,
+       "npv": 0.9810810810810812
+      }
+     },
+     "confusion": [
+      [
+       100,
+       2,
+       13,
+       2
+      ],
+      [
+       18,
+       272,
+       12,
+       13
+      ],
+      [
+       49,
+       11,
+       249,
+       15
+      ],
+      [
+       0,
+       7,
+       7,
+       201
+      ]
+     ],
+     "labels": [
+      "孤立血尿",
+      "慢性",
+      "腎炎症候群",
+      "腎病症候群"
+     ],
+     "n": 971,
+     "balanced_accuracy_ci": {
+      "mean": 0.8559032976447317,
+      "lo": 0.8337773722622033,
+      "hi": 0.8790467573799639,
+      "n_boot": 1000
+     }
+    }
+   }
+  }
+ },
+ "stage4": {
+  "decided_rate": 0.7506255212677231,
+  "answered": {
+   "accuracy": 0.8277777777777777,
+   "balanced_accuracy": 0.802697699220225,
+   "per_class": {
+    "A": {
+     "n": 95,
+     "prevalence": 0.10555555555555556,
+     "recall": 0.9789473684210527,
+     "specificity": 0.9801242236024845,
+     "ppv": 0.8532110091743123,
+     "npv": 0.9974715549936789
+    },
+    "A2": {
+     "n": 82,
+     "prevalence": 0.09111111111111111,
+     "recall": 0.8414634146341463,
+     "specificity": 0.9841075794621027,
+     "ppv": 0.8414634146341464,
+     "npv": 0.9841075794621027
+    },
+    "C": {
+     "n": 214,
+     "prevalence": 0.23777777777777778,
+     "recall": 0.9252336448598131,
+     "specificity": 0.9577259475218659,
+     "ppv": 0.8722466960352423,
+     "npv": 0.9762258543833581
+    },
+    "D": {
+     "n": 117,
+     "prevalence": 0.13,
+     "recall": 0.5213675213675214,
+     "specificity": 0.9680715197956578,
+     "ppv": 0.7093023255813956,
+     "npv": 0.9312039312039313
+    },
+    "E": {
+     "n": 99,
+     "prevalence": 0.11,
+     "recall": 0.5151515151515151,
+     "specificity": 0.9812734082397003,
+     "ppv": 0.7727272727272723,
+     "npv": 0.9424460431654677
+    },
+    "F": {
+     "n": 93,
+     "prevalence": 0.10333333333333333,
+     "recall": 0.8817204301075269,
+     "specificity": 0.9516728624535316,
+     "ppv": 0.677685950413223,
+     "npv": 0.9858793324775352
+    },
+    "R": {
+     "n": 200,
+     "prevalence": 0.2222222222222222,
+     "recall": 0.955,
+     "specificity": 0.9742857142857143,
+     "ppv": 0.9138755980861244,
+     "npv": 0.9869753979739507
+    }
+   },
+   "confusion": [
+    [
+     93,
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    [
+     10,
+     69,
+     0,
+     0,
+     3,
+     0,
+     0
+    ],
+    [
+     0,
+     2,
+     198,
+     7,
+     5,
+     0,
+     2
+    ],
+    [
+     0,
+     0,
+     15,
+     61,
+     5,
+     31,
+     5
+    ],
+    [
+     2,
+     11,
+     12,
+     8,
+     51,
+     8,
+     7
+    ],
+    [
+     0,
+     0,
+     2,
+     5,
+     2,
+     82,
+     2
+    ],
+    [
+     4,
+     0,
+     0,
+     5,
+     0,
+     0,
+     191
+    ]
+   ],
+   "labels": [
+    "A",
+    "A2",
+    "C",
+    "D",
+    "E",
+    "F",
+    "R"
+   ],
+   "n": 900
+  },
+  "balanced_accuracy_ci": {
+   "mean": 0.8027925064295032,
+   "lo": 0.7777539703312911,
+   "hi": 0.8278468031270375,
+   "n_boot": 1000
+  }
+ },
+ "stage5": {
+  "n": 1199,
+  "decided_rate": 0.7506255212677231,
+  "undecided_rate": 0.2493744787322769,
+  "test_saving_rate_decided": 0.8404761904761905,
+  "test_saving_rate_all": 0.8802573573215775,
+  "mean_items_recommended": 2.2333333333333334,
+  "full_panel_items": 14,
+  "critical_omission_rate_all": 0.2527105921601334,
+  "critical_omission_rate_decided": 0.10444444444444445,
+  "R_true_n": 264,
+  "R_recall": 0.7234848484848485,
+  "R_critical_omission_rate": 0.2765151515151515,
+  "R_five_items_when_routed_R": 1.0,
+  "hit_rate": 0.8311170212765957,
+  "by_box": {
+   "A": {
+    "n": 108,
+    "recall": 0.8611111111111112,
+    "omission": 0.1388888888888889
+   },
+   "A2": {
+    "n": 105,
+    "recall": 0.6571428571428571,
+    "omission": 0.0
+   },
+   "C": {
+    "n": 235,
+    "recall": 0.8425531914893617,
+    "omission": 0.1574468085106383
+   },
+   "D": {
+    "n": 202,
+    "recall": 0.30198019801980197,
+    "omission": 0.698019801980198
+   },
+   "E": {
+    "n": 166,
+    "recall": 0.3072289156626506,
+    "omission": 0.0
+   },
+   "F": {
+    "n": 119,
+    "recall": 0.6890756302521008,
+    "omission": 0.31092436974789917
+   },
+   "R": {
+    "n": 264,
+    "recall": 0.7234848484848485,
+    "omission": 0.2765151515151515
+   }
+  }
+ },
+ "ratio_solo_balanced_accuracy": {
+  "R_Cr_UPCR": {
+   "1": 0.6810749655669968,
+   "2": 0.6011699891609469,
+   "3": 0.4877384276177157
+  },
+  "R_UPCR_alb": {
+   "1": 0.5960645015114747,
+   "2": 0.5413293111469176,
+   "3": 0.4921175865134893
+  },
+  "R_UPCR_uRBC": {
+   "1": 0.621944108229935,
+   "2": 0.49079633993301014,
+   "3": 0.5205896649223889
+  },
+  "R_BUN_Cr": {
+   "1": 0.5571501398188615,
+   "2": 0.4223909212752232,
+   "3": 0.28139583777555605
+  },
+  "R_CRP_alb": {
+   "1": 0.6961792781888538,
+   "2": 0.5292555207540697,
+   "3": 0.30694375335465773
+  }
+ },
+ "morphology_subgroups": {
+  "morph_available": {
+   "n": 279,
+   "box_balanced_accuracy": 0.7997359685123192
+  },
+  "morph_missing": {
+   "n": 920,
+   "box_balanced_accuracy": 0.8043757401039374
+  }
+ },
+ "test_n": 1199,
+ "train_n": 2799
+}

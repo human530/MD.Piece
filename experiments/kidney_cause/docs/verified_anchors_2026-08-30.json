@@ -1,0 +1,131 @@
+{
+ "_meta": {
+  "title": "已驗證文獻錨點（2026-08-30）",
+  "source": "PubMed（MCP get_article_metadata / convert_article_ids / search_articles）",
+  "method": "deep-research 工作流抽出主張後，其 75 個查證代理連兩次撞用量上限；改由主迴圈逐條調 PubMed 摘要原文比對數字，只保留與摘要逐字吻合者。未能核實者不列入，改列 unresolved。",
+  "grading": "RCT / MR（孟德爾隨機化）/ 統合分析 / 病例對照；並註明是否為病因專一"
+ },
+ "anchors": [
+  {
+   "id": "lipids-mr", "pmid": "28754456", "doi": "10.1053/j.ajkd.2017.06.011",
+   "cite": "Lanktree MB et al. Am J Kidney Dis. 2018;71(2):166-172",
+   "grade": "MR（雙樣本；脂質 n=188,577、腎 n=133,814）", "verified": "摘要逐字吻合",
+   "findings": [
+    {"marker": "LBDHDL", "cause": "不專一（一般族群 CKD）", "direction": "HDL 高→腎功能好",
+     "numbers": "HDL 每高 17 mg/dL：eGFR 高 0.8%（95% CI 0.4–1.3, P=0.004）；eGFR<60 OR 0.85（0.77–0.93, P<0.001）；Egger 無多效性",
+     "grade_for_model": "因果級（MR）"},
+    {"marker": "LBDLDL", "cause": "不專一", "direction": "無",
+     "numbers": "LDL 與 eGFR／CKD／白蛋白尿 均無因果關聯",
+     "grade_for_model": "MR 陰性——查無因果證據"},
+    {"marker": "LBXSTR/LBXTR", "cause": "不專一", "direction": "無（原訊號為假象）",
+     "numbers": "TG 表面關聯完全由 GCKR 單一多效性變異驅動；排除後與任何腎表徵均無關",
+     "grade_for_model": "MR 陰性——下修既有 TG 錨點（PMID 27537361/30300472）為僅觀察性"}
+   ]
+  },
+  {
+   "id": "iron-igan-mr", "pmid": "38999730", "doi": "10.3390/nu16131978",
+   "cite": "Zhou J et al. Nutrients. 2024;16(13):1978",
+   "grade": "MR（雙樣本）", "verified": "摘要逐字吻合",
+   "findings": [
+    {"marker": "LBXFER / LBXSIR", "cause": "免疫性（限 IgA 腎病）", "direction": "鐵狀態高→IgAN 風險高",
+     "numbers": "血清鐵 OR 1.10（1.04–1.16）、鐵蛋白 OR 1.30（1.14–1.48）、TfSat OR 1.07（1.04–1.11）、TIBC OR 0.92（0.88–0.97），皆 p<0.0042",
+     "grade_for_model": "因果級（MR）但病因專一於 IgAN；對 AKD／CKD 均無顯著關聯（鐵蛋白-CKD OR 1.25, 0.94–1.67）",
+     "caveat": "我們的免疫標籤是 ANA 陽性共存，不是 IgAN——此錨點不可直接套用到本模型的免疫類"}
+   ]
+  },
+  {
+   "id": "vitd-rct", "pmid": "31703120", "doi": "10.1001/jama.2019.17380",
+   "cite": "de Boer IH et al. JAMA. 2019;322(19):1899-1909（VITAL-DKD）",
+   "grade": "RCT（n=1,312，5 年）", "verified": "摘要逐字吻合",
+   "findings": [
+    {"marker": "LBDVIDMS", "cause": "代謝性（第2型糖尿病）", "direction": "補充無效",
+     "numbers": "維生素D3 2000 IU/日 5 年：eGFR 變化 −12.3 vs 安慰劑 −13.1，差 0.9（95% CI −0.7 to 2.5）",
+     "grade_for_model": "RCT 陰性——觀察性關聯不獲介入試驗支持"}
+   ]
+  },
+  {
+   "id": "capvitd-mr", "pmid": "39403589", "doi": "10.3389/fendo.2024.1348854",
+   "cite": "Liang Y et al. Front Endocrinol. 2024;15:1348854",
+   "grade": "MR（UK Biobank／CKDGen）", "verified": "摘要逐字吻合",
+   "findings": [
+    {"marker": "LBXSPH", "cause": "不專一", "direction": "磷高→腎功能差",
+     "numbers": "eGFRcrea beta −0.01（P=2.0E-04）／−0.005（P=2.0E-03）；BUN beta 0.02（P 至 7.5E-07）",
+     "grade_for_model": "因果級（MR）"},
+    {"marker": "LBXSCA", "cause": "不專一", "direction": "鈣高→白蛋白尿高",
+     "numbers": "UACR beta 0.11（P=2.0E-03）／0.13（P=2.0E-04）；對 eGFR 未能確立",
+     "grade_for_model": "因果級（MR），限白蛋白尿"},
+    {"marker": "LBDVIDMS", "cause": "不專一", "direction": "無",
+     "numbers": "與 eGFRcrea 有遺傳相關（rg=−0.094, P=1.4E-05）但 MR 無因果效應",
+     "grade_for_model": "MR 陰性（關聯≠因果之教科書案例）"},
+    {"marker": "LBXPT21", "cause": "—", "direction": "不可評",
+     "numbers": "PTH 因遺傳率 z-score < 4 被排除於 MR 之外",
+     "grade_for_model": "無 MR 證據可用（不得宣稱）"}
+   ]
+  },
+  {
+   "id": "hcy-rct", "pmid": "17848650", "doi": "10.1001/jama.298.10.1163",
+   "cite": "Jamison RL et al. JAMA. 2007;298(10):1163-70（HOST）",
+   "grade": "RCT（n=2,056，中位追蹤 3.2 年）", "verified": "摘要逐字吻合",
+   "findings": [
+    {"marker": "LBXHCY", "cause": "不專一（晚期 CKD／ESRD）", "direction": "降低無益",
+     "numbers": "葉酸40mg＋B6＋B12 使 Hcy 降 6.3 µmol/L（25.8%, P<.001），但全因死亡 HR 1.04（0.91–1.18）；至透析時間 P=.38；動靜脈通路血栓 P=.97",
+     "grade_for_model": "RCT 陰性——Hcy 宜視為腎功能下降的結果標記（反向因果），非可介入之驅動因子"}
+   ]
+  },
+  {
+   "id": "lead-mr", "pmid": "34661687", "doi": "10.1007/s00109-021-02152-5",
+   "cite": "Mazidi M et al. J Mol Med (Berl). 2022;100(1):125-134",
+   "grade": "MR（血鉛 GWAS n=5,433——工具變數樣本小）", "verified": "摘要逐字吻合",
+   "findings": [
+    {"marker": "LBXBPB", "cause": "代謝性（限第2型糖尿病層）", "direction": "血鉛高→eGFR 低",
+     "numbers": "一般族群無效（CKD p=0.652、eGFR p=0.668）；糖尿病層 IVW beta −0.03416（p=0.0132）；非糖尿病層 p=0.823",
+     "grade_for_model": "因果級（MR）但效應被糖尿病狀態調節；作者自陳需更多研究確認"}
+   ]
+  },
+  {
+   "id": "egfr-reverse-mr", "pmid": "35856088", "doi": "10.1038/s42003-022-03659-4",
+   "cite": "Park S et al. Commun Biol. 2022;5(1):713",
+   "grade": "MR（反向方向；UK Biobank n=337,138）", "verified": "摘要逐字吻合",
+   "findings": [
+    {"marker": "LBXLYPCT / LBDHDL / LBXSATSI", "cause": "全部（方向性警告）", "direction": "eGFR 高→這些值高",
+     "numbers": "較高之基因預測 eGFR 顯著關聯於較高的淋巴球百分比、HDL 膽固醇、ALT",
+     "grade_for_model": "反向因果：模型看到的淋巴球／HDL／ALT 差異，部分是腎功能本身的後果，不是病因專一訊號"},
+    {"marker": "LBXSUA / LBXSTR", "cause": "全部（方向性警告）", "direction": "eGFR 高→這些值低",
+     "numbers": "較高 eGFR 關聯於較低的尿素、尿酸、IGF-1、三酸甘油酯",
+     "grade_for_model": "反向因果；尿酸與 TG 的「代謝性偏高」有一部分來自腎功能較差"},
+    {"marker": "LBXHGB / LBXSCA / LBDVIDMS", "cause": "全部", "direction": "非線性",
+     "numbers": "血色素、鈣、維生素D、尿肌酸酐為顯著但非線性之因果估計",
+     "grade_for_model": "非線性——線性模型係數不可直接解讀"}
+   ]
+  },
+  {
+   "id": "nlr-sle-meta", "pmid": "39052098", "doi": "10.1007/s10238-024-01438-5",
+   "cite": "Zinellu A et al. Clin Exp Med. 2024;24(1):170",
+   "grade": "系統性回顧與統合分析（診斷準確度）", "verified": "摘要逐字吻合",
+   "findings": [
+    {"marker": "NLR", "cause": "免疫性（SLE／狼瘡腎炎）", "direction": "SLE/LN 患者 NLR 較高",
+     "numbers": "NLR 診斷 SLE AUC 0.81（0.78–0.85, 8 篇）；狼瘡腎炎 AUC 0.81（0.77–0.84, 9 篇）；重症 0.69；感染 0.73。PLR 對重症 0.85",
+     "grade_for_model": "統合分析支持 NLR↑ 於狼瘡腎炎；但我們資料中免疫組 NLR 反而較低（2.06 vs 其餘 2.24–2.28）——方向相反，此不一致本身即為「ANA 陽性共存 ≠ SLE／狼瘡腎炎」的佐證"}
+   ]
+  },
+  {
+   "id": "hcv-ferritin", "pmid": "22297603", "doi": "10.3233/DMA-2012-0861",
+   "cite": "Dostalikova-Cimburova M et al. Dis Markers. 2012;32(1):65-72",
+   "grade": "病例對照（n=454 慢性肝病）", "verified": "摘要逐字吻合",
+   "findings": [
+    {"marker": "LBXFER / LBXSIR", "cause": "感染性（HBV／HCV）", "direction": "感染者鐵指標偏高",
+     "numbers": "慢性 B 肝 33.3%、慢性 C 肝 43.0% 有轉鐵蛋白飽和度或血清鐵蛋白升高（HFE 突變不解釋此現象）",
+     "grade_for_model": "本資料候選發現 (a) 命中已知現象：我們感染組鐵蛋白中位 206 vs 其他組 60–134，與此文獻一致 → 由「候選未知」下修為「已知重現」"}
+   ]
+  }
+ ],
+ "unresolved": [
+  {"claim": "血清滲透壓 × 糖尿病腎病（本資料候選 b）", "status": "查無專屬文獻錨點",
+   "note": "滲透壓由血糖／尿素／鈉決定，與標籤（HbA1c／糖尿病診斷）在生物化學上直接相連，宜視為標籤鄰近而非獨立發現"},
+  {"claim": "球蛋白升高區分感染性 vs 其他腎病（本資料候選 c）", "status": "生物學一致但未找到量化之鑑別效能錨點",
+   "note": "慢性病毒性肝炎之多株高球蛋白血症為既知現象；本資料感染組球蛋白 3.65 vs 3.10–3.20 與之一致，但無「用於病因鑑別」的效能文獻"},
+  {"claim": "MMA、BAP、血汞、可丁尼、葉酸/B12 對三大病因之專一性", "status": "本輪未取得可核實錨點",
+   "note": "留白，不臆測"}
+ ],
+ "created": "2026-08-30"
+}

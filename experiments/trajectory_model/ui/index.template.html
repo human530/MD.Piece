@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>疾病軌跡模型 呈現層</title>
+<style>
+:root{--ink:#1c1c1c;--muted:#555;--line:#c9c9c9;--bg:#fff;--panel:#f5f5f5;--focus:#1a5fb4;
+ --lit:#1f5f3b;--lit-bg:#e4f1e8;--der:#6b4e00;--der-bg:#f7efd6;--set:#5a1e6b;--set-bg:#efe3f3;}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang TC","Microsoft JhengHei","Noto Sans CJK TC","Heiti TC",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.65}
+.banner{position:sticky;top:0;z-index:10;background:#2b2b2b;color:#fff;padding:.6rem 1rem;text-align:center;font-size:.95rem}
+main{max-width:960px;margin:0 auto;padding:1rem 1rem 3rem}
+h1{font-size:1.4rem;margin:.8rem 0 .2rem}
+h2{font-size:1.15rem;margin:1.6rem 0 .5rem;border-bottom:1px solid var(--line);padding-bottom:.2rem}
+h3{font-size:1rem;margin:1rem 0 .3rem}
+p{margin:.4rem 0}
+section{margin-bottom:1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.8rem}
+label{display:block;font-size:.95rem}
+input[type=number],select{font:inherit;padding:.35rem .5rem;border:1px solid #767676;border-radius:4px;width:100%;background:#fff;color:var(--ink)}
+input[type=range]{width:100%}
+button{font:inherit;cursor:pointer}
+.btn{background:#2b2b2b;color:#fff;border:1px solid #2b2b2b;border-radius:4px;padding:.55rem 1.2rem}
+.btn:hover{background:#000}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.hint{color:var(--muted);font-size:.9rem}
+details{border:1px solid var(--line);border-radius:4px;padding:.4rem .8rem;margin:.5rem 0;background:#fff}
+summary{cursor:pointer;font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:.95rem;overflow-x:auto;display:block}
+th,td{border:1px solid var(--line);padding:.35rem .5rem;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{background:var(--panel)}
+.num{background:none;border:0;border-bottom:1px dotted #444;padding:0 .1rem;font:inherit;color:var(--ink);cursor:help}
+.num:hover{background:#eee}
+.tag{display:inline-block;font-size:.8rem;padding:.05rem .45rem;border-radius:999px;border:1px solid;margin-right:.3rem;white-space:nowrap}
+.tag-lit{color:var(--lit);background:var(--lit-bg);border-color:var(--lit)}
+.tag-der{color:var(--der);background:var(--der-bg);border-color:var(--der)}
+.tag-set{color:var(--set);background:var(--set-bg);border-color:var(--set)}
+.tag-calc{color:#333;background:#eee;border-color:#666}
+.counts{border:2px solid #2b2b2b;padding:.7rem 1rem;margin:.6rem 0;font-size:1.05rem;background:var(--panel)}
+.steps{list-style:none;padding:0;margin:.4rem 0}
+.steps li{padding:.15rem 0;color:var(--muted)}
+.steps li.done{color:var(--ink)}
+.steps li.done::before{content:"✓ ";}
+.big{font-size:1.25rem}
+#srcpanel{position:fixed;right:1rem;bottom:1rem;max-width:min(420px,90vw);background:#fff;border:1px solid #444;border-radius:6px;padding:.8rem 1rem;box-shadow:0 2px 12px rgba(0,0,0,.2);z-index:20;display:none;font-size:.92rem}
+#srcpanel[open]{display:block}
+#srcpanel .close{float:right;background:none;border:1px solid #444;border-radius:4px;padding:.1rem .5rem}
+svg{max-width:100%;height:auto;display:block}
+.legend{font-size:.85rem;color:var(--muted)}
+footer{border-top:1px solid var(--line);margin-top:2rem;padding-top:.8rem;font-size:.9rem;color:var(--muted)}
+.srclist li{margin:.15rem 0}
+.radio-row label{display:inline-block;margin-right:1rem}
+@media (max-width:640px){main{padding:.6rem}}
+</style>
+</head>
+<body>
+<div class="banner" role="note" aria-live="off" data-copy="banner">本工具以合成資料建立之研究模型運算，非個人風險評估，不做診斷，不取代醫師。</div>
+<main>
+<h1 data-copy="title">疾病軌跡模型 呈現層</h1>
+<p class="hint" data-copy="subtitle">這個頁面把一個研究用模型的內部機制攤開：輸入一組數值，看它落在模型的什麼位置、數字怎麼算出來、每個係數從哪裡來。</p>
+
+<section id="s1" aria-labelledby="h-s1">
+<h2 id="h-s1" data-copy="h1">一、輸入</h2>
+<h3 data-copy="h1a">數值輸入</h3>
+<p class="hint" data-copy="case_hint">這裡輸入的是一組「合成案例設定」，不是任何人的資料。可先載入範例案例：</p>
+<div id="presets"></div>
+<div class="grid" id="fields"></div>
+<h3 data-copy="h1b">疾病因子</h3>
+<div id="factors"></div>
+<details id="adv"><summary data-copy="adv">進階設定</summary>
+<div class="grid" id="sliders"></div>
+<p class="hint" data-copy="advhint">量測誤差與量測間隔是顯示設定，只改變圖上疊出的觀測點，不重算模型，結果數字不會變。τ 只在有校準或掃描結果的值之間切換，會改變查到的代表性序列。</p>
+</details>
+</section>
+
+<section id="s2" aria-labelledby="h-s2">
+<h2 id="h-s2" data-copy="h2">二、運算</h2>
+<button class="btn" id="run" type="button" data-copy="run">計算</button>
+<ol class="steps" id="steps" aria-live="polite"></ol>
+</section>
+
+<section id="s3" aria-labelledby="h-s3" hidden>
+<h2 id="h-s3" data-copy="h3">三、結果</h2>
+<div class="counts" id="counts" role="status"></div>
+<details open id="l1"><summary data-copy="l1">第一層：模型輸出</summary><div id="layer1"></div></details>
+<details open id="l2"><summary data-copy="l2">第二層：這個數字怎麼來的</summary><div id="layer2"></div></details>
+<details open id="l3"><summary data-copy="l3">第三層：這些權重從哪裡來</summary><div id="layer3"></div></details>
+</section>
+
+<section id="s4" aria-labelledby="h-s4" hidden>
+<h2 id="h-s4" data-copy="h4">四、軌跡與說明</h2>
+<div class="radio-row" id="repsel" role="radiogroup" aria-label="代表性序列"></div>
+<div id="plot"></div>
+<p class="legend" id="plotlegend"></p>
+<div id="explain"></div>
+</section>
+
+<footer>
+<ul>
+<li data-copy="f1">全部運算在瀏覽器端完成，不發送任何請求（可用開發者工具的網路面板確認：載入後沒有任何請求）。</li>
+<li data-copy="f2">不使用 cookie，不寫入任何儲存（應用程式面板中沒有本站的 cookie、localStorage、IndexedDB）。</li>
+<li data-copy="f3">輸入不離開這一次工作階段；關閉分頁即消失。</li>
+</ul>
+<p class="hint" id="build"></p>
+</footer>
+</main>
+
+<div id="srcpanel" role="dialog" aria-modal="false" aria-labelledby="srctitle"><button class="close" type="button" aria-label="關閉出處" data-copy="close">關閉</button><div id="srcbody"></div></div>
+
+<script id="copy" type="application/json">
+{
+ "banner": "本工具以合成資料建立之研究模型運算，非個人風險評估，不做診斷，不取代醫師。",
+ "title": "疾病軌跡模型 呈現層",
+ "subtitle": "這個頁面把一個研究用模型的內部機制攤開：輸入一組數值，看它落在模型的什麼位置、數字怎麼算出來、每個係數從哪裡來。",
+ "h1": "一、輸入", "h1a": "數值輸入", "h1b": "疾病因子", "adv": "進階設定",
+ "advhint": "量測誤差與量測間隔是顯示設定，只改變圖上疊出的觀測點，不重算模型，結果數字不會變。τ 只在有校準或掃描結果的值之間切換，會改變查到的代表性序列。",
+ "case_hint": "這裡輸入的是一組「合成案例設定」，不是任何人的資料。可先載入範例案例：",
+ "meas_err_note": "（顯示設定，不重算模型）",
+ "h2": "二、運算", "run": "計算",
+ "h3": "三、結果", "l1": "第一層：模型輸出", "l2": "第二層：這個數字怎麼來的", "l3": "第三層：這些權重從哪裡來",
+ "h4": "四、軌跡與說明", "close": "關閉",
+ "f1": "全部運算在瀏覽器端完成，不發送任何請求（可用開發者工具的網路面板確認：載入後沒有任何請求）。",
+ "f2": "不使用 cookie，不寫入任何儲存（應用程式面板中沒有本站的 cookie、localStorage、IndexedDB）。",
+ "f3": "輸入不離開這一次工作階段；關閉分頁即消失。",
+ "factors_empty": "參數檔目前沒有附出處的疾病因子。依規格，沒有出處的因子不得出現，所以這一組是空的。",
+ "steps": ["讀取內嵌參數（ui_fields、factors、ui_pack）", "檢查輸入值是否在合理範圍內", "標準化輸入（減平均、除標準差）", "計算基線分數（logistic）", "查分層切點，決定所在五分位", "查型別歸屬機率表（年齡、性別）", "依 風險層 × 型別 × τ 查代表性序列與五個時點", "統計本次使用的係數與來源標籤"],
+ "l1_sentence": "模型將此組輸入的基線分數算為 {score}，落在模擬世代的第 {q} 五分位（1 為最低）。",
+ "l1_line2": "生成器在此年齡與性別下把個案指派為翻轉型的機率是 {pf}，線性型 {pl}。這是生成器的指派機率，不是配適的分類器；它接近一半，表示基線資料分不出型別，這是模型的性質，也是本研究要說明的事。",
+ "l1_line3": "同一五分位在模擬世代中：五年事件率 {er}、翻轉型比例 {fs}、方法 A 分出的群數 {ka}。",
+ "l2_intro": "基線分數的計算式：logit = 截距 + Σ（權重 × 標準化值）。分數 = 1 / (1 + e^(−logit))。標準化值 = （輸入值 − 模擬世代平均）/ 模擬世代標準差。",
+ "l2_sum": "加總方式：把每一列的貢獻量相加，再加上截距與平均項，得到 logit {logit}，換算成分數 {score}。",
+ "l2_post": "型別歸屬機率的計算式：易感度 s = κ·u + √(1−κ²)·ε，u 由年齡與性別的標準化值加權；P(翻轉型 | s) = 1 − logistic(θ − β·s)；對 ε 積分後得到查表值。",
+ "l3_intro": "下表列出本次運算實際用到的每一個係數，各自的來源標籤與出處。三種標籤的定義：抄錄自文獻＝直接取自已發表論文；由文獻推算＝自論文文字或圖推算；本研究設定＝無文獻可依，由本研究設定並附理由與敏感度範圍。",
+ "counts": "本次運算使用 {n} 個係數：抄錄 {lit}、推算 {der}、設定 {set}。",
+ "p1": "這張圖是模型依此組輸入所在的風險層選出的一條代表性序列。橫軸是天數，縱軸是 eGFR。直線標出漂移起始日、臨界日、門檻跨越日、事件日、首次警報日。",
+ "p2": "球被推一下，會回到原位。回位的時間變長，表示系統變得不穩。模型看的是回位的時間，不是數值高低。",
+ "p3": "這個結果只表示此組輸入落在模型的哪個位置。它不是診斷，也不預測任何人的未來。模型以合成資料建立，數值不能直接對應真實病人。",
+ "rep_types": {"flip_tipped": "翻轉型（五年內翻轉）", "flip_stable": "翻轉型（五年內未翻轉）", "linear": "線性下降型"},
+ "tp": {"t_onset": "漂移／下降起始日", "t_crit": "臨界日", "t_threshold": "門檻跨越日", "t_event": "事件日", "first_alarm": "首次警報日"},
+ "tp_none": "無", "tp_nc": "未計算",
+ "legend": "實線＝模型真值序列；圓點＝依所選量測間隔與量測誤差疊出的觀測點（示意）。序列低於 0 的部分以 0 顯示（那是模型的抽象值，已超過透析水準，不是 eGFR）。時點：{list}。",
+ "unreachable_tau": "τ = {tau} 天：六個月翻轉時程的校準在此 τ 下不可達（掃描最長 {mx} 天），序列沿用主分析的其餘校準值，僅供比較。",
+ "field_src": "出處", "no_data": "此層沒有此型別的代表性序列。",
+ "src_pmid": "PMID", "src_deriv": "推算方式", "src_reason": "設定理由", "src_sens": "敏感度範圍",
+ "l3_head": ["係數", "值", "來源標籤", "出處"],
+ "l2_head": ["輸入項", "輸入值", "標準化值", "權重（標準化）", "貢獻量"],
+ "l2_intercept": "截距（含平均項）",
+ "meas_err": "量測誤差 SD（mL/min/1.73m²）", "meas_int": "量測間隔（天）", "tau": "系統鬆弛時間 τ（天）",
+ "range_err": "輸入值超出合理範圍：{label} 應在 {min} 到 {max} 之間。"
+}
+</script>
+<script id="ui_fields" type="application/json">/*__UI_FIELDS__*/</script>
+<script id="factors_json" type="application/json">/*__FACTORS__*/</script>
+<script id="ui_pack" type="application/json">/*__UI_PACK__*/</script>
+
+<script>
+/* ===== 純函式區（無 DOM；node 驗證腳本會擷取這一段） ===== */
+/*__PURE_BEGIN__*/
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+function seedFromString(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function gaussPair(rng){const u=Math.max(rng(),1e-12),v=rng();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function logistic(x){return 1/(1+Math.exp(-x));}
+function computeAll(inp, pack, fields){
+  // inp: {age, male, x0, tau, measErr, measInt, repType}
+  const rs=pack.risk_score, st=rs.standardization;
+  const errs=[];
+  for(const f of fields.fields){ if(f.type==='select') continue; const v=inp[f.key]; if(!(v>=f.min && v<=f.max)) errs.push({label:f.label,min:f.min,max:f.max}); }
+  const rows=[]; let logit=rs.intercept; let meanTerm=0;
+  for(const c of rs.coefs){ const x=inp[c.key]; const m=st[c.key].mean, sd=st[c.key].sd; const z=(x-m)/sd; const wStd=c.coef*sd; const contrib=c.coef*(x-m); meanTerm+=c.coef*m;
+    rows.push({key:c.key,label:c.label,unit:c.unit,x:x,z:z,wStd:wStd,contrib:contrib,coef:c.coef,src:c.src,mean:m,sd:sd}); logit+=c.coef*x; }
+  const score=logistic(logit);
+  let q=0; for(const cp of rs.cutpoints){ if(score>cp) q++; }              // 0..4
+  const tp=pack.type_posterior; const ai=Math.max(0,Math.min(tp.ages.length-1,Math.round(inp.age)-tp.ages[0]));
+  const pflip=tp.by_male[String(inp.male)][ai];
+  const key=`tau${inp.tau}_q${q}_${inp.repType}`; const rep=pack.representatives[key]||null;
+  // 觀測點疊圖：種子由輸入決定 → 同輸入同輸出
+  let obs=[];
+  if(rep){ const rng=mulberry32(seedFromString(JSON.stringify([inp.age,inp.male,inp.x0,inp.tau,inp.measErr,inp.measInt,inp.repType])));
+    for(let t=0;t<rep.series.length;t+=inp.measInt){ obs.push([t, rep.series[t] + (inp.measErr>0? inp.measErr*gaussPair(rng):0)]); } }
+  // 本次使用的係數與來源標籤統計
+  const used=[];
+  used.push({name:'基線分數 截距',value:rs.intercept,src:rs.intercept_src});
+  for(const c of rs.coefs) used.push({name:`基線分數 係數 ${c.label}`,value:c.coef,src:c.src});
+  for(const k of ['age','male','x0']){ used.push({name:`標準化 平均 ${k}`,value:st[k].mean,src:rs.standardization_src}); used.push({name:`標準化 標準差 ${k}`,value:st[k].sd,src:rs.standardization_src}); }
+  rs.cutpoints.forEach((c,i)=>used.push({name:`五分位切點 ${i+1}`,value:c,src:rs.cutpoints_src}));
+  used.push({name:'型別歸屬 κ',value:tp.kappa,src:tp.kappa_src},{name:'型別歸屬 θ',value:tp.theta,src:tp.link_src},{name:'型別歸屬 β_type',value:tp.beta_type,src:tp.link_src},
+            {name:'易感度權重 年齡',value:tp.weights.age,src:tp.weights_src},{name:'易感度權重 性別',value:tp.weights.male,src:tp.weights_src},
+            {name:'年齡平均',value:tp.age_mean,src:tp.dist_src},{name:'年齡標準差',value:tp.age_sd,src:tp.dist_src},{name:'男性比例',value:tp.male_share,src:tp.dist_src});
+  const g=pack.generator;
+  used.push({name:'τ（天）',value:inp.tau,src:g.tau_src},{name:'Δμ 中位',value:g.delta_mu,src:g.delta_mu_src},{name:'λ0（每日）',value:g.lambda0,src:g.lambda0_src},
+            {name:'β（每 10 mL/min）',value:g.beta,src:g.beta_src},{name:'雜訊 SD',value:g.noise_sd,src:g.noise_src},
+            {name:'起始日下界（天）',value:g.onset_range[0],src:g.onset_src},{name:'起始日上界（天）',value:g.onset_range[1],src:g.onset_src},
+            {name:'漂移期下界（天）',value:g.duration_range[0],src:g.onset_src},{name:'漂移期上界（天）',value:g.duration_range[1],src:g.onset_src},
+            {name:'門檻 eGFR',value:g.threshold_egfr,src:g.threshold_src});
+  for(const c of g.linear_classes){ used.push({name:`線性子類別 ${c.name} 比例（原始）`,value:c.share_raw,src:c.src},{name:`線性子類別 ${c.name} 斜率平均`,value:c.slope_mean,src:c.src},{name:`線性子類別 ${c.name} 斜率 SD`,value:c.slope_sd,src:c.src}); }
+  used.push({name:'子類別比例正規化',value:1,src:g.share_src},{name:'參考幾何 b（eGFR / y）',value:1,src:g.geometry_src});
+  const counts={lit:0,der:0,set:0};
+  for(const u of used){ const tag=pack.sources[u.src].tag; if(tag==='抄錄自文獻') counts.lit++; else if(tag==='由文獻推算') counts.der++; else counts.set++; }
+  return {errs, rows, logit, meanTerm, score, q, pflip, rep, repKey:key, obs, used, counts};
+}
+/*__PURE_END__*/
+
+/* ===== DOM ===== */
+const COPY=JSON.parse(document.getElementById('copy').textContent);
+const FIELDS=JSON.parse(document.getElementById('ui_fields').textContent);
+const FACTORS=JSON.parse(document.getElementById("factors_json").textContent);
+const PACK=JSON.parse(document.getElementById('ui_pack').textContent);
+const $=(s)=>document.querySelector(s);
+const TAGCLS={'抄錄自文獻':'tag-lit','由文獻推算':'tag-der','本研究設定':'tag-set','計算值':'tag-calc'};
+function fmt(v,d){ if(v===null||v===undefined) return '—'; if(typeof v!=='number') return String(v); if(Math.abs(v)<1e-9) return '0'; if(Number.isInteger(v)) return String(v); if(Math.abs(v)<1e-3) return v.toExponential(2); if(Math.abs(v)>=1000) return v.toFixed(0); return v.toFixed(d===undefined?3:d); }
+function tagHtml(tag){ return `<span class="tag ${TAGCLS[tag]}">${tag}</span>`; }
+function numHtml(v,src,d){ return `<button type="button" class="num" data-src="${src}" aria-label="數值 ${fmt(v,d)}，按下顯示出處">${fmt(v,d)}</button>`; }
+function tpl(s,o){ return s.replace(/\{(\w+)\}/g,(m,k)=>o[k]!==undefined?o[k]:m); }
+function srcHtml(sid){ const s=PACK.sources[sid]; if(!s) return '（無出處）'; let h=`${tagHtml(s.tag)} ${s.text}`;
+  if(s.pmid) h+=`<br>${COPY.src_pmid} ${s.pmid}`; if(s.derivation) h+=`<br>${COPY.src_deriv}：${s.derivation}`; if(s.reason) h+=`<br>${COPY.src_reason}：${s.reason}`; if(s.sensitivity) h+=`<br>${COPY.src_sens}：${s.sensitivity}`; return h; }
+function openSrc(sid, anchor){ const p=$('#srcpanel'); $('#srcbody').innerHTML=`<div id="srctitle"><strong>${COPY.field_src}</strong></div>`+srcHtml(sid); p.setAttribute('open',''); p.querySelector('.close').focus(); p._anchor=anchor; }
+function closeSrc(){ const p=$('#srcpanel'); p.removeAttribute('open'); if(p._anchor) p._anchor.focus(); }
+document.addEventListener('click',e=>{ const b=e.target.closest('.num'); if(b){ openSrc(b.dataset.src,b); } else if(e.target.closest('#srcpanel .close')) closeSrc(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSrc(); });
+
+/* 區塊一 */
+(function renderInputs(){
+  const box=$('#fields');
+  for(const f of FIELDS.fields){ const id=`f_${f.key}`; let ctl;
+    if(f.type==='select') ctl=`<select id="${id}" name="${f.key}">${f.options.map(o=>`<option value="${o.value}" ${o.value===f.default?'selected':''}>${o.label}</option>`).join('')}</select>`;
+    else ctl=`<input id="${id}" name="${f.key}" type="number" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.default}" required aria-describedby="${id}_h">`;
+    box.insertAdjacentHTML('beforeend',`<div><label for="${id}">${f.label}${f.unit?`（${f.unit}）`:''}</label>${ctl}<div class="hint" id="${id}_h">${f.type==='select'?'':`合理範圍 ${f.min}–${f.max}`} <button type="button" class="num" data-src="${f.src}">${COPY.field_src}</button></div></div>`); }
+  const pr=$('#presets'); PACK.presets.forEach((c,i)=>{ const b=document.createElement('button'); b.type='button'; b.className='btn'; b.style.marginRight='.5rem'; b.style.marginBottom='.4rem'; b.textContent=c.label;
+    b.addEventListener('click',()=>{ for(const k of ['age','male','x0']){ const el=document.getElementById(`f_${k}`); if(el) el.value=c[k]; } }); pr.appendChild(b); });
+  const fx=$('#factors');
+  if(!FACTORS.factors.length) fx.innerHTML=`<p class="hint">${COPY.factors_empty}</p>`;
+  else fx.innerHTML=FACTORS.factors.map(f=>`<label><input type="checkbox" name="fx_${f.key}"> ${f.label} <button type="button" class="num" data-src="${f.src}" aria-label="係數與出處">i</button></label>`).join('');
+  const sl=$('#sliders'); const S=PACK.sliders; const G=PACK.generator;
+  function slider(id,label,opts,def){ const i=opts.indexOf(def); sl.insertAdjacentHTML('beforeend',`<div><label for="${id}">${label}：<output id="${id}_o">${def}</output> <button type="button" class="num" data-src="${id==='s_tau'?G.tau_src:S.src}">${COPY.field_src}</button></label><input id="${id}" type="range" min="0" max="${opts.length-1}" step="1" value="${i<0?0:i}" data-opts='${JSON.stringify(opts)}' aria-valuetext="${def}"></div>`); }
+  slider('s_err',COPY.meas_err+COPY.meas_err_note,S.meas_error_sd,0); slider('s_int',COPY.meas_int+COPY.meas_err_note,S.meas_interval_days,1); slider('s_tau',COPY.tau,G.tau_options,G.tau_main);
+  sl.addEventListener('input',e=>{ const r=e.target; if(r.type!=='range') return; const o=JSON.parse(r.dataset.opts)[+r.value]; document.getElementById(r.id+'_o').textContent=o; r.setAttribute('aria-valuetext',o); });
+  const rs=$('#repsel'); Object.entries(COPY.rep_types).forEach(([k,lab],i)=>rs.insertAdjacentHTML('beforeend',`<label><input type="radio" name="reptype" value="${k}" ${i===0?'checked':''}> ${lab}</label>`));
+  rs.addEventListener('change',()=>{ if(window._last) run(); });
+  $('#build').textContent=`查表包：${PACK.meta.built_from}（結果日期 ${PACK.meta.results_date}，n=${PACK.meta.n}，seeds ${PACK.meta.seeds.length}）。`;
+})();
+
+function readInputs(){ const o={}; for(const f of FIELDS.fields){ const el=document.getElementById(`f_${f.key}`); o[f.key]=Number(el.value); }
+  const opt=(id)=>{ const r=document.getElementById(id); return JSON.parse(r.dataset.opts)[+r.value]; };
+  o.measErr=opt('s_err'); o.measInt=opt('s_int'); o.tau=opt('s_tau'); o.repType=document.querySelector('input[name=reptype]:checked').value; return o; }
+
+async function run(){
+  const steps=$('#steps'); steps.innerHTML=COPY.steps.map(s=>`<li>${s}</li>`).join('');
+  const li=steps.querySelectorAll('li'); const tick=async(i)=>{ li[i].classList.add('done'); await new Promise(r=>setTimeout(r,60)); };   // 不用 requestAnimationFrame：背景分頁不會觸發，會卡住
+  await tick(0); const inp=readInputs(); await tick(1);
+  const out=computeAll(inp,PACK,FIELDS);
+  if(out.errs.length){ steps.insertAdjacentHTML('beforeend',`<li>${out.errs.map(e=>tpl(COPY.range_err,e)).join('<br>')}</li>`); return; }
+  for(let i=2;i<li.length;i++) await tick(i);
+  window._last=out; render(out,inp);
+  $('#s3').hidden=false; $('#s4').hidden=false; $('#s3').scrollIntoView({behavior:'smooth'});
+}
+$('#run').addEventListener('click',run);
+
+function render(o,inp){
+  const c=o.counts; $('#counts').textContent=tpl(COPY.counts,{n:o.used.length,lit:c.lit,der:c.der,set:c.set});
+  const strat=PACK.strata[o.q]; const q1=o.q+1;
+  $('#layer1').innerHTML=`<p class="big">${tpl(COPY.l1_sentence,{score:numHtml(o.score,'calc_score',3),q:`<button type="button" class="num" data-src="calc_stratum">${q1}</button>`})}</p>`+
+    `<p>${tpl(COPY.l1_line2,{pf:numHtml(o.pflip,'calc_post',2),pl:numHtml(1-o.pflip,'calc_post',2)})}</p>`+
+    `<p>${tpl(COPY.l1_line3,{er:numHtml(strat.event_rate.mean,'agg_stats',3)+rangeHtml(strat.event_rate),fs:numHtml(strat.flip_share.mean,'agg_stats',2)+rangeHtml(strat.flip_share),ka:numHtml(strat.K_A.mean,'agg_stats',1)+rangeHtml(strat.K_A,0)})}</p>`;
+  const rs=PACK.risk_score;
+  let t=`<p>${COPY.l2_intro}</p><table><thead><tr>${COPY.l2_head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+  for(const r of o.rows) t+=`<tr><td>${r.label}${r.unit?`（${r.unit}）`:''}</td><td>${fmt(r.x,r.key==='male'?0:1)}</td><td>${numHtml(r.z,'calc_z',3)}</td><td>${numHtml(r.wStd,'calc_contrib',4)}</td><td>${numHtml(r.contrib,'calc_contrib',4)}</td></tr>`;
+  t+=`<tr><td>${COPY.l2_intercept}</td><td></td><td></td><td>${numHtml(rs.intercept,rs.intercept_src,4)}</td><td>${numHtml(rs.intercept+o.meanTerm,rs.intercept_src,4)}</td></tr></tbody></table>`;
+  t+=`<p>${tpl(COPY.l2_sum,{logit:numHtml(o.logit,'calc_score',4),score:numHtml(o.score,'calc_score',3)})}</p><p>${COPY.l2_post}</p>`;
+  $('#layer2').innerHTML=t;
+  let l3=`<p>${COPY.l3_intro}</p><table><thead><tr>${COPY.l3_head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+  for(const u of o.used){ const s=PACK.sources[u.src]; l3+=`<tr><td>${u.name}</td><td>${numHtml(u.value,u.src,4)}</td><td>${tagHtml(s.tag)}</td><td style="white-space:normal;text-align:left">${s.text}${s.pmid?`（PMID ${s.pmid}）`:''}</td></tr>`; }
+  l3+='</tbody></table>'; $('#layer3').innerHTML=l3;
+  renderPlot(o,inp);
+  const ex=$('#explain'); ex.innerHTML=`<p>${COPY.p1}</p><p>${COPY.p2}</p><p>${COPY.p3}</p>`;
+}
+function rangeHtml(m3,d){ return `<span class="hint">［${fmt(m3.min,d===undefined?3:d)}, ${fmt(m3.max,d===undefined?3:d)}］</span>`; }
+
+function renderPlot(o,inp){
+  const box=$('#plot'), lg=$('#plotlegend'); const rep=o.rep;
+  if(!rep){ box.innerHTML=`<p class="hint">${COPY.no_data}</p>`; lg.textContent=''; return; }
+  const W=900,H=340,ml=60,mr=20,mt=20,mb=40; const n=rep.series.length;
+  const clip=(v)=>Math.max(0,v); const ys=rep.series.map(clip).concat(o.obs.map(p=>clip(p[1]))); const ymin=0, ymax=Math.ceil(Math.max(...ys)/10)*10+10;
+  const X=(t)=>ml+(W-ml-mr)*t/(n-1), Y=(v)=>mt+(H-mt-mb)*(1-(v-ymin)/(ymax-ymin));
+  let d=''; for(let t=0;t<n;t+=2){ d+=(t?'L':'M')+X(t).toFixed(1)+','+Y(clip(rep.series[t])).toFixed(1); }
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="代表性序列與時點"><rect x="0" y="0" width="${W}" height="${H}" fill="#fff"/>`;
+  for(let v=ymin;v<=ymax;v+=20){ s+=`<line x1="${ml}" x2="${W-mr}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e5e5e5"/><text x="${ml-6}" y="${Y(v)+4}" font-size="11" text-anchor="end" fill="#444">${v}</text>`; }
+  for(let t=0;t<=n;t+=365){ s+=`<text x="${X(Math.min(t,n-1))}" y="${H-mb+16}" font-size="11" text-anchor="middle" fill="#444">${t}</text>`; }
+  s+=`<text x="${(W+ml)/2}" y="${H-6}" font-size="12" text-anchor="middle" fill="#444">天</text><text transform="translate(14,${H/2}) rotate(-90)" font-size="12" text-anchor="middle" fill="#444">eGFR（mL/min/1.73m²）</text>`;
+  s+=`<line x1="${ml}" x2="${W-mr}" y1="${Y(PACK.generator.threshold_egfr)}" y2="${Y(PACK.generator.threshold_egfr)}" stroke="#888" stroke-dasharray="3,3"/>`;
+  s+=`<path d="${d}" fill="none" stroke="#222" stroke-width="1.2"/>`;
+  for(const p of o.obs){ s+=`<circle cx="${X(p[0])}" cy="${Y(clip(p[1]))}" r="2" fill="#666"/>`; }
+  const marks=[['t_onset','#999','2,2'],['t_crit','#111','6,3'],['t_threshold','#555','4,4'],['t_event','#111',''],['first_alarm','#777','8,3,2,3']];
+  const list=[]; let k=0;
+  for(const [key,col,dash] of marks){ const v=rep[key]; if(typeof v==='number'){ s+=`<line x1="${X(v)}" x2="${X(v)}" y1="${mt}" y2="${H-mb}" stroke="${col}" ${dash?`stroke-dasharray="${dash}"`:''} stroke-width="1.3"/><text x="${X(v)+3}" y="${mt+12+14*(k%5)}" font-size="11" fill="${col}">${COPY.tp[key]} ${v}</text>`; list.push(`${COPY.tp[key]}＝第 ${v} 天`); }
+    else list.push(`${COPY.tp[key]}＝${v==='not_computed'?COPY.tp_nc:COPY.tp_none}`); k++; }
+  s+='</svg>'; box.innerHTML=s;
+  let extra=''; const sc=PACK.tau_scan[String(inp.tau)]; if(sc && !sc.reachable_180) extra=' '+tpl(COPY.unreachable_tau,{tau:inp.tau,mx:sc.max_median_days});
+  lg.textContent=tpl(COPY.legend,{list:list.join('；')})+extra;
+}
+</script>
+</body>
+</html>

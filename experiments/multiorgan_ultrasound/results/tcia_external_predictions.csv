@@ -1,0 +1,253 @@
+CaseID,Classification,Verification,probability
+1,benign,confirmed by follow-up care,0.9866939766096465
+2,benign,confirmed by biopsy,0.14845150784479547
+3,benign,confirmed by biopsy,0.1697322023413124
+4,benign,confirmed by follow-up care,0.025432440071902877
+5,malignant,confirmed by biopsy,0.732232319875869
+6,benign,confirmed by biopsy,0.9794229272017294
+7,malignant,confirmed by biopsy,0.9953357916002885
+8,malignant,confirmed by biopsy,0.9923660350942158
+9,benign,confirmed by biopsy,0.8166040304450192
+10,malignant,confirmed by biopsy,0.866343872378515
+11,malignant,confirmed by biopsy,0.8974998274316449
+12,malignant,confirmed by biopsy,0.8019326419661315
+13,malignant,confirmed by biopsy,0.8579391325914438
+14,benign,confirmed by biopsy,0.481864548821801
+15,benign,confirmed by biopsy,0.6143583731515735
+16,benign,confirmed by biopsy,0.06418303376884515
+17,benign,confirmed by follow-up care,0.5997215630220947
+18,benign,confirmed by biopsy,0.13729523075479627
+19,benign,confirmed by biopsy,0.12368249155767932
+20,benign,confirmed by follow-up care,0.38774883753923395
+21,benign,confirmed by biopsy,0.09729006638411546
+22,benign,confirmed by biopsy,0.4090999984379263
+23,benign,confirmed by biopsy,0.006108510064400172
+24,benign,confirmed by biopsy,0.9071571635468215
+25,benign,confirmed by biopsy,0.8518691612992868
+26,malignant,confirmed by biopsy,0.17399825160658144
+27,malignant,confirmed by biopsy,0.865665844431305
+28,benign,confirmed by follow-up care,0.22382879287897617
+29,benign,confirmed by follow-up care,0.7762986213286912
+30,benign,confirmed by follow-up care,0.7877666613771979
+31,benign,confirmed by biopsy,0.05578612188027825
+32,malignant,confirmed by biopsy,0.8078775933753646
+33,benign,confirmed by biopsy,0.24749264595550954
+34,malignant,confirmed by biopsy,0.5110690371324526
+35,malignant,confirmed by biopsy,0.995917111766807
+36,benign,confirmed by biopsy,0.34869030720871497
+37,benign,confirmed by biopsy,0.9576663387454112
+38,benign,confirmed by follow-up care,0.2575509646683209
+39,benign,confirmed by biopsy,0.2691641565312829
+40,benign,confirmed by biopsy,0.2599721191338765
+41,benign,confirmed by biopsy,0.27050672849915547
+42,benign,confirmed by biopsy,0.8408914194185727
+43,benign,confirmed by biopsy,0.21780794856002209
+44,benign,confirmed by biopsy,0.8742956907150486
+46,malignant,confirmed by biopsy,0.9815892821395917
+47,benign,confirmed by biopsy,0.9769625456508103
+48,benign,confirmed by follow-up care,0.18817375335661507
+49,benign,confirmed by follow-up care,0.36999229588166593
+50,malignant,confirmed by biopsy,0.6299285675569903
+51,benign,confirmed by biopsy,0.6734308833820679
+52,benign,confirmed by follow-up care,0.5554696434822136
+53,malignant,confirmed by biopsy,0.9943847999709299
+54,benign,confirmed by biopsy,0.7828420819307371
+55,malignant,confirmed by biopsy,0.6916372022408026
+56,benign,confirmed by biopsy,0.15069773868525843
+57,benign,confirmed by follow-up care,0.09533063941732067
+58,malignant,confirmed by biopsy,0.9641899841841962
+59,benign,confirmed by biopsy,0.256711607238384
+60,malignant,confirmed by biopsy,0.6487012442168979
+62,benign,confirmed by biopsy,0.06457330343208141
+63,malignant,confirmed by biopsy,0.5036527762713293
+64,benign,confirmed by follow-up care,0.3511747015398984
+65,benign,confirmed by follow-up care,0.10060615144097158
+66,malignant,confirmed by biopsy,0.9957360772357712
+67,malignant,confirmed by biopsy,0.7515957010947281
+68,benign,confirmed by biopsy,0.06276937092529616
+69,benign,confirmed by biopsy,0.48739495392701915
+70,benign,confirmed by biopsy,0.6943584463368544
+71,benign,confirmed by biopsy,0.18084987543578274
+72,malignant,confirmed by biopsy,0.6298998996801197
+73,benign,confirmed by follow-up care,0.9742827392314549
+74,benign,confirmed by biopsy,0.6209671642279564
+75,malignant,confirmed by biopsy,0.5820908320613406
+76,malignant,confirmed by biopsy,0.9941066323483422
+77,benign,confirmed by biopsy,0.895100570451008
+78,benign,confirmed by biopsy,0.4771670160318222
+79,malignant,confirmed by biopsy,0.9863802670747376
+80,benign,confirmed by follow-up care,0.13460529543108155
+81,benign,confirmed by biopsy,0.10888684177754351
+82,malignant,confirmed by biopsy,0.8774978243192308
+83,benign,confirmed by biopsy,0.862101897338855
+84,benign,confirmed by biopsy,0.7179157053330385
+85,benign,confirmed by follow-up care,0.2771101794940184
+86,malignant,confirmed by biopsy,0.6400583601493636
+87,malignant,confirmed by biopsy,0.04841180916374776
+88,malignant,confirmed by biopsy,0.9920114160154654
+89,malignant,confirmed by biopsy,0.5287153756870251
+90,malignant,confirmed by biopsy,0.89133268783958
+91,benign,confirmed by follow-up care,0.08134507696538287
+92,benign,confirmed by biopsy,0.5163103448276943
+93,benign,confirmed by biopsy,0.17989005778518896
+94,malignant,confirmed by biopsy,0.6784639119816857
+95,benign,confirmed by follow-up care,0.3241002979656844
+96,benign,confirmed by follow-up care,0.07263032512625615
+97,benign,confirmed by follow-up care,0.4240142369708004
+98,benign,confirmed by follow-up care,0.21298948444803836
+99,malignant,confirmed by biopsy,0.9072303654638918
+100,benign,confirmed by biopsy,0.7935585584917735
+101,malignant,confirmed by biopsy,0.6691402463069851
+102,malignant,confirmed by biopsy,0.40807425142308856
+103,malignant,confirmed by biopsy,0.9867329235304519
+104,benign,confirmed by biopsy,0.9065425767469234
+105,malignant,confirmed by biopsy,0.9990507141308393
+106,malignant,confirmed by biopsy,0.807696298145075
+107,malignant,confirmed by biopsy,0.3405669203990398
+108,benign,confirmed by follow-up care,0.14047585581713978
+109,malignant,confirmed by biopsy,0.9972874457164109
+110,benign,confirmed by follow-up care,0.1618597769766643
+111,malignant,confirmed by biopsy,0.1442506401275094
+112,malignant,confirmed by biopsy,0.3307193584810555
+113,malignant,confirmed by biopsy,0.9993172323047822
+114,malignant,confirmed by biopsy,0.19735174764355823
+115,benign,confirmed by biopsy,0.9573559101188712
+116,benign,confirmed by biopsy,0.3850372989775627
+117,malignant,confirmed by biopsy,0.417295241986861
+118,benign,confirmed by follow-up care,0.1176906003584185
+119,benign,confirmed by biopsy,0.9873269515935469
+120,benign,confirmed by biopsy,0.576045965121017
+121,malignant,confirmed by biopsy,0.836040699473485
+122,benign,confirmed by biopsy,0.6223250238844238
+123,benign,confirmed by biopsy,0.8735654133485629
+124,benign,confirmed by follow-up care,0.008663434347869316
+125,malignant,confirmed by biopsy,0.9429880402012505
+126,benign,confirmed by biopsy,0.7955211034371068
+127,malignant,confirmed by biopsy,0.9894907548228323
+128,malignant,confirmed by biopsy,0.9632311697076092
+129,benign,confirmed by biopsy,0.9808946357605447
+130,malignant,confirmed by biopsy,0.34155259149854356
+131,benign,confirmed by biopsy,0.9624241929841661
+132,malignant,confirmed by biopsy,0.27939554696199015
+133,malignant,confirmed by biopsy,0.3211138852544568
+134,benign,confirmed by biopsy,0.4693269190644764
+135,benign,confirmed by biopsy,0.40545100079494234
+136,benign,confirmed by follow-up care,0.7885549186450563
+137,benign,confirmed by follow-up care,0.12731829702928188
+138,benign,confirmed by follow-up care,0.9781330090915596
+139,benign,confirmed by biopsy,0.21900242888266488
+140,benign,confirmed by follow-up care,0.2181578474479745
+141,benign,confirmed by biopsy,0.998088119023184
+142,benign,confirmed by biopsy,0.06405957037450632
+143,benign,confirmed by biopsy,0.9850164043556872
+144,malignant,confirmed by biopsy,0.919524345703916
+145,malignant,confirmed by biopsy,0.897326609863775
+146,benign,confirmed by biopsy,0.12673365339415987
+147,malignant,confirmed by biopsy,0.9989195113067781
+148,malignant,confirmed by biopsy,0.9137325856190521
+149,malignant,confirmed by biopsy,0.9989756822899359
+150,malignant,confirmed by biopsy,0.7062127169577519
+151,benign,confirmed by biopsy,0.023962205995976274
+152,benign,confirmed by biopsy,0.41801323781461064
+153,malignant,confirmed by biopsy,0.9437261633059022
+154,malignant,confirmed by biopsy,0.993620201665175
+155,benign,confirmed by biopsy,0.12568904370470285
+156,benign,confirmed by follow-up care,0.9178198667446493
+157,benign,confirmed by biopsy,0.9924319337521534
+158,malignant,confirmed by biopsy,0.9987732281542002
+159,benign,confirmed by biopsy,0.00976317043930898
+160,malignant,confirmed by biopsy,0.9613235599539415
+161,benign,confirmed by biopsy,0.08012843830985153
+162,benign,confirmed by biopsy,0.5788366728653667
+163,benign,confirmed by biopsy,0.10512722131270277
+164,malignant,confirmed by biopsy,0.9982841900085172
+165,benign,confirmed by biopsy,0.24999897224824924
+166,benign,confirmed by biopsy,0.9646893711971226
+167,benign,confirmed by follow-up care,0.03023692932486368
+168,benign,confirmed by biopsy,0.8774918360665593
+169,benign,confirmed by follow-up care,0.06793372537313634
+170,malignant,confirmed by biopsy,0.9916768633328614
+171,benign,confirmed by biopsy,0.07359962065341737
+172,malignant,confirmed by biopsy,0.9990556248060384
+173,malignant,confirmed by biopsy,0.5272956710134649
+174,malignant,confirmed by biopsy,0.6664633052792329
+175,benign,confirmed by follow-up care,0.4095994614558333
+176,malignant,confirmed by biopsy,0.9987603217205201
+177,benign,confirmed by follow-up care,0.23807111066846542
+178,benign,confirmed by biopsy,0.528366779824001
+179,benign,confirmed by biopsy,0.634636851784118
+180,benign,confirmed by biopsy,0.6786461947798851
+181,benign,confirmed by follow-up care,0.029271398930410957
+182,benign,confirmed by biopsy,0.6482910726571608
+183,benign,confirmed by biopsy,0.29309787166335544
+184,benign,confirmed by follow-up care,0.5776092340172262
+185,benign,confirmed by biopsy,0.5719586039569718
+186,benign,confirmed by follow-up care,0.949023242980549
+187,benign,confirmed by biopsy,0.5299270204155409
+188,benign,confirmed by follow-up care,0.044692462360077664
+189,benign,confirmed by biopsy,0.46398512278227233
+190,malignant,confirmed by biopsy,0.8529432261115645
+191,benign,confirmed by follow-up care,0.7959169986656478
+192,benign,confirmed by biopsy,0.48695036621270915
+193,benign,confirmed by biopsy,0.17313123658712512
+194,benign,confirmed by follow-up care,0.900218174536228
+195,malignant,confirmed by biopsy,0.9923535460916775
+196,benign,confirmed by follow-up care,0.04423303765533457
+197,benign,confirmed by biopsy,0.10615856655959141
+198,malignant,confirmed by biopsy,0.9286686031628248
+199,malignant,confirmed by biopsy,0.33990963637763366
+200,benign,confirmed by biopsy,0.14608851325420927
+201,benign,confirmed by biopsy,0.9638591650495701
+202,benign,confirmed by biopsy,0.048743879876379924
+203,benign,confirmed by biopsy,0.4246126213065895
+204,benign,confirmed by biopsy,0.32212726222406324
+205,malignant,confirmed by biopsy,0.9442111047644356
+206,malignant,confirmed by biopsy,0.916621678788201
+207,benign,confirmed by biopsy,0.10730162941457862
+208,benign,confirmed by follow-up care,0.27006543155186036
+210,benign,confirmed by biopsy,0.29217979001226246
+211,malignant,confirmed by biopsy,0.9756815730436709
+212,malignant,confirmed by biopsy,0.9918880645188156
+214,benign,confirmed by follow-up care,0.5944204566781336
+215,benign,confirmed by biopsy,0.9046124717189534
+216,benign,confirmed by follow-up care,0.35853735049573726
+217,benign,confirmed by biopsy,0.7007817947297312
+218,malignant,confirmed by biopsy,0.9918059221552458
+219,malignant,confirmed by biopsy,0.9779218790745489
+220,benign,confirmed by biopsy,0.9736688993839978
+221,malignant,confirmed by biopsy,0.8752372199810772
+222,benign,confirmed by follow-up care,0.7594047841887624
+223,benign,confirmed by follow-up care,0.08157406516425954
+224,benign,confirmed by follow-up care,0.5530793033463429
+225,malignant,confirmed by biopsy,0.9479073909300448
+226,malignant,confirmed by biopsy,0.6043778230372966
+227,malignant,confirmed by biopsy,0.9822731486951023
+228,malignant,confirmed by biopsy,0.8039951492833728
+229,benign,confirmed by biopsy,0.47179416923570355
+230,malignant,confirmed by biopsy,0.9745751890177677
+231,benign,confirmed by biopsy,0.42347985619781564
+232,benign,confirmed by biopsy,0.6128584882004418
+233,malignant,confirmed by biopsy,0.8307185526780612
+234,malignant,confirmed by biopsy,0.9992425813833713
+235,benign,confirmed by follow-up care,0.0140804052757864
+236,benign,confirmed by follow-up care,0.22207427391594686
+237,benign,confirmed by follow-up care,0.22595224179089163
+238,malignant,confirmed by biopsy,0.9547954672718835
+239,malignant,confirmed by biopsy,0.9084465836122687
+240,benign,confirmed by follow-up care,0.886350095731965
+241,benign,confirmed by follow-up care,0.08099785903502829
+242,benign,confirmed by follow-up care,0.16719712612247087
+243,malignant,confirmed by biopsy,0.973896752535226
+244,malignant,confirmed by biopsy,0.8563109476094809
+245,malignant,confirmed by biopsy,0.8659049887513658
+246,benign,confirmed by biopsy,0.8875239651239795
+247,malignant,confirmed by biopsy,0.8436267519438192
+248,malignant,confirmed by biopsy,0.9936781165630736
+249,malignant,confirmed by biopsy,0.8190942859765513
+250,malignant,confirmed by biopsy,0.5880627040626942
+251,malignant,confirmed by biopsy,0.975918269773889
+252,benign,confirmed by biopsy,0.33170319880953814
+253,benign,confirmed by follow-up care,0.4861617057388952
+254,malignant,confirmed by biopsy,0.9003515514588396
+255,malignant,confirmed by biopsy,0.9485193083792287
+256,benign,confirmed by biopsy,0.2950522722564766

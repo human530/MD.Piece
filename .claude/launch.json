@@ -4,44 +4,80 @@
     {
       "name": "FastAPI Backend",
       "runtimeExecutable": "uvicorn",
-      "runtimeArgs": ["backend.main:app", "--reload", "--port", "8000"],
+      "runtimeArgs": [
+        "backend.main:app",
+        "--reload",
+        "--port",
+        "8000"
+      ],
       "port": 8000
     },
     {
       "name": "Frontend",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "3000", "--directory", "frontend"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "3000",
+        "--directory",
+        "frontend"
+      ],
       "port": 3000
     },
     {
       "name": "Next.js",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 3000
     },
     {
       "name": "React (Vite)",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 5173
     },
     {
       "name": "React (CRA)",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["start"],
+      "runtimeArgs": [
+        "start"
+      ],
       "port": 3000
     },
     {
       "name": "Vue.js",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 5173
     },
     {
       "name": "Node.js / Express",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["server.js"],
+      "runtimeArgs": [
+        "server.js"
+      ],
       "port": 3000
+    },
+    {
+      "name": "TrajectoryUI",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "3111",
+        "--directory",
+        "experiments/trajectory_model/ui"
+      ],
+      "port": 3111
     }
   ]
 }

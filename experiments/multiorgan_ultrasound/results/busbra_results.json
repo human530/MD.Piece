@@ -1,0 +1,265 @@
+{
+  "dataset": "BUS-BRA",
+  "source": "https://doi.org/10.5281/zenodo.8231412",
+  "archive_md5": "1f8b2be6476d58fc97bfb5e5a1ea9bab",
+  "images": 1875,
+  "patients": 1064,
+  "patient_counts": {
+    "benign": 722,
+    "malignant": 342
+  },
+  "split": "official patient-consistent 5-fold outer CV; patient probabilities are mean across images",
+  "model": "frozen ImageNet ResNet-18 embeddings and/or 18 preregistered mask morphology/texture features + balanced L2 logistic regression",
+  "mask_features": [
+    "area_fraction",
+    "bbox_extent",
+    "bbox_aspect",
+    "centroid_x",
+    "centroid_y",
+    "perimeter_normalized",
+    "compactness",
+    "eccentricity",
+    "radial_irregularity",
+    "lesion_mean",
+    "lesion_std",
+    "lesion_p10",
+    "lesion_p50",
+    "lesion_p90",
+    "lesion_entropy",
+    "lesion_gradient_mean",
+    "ring_mean",
+    "lesion_ring_contrast"
+  ],
+  "runs": [
+    {
+      "variant": "whole_image_primary",
+      "patients": 1064,
+      "auc": 0.7497246116213896,
+      "auc_ci_95": [
+        0.7179788228841189,
+        0.7814588325928788
+      ],
+      "balanced_accuracy_at_0_5": 0.6688211757463836,
+      "brier": 0.21253299803769474,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 212,
+          "auc": 0.7764501633986928
+        },
+        {
+          "fold": 2,
+          "patients": 213,
+          "auc": 0.7423510466988728
+        },
+        {
+          "fold": 3,
+          "patients": 213,
+          "auc": 0.7276876267748479
+        },
+        {
+          "fold": 4,
+          "patients": 214,
+          "auc": 0.734032983508246
+        },
+        {
+          "fold": 5,
+          "patients": 212,
+          "auc": 0.7769607843137255
+        }
+      ]
+    },
+    {
+      "variant": "expert_bbox_roi_sensitivity",
+      "patients": 1064,
+      "auc": 0.8542021026712674,
+      "auc_ci_95": [
+        0.8291886494988706,
+        0.8781329860111464
+      ],
+      "balanced_accuracy_at_0_5": 0.786241920590951,
+      "brier": 0.1551377794319216,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 212,
+          "auc": 0.8695874183006537
+        },
+        {
+          "fold": 2,
+          "patients": 213,
+          "auc": 0.8402777777777779
+        },
+        {
+          "fold": 3,
+          "patients": 213,
+          "auc": 0.841683569979716
+        },
+        {
+          "fold": 4,
+          "patients": 214,
+          "auc": 0.8709645177411294
+        },
+        {
+          "fold": 5,
+          "patients": 212,
+          "auc": 0.8529411764705883
+        }
+      ]
+    },
+    {
+      "variant": "whole_plus_expert_bbox_sensitivity",
+      "patients": 1064,
+      "auc": 0.8686397434028285,
+      "auc_ci_95": [
+        0.8451090380335169,
+        0.8915646845447625
+      ],
+      "balanced_accuracy_at_0_5": 0.7969375192366882,
+      "brier": 0.14719794579638185,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 212,
+          "auc": 0.8918504901960784
+        },
+        {
+          "fold": 2,
+          "patients": 213,
+          "auc": 0.8506441223832528
+        },
+        {
+          "fold": 3,
+          "patients": 213,
+          "auc": 0.85973630831643
+        },
+        {
+          "fold": 4,
+          "patients": 214,
+          "auc": 0.881559220389805
+        },
+        {
+          "fold": 5,
+          "patients": 212,
+          "auc": 0.8572303921568628
+        }
+      ]
+    },
+    {
+      "variant": "expert_mask_interpretable_sensitivity",
+      "patients": 1064,
+      "auc": 0.931067858936353,
+      "auc_ci_95": [
+        0.9142968866541125,
+        0.9476149050430094
+      ],
+      "balanced_accuracy_at_0_5": 0.8624192059095106,
+      "brier": 0.09770602517178478,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 212,
+          "auc": 0.9566993464052287
+        },
+        {
+          "fold": 2,
+          "patients": 213,
+          "auc": 0.9667874396135265
+        },
+        {
+          "fold": 3,
+          "patients": 213,
+          "auc": 0.9133874239350913
+        },
+        {
+          "fold": 4,
+          "patients": 214,
+          "auc": 0.8745627186406797
+        },
+        {
+          "fold": 5,
+          "patients": 212,
+          "auc": 0.9437295751633987
+        }
+      ]
+    },
+    {
+      "variant": "roi_plus_expert_mask_sensitivity",
+      "patients": 1064,
+      "auc": 0.8923879412288802,
+      "auc_ci_95": [
+        0.8706839201195986,
+        0.9134130298250518
+      ],
+      "balanced_accuracy_at_0_5": 0.8239458294859957,
+      "brier": 0.12307511245332801,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 212,
+          "auc": 0.9106413398692811
+        },
+        {
+          "fold": 2,
+          "patients": 213,
+          "auc": 0.8761070853462158
+        },
+        {
+          "fold": 3,
+          "patients": 213,
+          "auc": 0.8894523326572008
+        },
+        {
+          "fold": 4,
+          "patients": 214,
+          "auc": 0.9103448275862069
+        },
+        {
+          "fold": 5,
+          "patients": 212,
+          "auc": 0.8826593137254902
+        }
+      ]
+    },
+    {
+      "variant": "whole_roi_plus_expert_mask_sensitivity",
+      "patients": 1064,
+      "auc": 0.9003661045503879,
+      "auc_ci_95": [
+        0.8800166889391746,
+        0.9198091331640827
+      ],
+      "balanced_accuracy_at_0_5": 0.8094798399507541,
+      "brier": 0.1259898442383061,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 212,
+          "auc": 0.920547385620915
+        },
+        {
+          "fold": 2,
+          "patients": 213,
+          "auc": 0.8994565217391304
+        },
+        {
+          "fold": 3,
+          "patients": 213,
+          "auc": 0.9056795131845841
+        },
+        {
+          "fold": 4,
+          "patients": 214,
+          "auc": 0.8966516741629186
+        },
+        {
+          "fold": 5,
+          "patients": 212,
+          "auc": 0.8764297385620915
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "BUS-BRA breast disease results do not validate kidney etiology; bbox variants require expert localization",
+  "created_at": "2026-08-30T12:01:03+0800"
+}

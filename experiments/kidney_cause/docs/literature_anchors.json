@@ -1,0 +1,443 @@
+{
+ "_meta": "PubMed 文獻錨點（scout 工作流 2026-08-30 檢索並逐條以 E-utilities＋頁面開啟驗證）；供 Level 3 歸因對照『已知重現 vs 候選未知』",
+ "anchors": [
+  {
+   "name": "[代謝性] 血清尿酸 → T2D 新發 CKD（eGFR<60／白蛋白尿）：義大利 13,964 名基線 eGFR≥60、正常白蛋白排泄的 T2D 病人，4 年後尿酸分位數與 eGFR<60、白蛋白尿及兩者合併的發生率獨立相關（多項式 logistic，調整後 RRR）",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/26342044/",
+   "kind": "代謝性（糖尿病腎病）— 非血糖標記",
+   "variables": [
+    "PMID 26342044",
+    "serum uric acid (quintiles)",
+    "eGFR",
+    "urinary albumin excretion",
+    "CJASN 2015;10(11):1921-9",
+    "DOI 10.2215/CJN.03140315"
+   ],
+   "verified_how": "PubMed MCP search_articles「serum uric acid AND diabetic nephropathy AND (cohort OR risk)」→ get_article_metadata 取全文摘要；URL 以 NCBI E-utilities esummary 核對 PMID/title/journal，再用瀏覽器實際開啟 https://pubmed.ncbi.nlm.nih.gov/26342044/ 確認頁面標題相符"
+  },
+  {
+   "name": "[代謝性] 尿酸 → 白蛋白尿「惡化」而非「新發」：日本 Tenri registry 2,518 名 T2D，基線尿酸與 microalbuminuria→macroalbuminuria 進展有劑量效應（第2–4分位 HR 2.17／3.04／3.56），但與腎病新發無顯著關聯",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/26935413/",
+   "kind": "代謝性（糖尿病腎病）— 非血糖標記",
+   "variables": [
+    "PMID 26935413",
+    "serum uric acid (quartiles)",
+    "urinary albumin/creatinine ratio",
+    "HbA1c",
+    "BMI",
+    "Acta Diabetol 2016;53(3):487-96",
+    "DOI 10.1007/s00592-015-0825-x"
+   ],
+   "verified_how": "同上檢索串；get_article_metadata 取摘要中 HR 數字；E-utilities esummary 核對 + 瀏覽器開啟 PubMed 頁面確認標題"
+  },
+  {
+   "name": "[代謝性][反例／必讀] CKD-FIX RCT：allopurinol 降尿酸並未減緩 CKD 病人 eGFR 下降 —— 尿酸的「關聯」已確立但「因果」未確立，模型若把尿酸當成機轉發現須以此設界",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32579811/",
+   "kind": "代謝性 — 因果反例（可證偽性錨點）",
+   "variables": [
+    "PMID 32579811",
+    "serum urate",
+    "eGFR slope (CKD-EPI)",
+    "urinary albumin:creatinine ratio ≥265",
+    "N Engl J Med 2020;382(26):2504-2513",
+    "DOI 10.1056/NEJMoa1915833"
+   ],
+   "verified_how": "同一檢索串命中；get_article_metadata 確認為 RCT（369 隨機分派、主要終點 104 週 eGFR 變化無顯著差異）；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[代謝性][病因專一性，最關鍵一篇] 奧地利 185,341 人 17.5 年追蹤：ESRD 風險因子「依原發腎病而異」——DN-ESRD 專屬於 BMI(HR 7.55)、FBG(7.67)、TG(2.02)、GGT(2.14)；GGT 對全因 ESRD 不顯著、對 DN 才顯著；TG 反而在血管性/其他病因更強",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/27537361/",
+   "kind": "代謝性（跨病因對照）— TG／GGT 直接證據",
+   "variables": [
+    "PMID 27537361",
+    "GGT (gamma-glutamyl transferase)",
+    "triglycerides",
+    "total cholesterol",
+    "fasting blood glucose",
+    "BMI",
+    "blood pressure",
+    "smoking",
+    "cause-specific ESRD (ADPKD / vascular nephropathy / diabetic nephropathy / other)",
+    "PLoS One 2016;11(8):e0161376",
+    "DOI 10.1371/journal.pone.0161376"
+   ],
+   "verified_how": "PubMed MCP search_articles「gamma-glutamyl transferase AND diabetic kidney disease AND incidence」；get_article_metadata 取各病因別 HR；E-utilities esummary 核對 + 瀏覽器開啟 PubMed 頁面（標題「Anthropometric and Metabolic Risk Factors for ESRD Are Disease-Specific」相符）"
+  },
+  {
+   "name": "[代謝性] 血糖與血脂在腎、眼分道揚鑣：604 名 T2D 追蹤 3 年，平均 HbA1c 預測視網膜病變進展，而 HbA1c 變異度與 TG/HDL 比值（獨立於 eGFR 與 UACR）才預測腎病進展",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30300472/",
+   "kind": "代謝性 — 非血糖標記的專一性",
+   "variables": [
+    "PMID 30300472",
+    "triglyceride-to-HDL-cholesterol ratio",
+    "HbA1c variability (HbA1c-VAR)",
+    "mean HbA1c",
+    "UACR",
+    "eGFR decline >12%",
+    "J Diabetes Investig 2019;10(3):745-752",
+    "DOI 10.1111/jdi.12953"
+   ],
+   "verified_how": "PubMed MCP search_articles「dyslipidemia triglycerides risk factor progression diabetic nephropathy cohort study」；get_article_metadata 取摘要；E-utilities esummary 核對 + 瀏覽器開啟確認標題"
+  },
+  {
+   "name": "[免疫性] 低 C4 而非低 C3、也非單獨 anti-dsDNA 陽性，預測狼瘡腎炎活動：PROMISSE 前瞻 373 名懷孕 SLE，低 C4 aOR 5.59；單獨 anti-dsDNA 陽性不預測",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/28400421/",
+   "kind": "免疫性（狼瘡腎炎）— 補體/自體抗體",
+   "variables": [
+    "PMID 28400421",
+    "complement C4",
+    "complement C3",
+    "anti-dsDNA",
+    "urine protein",
+    "RBC casts",
+    "serum creatinine",
+    "Clin J Am Soc Nephrol 2017;12(6):940-946",
+    "DOI 10.2215/CJN.11431116"
+   ],
+   "verified_how": "PubMed MCP search_articles「complement C3 C4 AND lupus nephritis AND anti-dsDNA AND renal flare」；get_article_metadata 取 aOR；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[免疫性] 縱貫追蹤下 C3/C4/anti-dsDNA 的時序價值：71 名切片證實 LN 追蹤 10 年，基線低 C3 預測復發；6 與 12 個月的低 C3/C4、12 個月的蛋白尿與高 anti-dsDNA 亦為復發預測因子（即「早期血清學緩解＝低復發風險」）",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/33822705/",
+   "kind": "免疫性（狼瘡腎炎）— 補體/自體抗體時序",
+   "variables": [
+    "PMID 33822705",
+    "serum C3",
+    "serum C4",
+    "anti-dsDNA",
+    "proteinuria",
+    "serum creatinine",
+    "creatinine clearance",
+    "Clin Exp Rheumatol 2022;40(1):33-38",
+    "DOI 10.55563/clinexprheumatol/c58c39"
+   ],
+   "verified_how": "同一檢索串命中；get_article_metadata 取摘要；E-utilities esummary 核對 + 瀏覽器開啟確認標題"
+  },
+  {
+   "name": "[免疫性][可達性天花板] anti-C1q 診斷 LN 的統合分析（25 研究、2,502 SLE／1,317 LN）：區辨 SLE 有無腎炎 SROC AUC 0.794（sens 0.58／spec 0.75）；區辨活動 vs 非活動 LN AUC 0.838 —— 單一血清標記的上限就在 0.79–0.84",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22777943/",
+   "kind": "免疫性（狼瘡腎炎）— 單標記 AUC 基準線",
+   "variables": [
+    "PMID 22777943",
+    "anti-C1q antibodies",
+    "pooled sensitivity 0.58",
+    "pooled specificity 0.75",
+    "SROC AUC 0.7941 / 0.8378",
+    "diagnostic OR 6.08 / 10.56",
+    "Lupus 2012;21(10):1088-97",
+    "DOI 10.1177/0961203312451202"
+   ],
+   "verified_how": "PubMed MCP search_articles「anti-C1q antibodies lupus nephritis meta-analysis diagnostic accuracy」；get_article_metadata 取 pooled 統計量；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[免疫性] 同一批病人多次抽血的縱貫比較：anti-C1q 與 Renal Activity Score 的相關性優於 anti-dsDNA、anti-chromatin 與補體（p=0.006 vs 其他不顯著）",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21813587/",
+   "kind": "免疫性（狼瘡腎炎）— 標記間排序",
+   "variables": [
+    "PMID 21813587",
+    "anti-C1q",
+    "anti-dsDNA",
+    "anti-chromatin",
+    "anti-ribosomal P",
+    "complement C3",
+    "complement C4",
+    "MCP-1",
+    "VCAM",
+    "ICAM",
+    "Renal Activity Score",
+    "SELENA-SLEDAI",
+    "Lupus 2011;20(12):1267-74",
+    "DOI 10.1177/0961203311411597"
+   ],
+   "verified_how": "同「complement C3 C4 AND lupus nephritis...」檢索串；get_article_metadata 取摘要；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[免疫性] 血清 IgA 與 IgA/C3 比可在「單純鏡下血尿」族群中區分 IgAN vs 非 IgAN（IgA 380±103 vs 217±99 mg/dL；IgA/C3 4.5±1.2 vs 2.4±0.9，皆 p<0.01），配合 UACR 決定是否需切片",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/17362478/",
+   "kind": "免疫性（IgA 腎病）— IgA/C3 比",
+   "variables": [
+    "PMID 17362478",
+    "serum IgA",
+    "serum C3",
+    "serum IgA/C3 ratio",
+    "urinary albumin/creatinine ratio (UACR)",
+    "isolated microscopic hematuria",
+    "Int J Clin Pract 2007;61(5):789-94",
+    "DOI 10.1111/j.1742-1241.2006.01159.x"
+   ],
+   "verified_how": "PubMed MCP search_articles「serum IgA/C3 ratio IgA nephropathy diagnostic marker」；get_article_metadata 取數值；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[免疫性] IgA/C3 比不只診斷、還對應組織嚴重度：89 名兒童 IgAN，IgA/C3 在 Oxford MEST 的 M1、S1、T1 組顯著高於 M0/S0/T0，並與蛋白尿正相關",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/25549975/",
+   "kind": "免疫性（IgA 腎病）— IgA/C3 比對應病理",
+   "variables": [
+    "PMID 25549975",
+    "serum IgA/C3 ratio",
+    "Oxford MEST score (M/E/S/T)",
+    "proteinuria",
+    "WHO classification",
+    "Pediatr Nephrol 2015;30(7):1113-20",
+    "DOI 10.1007/s00467-014-3024-z"
+   ],
+   "verified_how": "同一檢索串命中；get_article_metadata 取摘要；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[免疫性] Gd-IgA1（半乳糖缺陷 IgA1，KM55 單株抗體 ELISA）在兒童 IgAN 顯著高於非 IgA 腎絲球疾病與健康對照；但 Gd-IgA1 絕對值隨年齡上升，須分齡切點，Gd-IgA1/總 IgA 比則與年齡無關",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32537466/",
+   "kind": "免疫性（IgA 腎病）— Gd-IgA1／IgA 比",
+   "variables": [
+    "PMID 32537466",
+    "galactose-deficient IgA1 (Gd-IgA1, KM55)",
+    "total serum IgA",
+    "Gd-IgA1/IgA ratio (cutoff 0.2401)",
+    "eGFR",
+    "mesangial IgA deposition",
+    "J Immunol Res 2020;2020:4284379",
+    "DOI 10.1155/2020/4284379"
+   ],
+   "verified_how": "PubMed MCP search_articles「galactose-deficient IgA1 serum level diagnostic biomarker IgA nephropathy」；get_article_metadata 取切點；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[免疫性→感染性交界] anti-PLA2R 分辨「原發膜性腎病 vs 續發（狼瘡／HBV／腫瘤）」：原發 MN 82% 陽性、對續發 MN 特異度 89% —— 這正是模型要學的「免疫 vs 感染」分流軸",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21566055/",
+   "kind": "免疫性（膜性腎病）— 免疫 vs 感染分流",
+   "variables": [
+    "PMID 21566055",
+    "anti-PLA2R antibody",
+    "idiopathic MN (n=60)",
+    "lupus-associated MN (n=20)",
+    "HBV-associated MN (n=16)",
+    "tumor-associated MN (n=10)",
+    "sensitivity 82%",
+    "specificity 89%",
+    "J Am Soc Nephrol 2011;22(6):1137-43",
+    "DOI 10.1681/ASN.2010090967"
+   ],
+   "verified_how": "PubMed MCP search_articles「anti-PLA2R antibody membranous nephropathy diagnostic sensitivity specificity」；get_article_metadata 取 sens/spec 與續發族群組成；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[免疫性] anti-PLA2R 的切點決定 sens/spec 取捨（ELISA，119 例切片）：2 RU/mL → sens 82.5%/spec 75%；14 RU/mL → 59.6%/95.2%；40 RU/mL → 47.4%/97.6%；整體 ROC AUC 0.879",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/29126817/",
+   "kind": "免疫性（膜性腎病）— 切點與 AUC 基準",
+   "variables": [
+    "PMID 29126817",
+    "serum anti-PLA2R (ELISA, RU/mL)",
+    "cut-off 2 / 2.6 / 14 / 20 / 40 RU/mL",
+    "sensitivity",
+    "specificity",
+    "PPV",
+    "NPV",
+    "ROC AUC 0.879",
+    "Clin Chim Acta 2018;476:9-14",
+    "DOI 10.1016/j.cca.2017.11.006"
+   ],
+   "verified_how": "同一檢索串命中；get_article_metadata 取各切點四格表數字；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[免疫性][血尿軸] JAMA 2011：120 萬名 16–25 歲以色列人追蹤 22 年，持續無症狀單純鏡下血尿者 ESRD 調整後 HR 18.5；若限定「原發腎絲球疾病造成的 ESRD」HR 高達 32.4 —— 血尿是腎絲球（免疫）病因的強訊號，但絕對風險仍低（0.70% vs 0.045%）",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21846854/",
+   "kind": "免疫性 — 血尿作為腎絲球病因訊號",
+   "variables": [
+    "PMID 21846854",
+    "persistent asymptomatic isolated microscopic hematuria",
+    "treated ESRD",
+    "HR 18.5 (95% CI 12.4-27.6)",
+    "HR 32.4 for primary glomerular disease ESRD",
+    "BMI",
+    "blood pressure",
+    "JAMA 2011;306(7):729-36",
+    "DOI 10.1001/jama.2011.1141"
+   ],
+   "verified_how": "PubMed MCP search_articles「persistent asymptomatic isolated microscopic hematuria adolescents risk end stage renal disease」；get_article_metadata 取 HR 與絕對發生率；E-utilities esummary 核對 + 瀏覽器開啟確認標題"
+  },
+  {
+   "name": "[免疫性][蛋白尿軸] 沖繩 106,177 人 17 年追蹤：試紙蛋白尿與 ESRD 呈強劑量效應（調整後 OR 2.71 每級），即使 1+ 微量蛋白尿亦為獨立風險（男 OR 1.93／女 2.42）—— 蛋白尿是共通軸，須與血尿一併使用才有病因分辨力",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12631363/",
+   "kind": "共通軸（蛋白尿）— 血尿+蛋白尿組合的另一半",
+   "variables": [
+    "PMID 12631363",
+    "dipstick proteinuria (grade)",
+    "dipstick hematuria",
+    "serum creatinine",
+    "blood pressure",
+    "BMI",
+    "adjusted OR 2.71 (2.51-2.92)",
+    "Kidney Int 2003;63(4):1468-74",
+    "DOI 10.1046/j.1523-1755.2003.00868.x"
+   ],
+   "verified_how": "PubMed MCP search_articles「Iseki proteinuria hematuria screening Okinawa risk developing end-stage renal disease」；get_article_metadata 取 OR；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[感染相關][族群層級] HCV 血清陽性 → 新發 CKD：23 篇、2,842,421 人統合分析，縱貫研究合併調整後 HR 1.43（95% CI 1.23–1.63）；HCV 陽性亦為蛋白尿獨立風險（aOR 1.51）",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/26195311/",
+   "kind": "感染相關（HCV）— 族群層級因果強度",
+   "variables": [
+    "PMID 26195311",
+    "anti-HCV serology",
+    "incident CKD (reduced GFR or proteinuria)",
+    "adjusted HR 1.43",
+    "adjusted OR 1.508 for proteinuria",
+    "Dig Dis Sci 2015;60(12):3801-13",
+    "DOI 10.1007/s10620-015-3801-y"
+   ],
+   "verified_how": "PubMed MCP search_articles「hepatitis C virus infection and risk of chronic kidney disease meta-analysis」；get_article_metadata 取合併估計值；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[感染相關][最貼近題目的一篇] HCV 相關腎病的檢驗指紋：68 例切片，能標定「冷凝球蛋白型 MPGN」的組合是血清 IgM 升高＋低補體（CH50/C3/C4）＋脾腫大＋血小板低下＋肝硬化＋血尿＋高 HCV RNA；但多數 HCV 病人反而是 IgAN／MN／糖尿病腎病",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21084048/",
+   "kind": "感染相關（HCV）— 冷凝球蛋白＋低補體＋肝功能組合",
+   "variables": [
+    "PMID 21084048",
+    "cryoglobulin",
+    "CH50",
+    "complement C3",
+    "complement C4",
+    "serum IgG / IgA / IgM",
+    "rheumatoid factor",
+    "platelet count",
+    "hemoglobin",
+    "HCV-RNA",
+    "HCV genotype",
+    "liver histology (chronic hepatitis vs cirrhosis)",
+    "splenomegaly",
+    "hematuria",
+    "24-h protein excretion",
+    "creatinine clearance",
+    "Clin Nephrol 2010;74(6):446-56"
+   ],
+   "verified_how": "PubMed MCP search_articles「hepatitis C associated glomerulonephritis cryoglobulinemic clinical features complement」；get_article_metadata 取變數清單與陽性組合；E-utilities esummary 核對 + 瀏覽器開啟確認（註：本篇 PubMed 記錄無 DOI，僅有 PMID）"
+  },
+  {
+   "name": "[感染相關][反直覺，適合當「未知」對照] HBsAg 陰性的成人 HBV 相關腎絲球腎炎（27 例）：臨床以腎病症候群表現、血清 IgG 偏低，但 IgM/IgA/C3/C4 與肝腎功能多為正常，病理以膜性腎病為主 —— 亦即「感染性」不必然伴隨低補體或肝功能異常",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/29718537/",
+   "kind": "感染相關（HBV）— 反例（低補體/肝功能未必異常）",
+   "variables": [
+    "PMID 29718537",
+    "serum HBsAg (negative)",
+    "HBV antibodies",
+    "serum IgG / IgM / IgA",
+    "complement C3",
+    "complement C4",
+    "complement C1q (renal deposit)",
+    "liver function tests",
+    "renal function tests",
+    "nephrotic syndrome",
+    "J Med Virol 2018;90(9):1503-1507",
+    "DOI 10.1002/jmv.25211"
+   ],
+   "verified_how": "PubMed MCP search_articles「hepatitis B virus associated glomerulonephritis membranous nephropathy HBsAg clinical laboratory features」（唯一命中）；get_article_metadata 取摘要；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[感染相關][關鍵反例] 感染後／感染相關腎絲球腎炎（IRGN）不一定低補體：法國全國 27 例 IgA 沉積型 IRGN，78% 為 Staph. aureus、95.2% 有血尿，但僅 16% 出現低補體血症；44% 同時有糖尿病",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32460869/",
+   "kind": "感染相關（感染後 GN）— 低補體敏感度低",
+   "variables": [
+    "PMID 32460869",
+    "hypocomplementemia (16%)",
+    "hematuria (95.2%)",
+    "serum creatinine >4 mg/dL",
+    "Staphylococcus aureus infection",
+    "IgA deposits",
+    "glomerular C4d",
+    "interstitial fibrosis/tubular atrophy (IF/TA)",
+    "diabetes comorbidity",
+    "Diagn Pathol 2020;15(1):62",
+    "DOI 10.1186/s13000-020-00980-6"
+   ],
+   "verified_how": "PubMed MCP search_articles「infection-related glomerulonephritis adults hypocomplementemia outcomes」；get_article_metadata 取百分比；E-utilities esummary 核對 + 瀏覽器開啟確認"
+  },
+  {
+   "name": "[感染相關] 對照組：新月體型 IRGN（印度 47 例成人）低補體血症出現率 100%，最常見感染源為皮膚 MRSA —— 與上一篇 16% 對照，顯示低補體的敏感度高度取決於 IRGN 亞型／嚴重度",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/29970739/",
+   "kind": "感染相關（感染後 GN）— 低補體在重症亞型的高敏感度",
+   "variables": [
+    "PMID 29970739",
+    "hypocomplementemia (100%)",
+    "antistreptolysin O (ASO)",
+    "MRSA / skin infection source",
+    "crescentic glomerulonephritis",
+    "hemodialysis requirement",
+    "IF/TA",
+    "Saudi J Kidney Dis Transpl 2018;29(3):623-629",
+    "DOI 10.4103/1319-2442.235169"
+   ],
+   "verified_how": "同一檢索串命中；get_article_metadata 取百分比；E-utilities esummary 核對 + 瀏覽器開啟確認（註：期刊為區域性期刊，僅作為「亞型間異質性」對照，不宜當主要證據）"
+  },
+  {
+   "name": "[ML 前例 1／代謝性] 常規臨床＋檢驗變數區分 DN vs 非糖尿病腎病（NDRD）：302 例切片，LASSO+logistic nomogram，C-index 0.934（訓練）／0.91（內部驗證）／0.875（外部驗證）—— 這是「代謝性 vs 其他」用常規檢驗可達的上限參照",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/31865340/",
+   "kind": "ML 前例（可達性參照）",
+   "variables": [
+    "PMID 31865340",
+    "C-index 0.934 / 0.91 / 0.875",
+    "gender",
+    "diabetes duration",
+    "diabetic retinopathy",
+    "hematuria",
+    "HbA1c",
+    "anemia",
+    "blood pressure",
+    "urinary protein excretion",
+    "eGFR",
+    "Am J Nephrol 2020;51(2):130-138",
+    "DOI 10.1159/000505145"
+   ],
+   "verified_how": "PubMed MCP search_articles「nondiabetic renal disease prediction model type 2 diabetes biopsy hematuria retinopathy」；get_article_metadata 取 C-index 與入模變數；E-utilities esummary 核對 + 瀏覽器實際開啟頁面並讀取摘要全文確認"
+  },
+  {
+   "name": "[ML 前例 2／免疫性] 常規＋血清學參數的非侵入 IgAN 預測（519 IgAN vs 211 非 IgAN）：backpropagation ANN 驗證組 sens 82.68%／spec 84.78%，AUC 0.881，優於 logistic 0.839",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/35585099/",
+   "kind": "ML 前例（可達性參照）",
+   "variables": [
+    "PMID 35585099",
+    "AUC 0.881 (ANN) vs 0.839 (logistic)",
+    "sensitivity 82.68%",
+    "specificity 84.78%",
+    "age",
+    "serum albumin",
+    "serum IgA",
+    "serum IgG",
+    "eGFR",
+    "serum IgA/C3 ratio",
+    "hematuria",
+    "Sci Rep 2022;12(1):8296",
+    "DOI 10.1038/s41598-022-11964-5"
+   ],
+   "verified_how": "PubMed MCP search_articles「serum IgA/C3 ratio IgA nephropathy diagnostic marker」；get_article_metadata 取 AUC 與入模變數；E-utilities esummary 核對 + 瀏覽器實際開啟頁面並讀取摘要確認"
+  },
+  {
+   "name": "[ML 前例 3／免疫性] 用常規檢驗預測「增殖型」狼瘡腎炎（780 例 LN，9 種模型）：random forest 測試組 AUC 0.880（95% CI 0.835–0.926）；入模的既有標記為 anti-dsDNA、補體、血清肌酸酐、尿紅／白血球，並額外找出血氯、嗜中性球比例、cystatin C、血比容、尿 pH、IgM 等未被充分利用的指標",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/38919623/",
+   "kind": "ML 前例（可達性參照＋「已知 vs 未知」對照模板）",
+   "variables": [
+    "PMID 38919623",
+    "random forest AUC 0.880 (0.835-0.926)",
+    "anti-dsDNA",
+    "complement levels",
+    "serum creatinine",
+    "urinary RBC",
+    "urinary WBC",
+    "serum chloride",
+    "neutrophil percentage",
+    "cystatin C",
+    "hematocrit",
+    "urinary pH",
+    "blood RBC count",
+    "immunoglobulin M",
+    "Front Immunol 2024;15:1413569",
+    "DOI 10.3389/fimmu.2024.1413569"
+   ],
+   "verified_how": "PubMed MCP search_articles「machine learning lupus nephritis diagnosis prediction routine laboratory AUC validation」；get_article_metadata 取 AUC 與已知/新發現變數清單；E-utilities esummary 核對 + 瀏覽器實際開啟頁面並讀取摘要確認"
+  }
+ ],
+ "notes": [
+  "驗證方式（三層，全部 24 筆都做過）：(1) PubMed MCP 的 search_articles + get_article_metadata 取回標題/期刊/年份/DOI/摘要；(2) NCBI E-utilities esummary.fcgi 逐筆核對 PMID→title/journal/pubdate 相符；(3) 用瀏覽器逐一實際開啟 https://pubmed.ncbi.nlm.nih.gov/<PMID>/ 並確認分頁標題與文章標題一致。註：curl 直連與 WebFetch 均被 PubMed 的 cookie/bot 牆擋下（curl 回 HTTP 203 代理碼、WebFetch 只拿到 cookie 提示頁），所以改用 E-utilities API＋真實瀏覽器兩路驗證，兩者結果一致。",
+  "可達性參照（給之後判斷模型『發現』是否超越已知的基準線）：單一血清標記的天花板約 AUC 0.79–0.84（anti-C1q 統合分析 PMID 22777943：SLE 有無 LN 為 0.794、活動性 LN 為 0.838）；單一抗體在對的族群可到 sens 82%/spec 89%（anti-PLA2R，PMID 21566055）；用一整組常規檢驗＋臨床變數的多變量模型落在 AUC/C-index 0.88–0.93（IgAN ANN 0.881、增殖型 LN RF 0.880、DN vs NDRD nomogram 0.934 訓練／0.875 外部驗證）。因此若模型在常規檢驗上做三大類病因分類，落在 0.85–0.90 屬「與既有文獻相當」，超過 0.93 需要格外警覺洩漏（leakage）或病例選擇偏誤。",
+  "『已知 vs 未知』的分界建議：以下屬於明確已確立、模型重現到不算新發現 —— 尿酸↔糖尿病腎病進展、TG/GGT↔糖尿病病因 ESRD、低 C3/C4 與 anti-dsDNA↔狼瘡腎炎活動、IgA 與 IgA/C3 比↔IgA 腎病、anti-PLA2R↔原發膜性腎病、血尿↔腎絲球病因、HCV/HBV↔腎病風險。PMID 38919623 那篇提供了一個現成的「已知 vs 未知」對照模板：它明確把 anti-dsDNA/補體/肌酸酐/尿沉渣列為『傳統指標，模型重現』，把血氯、嗜中性球比例、cystatin C、血比容、尿 pH、IgM 列為『先前有爭議或未被充分利用』，本專案可直接沿用這種兩欄式呈現。",
+  "三個必須設界的地方（fail-loud）：(1) 尿酸的關聯已確立但因果未確立 —— CKD-FIX RCT（PMID 32579811）為陰性，模型若把尿酸講成機轉發現會超出證據；(2) 低補體對感染相關 GN 的敏感度極不穩定 —— 同樣是 IRGN，法國 IgA 沉積型只有 16%（PMID 32460869），印度新月體型是 100%（PMID 29970739），所以『低補體→感染性』這條規則在模型裡必須帶亞型條件；(3) 血清學特徵不是病因的充分條件 —— HBsAg 陰性的 HBV-GN 其 C3/C4 與肝功能多為正常（PMID 29718537），而多數 HCV 病人的腎病其實是 IgAN/MN/糖尿病腎病而非冷凝球蛋白型 MPGN（PMID 21084048）。",
+  "沒找到／證據較弱、需要另外處理的缺口：(a) 找不到直接比較『血尿＋蛋白尿併存 vs 單一項』對 ESRD 風險的大型研究，目前只能用 JAMA 血尿軸（PMID 21846854）＋沖繩蛋白尿軸（PMID 12631363）兩篇拼起來，交互作用項並無現成文獻支撐；(b) 找不到單篇「用常規檢驗做感染性／免疫性／代謝性三分類」的 ML 前例 —— 三個 ML 錨點都是二分類（DN vs NDRD、IgAN vs 非 IgAN、增殖型 vs 非增殖型 LN），本專案的三分類設定在文獻上沒有直接對照，多分類的可達性只能外推；(c) GGT 對糖尿病腎病的證據僅來自奧地利那一篇的病因別次族群（PMID 27537361），專門檢索 GGT×DKD 只有 8 筆命中且多不切題，證據強度明顯弱於尿酸與 TG，建議在模型中降權或列為探索性。",
+  "PMID 21084048（Clin Nephrol 2010，HCV 腎病組織型態）的 PubMed 記錄沒有 DOI，只有 PMID 與 pii；PMID 29970739 刊於區域性期刊 Saudi J Kidney Dis Transpl，我把它定位為『亞型間異質性』的對照而非主要證據，不建議單獨引用。",
+  "依 PubMed MCP 工具的使用條款：以上內容全部來自 PubMed 檢索結果，引用時請一併附上各筆的 DOI 連結（DOI 已放在每一筆的 variables 欄位末端，例如 https://doi.org/10.2215/CJN.03140315 、 https://doi.org/10.1371/journal.pone.0161376 、 https://doi.org/10.1038/s41598-022-11964-5 ）。"
+ ]
+}

@@ -1,0 +1,122 @@
+{
+  "dataset": "thyroid pathology ultrasound batch 1",
+  "method": "frozen ResNet-18 embeddings aggregated before case-label training",
+  "runs": [
+    {
+      "variant": "case_mean_pooling",
+      "patients": 601,
+      "auc": 0.472560902579826,
+      "auc_ci_95": [
+        0.4234488938991654,
+        0.519375259457497
+      ],
+      "balanced_accuracy_at_0_5": 0.4772917814453733,
+      "brier": 0.40914473891090475,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 121,
+          "auc": 0.45454545454545453
+        },
+        {
+          "fold": 2,
+          "patients": 120,
+          "auc": 0.4627000906070674
+        },
+        {
+          "fold": 3,
+          "patients": 120,
+          "auc": 0.4732709151313803
+        },
+        {
+          "fold": 4,
+          "patients": 120,
+          "auc": 0.46919856459330134
+        },
+        {
+          "fold": 5,
+          "patients": 120,
+          "auc": 0.5056818181818181
+        }
+      ]
+    },
+    {
+      "variant": "case_max_pooling",
+      "patients": 601,
+      "auc": 0.44736148705296186,
+      "auc_ci_95": [
+        0.4005830730010677,
+        0.4946240184302543
+      ],
+      "balanced_accuracy_at_0_5": 0.4493795961386447,
+      "brier": 0.433803033501735,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 121,
+          "auc": 0.46871310507674147
+        },
+        {
+          "fold": 2,
+          "patients": 120,
+          "auc": 0.40018121413470253
+        },
+        {
+          "fold": 3,
+          "patients": 120,
+          "auc": 0.5083056478405314
+        },
+        {
+          "fold": 4,
+          "patients": 120,
+          "auc": 0.4282296650717703
+        },
+        {
+          "fold": 5,
+          "patients": 120,
+          "auc": 0.4282296650717703
+        }
+      ]
+    },
+    {
+      "variant": "case_mean_max_pooling",
+      "patients": 601,
+      "auc": 0.4411095408053273,
+      "auc_ci_95": [
+        0.393647583260933,
+        0.4868985454845342
+      ],
+      "balanced_accuracy_at_0_5": 0.4578832011881093,
+      "brier": 0.43054886606169157,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 121,
+          "auc": 0.4347697756788666
+        },
+        {
+          "fold": 2,
+          "patients": 120,
+          "auc": 0.44427665357897916
+        },
+        {
+          "fold": 3,
+          "patients": 120,
+          "auc": 0.4651162790697675
+        },
+        {
+          "fold": 4,
+          "patients": 120,
+          "auc": 0.4225478468899521
+        },
+        {
+          "fold": 5,
+          "patients": 120,
+          "auc": 0.44198564593301437
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "development only; Batch 2 remains locked",
+  "created_at": "2026-08-30T12:48:32+0800"
+}

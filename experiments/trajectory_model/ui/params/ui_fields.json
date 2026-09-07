@@ -1,0 +1,1 @@
+{"fields":[{"key":"age","label":"年齡","unit":"歲","min":30,"max":90,"step":1,"default":65,"src":"age_dist"},{"key":"male","label":"性別","unit":"","type":"select","options":[{"value":0,"label":"女"},{"value":1,"label":"男"}],"default":0,"src":"age_dist"},{"key":"x0","label":"基線 eGFR","unit":"mL/min/1.73m²","min":15,"max":90,"step":1,"default":45,"src":"egfr_range"}]}

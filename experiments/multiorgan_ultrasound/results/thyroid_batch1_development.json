@@ -1,0 +1,47 @@
+{
+  "dataset": "thyroid pathology ultrasound batch 1",
+  "source": "https://doi.org/10.6084/m9.figshare.27021604.v1",
+  "images": 6005,
+  "patients": 601,
+  "patient_counts": {
+    "benign": 218,
+    "malignant": 383
+  },
+  "model": "frozen ImageNet ResNet-18 whole-image embeddings + patient-weighted balanced L2 logistic regression",
+  "split": "5-fold StratifiedGroupKFold by case; mean probability across each case's images",
+  "auc": 0.48432222674683206,
+  "auc_ci_95": [
+    0.4345887137332977,
+    0.5316681566566489
+  ],
+  "balanced_accuracy_at_0_5": 0.5010719333125734,
+  "brier": 0.25533351814045896,
+  "folds": [
+    {
+      "fold": 1,
+      "patients": 120,
+      "auc": 0.5578375113258834
+    },
+    {
+      "fold": 2,
+      "patients": 120,
+      "auc": 0.5520334928229665
+    },
+    {
+      "fold": 3,
+      "patients": 121,
+      "auc": 0.43713105076741443
+    },
+    {
+      "fold": 4,
+      "patients": 120,
+      "auc": 0.518574448807007
+    },
+    {
+      "fold": 5,
+      "patients": 120,
+      "auc": 0.38277511961722493
+    }
+  ],
+  "created_at": "2026-08-30T12:47:05+0800"
+}

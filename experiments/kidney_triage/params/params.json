@@ -1,0 +1,160 @@
+{
+  "_meta": {
+    "title": "腎損傷分流模型（Stage 0–5）參數檔——全案唯一的數值真相來源",
+    "upstream": "建置指示 v11（2026-08-28）",
+    "date": "2026-08-28",
+    "rule": "每列含 value / source / status。status ∈ {anchored, pending_extraction, study_defined}。『無文獻依據的實質參數』（盛行率、效應量等）value 一律 null，以 placeholder 佔位並於啟動時列印警告（指示 一之七）；『事前鎖定的方法學設計參數』（分割比例、門檻網格、目標值、seed）標 study_defined 並於報告揭露。程式其他地方不得硬寫數值。",
+    "critical_note": "本次建置無真實資料。整組『生成器』參數（盛行率、通道效應、可得比例、開立行為）皆無文獻依據，故 value 為 null。所有效能數字都是這些佔位假設的產物，不構成對任何真實族群的證據。"
+  },
+
+  "stage_names": {"value": {"0": "資料品質與密度閘門", "1": "急性度", "2": "部位", "3": "表現型", "4": "分流格", "5": "建議檢驗"},
+                  "source": "建置指示 v11 〇節", "status": "anchored"},
+
+  "channels_L1": {"value": ["Cr", "BUN", "UPCR", "uRBC", "uRBC_dys", "uRBC_acan", "uRBC_cast", "uWBC", "NLR", "CRP", "SBP", "alb", "eos", "PLT"],
+                  "source": "建置指示 v11 二節『零新增檢驗集 L1』", "status": "anchored"},
+  "channels_L2": {"value": ["C3", "C4", "pctUAE", "LDH", "HbA1c", "sIgA"],
+                  "source": "建置指示 v11 二節『需開立但常規可得 L2』（僅供 Stage 5 之後與敏感度分析）", "status": "anchored"},
+  "channels_archive": {"value": ["antidsDNA", "ANA", "antiSm", "antiC1q", "PLA2R", "THSD7A", "ANCA", "antiGBM", "IFE", "sFLCr", "IgG4"],
+                       "source": "建置指示 v11 二節『封存集』＋一之一 通道消耗規則：絕不得作為特徵", "status": "anchored"},
+  "log_channels": {"value": ["Cr", "BUN", "UPCR", "uRBC", "uWBC", "NLR", "CRP", "alb", "eos", "PLT", "LDH", "sIgA", "C3", "C4"],
+                   "source": "本研究設定：右偏檢驗值取自然對數後建模", "status": "study_defined"},
+  "binary_channels": {"value": ["uRBC_dys", "uRBC_acan", "uRBC_cast"],
+                      "source": "建置指示 v11 二節：尿沉渣形態（有／無）", "status": "anchored"},
+
+  "priority_ratios": {"value": [["Cr", "UPCR"], ["UPCR", "alb"], ["UPCR", "uRBC"], ["BUN", "Cr"], ["CRP", "alb"]],
+                      "source": "建置指示 v11 三節『事前指定的優先比值』", "status": "anchored"},
+
+  "box_rule": {"value": "site==血管 或 (acute 且 site==腎絲球) → R；site==腎小管間質 → A（acute）／A2；pheno 腎病症候群→C、腎炎症候群→D、孤立血尿→F；其餘→E",
+               "source": "建置指示 v11 五節（R 格合併不得再細分）", "status": "anchored"},
+
+  "stage5_recommendations": {
+    "value": {
+      "R": {"mandatory": ["血液培養", "ANCA", "抗腎絲球基底膜抗體", "全血球計數含血小板＋LDH＋破碎紅血球", "免疫固定電泳"], "hard_rule": true},
+      "A": {"mandatory": ["尿沉渣白血球", "血中嗜酸性球"], "note": "以病史與用藥回顧為主，檢驗增益極小"},
+      "A2": {"mandatory": [], "note": "同 A 格之慢性型；以病史與用藥回顧為主"},
+      "C": {"mandatory": ["抗 PLA2R", "B 型肝炎血清學"], "note": "另需年齡與癌症篩檢；常規檢驗於此格內部低於亂猜"},
+      "D": {"mandatory": ["補體 C3／C4", "自體抗體組"], "note": "此格加驗增益最大"},
+      "E": {"mandatory": [], "note": "常規已足夠，不建議加驗"},
+      "F": {"mandatory": ["COL4A 基因"], "note": "另需家族史、聽力與眼科"}
+    },
+    "source": "建置指示 v11 十節（R 格硬性規則不得由模型機率覆蓋）", "status": "anchored"},
+  "full_panel_items": {"value": 14, "source": "建置指示 v11 十節『全面開單』＝封存集 11 項＋血液培養＋B 肝血清學＋COL4A 基因；作為檢驗節省率之分母", "status": "study_defined"},
+
+  "method": {
+    "cv_folds": {"value": 5, "source": "建置指示 v11 六節『5 折分層交叉驗證』", "status": "anchored"},
+    "model": {"value": "StandardScaler → LogisticRegression(penalty=l2, class_weight=balanced)", "source": "建置指示 v11 六節（不得使用不可解釋模型）", "status": "anchored"},
+    "test_split": {"value": 0.3, "source": "本研究設定：訓練集選門檻與做層間比較，測試集只評估一次（指示 八節『不得在測試資料上調整』）", "status": "study_defined"},
+    "bootstrap_n": {"value": 1000, "source": "建置指示 v11 九之五『bootstrap ≥1000 次』", "status": "anchored"},
+    "abstain_grid_start": {"value": 0.6, "source": "建置指示 v11 八節『預設起點 0.6』", "status": "anchored"},
+    "abstain_grid": {"value": [0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95], "source": "本研究設定：門檻網格", "status": "study_defined"},
+    "abstain_target_accuracy": {"value": 0.8, "source": "本研究設定（事前鎖定之方法學設計參數；目標值本身無文獻依據，於 limitations 揭露）：訓練集上取使『作答者平衡正確率 ≥ 0.80』之最小門檻；不可達則用 0.60 並標記 unreachable", "status": "study_defined"},
+    "morphology_availability_gate": {"value": 0.3, "source": "建置指示 v11 七節：形態欄位可得比例低於 30% 時改用代理特徵並標明", "status": "anchored"},
+    "index_window_days": {"value": 7, "source": "本研究設定（事前鎖定）：M1 索引時點窗 |day|<=7 天；窗外追蹤值不得作為基線（稽核修正：原最近一次取值混入未來資訊）", "status": "study_defined"},
+    "slope_min_measurements": {"value": 3, "source": "建置指示 v11 三節：變化率需 ≥3 次測量且時間跨度 >0", "status": "anchored"},
+    "stage0_required_channels": {"value": ["Cr"], "source": "本研究設定：索引成套至少須有 Cr，否則不進入管線", "status": "study_defined"},
+    "stage0_min_panels": {"value": 1, "source": "本研究設定", "status": "study_defined"},
+    "seed": {"value": 20260828, "source": "本研究設定：固定種子，重跑結果一致（指示 十一節）", "status": "study_defined"},
+    "n_patients": {"value": 4000, "source": "本研究設定：合成世代規模", "status": "study_defined"}
+  },
+
+  "generator": {
+    "value": null,
+    "status": "pending_extraction",
+    "source": "待真實資料或文獻：本模型的世代結構（各分流格盛行率）、通道與標籤的關係強度、各檢驗的可得比例、專項檢驗的開立行為，皆無文獻依據。以下 placeholder 為使程式可執行之假設值。",
+    "warning": "所有效能數字（含 M0 洩漏量、各階段正確率、分流格表現、Stage 5 指標）都是這些假設的產物，不得作為對真實族群的推論。",
+    "placeholder": {
+      "archetypes": [
+        {"name": "增生性腎絲球_急性", "site": "腎絲球", "acute": 1, "pheno": "腎炎症候群", "share": 0.10},
+        {"name": "足細胞型腎絲球", "site": "腎絲球", "acute": 0, "pheno": "腎病症候群", "share": 0.20},
+        {"name": "增生性腎絲球_非急性", "site": "腎絲球", "acute": 0, "pheno": "腎炎症候群", "share": 0.16},
+        {"name": "孤立血尿型", "site": "腎絲球", "acute": 0, "pheno": "孤立血尿", "share": 0.10},
+        {"name": "腎絲球_慢性硬化", "site": "腎絲球", "acute": 0, "pheno": "慢性", "share": 0.14},
+        {"name": "急性腎小管間質", "site": "腎小管間質", "acute": 1, "pheno": "慢性", "share": 0.09},
+        {"name": "慢性腎小管間質", "site": "腎小管間質", "acute": 0, "pheno": "慢性", "share": 0.09},
+        {"name": "血管型_微血管病A", "site": "血管", "acute": 1, "pheno": "腎炎症候群", "share": 0.045},
+        {"name": "血管型_微血管病B", "site": "血管", "acute": 1, "pheno": "腎炎症候群", "share": 0.04},
+        {"name": "血管型_微血管病C", "site": "血管", "acute": 1, "pheno": "孤立血尿", "share": 0.035}
+      ],
+      "archetype_note": "三個血管型子原型在常規通道上刻意幾乎相同（指示 五節：ANCA 相關血管炎、抗 GBM 病、血栓性微血管病於常規檢驗難分），全部映射至 R 格；本管線不嘗試細分。",
+      "channels": {
+        "Cr":        {"base": 0.15, "sd": 0.30, "avail": 0.99},
+        "BUN":       {"base": 2.85, "sd": 0.30, "avail": 0.97},
+        "UPCR":      {"base": -0.7, "sd": 0.80, "avail": 0.72},
+        "uRBC":      {"base": 1.10, "sd": 0.90, "avail": 0.66},
+        "uWBC":      {"base": 1.10, "sd": 0.80, "avail": 0.66},
+        "NLR":       {"base": 0.90, "sd": 0.35, "avail": 0.88},
+        "CRP":       {"base": -0.5, "sd": 0.90, "avail": 0.80},
+        "SBP":       {"base": 128.0, "sd": 14.0, "avail": 0.90, "linear": true},
+        "alb":       {"base": 1.40, "sd": 0.13, "avail": 0.92},
+        "eos":       {"base": -1.2, "sd": 0.55, "avail": 0.85},
+        "PLT":       {"base": 5.45, "sd": 0.28, "avail": 0.93},
+        "uRBC_dys":  {"p_base": 0.12, "avail_patient": 0.24, "binary": true},
+        "uRBC_acan": {"p_base": 0.07, "avail_patient": 0.24, "binary": true},
+        "uRBC_cast": {"p_base": 0.05, "avail_patient": 0.24, "binary": true},
+        "C3":        {"base": 4.60, "sd": 0.18, "avail": 0.0},
+        "C4":        {"base": 3.20, "sd": 0.25, "avail": 0.0},
+        "pctUAE":    {"base": 55.0, "sd": 18.0, "avail": 0.0, "linear": true},
+        "LDH":       {"base": 5.30, "sd": 0.25, "avail": 0.0},
+        "HbA1c":     {"base": 5.80, "sd": 0.90, "avail": 0.0, "linear": true},
+        "sIgA":      {"base": 5.50, "sd": 0.30, "avail": 0.0}
+      },
+      "channel_avail_note": "L2 通道之 avail 設為 0，改由 ord_* 開立行為決定是否有值（見 ordering）。",
+      "effects": {
+        "Cr":        {"acute": 0.55, "site": {"腎絲球": 0.10, "腎小管間質": 0.22, "血管": 0.32}, "pheno": {"腎病症候群": 0.05, "腎炎症候群": 0.12, "孤立血尿": -0.10, "慢性": 0.50}},
+        "BUN":       {"acute": 0.45, "site": {"腎絲球": 0.05, "腎小管間質": 0.45, "血管": 0.25}, "pheno": {"腎病症候群": 0.08, "腎炎症候群": 0.08, "孤立血尿": -0.08, "慢性": 0.45}},
+        "UPCR":      {"acute": 0.20, "site": {"腎絲球": 0.85, "腎小管間質": -0.55, "血管": 0.05}, "pheno": {"腎病症候群": 1.60, "腎炎症候群": 0.55, "孤立血尿": -0.55, "慢性": 0.25}},
+        "uRBC":      {"acute": 0.35, "site": {"腎絲球": 0.75, "腎小管間質": -0.30, "血管": 0.55}, "pheno": {"腎病症候群": -0.60, "腎炎症候群": 1.10, "孤立血尿": 1.30, "慢性": -0.30}},
+        "uWBC":      {"acute": 0.20, "site": {"腎絲球": -0.10, "腎小管間質": 0.95, "血管": 0.10}, "pheno": {"腎病症候群": -0.10, "腎炎症候群": 0.25, "孤立血尿": -0.05, "慢性": 0.05}},
+        "NLR":       {"acute": 0.30, "site": {"腎絲球": 0.05, "腎小管間質": 0.10, "血管": 0.45}, "pheno": {"腎病症候群": 0.05, "腎炎症候群": 0.15, "孤立血尿": -0.05, "慢性": 0.05}},
+        "CRP":       {"acute": 0.60, "site": {"腎絲球": 0.05, "腎小管間質": 0.35, "血管": 0.85}, "pheno": {"腎病症候群": -0.10, "腎炎症候群": 0.35, "孤立血尿": -0.15, "慢性": -0.05}},
+        "SBP":       {"acute": 4.0, "site": {"腎絲球": 5.0, "腎小管間質": -1.0, "血管": 9.0}, "pheno": {"腎病症候群": 3.0, "腎炎症候群": 5.0, "孤立血尿": -1.0, "慢性": 6.0}},
+        "alb":       {"acute": -0.03, "site": {"腎絲球": -0.06, "腎小管間質": 0.0, "血管": -0.04}, "pheno": {"腎病症候群": -0.28, "腎炎症候群": -0.06, "孤立血尿": 0.02, "慢性": -0.04}},
+        "eos":       {"acute": 0.15, "site": {"腎絲球": -0.05, "腎小管間質": 0.55, "血管": 0.10}, "pheno": {"腎病症候群": 0.0, "腎炎症候群": 0.0, "孤立血尿": 0.0, "慢性": 0.0}},
+        "PLT":       {"acute": -0.05, "site": {"腎絲球": 0.0, "腎小管間質": 0.02, "血管": -0.30}, "pheno": {"腎病症候群": 0.03, "腎炎症候群": -0.02, "孤立血尿": 0.0, "慢性": 0.0}},
+        "uRBC_dys":  {"acute": 0.6, "site": {"腎絲球": 2.0, "腎小管間質": -0.6, "血管": 0.8}, "pheno": {"腎病症候群": -0.6, "腎炎症候群": 1.3, "孤立血尿": 1.5, "慢性": -0.4}},
+        "uRBC_acan": {"acute": 0.6, "site": {"腎絲球": 2.2, "腎小管間質": -0.8, "血管": 0.7}, "pheno": {"腎病症候群": -0.7, "腎炎症候群": 1.4, "孤立血尿": 1.6, "慢性": -0.5}},
+        "uRBC_cast": {"acute": 1.0, "site": {"腎絲球": 1.9, "腎小管間質": -0.8, "血管": 1.0}, "pheno": {"腎病症候群": -0.8, "腎炎症候群": 1.8, "孤立血尿": 0.6, "慢性": -0.5}},
+        "C3":        {"acute": -0.05, "site": {"腎絲球": -0.06, "腎小管間質": 0.0, "血管": -0.02}, "pheno": {"腎病症候群": -0.02, "腎炎症候群": -0.18, "孤立血尿": 0.0, "慢性": 0.0}},
+        "C4":        {"acute": -0.05, "site": {"腎絲球": -0.08, "腎小管間質": 0.0, "血管": -0.02}, "pheno": {"腎病症候群": -0.02, "腎炎症候群": -0.22, "孤立血尿": 0.0, "慢性": 0.0}},
+        "pctUAE":    {"acute": 0.0, "site": {"腎絲球": 12.0, "腎小管間質": -18.0, "血管": 0.0}, "pheno": {"腎病症候群": 15.0, "腎炎症候群": 5.0, "孤立血尿": -5.0, "慢性": 0.0}},
+        "LDH":       {"acute": 0.10, "site": {"腎絲球": 0.0, "腎小管間質": 0.0, "血管": 0.35}, "pheno": {"腎病症候群": 0.0, "腎炎症候群": 0.05, "孤立血尿": 0.0, "慢性": 0.0}},
+        "HbA1c":     {"acute": 0.0, "site": {"腎絲球": 0.2, "腎小管間質": 0.0, "血管": 0.1}, "pheno": {"腎病症候群": 0.3, "腎炎症候群": 0.0, "孤立血尿": 0.0, "慢性": 0.4}},
+        "sIgA":      {"acute": 0.0, "site": {"腎絲球": 0.08, "腎小管間質": 0.0, "血管": 0.0}, "pheno": {"腎病症候群": 0.0, "腎炎症候群": 0.10, "孤立血尿": 0.12, "慢性": 0.0}}
+      },
+      "slope_effects": {
+        "Cr":   {"acute": 0.95, "chronic": 0.14, "other": 0.03},
+        "BUN":  {"acute": 0.75, "chronic": 0.12, "other": 0.03},
+        "UPCR": {"acute": 0.30, "chronic": 0.15, "other": 0.02},
+        "uRBC": {"acute": 0.25, "chronic": -0.05, "other": 0.0},
+        "alb":  {"acute": -0.08, "chronic": -0.03, "other": 0.0}
+      },
+      "slope_note": "年化對數斜率；chronic 指 pheno==慢性 者。其餘通道斜率為 0＋雜訊。",
+      "within_patient_sd": 0.14,
+      "measurement_sd": 0.10,
+      "panels": {"lam": 2.2, "max": 8, "day_range": [-180, 365]},
+      "ordering": {
+        "note": "專項檢驗開立機率取決於真實標籤（醫師的臨床懷疑）——這正是 M0 洩漏的來源，屬刻意重現的現象而非缺陷。logit = base + Σ 條件加權。",
+        "base": -2.2,
+        "rules": {
+          "ANCA":      {"site": {"血管": 3.2, "腎絲球": 0.6}, "acute": 1.6},
+          "antiGBM":   {"site": {"血管": 2.6, "腎絲球": 0.8}, "acute": 1.8},
+          "ANA":       {"pheno": {"腎炎症候群": 2.4, "腎病症候群": 0.8, "孤立血尿": 0.3, "慢性": 0.0}, "acute": 0.6},
+          "antidsDNA": {"pheno": {"腎炎症候群": 2.6, "腎病症候群": 0.6, "孤立血尿": 0.2, "慢性": 0.0}, "acute": 0.5},
+          "antiSm":    {"pheno": {"腎炎症候群": 1.8, "腎病症候群": 0.3, "孤立血尿": 0.1, "慢性": 0.0}, "acute": 0.3},
+          "antiC1q":   {"pheno": {"腎炎症候群": 1.5, "腎病症候群": 0.3, "孤立血尿": 0.0, "慢性": 0.0}, "acute": 0.3},
+          "PLA2R":     {"pheno": {"腎病症候群": 3.0, "腎炎症候群": 0.4, "孤立血尿": 0.0, "慢性": 0.2}},
+          "THSD7A":    {"pheno": {"腎病症候群": 2.0, "腎炎症候群": 0.2, "孤立血尿": 0.0, "慢性": 0.1}},
+          "IFE":       {"site": {"血管": 1.4, "腎小管間質": 0.8}, "pheno": {"慢性": 1.0, "腎病症候群": 0.9}},
+          "sFLCr":     {"site": {"血管": 1.2, "腎小管間質": 0.9}, "pheno": {"慢性": 1.0, "腎病症候群": 0.8}},
+          "IgG4":      {"site": {"腎小管間質": 1.9}, "pheno": {"慢性": 0.4}},
+          "C3":        {"pheno": {"腎炎症候群": 2.8, "腎病症候群": 1.0, "孤立血尿": 0.4, "慢性": 0.2}, "acute": 0.8},
+          "C4":        {"pheno": {"腎炎症候群": 2.7, "腎病症候群": 0.9, "孤立血尿": 0.4, "慢性": 0.2}, "acute": 0.8},
+          "pctUAE":    {"pheno": {"腎病症候群": 1.6, "腎炎症候群": 0.6, "孤立血尿": 0.2, "慢性": 0.3}},
+          "LDH":       {"site": {"血管": 2.4}, "acute": 1.2},
+          "HbA1c":     {"pheno": {"慢性": 1.4, "腎病症候群": 0.8}},
+          "sIgA":      {"pheno": {"孤立血尿": 1.2, "腎炎症候群": 0.8}}
+        }
+      }
+    }
+  }
+}

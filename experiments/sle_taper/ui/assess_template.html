@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>減藥期監測評估工作台（合成模型示範）</title>
+<style>
+:root{--ink:#16181d;--g1:#585c64;--g2:#9aa0a8;--g3:#d7dade;--bg:#f3f4f6;--card:#fff;--ok:#2e5d3a;--line:#e6e8eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:14px}
+.top{background:var(--ink);color:#fff;padding:14px 22px}
+.top h1{font-size:17px;font-weight:700;letter-spacing:.03em}
+.top .sub{font-size:11.5px;color:#c8ccd2;margin-top:2px}
+.scope{background:#fff;border-bottom:1px solid var(--g3);padding:8px 22px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:11px;border:1px solid var(--g3);border-radius:999px;padding:1px 10px;color:var(--g1)}
+.chip.warn{border-color:var(--g1);font-weight:600;color:var(--ink)}
+.wrap{max-width:1240px;margin:0 auto;padding:18px 18px 60px;display:grid;grid-template-columns:400px 1fr;gap:16px}
+@media(max-width:980px){.wrap{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--g3);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.card h2{font-size:13px;font-weight:700;padding:10px 14px;border-bottom:1px solid var(--line);background:#fafbfc;letter-spacing:.02em}
+.card .bd{padding:12px 14px}
+.note{font-size:11.5px;color:var(--g1)}
+.frow{display:grid;grid-template-columns:1fr 130px;gap:8px;align-items:center;padding:5px 0;border-bottom:1px dashed var(--line)}
+.frow:last-child{border-bottom:0}
+.frow label{font-size:12.5px}
+.frow .u{font-size:10.5px;color:var(--g2)}
+.frow input{font:inherit;font-size:13px;padding:5px 8px;border:1px solid var(--g3);border-radius:6px;width:100%;text-align:right;font-variant-numeric:tabular-nums}
+.frow input.bad{border-color:#a33;background:#fdf6f6}
+textarea{font-family:ui-monospace,Consolas,monospace;font-size:12px;width:100%;height:150px;border:1px solid var(--g3);border-radius:6px;padding:8px;resize:vertical}
+.btn{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:8px;font:inherit;font-size:13.5px;padding:8px 26px;cursor:pointer}
+.btn.sec{background:#fff;color:var(--ink);font-size:12px;padding:4px 12px;border-color:var(--g3)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;font-size:12px;color:var(--g1)}
+.kv b{color:var(--ink);font-variant-numeric:tabular-nums;text-align:right}
+.big{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.big small{font-size:13px;font-weight:400;color:var(--g1)}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fcfcfd}
+.stat .lb{font-size:11px;color:var(--g1)}
+.stat .vl{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat .sb{font-size:10.5px;color:var(--g2)}
+table{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:right}
+th{color:var(--g1);font-weight:600}
+th:first-child,td:first-child{text-align:left}
+tr.hl td{background:#f0f1f3;font-weight:700}
+svg{display:block;width:100%;height:auto}
+.axis{stroke:#999;stroke-width:1}.tick{font-size:10px;fill:#777}.lbl{font-size:11px;fill:#555}
+.status{font-size:13px;padding:9px 12px;border-radius:8px;border:1px solid var(--g3);background:#fafbfc}
+.status b{font-weight:700}
+.muted{color:var(--g2)}
+#parseMsg{font-size:11.5px;margin-top:4px}
+.bar{height:9px;border:1px solid var(--g3);border-radius:5px;overflow:hidden;background:#f2f3f5;position:relative}
+.bar i{position:absolute;top:0;bottom:0;background:#6b7078}
+footer{max-width:1240px;margin:0 auto;padding:0 18px 30px;font-size:11px;color:var(--g2)}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>減藥期監測評估工作台</h1>
+  <div class="sub">合成模型示範系統・係數與門檻全部來自校準流程匯出（參數雜湊 <span id="hash"></span>）・<span id="date"></span></div>
+</div>
+<div class="scope">
+  <span class="chip warn">合成資料校準之示範模型——不適用於真實個人，不做診斷，不取代醫師判斷</span>
+  <span class="chip">本頁不提供任何減藥時機或速度的判斷</span>
+  <span class="chip">靜態風險與動態警報分開呈現，不合成為單一數值</span>
+  <span class="chip">本頁不收集任何資料，離線可用</span>
+  <span class="chip warn" id="phChip"></span>
+</div>
+<div class="wrap">
+  <div><!-- 左：輸入 -->
+    <div class="card">
+      <h2>① 減藥起點的基線數值</h2>
+      <div class="bd">
+        <div id="featForm"></div>
+        <p class="note" style="margin-top:8px">允許範圍即校準世代的生成範圍；超出範圍以邊界值計算並標示。</p>
+      </div>
+    </div>
+    <div class="card">
+      <h2>② 減藥後監測序列</h2>
+      <div class="bd">
+        <p class="note" style="margin-bottom:6px">每列一筆：「天數 數值」。天數自減藥起始日起算（減藥前觀察期可用負值，例 −90～0）；
+        數值為活動度指標（模型尺度，緩解基線 ≈ −1）。真實檢驗值（如 UPCR）的對應屬後續階段工作。</p>
+        <textarea id="serIn" spellcheck="false" placeholder="-84 -1.02&#10;-77 -0.97&#10;0 -1.01&#10;7 -0.95&#10;…"></textarea>
+        <div id="parseMsg"></div>
+        <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+          <button class="btn sec" id="demoBif">載入示範：分岔翻轉個案</button>
+          <button class="btn sec" id="demoStable">載入示範：穩定個案</button>
+          <button class="btn sec" id="clearSer">清空</button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>③ 鎖定的計算設定（唯讀）</h2>
+      <div class="bd">
+        <div class="kv" id="lockKv"></div>
+        <p class="note" style="margin-top:6px">警報門檻在校準集以「每病人年假警報負擔」事前鎖定，本頁只讀取、不可調整——避免事後調參。</p>
+      </div>
+    </div>
+    <button class="btn" id="calc">計算</button>
+  </div>
+  <div><!-- 右：結果 -->
+    <div class="card">
+      <h2>Ａ　靜態基線風險（只用 ① 的數值）</h2>
+      <div class="bd" id="resStatic"><p class="note muted">填入基線數值後按「計算」。</p></div>
+    </div>
+    <div class="card">
+      <h2>Ｂ　動態預警（只用 ② 的序列）</h2>
+      <div class="bd" id="resDyn"><p class="note muted">貼上或載入監測序列後按「計算」。</p></div>
+    </div>
+    <div class="card">
+      <h2>Ｃ　此警報規則的操作特性（背景脈絡）</h2>
+      <div class="bd" id="resCtx"></div>
+    </div>
+  </div>
+</div>
+<footer id="foot"></footer>
+<script id="pack" type="application/json">__PACK_JSON__</script>
+<script>
+const PACK=JSON.parse(document.getElementById('pack').textContent);
+const A=PACK.assess, $=id=>document.getElementById(id);
+const NS='http://www.w3.org/2000/svg';
+const fmt=(v,d=2)=>v==null||!isFinite(v)?'—':(+v).toFixed(d);
+$('hash').textContent=PACK.meta.params_hash; $('date').textContent=PACK.meta.date;
+$('phChip').textContent='※ 佔位參數（'+PACK.meta.placeholders.length+' 項）補齊前，本頁全部數值不得對外引用';
+$('foot').textContent='模型：靜態 logistic（校準世代 seed '+A.model.cal_seed+'、n='+A.model.n_cal+' 配適一次）＋滾動指標聯合警報（門檻 '+fmt(A.ews.threshold,3)+'，鎖定紀錄 '+A.ews.lock_hash+'）。頁面不寫死任何係數，全部由 Python 匯出。';
+
+/* ---- ① 基線輸入表 ---- */
+A.features.forEach(f=>{
+  const d=document.createElement('div'); d.className='frow';
+  d.innerHTML=`<label>${f.label}<span class="u">　${f.unit}（${f.min}–${f.max}）</span></label>
+               <input type="number" step="any" id="f_${f.key}" value="${f.default}">`;
+  $('featForm').appendChild(d);
+});
+/* ---- ③ 鎖定設定 ---- */
+$('lockKv').innerHTML=[
+  ['滾動窗長', A.ews.window+' 天'],['窗內最低觀測數', A.ews.min_obs+' 點'],['評估頻率','每 '+A.ews.eval_every+' 天'],
+  ['假警報負擔（校準集）', A.ews.budget+' 次／病人年（達成 '+fmt(A.ews.achieved,3)+'）'],
+  ['聯合警報門檻', fmt(A.ews.threshold,3)+'（min Kendall τ）'],['去趨勢','窗內線性']
+].map(([k,v])=>`<span>${k}</span><b>${v}</b>`).join('');
+
+/* ---- 示範序列（取自資料包的代表個案，每週取樣） ---- */
+function demoSeries(mech){
+  const g=PACK.gallery.find(x=>x.mech===mech);
+  const lines=[]; for(let j=0;j<g.t.length;j++) if(g.y[j]!=null&&isFinite(g.y[j])) lines.push(g.t[j]+' '+(+g.y[j]).toFixed(3));
+  return lines.join('\n');
+}
+$('demoBif').onclick=()=>{ $('serIn').value=demoSeries('bifurcation'); parseSeries(); };
+$('demoStable').onclick=()=>{ $('serIn').value=demoSeries('stable'); parseSeries(); };
+$('clearSer').onclick=()=>{ $('serIn').value=''; $('parseMsg').textContent=''; };
+
+function parseSeries(){
+  const rows=[]; let bad=0;
+  $('serIn').value.split(/\n+/).forEach(ln=>{
+    const m=ln.trim().split(/[\s,;]+/).map(Number);
+    if(m.length>=2&&isFinite(m[0])&&isFinite(m[1])) rows.push([m[0],m[1]]); else if(ln.trim()) bad++;
+  });
+  rows.sort((a,b)=>a[0]-b[0]);
+  $('parseMsg').innerHTML=rows.length?`已讀入 <b>${rows.length}</b> 筆觀測（${rows[0][0]}～${rows[rows.length-1][0]} 天）`+(bad?`；<span style="color:#a33">${bad} 列無法解析</span>`:''):'';
+  return rows;
+}
+$('serIn').addEventListener('input',()=>parseSeries());
+
+/* ---- Ａ 靜態模型（係數來自資料包） ---- */
+function computeStatic(){
+  const M=A.model; let z=M.intercept; const contrib=[]; let clamped=false;
+  for(let i=0;i<M.features.length;i++){
+    const k=M.features[i], f=A.features.find(x=>x.key===k), el=$('f_'+k);
+    let v=parseFloat(el.value);
+    const ok=isFinite(v); el.classList.toggle('bad',!ok);
+    if(!ok) return null;
+    if(v<f.min||v>f.max){ v=Math.min(Math.max(v,f.min),f.max); clamped=true; el.classList.add('bad'); }
+    const tv=M.log_features.includes(k)?Math.log(Math.max(v,1e-9)):v;
+    z+=M.coef[i]*tv;
+    contrib.push({label:f.label, delta:M.coef[i]*(tv-M.tmeans[k])});
+  }
+  const p=1/(1+Math.exp(-z));
+  let pct=0; const q=A.prob_quantiles;
+  while(pct<100&&q[pct+1]<=p) pct++;
+  return {p,pct,contrib,clamped,extreme:pct>=99||pct<=1};
+}
+function renderStatic(r){
+  if(!r){ $('resStatic').innerHTML='<p class="note" style="color:#a33">基線數值有缺漏或非數字。</p>'; return; }
+  const qrows=A.quintiles.map((qt,i)=>{
+    const inQ=r.p>=qt.lo&&(i===A.quintiles.length-1?r.p<=qt.hi+1e-9:r.p<=qt.hi);
+    return `<tr${inQ?' class="hl"':''}><td>第 ${i+1} 組（低→高）</td><td>${fmt(qt.lo,3)}–${fmt(qt.hi,3)}</td><td>${fmt(qt.event_rate*100,1)}%</td><td>${qt.n}</td></tr>`;
+  }).join('');
+  const cmax=Math.max(...r.contrib.map(c=>Math.abs(c.delta)),1e-9);
+  const crows=r.contrib.map(c=>`<tr><td>${c.label}</td><td>${c.delta>=0?'+':''}${fmt(c.delta,3)}</td>
+    <td style="width:130px"><div class="bar"><i style="left:${c.delta<0?50-Math.abs(c.delta)/cmax*50:50}%;width:${Math.abs(c.delta)/cmax*50}%"></i></div></td></tr>`).join('');
+  $('resStatic').innerHTML=
+    `<div class="res-grid">
+       <div class="stat"><div class="lb">停藥後 24 個月發作機率（模型推估）</div><div class="big">${fmt(r.p*100,1)}<small> %</small></div>
+         <div class="sb">校準世代中位於第 ${r.pct} 百分位</div></div>
+       <div class="stat"><div class="lb">模型鑑別度（獨立測試集）</div><div class="vl">C = ${fmt(A.static_auc,3)}</div><div class="sb">靜態基線模型，配適一次不再調整</div></div>
+     </div>
+     ${r.clamped?'<p class="note" style="color:#a33;margin-top:6px">部分數值超出允許範圍，已以邊界值計算。</p>':''}
+     ${r.extreme?'<p class="note" style="color:#a33;margin-top:6px">此組合位於校準世代分布的最邊緣（第 '+r.pct+' 百分位），模型外推不可靠，機率數字僅供流程示範。</p>':''}
+     <p class="note" style="margin:10px 0 4px">為什麼是這個數字——各項相對校準世代平均的貢獻（對數勝算尺度）：</p>
+     <table><thead><tr><th>項目</th><th>貢獻</th><th></th></tr></thead><tbody>${crows}</tbody></table>
+     <p class="note" style="margin:10px 0 4px">校準世代按此模型分五組的實際發作率（所在組以底色標示）：</p>
+     <table><thead><tr><th>組</th><th>機率區間</th><th>24 個月發作率</th><th>人數</th></tr></thead><tbody>${qrows}</tbody></table>
+     <p class="note" style="margin-top:8px">在本模擬設定下之推估；係數來自合成校準世代，不適用於真實個人。</p>`;
+}
+
+/* ---- Ｂ 動態預警（與 Python 同構的指標鏈） ---- */
+function prefixKendall(v){
+  const out=new Array(v.length).fill(NaN), ix=[];
+  for(let j=0;j<v.length;j++) if(isFinite(v[j])) ix.push(j);
+  if(ix.length<3) return out;
+  let S=0;
+  for(let k=0;k<ix.length;k++){ let add=0; for(let j=0;j<k;j++) add+=Math.sign(v[ix[k]]-v[ix[j]]); S+=add;
+    if(k>=2) out[ix[k]]=S/((k+1)*k/2); }
+  return out;
+}
+function computeDyn(rows){
+  if(rows.length<A.ews.min_obs) return {err:`觀測不足（至少 ${A.ews.min_obs} 筆才能起算指標）`};
+  const tEnd=rows[rows.length-1][0];
+  if(tEnd<=0) return {err:'序列尚未進入減藥期（全部天數 ≤ 0）'};
+  const evalT=[]; for(let t=0;t<=tEnd;t+=A.ews.eval_every) evalT.push(t);
+  const ar1=[],sd=[];
+  for(const te of evalT){
+    const it=[],vv=[];
+    rows.forEach(([t,v])=>{ if(t>te-A.ews.window&&t<=te){ it.push(t); vv.push(v); } });
+    if(it.length<A.ews.min_obs){ ar1.push(NaN); sd.push(NaN); continue; }
+    const n=it.length, mt=it.reduce((a,b)=>a+b,0)/n, mv=vv.reduce((a,b)=>a+b,0)/n;
+    let sxx=0,sxy=0; for(let j=0;j<n;j++){ sxx+=(it[j]-mt)**2; sxy+=(it[j]-mt)*(vv[j]-mv); }
+    const b=sxx>0?sxy/sxx:0, r=vv.map((v,j)=>v-mv-b*(it[j]-mt));
+    let m2=0; for(const q of r) m2+=q*q; const sdv=Math.sqrt(m2/Math.max(n-1,1));
+    if(sdv<1e-9){ ar1.push(NaN); sd.push(NaN); continue; }
+    let c01=0,v0=0,v1=0,m0=0,m1=0;
+    for(let j=0;j<n-1;j++){ m0+=r[j]; m1+=r[j+1]; } m0/=(n-1); m1/=(n-1);
+    for(let j=0;j<n-1;j++){ c01+=(r[j]-m0)*(r[j+1]-m1); v0+=(r[j]-m0)**2; v1+=(r[j+1]-m1)**2; }
+    ar1.push(v0>0&&v1>0?c01/Math.sqrt(v0*v1):NaN); sd.push(sdv);
+  }
+  const pa=prefixKendall(ar1), ps=prefixKendall(sd);
+  const S=evalT.map((_,j)=>Math.min(pa[j],ps[j]));
+  let rm=-Infinity, tAlarm=null, smax=null, cur=null, curJ=null;
+  for(let j=0;j<S.length;j++){ if(isFinite(S[j])){ rm=Math.max(rm,S[j]); cur=S[j]; curJ=j; }
+    if(tAlarm==null&&isFinite(rm)&&rm>=A.ews.threshold) tAlarm=evalT[j]; }
+  smax=isFinite(rm)?rm:null;
+  const nComp=S.filter(isFinite).length;
+  return {evalT,ar1,sd,S,pa,ps,smax,cur,curJ,tAlarm,nComp,rows};
+}
+function el(tag,at,pa){ const n=document.createElementNS(NS,tag); for(const k in at)n.setAttribute(k,at[k]); if(pa)pa.appendChild(n); return n; }
+function txt(pa,x,y,s,cls,an){ const t=el('text',{x,y,class:cls||'lbl','text-anchor':an||'start'},pa); t.textContent=s; return t; }
+function sc(d0,d1,r0,r1){ return v=>r0+(v-d0)/(d1-d0)*(r1-r0); }
+function drawDyn(d){
+  const W=760,h1=150,h2=120,gap=14,H=h1+h2+gap+26,m={l:52,r:12};
+  const svg=el('svg',{width:W,height:H,viewBox:`0 0 ${W} ${H}`});
+  const t0=Math.min(d.rows[0][0],0), t1=Math.max(d.rows[d.rows.length-1][0],A.ews.eval_every);
+  const sx=sc(t0,t1,m.l,W-m.r);
+  const ys=d.rows.map(r=>r[1]); const lo=Math.min(...ys)-0.12, hi=Math.max(...ys)+0.12;
+  const sy=sc(lo,hi,h1-12,8);
+  el('line',{x1:m.l,y1:h1-12,x2:W-m.r,y2:h1-12,class:'axis'},svg);
+  [lo,hi].forEach(v=>txt(svg,m.l-6,sy(v)+3,fmt(v,1),'tick','end'));
+  txt(svg,14,h1/2,'觀測值','lbl').setAttribute('transform',`rotate(-90 14 ${h1/2})`);
+  el('line',{x1:sx(0),y1:8,x2:sx(0),y2:h1-12,stroke:'#bbb','stroke-dasharray':'3 3'},svg);
+  d.rows.forEach(([t,v])=>el('circle',{cx:sx(t),cy:sy(v),r:2,fill:'#666'},svg));
+  const y0=h1+gap, sy2=sc(-1,1,y0+h2-12,y0+6);
+  el('line',{x1:m.l,y1:y0+h2-12,x2:W-m.r,y2:y0+h2-12,class:'axis'},svg);
+  el('line',{x1:m.l,y1:sy2(0),x2:W-m.r,y2:sy2(0),stroke:'#e2e2e2'},svg);
+  [-1,0,1].forEach(v=>txt(svg,m.l-6,sy2(v)+3,v,'tick','end'));
+  txt(svg,14,y0+h2/2,'聯合分數','lbl').setAttribute('transform',`rotate(-90 14 ${y0+h2/2})`);
+  const pts=[]; d.evalT.forEach((te,j)=>{ if(isFinite(d.S[j])) pts.push(sx(te).toFixed(1)+','+sy2(Math.max(-1,Math.min(1,d.S[j]))).toFixed(1)); });
+  if(pts.length) el('path',{d:'M'+pts.join('L'),fill:'none',stroke:'#16181d','stroke-width':1.4},svg);
+  el('line',{x1:m.l,y1:sy2(A.ews.threshold),x2:W-m.r,y2:sy2(A.ews.threshold),stroke:'#16181d','stroke-dasharray':'5 3'},svg);
+  txt(svg,W-m.r,sy2(A.ews.threshold)-4,'鎖定門檻 '+fmt(A.ews.threshold,3),'tick','end');
+  if(d.tAlarm!=null){ el('line',{x1:sx(d.tAlarm),y1:8,x2:sx(d.tAlarm),y2:y0+h2-12,stroke:'#16181d','stroke-width':1.2},svg); txt(svg,sx(d.tAlarm)+3,18,'首次達警報條件（第 '+d.tAlarm+' 天）','tick'); }
+  txt(svg,(m.l+W-m.r)/2,H-4,'減藥後天數（0＝減藥起始；點虛線＝起始日）','lbl','middle');
+  return svg;
+}
+function renderDyn(d){
+  const box=$('resDyn'); box.innerHTML='';
+  if(d.err){ box.innerHTML=`<p class="note" style="color:#a33">${d.err}</p>`; return; }
+  const driver=(isFinite(d.pa[d.curJ])&&isFinite(d.ps[d.curJ]))?(d.pa[d.curJ]<d.ps[d.curJ]?'AR(1) 趨勢（回復速度）':'SD 趨勢（波動幅度）'):'—';
+  const st=document.createElement('div');
+  st.innerHTML=`<div class="res-grid">
+    <div class="stat"><div class="lb">警報條件（累計最大分數 ≥ 門檻）</div>
+      <div class="vl">${d.tAlarm!=null?'已達（第 '+d.tAlarm+' 天）':'未達'}</div>
+      <div class="sb">此為事前指定負擔下的統計條件，非臨床判斷</div></div>
+    <div class="stat"><div class="lb">目前聯合分數／累計最大</div><div class="vl">${fmt(d.cur,3)}／${fmt(d.smax,3)}</div>
+      <div class="sb">門檻 ${fmt(A.ews.threshold,3)}；較低一項＝${driver}</div></div>
+    <div class="stat"><div class="lb">指標可計算的評估點</div><div class="vl">${d.nComp}／${d.evalT.length}</div>
+      <div class="sb">窗 ${A.ews.window} 天內至少 ${A.ews.min_obs} 點才計算；不可算不觸發</div></div>
+  </div>`;
+  box.appendChild(st);
+  box.appendChild(drawDyn(d));
+  const p=document.createElement('p'); p.className='note'; p.style.marginTop='6px';
+  p.textContent='分數＝滾動 AR(1) 與滾動 SD 兩條前綴 Kendall τ 的較小值——兩個指標同時上升才會高分；單獨波動變大（雜訊放大型）不易達標。'
+    +'警報以固定假警報負擔為代價設計：穩定個案在兩年追蹤內約有兩成會觸發一次（見Ｃ），監測早期（前幾個評估點）的 τ 由極少數值計算、較易出現極端值——「已達」是統計條件，不是臨床事件。';
+  box.appendChild(p);
+}
+/* ---- Ｃ 操作特性脈絡 ---- */
+$('resCtx').innerHTML=`<div class="res-grid">
+  <div class="stat"><div class="lb">分岔翻轉機制：跳轉前警報比例</div><div class="vl">${fmt(A.perf.sens_bif&&A.perf.sens_bif.mean)}</div><div class="sb">±SE ${fmt(A.perf.sens_bif&&A.perf.sens_bif.se,3)}</div></div>
+  <div class="stat"><div class="lb">提前期中位（至跳轉）</div><div class="vl">${A.perf.lead_bif&&A.perf.lead_bif.mean!=null?Math.round(A.perf.lead_bif.mean)+' 天':'—'}</div><div class="sb">警報先於跳轉的天數</div></div>
+  <div class="stat"><div class="lb">穩定機制假警報</div><div class="vl">${fmt(A.perf.fa_stable&&A.perf.fa_stable.mean)}／病人年</div><div class="sb">負擔上限 ${A.ews.budget}</div></div>
+  <div class="stat"><div class="lb">評估規模</div><div class="vl">n=${A.perf.n}×MC${A.perf.mc}</div><div class="sb">獨立測試 seed 族</div></div>
+</div>
+<p class="note" style="margin-top:8px">在本模擬設定下（每週取樣、窗 ${A.ews.window} 天）此規則靈敏度有限——約四分之一的分岔翻轉個案在跳轉前收到警報，但收到者提前期中位可達半年；
+警報「未達」不代表沒有風險，機制與取樣條件見視覺化頁「邊界」層。</p>`;
+
+$('calc').onclick=()=>{ renderStatic(computeStatic()); const rows=parseSeries(); renderDyn(rows.length?computeDyn(rows):{err:'尚未輸入監測序列。'}); };
+</script>
+</body>
+</html>

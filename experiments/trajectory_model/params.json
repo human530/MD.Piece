@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "title": "疾病軌跡模型 參數檔 v2",
+    "date": "2026-08-18",
+    "spec": "疾病軌跡模型_建置提示詞_v1.md + 規格決定書_v1.md + 規格決定書_v2_裁決.md",
+    "note": "每一列都必須有 source。derived_from 為 assumption 或 calibrated_* 者不是直接抄自文獻，程式啟動時列印並輸出 results/assumptions.md（v2 拾壹）。文獻查證：PubMed 2026-08-17。"
+  },
+
+  "sim": {
+    "n": 3000,
+    "T_days": 1825,
+    "substeps": 10,
+    "seed": 20260817,
+    "n_seeds": 5,
+    "flip_share": {"value": 0.5, "source": "建置提示詞 模組一：兩大類比例預設各半", "derived_from": "spec_default"}
+  },
+
+  "scale": {
+    "_why": "v2 捌：兩型共用 eGFR 為序列刻度（低＝差），x0 自同一基線分布抽。翻轉型的雙穩態在標準座標 y 上跑，再以固定尺度 b 平移到個案基線：eGFR = eGFR0 − b·(y − y_L)。b 由參考幾何決定：健康態 y_L(mu_start) ↔ 90（G1/G2 界）、摺疊點 −1/sqrt(3) ↔ 60（G2/G3a 界，O'Hare 災難型 '>60' 起點）→ 一次翻轉的快速下墜約 1.7·b eGFR。事件門檻 15（G5）兩型共用，只作描述性里程碑 t_threshold（v2 參）。",
+    "egfr_at_healthy_state": {"value": 90, "source": "KDIGO 2012 GFR 分級 G1>=90（Stevens & Levin 2013, PMID 23732715, DOI 10.7326/0003-4819-158-11-201306040-00007）"},
+    "egfr_at_fold": {"value": 60, "source": "KDIGO 2012 G2/G3a 界 60；O'Hare 2012 災難型自 >60 起（PMID 22305760）"},
+    "event_threshold_egfr": {"value": 15, "source": "KDIGO 2012 G5 <15 = kidney failure（PMID 23732715）；v2 參：僅為 t_threshold 里程碑"},
+    "egfr_floor": {"value": 0, "source": "物理下限（eGFR 不為負）：風險在此飽和；序列本身不截斷（截斷會讓翻轉後 SD 歸零、製造假的下降型偏離）", "derived_from": "assumption"},
+    "derived_from": "kdigo_anchors_assumption"
+  },
+
+  "linear_classes": {
+    "_why": "建置提示詞 模組零／v1 §1：線性爬升型子類別數、比例、斜率±SD 取自 O'Hare 2012 前三類；第四類（災難型）由翻轉型代表（v1 §1 以其時程校準翻轉型），故比例以 G1–G3 重新正規化。",
+    "source": "O'Hare AM et al. Am J Kidney Dis 2012;59(4):513-22. PMID 22305760, DOI 10.1053/j.ajkd.2011.11.044",
+    "share_renormalized": {"value": true, "derived_from": "renormalized_from_OHare_G1_G3", "source": "v1 §1"},
+    "linear_start_mode": {"value": "kdigo_g2_g4_uniform",
+      "source": "v2 貳：O'Hare 世代以開始透析為終點回顧兩年，人人最後透析；其起始水準搬到前瞻模擬必得 ~99% 事件率、靜態 C 0.97——設計不相容，非參數設錯。主分析兩型 x0 均勻取自 KDIGO G2–G4（15–90）；ohare_ranges 保留並實際跑一次作示範。",
+      "derived_from": "assumption_alignment_corrected"},
+    "uniform_start_range_egfr": [15, 90],
+    "linear_onset_mode": {"value": "shared", "source": "v2 附錄貳：線性型下降起始日與翻轉型漂移起始日同分布，之前為定態 OU；day0 = linear_from_day0 敏感度變體（盛行個案）", "derived_from": "spec_decision"},
+    "classes": [
+      {"name": "persistently_low", "share_raw": 0.628, "egfr_start_range": [15, 30], "slope_mean": 7.7, "slope_sd": 4.7,
+       "source": "O'Hare 2012 Group 1：62.8%，eGFR<30，斜率 7.7±4.7；範圍僅供 ohare_ranges 示範（下界 15 = 門檻，assumption）"},
+      {"name": "progressive", "share_raw": 0.246, "egfr_start_range": [30, 59], "slope_mean": 16.3, "slope_sd": 7.6,
+       "source": "O'Hare 2012 Group 2：24.6%，eGFR 30–59，斜率 16.3±7.6"},
+      {"name": "accelerated", "share_raw": 0.095, "egfr_start_range": [60, 90], "slope_mean": 32.3, "slope_sd": 13.4,
+       "source": "O'Hare 2012 Group 3：9.5%，eGFR>60，斜率 32.3±13.4；上界 90（assumption）"}
+    ],
+    "catastrophic_reference": {"share_raw": 0.031, "slope_mean": 50.7, "slope_sd": 30.4, "months_to_dialysis_max": 6,
+       "source": "O'Hare 2012 Group 4：3.1%，自 >60 於 <=6 個月內至透析，斜率 50.7±30.4；用於校準翻轉型（v1 §1），不當作線性子類別"}
+  },
+
+  "flip": {
+    "_why": "v1 §1/§5、v2 壹/玖：雙穩態摺疊分岔形式引 Scheffer 2009（PMID 19727193）與 van de Leemput 2014（PMID 24324144）為建模依據。主分析 tau=60；tau 14/30 的不可達本身列為結果（v2 壹）。每人抽漂移起始日與漂移期長度，起始日前 mu 固定（v2 玖）。Δμ 中位以災難型時程反推：median(t_threshold − t_crit) = 目標；不可達的格標 unreachable 留白。",
+    "mu_start": {"value": -0.6, "source": "FADE fade_sim.simulate_S0 預設值（v1 §10 複用）", "derived_from": "fade_default"},
+    "tau_days": {"value": 60, "source": "v2 壹：主分析 tau=60", "derived_from": "spec_decision"},
+    "tau_grid_days": [14, 30, 60],
+    "flip_time_target_days": {"value": 180, "source": "O'Hare 2012 災難型 <=6 個月（PMID 22305760）；v1 §1", "derived_from": "calibrated_to_catastrophic_class"},
+    "flip_time_grid_days": [90, 180, 365],
+    "delta_mu_median": {"value": null, "source": "程式啟動時以參考幾何 pilot 二分法反推", "derived_from": "calibrated_to_catastrophic_class"},
+    "delta_mu_bounds": [0.2, 20.0],
+    "delta_mu_log_spread": {"value": 0.5, "source": "assumption：個案間漂移量的對數常態離散度，delta_mu_i = median*exp(spread*s_i)", "derived_from": "assumption"},
+    "drift_onset_range_days": {"value": [0, 1095], "source": "v2 玖：漂移起始日均勻抽於前三年（上界另受 T − 漂移期 限制）", "derived_from": "assumption"},
+    "drift_duration_range_days": {"value": [90, 730], "source": "v2 玖：漂移期長度數個月至兩年", "derived_from": "assumption"}
+  },
+
+  "noise": {
+    "_why": "v1 §4：線性型必須用 OU 有色雜訊，鬆弛時間 tau_ou 與翻轉型 tau 同量級，且兩型基線自相關可比。tau_ou=null 表示自動取 tau/lambda0（翻轉型健康態線性化回復率），使兩型理論 lag-1 自相關相同。雜訊以 eGFR 單位的定態 SD 給定，兩型相同。",
+    "stationary_sd_egfr": {"value": 5.0, "source": "assumption：個人內 eGFR 變異約 5 mL/min/1.73m2；O'Hare 2012 僅述『substantial intraindividual variability』無數值", "derived_from": "assumption"},
+    "tau_ou_days": {"value": null, "source": "v1 §4：與 tau 同量級；null = 依線性化自相關配對", "derived_from": "matched_baseline_ar1"}
+  },
+
+  "hazard": {
+    "_why": "v2 參：結局改為風險驅動。每日風險 λ(t) = λ0·exp(β·(門檻 − eGFR(t))/10)（封頂 h_max），x 只調節風險不決定事件。λ0 校準使五年事件率落在 event_rate_target 中點。β 不校準：實作時發現靜態 C 對 β 並非單調（β 極大時事件只發生在 eGFR 封底附近，x0 反而較不具預測力），二分法會走到邊界（β=4、HR 55）；且靜態 C 在 β∈[0.7,2]、kappa∈[0,1] 上都落在 0.69–0.73，故 β 固定為文獻量級假設，C 由 kappa 格點微調。β=0 時軌跡資訊對事件無資訊（tests 驗證動態相對靜態無增益）。",
+    "lambda0_per_day": {"value": null, "source": "pilot 校準（事件率目標）", "derived_from": "calibrated_event_rate"},
+    "beta_per_10_egfr": {"value": 1.0986, "source": "assumption：每低 10 mL/min/1.73m2 的腎衰竭風險比取 KFRE 量級 HR≈3（Tangri 2011 JAMA PMID 21482743 之 eGFR 係數約 −0.56/5 單位；係數值未在本次 PubMed 查證中逐字核對，請確認）", "derived_from": "assumption"},
+    "lambda0_bounds_per_day": [1e-6, 0.05],
+    "beta_sensitivity_multipliers": {"value": [0.5, 1.0, 2.0], "source": "H2 增益對 β 的敏感度（HR 1.7 / 3 / 9 每 10 mL/min）；只跑模組四"},
+    "h_max_per_day": {"value": 0.2, "source": "assumption：每日風險封頂（避免 eGFR 封底處數值爆炸）", "derived_from": "assumption"},
+    "event_rate_target": {"value": [0.15, 0.30], "source": "v2 參建議 15–30%"}
+  },
+
+  "baseline": {
+    "_why": "建置提示詞 模組一基線特徵；v1 §3：易感度 s 未觀測，年齡、性別與 s 相關（kappa），s 決定型別（v2 捌）、線性子類別與翻轉型 mu_end。靜態 C 目標改由 hazard.beta 校準達成（v2 參），kappa 固定為假設值。",
+    "age_mean": {"value": 65, "source": "assumption（O'Hare 世代為 VA 高齡男性為主，摘要無平均年齡）", "derived_from": "assumption"},
+    "age_sd": {"value": 12, "source": "assumption", "derived_from": "assumption"},
+    "age_range": [30, 90],
+    "male_share": {"value": 0.5, "source": "assumption（一般族群）", "derived_from": "assumption"},
+    "susceptibility_weights": {"age": -1.0, "male": 1.0,
+      "source": "方向取 KFRE 係數符號（年齡負、男性正；Tangri 2011 JAMA PMID 21482743, DOI 10.1001/jama.2011.451）；大小相等為 assumption", "derived_from": "assumption"},
+    "kappa": {"value": 0.5, "source": "assumption：年齡／性別對易感度的總相關強度；靜態 C 若不在目標區間，改在 kappa_grid 上取最接近中點者", "derived_from": "assumption"},
+    "kappa_grid": {"value": [0.0, 0.25, 0.5, 0.75, 1.0], "source": "校準備援格點"},
+    "type_link_beta": {"value": 1.0, "source": "assumption：易感度進入型別歸屬的 logit 斜率（v2 捌：型別由易感度決定、不得由 x0 決定）", "derived_from": "assumption"},
+    "static_c_target": {"value": [0.65, 0.75], "source": "v1 §3；Xu 2022 基線模型 C=0.651（PMID 35776101, DOI 10.1093/ije/dyac140）"},
+    "class_link_beta": {"value": 1.0, "source": "assumption：易感度 s 進入子類別的累積 logit 斜率", "derived_from": "assumption"}
+  },
+
+  "risk_score": {
+    "_why": "建置提示詞 模組二：基線 logistic 十年風險分數，係數由參數檔指定；coefficients=null 時以 pilot 世代（seed+1000）配適一次並寫入結果。禁止使用 x(t>0)。v2 捌檢核：任一風險層內單一型別佔比 > stratum_single_type_max 即警告並停止。",
+    "features": ["age", "male", "x0"],
+    "coefficients": {"value": null, "source": "pilot 配適", "derived_from": "calibrated_pilot_fit"},
+    "quantiles": [5, 10],
+    "stratum_single_type_max": {"value": 0.9, "source": "v2 捌"}
+  },
+
+  "clustering": {
+    "_why": "建置提示詞 模組三。方法 A：每人三次正交（Legendre）多項式係數 → 高斯有限混合；方法 B：[水準, 斜率, 曲率, 變異度] → k-means（分類似然 BIC）。群數以 BIC 加 bootstrap 穩定度決定。時間打亂置換檢定：虛無假設為「該序列的時間順序不帶資訊」，非「該序列無變異」（v2 伍）。",
+    "poly_degree": 3,
+    "k_max": 8,
+    "n_bootstrap": 200,
+    "stability_min": {"value": 0.6, "source": "v2 附錄壹：Hennig 慣例（<0.60 不穩定、>=0.75 穩定），看結果前寫定"},
+    "bic_gain_frac": {"value": 0.05, "source": "v2 附錄壹：K→K+1 的 BIC 改善量 < 整段範圍 5%，看結果前寫定"},
+    "n_permutation": 100
+  },
+
+  "prediction": {
+    "_why": "建置提示詞 模組四／v1 §7 §8。地標模型只用 X[:, :L] 與基線特徵，風險集 = L 時尚未發生事件者，結局 = (L, T] 內事件（風險驅動）。分群標籤不得進入模型。",
+    "landmarks_days": [180, 365, 730],
+    "timing_landmark_step_days": 90,
+    "lookback_days": 90,
+    "high_risk_top_share": {"value": 0.2, "source": "v1 §7 相對閾值前 20%"},
+    "cv_folds": 5,
+    "leak_alert_c_gain": {"value": 0.05, "source": "建置提示詞 模組四"},
+    "dropout_hazard": {"value": 0.0035, "source": "FADE DEFAULTS.dropout_hazard（半年退出約 47%，見 FADE 方向書表二）；v1 §6 敏感度", "derived_from": "fade_default"}
+  },
+
+  "warning": {
+    "_why": "建置提示詞 模組五／v1 §9／v2 壹肆陸。滾動 AR(1)、SD 定義與 FADE resilience_tau 相同；Kendall tau 用截至評估日的完整指標序列；虛無分布 = 200 人 × 100 次區塊置換（區塊長 = 窗長）合併，並檢核高低變異兩群同質性（KS，p<0.05 分層）。主要警報規則（單尾上升，v2 肆）：AR(1) 與 SD 的 tau 同時 > 0 且同時超過虛無 95 分位。下降型偏離（tau 同時 < 0 且低於 5 分位）獨立計數報告，不計入主要提前期。假設檢定（兩型提前期比較）維持雙尾。趨勢外推基準 burn-in 期不得警報且自偽警報分母扣除（v2 陸）。",
+    "windows_days": [21, 42, 60, 90],
+    "detrend_modes": ["gaussian", "linear", "none"],
+    "gaussian_bw_frac": {"value": 0.25, "source": "assumption：窗內高斯核帶寬 = 0.25*窗長", "derived_from": "assumption"},
+    "eval_every_days": 7,
+    "null_subjects": 200,
+    "null_perms_per_subject": 100,
+    "alpha": 0.05,
+    "alarm_event_horizon_days": {"value": 365, "source": "assumption：警報後 365 天內發生事件才算對應真實事件", "derived_from": "assumption"},
+    "trend_alarm_horizon_days": {"value": 365, "source": "assumption：H3 後半『單純追蹤趨勢』比較基準——線性外推預測 365 天內跨門檻即警報", "derived_from": "assumption"},
+    "trend_min_history_days": {"value": 90, "source": "v2 陸：趨勢外推至少要 90 天歷史；期間不警報且自偽警報分母扣除", "derived_from": "assumption"},
+    "n_permutation_leadtime": 2000
+  }
+}

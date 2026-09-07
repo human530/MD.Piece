@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>腎損傷分流模型 Stage 0–5（合成資料示範）</title>
+<style>
+:root{--ink:#16181d;--g1:#585c64;--g2:#9aa0a8;--g3:#d7dade;--bg:#f3f4f6;--card:#fff;--line:#e6e8eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:14px}
+.top{background:var(--ink);color:#fff;padding:14px 22px}
+.top h1{font-size:17px;font-weight:700}
+.top .sub{font-size:11.5px;color:#c8ccd2;margin-top:2px}
+.warn{background:#fff8f0;border-bottom:1px solid #e5c9a5;padding:8px 22px;font-size:12px;color:#7a5320}
+.wrap{max-width:1200px;margin:0 auto;padding:16px 18px 60px}
+nav{display:flex;gap:4px;margin:6px 0 14px;border-bottom:1px solid var(--g3);flex-wrap:wrap}
+nav button{border:0;background:none;font:inherit;font-size:14px;padding:8px 14px;cursor:pointer;color:var(--g1);border-bottom:2px solid transparent}
+nav button.on{color:var(--ink);font-weight:700;border-bottom-color:var(--ink)}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--g3);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.card h2{font-size:13px;font-weight:700;padding:10px 14px;border-bottom:1px solid var(--line);background:#fafbfc}
+.card .bd{padding:12px 14px}
+.note{font-size:11.5px;color:var(--g1)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fcfcfd}
+.stat .lb{font-size:11px;color:var(--g1)}
+.stat .vl{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat .sb{font-size:10.5px;color:var(--g2)}
+table{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:right}
+th{color:var(--g1);font-weight:600}
+th:first-child,td:first-child{text-align:left}
+tr.hl td{background:#f0f1f3;font-weight:700}
+svg{display:block;width:100%;height:auto}
+.axis{stroke:#999;stroke-width:1}.tick{font-size:10px;fill:#777}.lbl{font-size:11px;fill:#555}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;font-size:12px}
+.fbox{border:1px solid var(--g3);border-radius:8px;padding:8px 12px;background:#fcfcfd;min-width:120px}
+.fbox b{display:block;font-size:12.5px}
+.farrow{align-self:center;color:var(--g2)}
+.seg{display:flex;border:1px solid var(--g3);border-radius:8px;overflow:hidden;flex-wrap:wrap}
+.seg button{border:0;background:var(--card);font:inherit;font-size:12.5px;padding:5px 12px;cursor:pointer;color:var(--g1)}
+.seg button.on{background:var(--ink);color:#fff}
+.btn{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:8px;font:inherit;font-size:13px;padding:7px 20px;cursor:pointer}
+.btn.sec{background:#fff;color:var(--ink);font-size:12px;padding:4px 12px;border-color:var(--g3)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+input.cell{font:inherit;font-size:12px;padding:3px 5px;border:1px solid var(--g3);border-radius:5px;width:76px;text-align:right}
+.tag{font-size:10.5px;border-radius:4px;padding:1px 6px;border:1px solid var(--g3);color:var(--g1);white-space:nowrap}
+.tag.anchored{border-color:#555;color:#222}
+.tag.pending{background:#fdf3e7;border-style:dashed;border-color:#c99a55;color:#7a5320}
+.small{font-size:12px;color:var(--g1)}
+.bar{height:9px;border:1px solid var(--g3);border-radius:5px;overflow:hidden;background:#f2f3f5;position:relative}
+.bar i{position:absolute;top:0;bottom:0;background:#6b7078}
+footer{max-width:1200px;margin:0 auto;padding:0 18px 30px;font-size:11px;color:var(--g2)}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>腎損傷分流模型 Stage 0–5</h1>
+  <div class="sub">在專項檢驗之前，用常規檢驗縮小範圍並指出下一張單・合成資料示範・<span id="date"></span></div>
+</div>
+<div class="warn" id="genWarn"></div>
+<div class="wrap">
+<nav id="nav">
+  <button data-s="s1" class="on">總覽</button>
+  <button data-s="s2">模型階梯與洩漏基準</button>
+  <button data-s="s3">拒答與測試表現</button>
+  <button data-s="s4">分流格與建議檢驗</button>
+  <button data-s="s5">個案分流｜輸入數值跑模型</button>
+  <button data-s="s6">參數出處</button>
+</nav>
+
+<section id="s1" class="on">
+  <div class="card"><h2>管線一眼看</h2><div class="bd">
+    <div class="flow" id="flow"></div>
+    <p class="note" style="margin-top:8px">Stage 6（確認：培養／抗體／基因／切片）不在模型內，由醫師執行。模型不預測最終病名、不決定切片、不建議治療。</p>
+  </div></div>
+  <div class="card"><h2>主要結果（測試集，只評估一次）</h2><div class="bd">
+    <div class="kpi" id="kpis"></div>
+    <p class="note" style="margin-top:8px" id="kpiNote"></p>
+  </div></div>
+</section>
+
+<section id="s2">
+  <div class="card"><h2>M0 洩漏基準（先建、先定版）＋模型階梯</h2><div class="bd">
+    <p class="note">M0 只用「哪些檢驗被開立」——它不是隨機水準，是醫師臨床懷疑洩漏進資料的量。主模型（M2）必須顯著超越 M0 才算有生理訊號；未超越的軸整個移除。長條＝訓練集 5 折 CV 平衡正確率。</p>
+    <svg id="svgLadder" width="960" height="300" viewBox="0 0 960 300"></svg>
+    <div id="verdicts"></div>
+    <p class="note" id="m0note"></p>
+  </div></div>
+  <div class="card"><h2>各階段係數（這項推測由哪些指標支持）</h2><div class="bd">
+    <div class="seg" id="impSeg"></div>
+    <div id="impBody" style="margin-top:8px"></div>
+  </div></div>
+</section>
+
+<section id="s3">
+  <div class="card"><h2>拒答：作答率—正確率曲線（訓練集選門檻，鎖定後測試）</h2><div class="bd">
+    <svg id="svgCurves" width="960" height="280" viewBox="0 0 960 280"></svg>
+    <div id="testTable"></div>
+    <p class="note">拒答率與作答者正確率同時報告——只報作答者正確率屬選擇性報告。信心低於門檻者輸出「無法判定」並停止往下。</p>
+  </div></div>
+</section>
+
+<section id="s4">
+  <div class="card"><h2>Stage 4　六格分流（測試集混淆矩陣）</h2><div class="bd">
+    <div class="grid2">
+      <div><svg id="svgConf" width="460" height="360" viewBox="0 0 460 360"></svg></div>
+      <div id="boxTable"></div>
+    </div>
+  </div></div>
+  <div class="card"><h2>Stage 5　建議檢驗之評估</h2><div class="bd">
+    <div class="kpi" id="s5kpi"></div>
+    <div id="s5byBox" style="margin-top:10px"></div>
+    <p class="note" id="s5note"></p>
+  </div></div>
+</section>
+
+<section id="s5">
+  <div class="card"><h2>輸入常規檢驗值 → 三階段判定 → 分流格 → 建議檢驗</h2><div class="bd">
+    <p class="note">最多四次同日成套；欄位留空＝未開立（以缺值處理，不是 0）。特徵標準化用全世代參數、模型係數與拒答門檻與 Python 定版完全相同——頁面不寫死任何數字。</p>
+    <div style="display:flex;gap:6px;margin:8px 0;flex-wrap:wrap" id="demoBtns"></div>
+    <div style="overflow-x:auto"><table id="inTable"></table></div>
+    <div style="margin-top:10px"><button class="btn" id="routeBtn">執行分流</button></div>
+    <div id="routeOut" style="margin-top:12px"></div>
+  </div></div>
+</section>
+
+<section id="s6">
+  <div class="card"><h2>每個數字的出處</h2><div class="bd">
+    <p class="note">狀態：<span class="tag anchored">anchored</span>＝建置指示明文；<span class="tag pending">pending_extraction</span>＝無文獻依據、value=null 佔位執行；<span class="tag">study_defined</span>＝本研究設定。</p>
+    <div style="overflow-x:auto"><table id="provTable"><thead><tr><th>參數</th><th>狀態</th><th>值</th><th>出處</th></tr></thead><tbody></tbody></table></div>
+  </div></div>
+</section>
+</div>
+<footer id="foot"></footer>
+<script id="pack" type="application/json">__PACK_JSON__</script>
+<script>
+const PACK=JSON.parse(document.getElementById('pack').textContent);
+const R=PACK.report, MD=PACK.models, $=id=>document.getElementById(id);
+const NS='http://www.w3.org/2000/svg';
+const fmt=(v,d=3)=>v==null||!isFinite(v)?'—':(+v).toFixed(d);
+const STG={'1':'急性度','2':'部位','3':'表現型'};
+const G4=['#16181d','#585c64','#9aa0a8','#d7dade'];
+$('date').textContent=PACK.meta.date;
+$('genWarn').textContent='⚠ '+PACK.meta.generator_warning;
+$('foot').textContent='單一離線頁面；所有係數、門檻、指標由 pipeline.py 匯出（M0 定版 '+R.m0_sealed_at+'）。';
+document.getElementById('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+ document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+ document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.s));});
+function el(t,a,p){const n=document.createElementNS(NS,t);for(const k in a)n.setAttribute(k,a[k]);if(p)p.appendChild(n);return n;}
+function txt(p,x,y,s,c,an){const t=el('text',{x,y,class:c||'lbl','text-anchor':an||'start'},p);t.textContent=s;return t;}
+function sc(d0,d1,r0,r1){return v=>r0+(v-d0)/(d1-d0)*(r1-r0);}
+
+/* ---- 總覽 ---- */
+const flow=[['Stage 0','資料品質閘門',`${R.stage0.n_pass}/${R.stage0.n_input} 通過`],
+ ['Stage 1','急性度','快不快'],['Stage 2','部位','絲球/小管間質/血管'],['Stage 3','表現型','四型'],
+ ['Stage 4','分流格','R/A/A2/C/D/E/F'],['Stage 5','建議檢驗','下一張單']];
+$('flow').innerHTML=flow.map(f=>`<div class="fbox"><b>${f[0]}　${f[1]}</b><span class="note">${f[2]}</span></div>`).join('<div class="farrow">→</div>');
+const s4=R.stage4,s5=R.stage5;
+$('kpis').innerHTML=[
+ ['分流格判定率',fmt(s4.decided_rate),'任一階段拒答即「無法判定」'],
+ ['分流格平衡正確率',fmt(s4.answered.balanced_accuracy),`95% CI ${fmt(s4.balanced_accuracy_ci.lo)}–${fmt(s4.balanced_accuracy_ci.hi)}`],
+ ['檢驗節省率',fmt(s5.test_saving_rate_decided),`vs 全面開單 ${s5.full_panel_items} 項`],
+ ['關鍵遺漏率（全）',fmt(s5.critical_omission_rate_all),'應開立而未建議'],
+ ['R 格分流召回',fmt(s5.R_recall),`真 R n=${s5.R_true_n}；判為 R 五項完整率 ${fmt(s5.R_five_items_when_routed_R,2)}`],
+ ['建議命中率',fmt(s5.hit_rate),'建議中屬正確格強制項比例']
+].map(k=>`<div class="stat"><div class="lb">${k[0]}</div><div class="vl">${k[1]}</div><div class="sb">${k[2]}</div></div>`).join('');
+$('kpiNote').textContent=`測試集 n=${R.test_n}（訓練 ${R.train_n}）；主要指標為平衡正確率。`+(R.removed_axes.length?`已移除的軸：${R.removed_axes.join('、')}。`:'三軸皆通過 M2>M0 判定。');
+
+/* ---- 階梯圖 ---- */
+(function(){
+ const svg=$('svgLadder'),W=960,H=300,m={l:56,r:16,t:26,b:46};
+ const sy=sc(0.4,1.0,H-m.b,m.t);
+ el('line',{x1:m.l,y1:H-m.b,x2:W-m.r,y2:H-m.b,class:'axis'},svg);
+ [0.4,0.5,0.6,0.7,0.8,0.9,1.0].forEach(v=>{el('line',{x1:m.l,y1:sy(v),x2:W-m.r,y2:sy(v),stroke:'#eee'},svg);txt(svg,m.l-6,sy(v)+3,v.toFixed(1),'tick','end');});
+ txt(svg,14,H/2,'平衡正確率','lbl').setAttribute('transform',`rotate(-90 14 ${H/2})`);
+ const stages=Object.keys(R.stages),bw=(W-m.l-m.r)/stages.length;
+ const layers=[['M0','#fff','M0 只用開立行為'],['M1',G4[2],'M1 索引水準'],['M2',G4[1],'M2 ＋斜率＋比值']];
+ stages.forEach((s,i)=>{
+  const t=R.stages[s].train,x0=m.l+i*bw+bw*0.12,w=bw*0.22;
+  layers.forEach((L,j)=>{
+   const v=L[0]==='M0'?t.M0.balanced_accuracy:t[L[0]].balanced_accuracy;
+   const x=x0+j*(w+6);
+   el('rect',{x,y:sy(v),width:w,height:sy(0.4)-sy(v),fill:L[1],stroke:'#16181d','stroke-width':1,...(L[0]==='M0'?{'stroke-dasharray':'4 2'}:{})},svg);
+   txt(svg,x+w/2,sy(v)-4,fmt(v,2),'tick','middle');
+   txt(svg,x+w/2,H-m.b+14,L[0],'tick','middle');
+  });
+  txt(svg,x0+1.5*(w+6),H-m.b+30,`Stage ${s} ${STG[s]}`,'lbl','middle');
+ });
+ txt(svg,W-m.r,16,'虛線框＝洩漏基準 M0；實色＝主模型','tick','end');
+})();
+$('verdicts').innerHTML='<table><thead><tr><th>階段</th><th>M2−M0（95% CI）</th><th>判定</th><th>M2−M1</th><th>M3</th></tr></thead><tbody>'+
+ Object.entries(R.stages).map(([s,r])=>{const v=r.train.verdicts;
+  return `<tr><td>Stage ${s} ${STG[s]}</td><td>${v.M2_vs_M0.diff>=0?'+':''}${fmt(v.M2_vs_M0.diff)}［${fmt(v.M2_vs_M0.lo)}, ${fmt(v.M2_vs_M0.hi)}］</td>`+
+   `<td>${v.M2_vs_M0.verdict}</td><td>${v.M2_vs_M1.verdict}</td><td>${v.M3_vs_random.verdict}</td></tr>`;}).join('')+'</tbody></table>';
+(function(){
+ const st=PACK.m0.stages, groups=Object.keys(st[Object.keys(st)[0]].by_subgroup);
+ let h='<p class="note" style="margin:8px 0 4px">M0 逐族群洩漏（訓練 CV）——族群不得由該階段自身標籤導出，否則退化（分流格分層即屬此類）：</p>';
+ h+='<table><thead><tr><th>族群</th>'+Object.entries(st).map(([s,d])=>`<th>Stage ${s} ${d.stage}</th>`).join('')+'</tr></thead><tbody>';
+ groups.forEach(g=>{h+=`<tr><td>${g}</td>`+Object.values(st).map(d=>{const r=d.by_subgroup[g];
+   return `<td>${!r||r.balanced_accuracy==null?'—':fmt(r.balanced_accuracy,3)+`<span class="sb"> (n=${r.n})</span>`}</td>`;}).join('')+'</tr>';});
+ h+='</tbody></table><p class="note">「—」＝該族群內此軸標籤單一或人數不足，平衡正確率無定義。定版時間 '+PACK.m0.sealed_at+'，早於一切主模型效能計算。</p>';
+ $('m0note').outerHTML='<div id="m0note">'+h+'</div>';
+})();
+
+/* ---- 係數 ---- */
+(function(){
+ const seg=$('impSeg');let cur='1';
+ Object.keys(R.stages).forEach((s,i)=>{const b=document.createElement('button');b.textContent=`Stage ${s} ${STG[s]}`;b.className=i===0?'on':'';
+  b.onclick=()=>{cur=s;seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));draw();};seg.appendChild(b);});
+ function draw(){
+  const per=PACK.importance[cur]||{};
+  $('impBody').innerHTML=Object.entries(per).map(([k,rows])=>{
+   const mx=Math.max(...rows.map(r=>Math.abs(r.coef)),1e-9);
+   return `<p class="small" style="margin:6px 0 2px"><b>類別「${k}」</b>（正係數＝支持此類）</p><table><tbody>`+
+    rows.map(r=>`<tr><td><code>${r.feature}</code></td><td>${r.coef>=0?'+':''}${fmt(r.coef)}</td>`+
+     `<td style="width:150px"><div class="bar"><i style="left:${r.coef<0?50-Math.abs(r.coef)/mx*50:50}%;width:${Math.abs(r.coef)/mx*50}%"></i></div></td></tr>`).join('')+'</tbody></table>';
+  }).join('');
+ }
+ draw();
+})();
+
+/* ---- 拒答曲線與測試表 ---- */
+(function(){
+ const svg=$('svgCurves'),W=960,H=280,m={l:56,r:150,t:20,b:40};
+ const sx=sc(0.55,1.0,m.l,W-m.r),sy=sc(0.5,1.0,H-m.b,m.t);
+ el('line',{x1:m.l,y1:H-m.b,x2:W-m.r,y2:H-m.b,class:'axis'},svg);
+ [0.6,0.7,0.8,0.9,0.95].forEach(v=>{el('line',{x1:sx(v),y1:H-m.b,x2:sx(v),y2:H-m.b+4,class:'axis'},svg);txt(svg,sx(v),H-m.b+16,v,'tick','middle');});
+ [0.5,0.6,0.7,0.8,0.9,1.0].forEach(v=>{el('line',{x1:m.l,y1:sy(v),x2:W-m.r,y2:sy(v),stroke:'#eee'},svg);txt(svg,m.l-6,sy(v)+3,v.toFixed(1),'tick','end');});
+ txt(svg,(m.l+W-m.r)/2,H-6,'信心門檻','lbl','middle');
+ txt(svg,14,H/2,'訓練集作答者平衡正確率（實線）／作答率（虛線）','lbl').setAttribute('transform',`rotate(-90 14 ${H/2})`);
+ const dash=['0','5 3','1 2'];
+ Object.entries(PACK.curves).forEach(([s,curve],i)=>{
+  const pts=curve.filter(r=>r.balanced_accuracy!=null).map(r=>[sx(r.threshold),sy(r.balanced_accuracy)]);
+  el('path',{d:'M'+pts.map(p=>p.join(',')).join('L'),fill:'none',stroke:G4[i],'stroke-width':1.6},svg);
+  const pts2=curve.map(r=>[sx(r.threshold),sy(Math.max(0.5,r.coverage))]);
+  el('path',{d:'M'+pts2.map(p=>p.join(',')).join('L'),fill:'none',stroke:G4[i],'stroke-width':1,'stroke-dasharray':'4 3'},svg);
+  const th=MD.thresholds[s];
+  el('line',{x1:sx(th),y1:m.t,x2:sx(th),y2:H-m.b,stroke:G4[i],'stroke-dasharray':'2 3'},svg);
+  txt(svg,W-m.r+8,m.t+14+i*16,`Stage ${s} ${STG[s]}（門檻 ${th}）`,'tick').setAttribute('fill',G4[i]);
+ });
+ $('testTable').innerHTML='<table><thead><tr><th>階段</th><th>門檻</th><th>拒答率</th><th>作答者平衡正確率（95% CI）</th><th>整體正確率</th></tr></thead><tbody>'+
+  Object.entries(R.stages).map(([s,r])=>{const te=r.test,ci=te.answered.balanced_accuracy_ci;
+   return `<tr><td>Stage ${s} ${STG[s]}</td><td>${te.threshold}${te.threshold_reachable?'':'（目標不可達→預設）'}</td><td>${fmt(te.abstention_rate)}</td>`+
+    `<td>${fmt(te.answered.balanced_accuracy)}［${fmt(ci.lo)}, ${fmt(ci.hi)}］</td><td>${fmt(te.answered.accuracy)}</td></tr>`;}).join('')+'</tbody></table>';
+})();
+
+/* ---- Stage 4 混淆矩陣＋Stage 5 ---- */
+(function(){
+ const svg=$('svgConf'),cm=R.stage4.answered.confusion,lab=R.stage4.answered.labels;
+ const n=lab.length,cs=Math.min(44,(360-70)/n),x0=70,y0=40;
+ const rowSum=cm.map(r=>r.reduce((a,b)=>a+b,0));
+ txt(svg,x0+n*cs/2,14,'預測 →','tick','middle');
+ lab.forEach((l,j)=>txt(svg,x0+j*cs+cs/2,y0-6,l,'tick','middle'));
+ lab.forEach((l,i)=>{
+  txt(svg,x0-8,y0+i*cs+cs/2+3,l,'tick','end');
+  lab.forEach((_,j)=>{
+   const v=cm[i][j],fr=rowSum[i]?v/rowSum[i]:0;
+   const g=Math.round(245-fr*205);
+   el('rect',{x:x0+j*cs,y:y0+i*cs,width:cs-2,height:cs-2,fill:`rgb(${g},${g},${g})`,stroke:'#ccc'},svg);
+   if(v)txt(svg,x0+j*cs+cs/2-1,y0+i*cs+cs/2+3,v,'tick','middle').setAttribute('fill',fr>0.55?'#fff':'#333');
+  });
+ });
+ txt(svg,16,y0+n*cs/2,'真實 ↓','tick').setAttribute('transform',`rotate(-90 16 ${y0+n*cs/2})`);
+ txt(svg,x0,y0+n*cs+22,'列＝真實格（依列正規化上色）；只含有判定者','tick');
+ $('boxTable').innerHTML='<table><thead><tr><th>格</th><th>n</th><th>召回</th><th>PPV</th><th>NPV</th></tr></thead><tbody>'+
+  Object.entries(R.stage4.answered.per_class).map(([c,m])=>`<tr><td>${c}</td><td>${m.n}</td><td>${fmt(m.recall)}</td><td>${fmt(m.ppv)}</td><td>${fmt(m.npv)}</td></tr>`).join('')+
+  '</tbody></table><p class="note" style="margin-top:6px">PPV／NPV 依本（合成）族群實際盛行率換算。</p>';
+ $('s5kpi').innerHTML=[
+  ['檢驗節省率',fmt(s5.test_saving_rate_decided),`平均建議 ${fmt(s5.mean_items_recommended,1)} 項 vs 全面 ${s5.full_panel_items} 項`],
+  ['關鍵遺漏率（全）',fmt(s5.critical_omission_rate_all),'應開立而未建議'],
+  ['真 R 關鍵遺漏率',fmt(s5.R_critical_omission_rate),'全部來自 Stage 4 誤分流'],
+  ['判為 R 五項完整率',fmt(s5.R_five_items_when_routed_R,2),'硬性規則，程式 assert 保證'],
+  ['建議命中率',fmt(s5.hit_rate),'']
+ ].map(k=>`<div class="stat"><div class="lb">${k[0]}</div><div class="vl">${k[1]}</div><div class="sb">${k[2]}</div></div>`).join('');
+ $('s5byBox').innerHTML='<table><thead><tr><th>真實格</th><th>n</th><th>分流召回</th><th>關鍵遺漏率</th><th>該格建議</th></tr></thead><tbody>'+
+  Object.entries(s5.by_box).map(([b,m])=>{const rec=MD.recommendations[b];
+   return `<tr><td>${b}</td><td>${m.n}</td><td>${fmt(m.recall)}</td><td>${fmt(m.omission)}</td><td style="text-align:left" class="small">${rec?(rec.mandatory.length?rec.mandatory.join('、'):'無強制加驗項目')+(rec.note?'（'+rec.note+'）':''):''}</td></tr>`;}).join('')+'</tbody></table>';
+ $('s5note').textContent='R 格（急進型）為硬性規則：凡判為 R，五項一律同時開立，不得由模型機率覆蓋——誤判後果是把免疫抑制治療用於活動性感染，這一格靠檢驗不靠模型。';
+})();
+
+/* ---- 個案分流 ---- */
+const L1CH=MD.fparams.channels.filter(c=>!['C3','C4','pctUAE','LDH','HbA1c','sIgA'].includes(c));
+const NPANEL=4;
+(function buildInput(){
+ const t=$('inTable');
+ let h='<thead><tr><th>通道</th>'+Array.from({length:NPANEL},(_,j)=>`<th>成套${j+1}　day <input class="cell" style="width:56px" id="day_${j}" value="${[0,30,90,180][j]}"></th>`).join('')+'</tr></thead><tbody>';
+ L1CH.forEach(ch=>{h+=`<tr><td>${ch}</td>`+Array.from({length:NPANEL},(_,j)=>`<td><input class="cell" id="v_${ch}_${j}" placeholder="—"></td>`).join('')+'</tr>';});
+ t.innerHTML=h+'</tbody>';
+ const db=$('demoBtns');
+ MD.demo_cases.forEach(dc=>{const b=document.createElement('button');b.className='btn sec';b.textContent=`示範：真實格 ${dc.box}`;
+  b.onclick=()=>{clearIn();dc.panels.forEach((p,j)=>{if(j>=NPANEL)return;$('day_'+j).value=p.day;
+    L1CH.forEach(ch=>{const v=p[ch];if(v!=null)$(`v_${ch}_${j}`).value=v;});});window.__truth=dc;$('routeBtn').click();};
+  db.appendChild(b);});
+ const cb=document.createElement('button');cb.className='btn sec';cb.textContent='清空';cb.onclick=()=>{clearIn();window.__truth=null;$('routeOut').innerHTML='';};db.appendChild(cb);
+ function clearIn(){L1CH.forEach(ch=>{for(let j=0;j<NPANEL;j++)$(`v_${ch}_${j}`).value='';});}
+})();
+function transformOne(panels){
+ const fp=MD.fparams,out={};
+ const logs=new Set(fp.log_channels),minK=MD.slope_min;
+ const med={},idx={},slp={};
+ fp.channels.forEach(ch=>{
+  const pts=panels.filter(p=>p[ch]!=null&&isFinite(p[ch])).map(p=>[p.day,logs.has(ch)?Math.log(Math.max(p[ch],1e-9)):p[ch]]);
+  if(!pts.length){med[ch]=idx[ch]=slp[ch]=NaN;return;}
+  const vs=pts.map(q=>q[1]).slice().sort((a,b)=>a-b);
+  med[ch]=vs.length%2?vs[(vs.length-1)/2]:(vs[vs.length/2-1]+vs[vs.length/2])/2;
+  const inw=pts.filter(q=>Math.abs(q[0])<=MD.index_window);idx[ch]=inw.length?inw.slice().sort((a,b)=>Math.abs(a[0])-Math.abs(b[0]))[0][1]:NaN;
+  const days=pts.map(q=>q[0]);
+  if(pts.length>=minK&&Math.max(...days)>Math.min(...days)){
+   const n=pts.length,mx=days.reduce((a,b)=>a+b,0)/n,my=pts.reduce((a,q)=>a+q[1],0)/n;
+   let sxx=0,sxy=0;pts.forEach(q=>{sxx+=(q[0]-mx)**2;sxy+=(q[0]-mx)*(q[1]-my);});
+   slp[ch]=sxx>0?sxy/sxx*365:NaN;
+  }else slp[ch]=NaN;
+ });
+ fp.channels.forEach(ch=>{
+  const pi=fp.level_index[ch],pm=fp.level_median[ch],ps=fp.slope[ch];
+  out['L0_'+ch]=(idx[ch]-pi.center)/pi.sd;out['L_'+ch]=(med[ch]-pm.center)/pm.sd;out['S_'+ch]=slp[ch]/ps.sd;
+ });
+ fp.ratios.forEach(([a,b])=>{const pr=fp.ratio[a+'_'+b];out[`R_${a}_${b}`]=(med[a]-med[b]-pr.center)/pr.sd;});
+ return out;
+}
+function predictStage(s,feat){
+ const m=MD.stages[s];
+ const x=m.cols.map((c,i)=>{const v=feat[c];return(v==null||!isFinite(v))?m.impute_median[i]:v;})
+  .map((v,i)=>(v-m.scale_mean[i])/m.scale_sd[i]);
+ const z=m.coef.map((row,ci)=>m.intercept[ci]+row.reduce((a,w,i)=>a+w*x[i],0));
+ let p;
+ if(m.classes.length===2){const q=1/(1+Math.exp(-z[0]));p=[1-q,q];}
+ else{const mx=Math.max(...z),e=z.map(v=>Math.exp(v-mx)),Se=e.reduce((a,b)=>a+b,0);p=e.map(v=>v/Se);}
+ const conf=Math.max(...p),ki=p.indexOf(conf);
+ const th=MD.thresholds[s];
+ return {classes:m.classes,proba:p,pred:conf>=th?m.classes[ki]:'無法判定',conf,threshold:th,x,cols:m.cols,coefRow:m.coef.length===1?m.coef[0]:m.coef[ki]};
+}
+function boxOf(a,s,p){
+ if(s==='血管'||(a==='1'&&s==='腎絲球'))return 'R';
+ if(s==='腎小管間質')return a==='1'?'A':'A2';
+ if(p==='腎病症候群')return 'C';if(p==='腎炎症候群')return 'D';if(p==='孤立血尿')return 'F';return 'E';
+}
+$('routeBtn').onclick=()=>{
+ const panels=[];
+ for(let j=0;j<NPANEL;j++){
+  const d=parseFloat($('day_'+j).value);if(!isFinite(d))continue;
+  const row={day:d};let any=false;
+  L1CH.forEach(ch=>{const v=parseFloat($(`v_${ch}_${j}`).value);if(isFinite(v)){row[ch]=v;any=true;}});
+  if(any)panels.push(row);
+ }
+ if(!panels.length){$('routeOut').innerHTML='<p class="note" style="color:#a33">尚未輸入任何數值。</p>';return;}
+ const feat=transformOne(panels);
+ const res={};['1','2','3'].forEach(s=>res[s]=predictStage(s,feat));
+ const undecided=Object.values(res).some(r=>r.pred==='無法判定');
+ const bx=undecided?'無法判定':boxOf(res['1'].pred,res['2'].pred,res['3'].pred);
+ const rec=bx==='無法判定'?null:MD.recommendations[bx];
+ const truth=window.__truth;
+ const stageCard=s=>{const r=res[s];
+  const dist=r.classes.map((c,i)=>`${STG[s]==='急性度'?(c==='1'?'快速惡化':'非快速'):c} ${fmt(r.proba[i],2)}`).join('、');
+  const contrib=r.cols.map((c,i)=>({c,v:r.coefRow[i]*r.x[i]})).sort((a,b)=>Math.abs(b.v)-Math.abs(a.v)).slice(0,3)
+   .map(o=>`${o.c}（${o.v>=0?'+':''}${fmt(o.v,2)}）`).join('、');
+  const lab=r.pred==='無法判定'?'無法判定':(STG[s]==='急性度'?(r.pred==='1'?'快速惡化':'非快速'):r.pred);
+  return `<div class="stat"><div class="lb">Stage ${s}　${STG[s]}（門檻 ${r.threshold}）</div><div class="vl" style="font-size:17px">${lab}</div>`+
+   `<div class="sb">機率：${dist}</div><div class="sb">主要依據：${contrib}</div></div>`;};
+ $('routeOut').innerHTML=
+  `<div class="kpi">${['1','2','3'].map(stageCard).join('')}</div>`+
+  `<div class="stat" style="margin-top:12px"><div class="lb">Stage 4　分流格</div><div class="vl">${bx}</div>`+
+  (bx==='無法判定'?'<div class="sb">任一階段信心不足即停止，不強行分類；交回臨床判斷。</div>':
+   `<div class="sb">${bx==='R'?'急進型（硬性規則：五項同時開立，不得由模型覆蓋）':''}</div>`)+`</div>`+
+  (rec?`<div class="stat" style="margin-top:10px"><div class="lb">Stage 5　建議檢驗</div><div class="vl" style="font-size:15px">${rec.mandatory.length?rec.mandatory.join('、'):'本格無強制加驗項目'}</div>`+
+   (rec.note?`<div class="sb">${rec.note}</div>`:'')+`</div>`:'')+
+  (truth?`<p class="note" style="margin-top:8px">此示範個案的真實標籤：急性度 ${truth.acute?'快速惡化':'非快速'}、部位 ${truth.site}、表現型 ${truth.pheno} → 真實格 <b>${truth.box}</b>${bx===truth.box?'（分流正確）':bx==='無法判定'?'（拒答）':'（分流錯誤——照實呈現）'}</p>`:'')+
+  `<p class="note" style="margin-top:6px">模型到此為止：確認（培養／抗體／基因／切片）由醫師執行；本頁不預測病名、不決定切片、不建議治療。合成模型示範，不適用於真實個人。</p>`;
+};
+
+/* ---- 出處 ---- */
+(function(){
+ const tb=document.querySelector('#provTable tbody');
+ const TAG={anchored:['anchored','anchored'],pending_extraction:['pending','pending_extraction'],study_defined:['','study_defined']};
+ PACK.provenance.forEach(r=>{
+  const [cls,zh]=TAG[r.status]||['',r.status];
+  const tr=document.createElement('tr');
+  const v=r.has_placeholder?'null（佔位執行——見頁首警告）':(typeof r.value==='object'?JSON.stringify(r.value).slice(0,120):String(r.value));
+  tr.innerHTML=`<td><code>${r.key}</code></td><td><span class="tag ${cls}">${zh}</span></td><td style="max-width:280px;word-break:break-all">${v}</td><td class="small">${r.source||''}</td>`;
+  tb.appendChild(tr);
+ });
+})();
+</script>
+</body>
+</html>

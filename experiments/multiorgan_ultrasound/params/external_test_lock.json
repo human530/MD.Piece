@@ -1,0 +1,15 @@
+{
+  "dataset": "TCIA BREAST-LESIONS-USG",
+  "source": "https://doi.org/10.7937/9WKK-Q141",
+  "license": "CC-BY-4.0",
+  "archive_sha256": "c32e49cdfa54042e065582d0cb35978b5fc5e5b5e461b33bf773fb50cfdad355",
+  "clinical_sha256": "89a8874496a6f1f93960390b963f7369b90f7e72ee08a738f2d17e37f5eff8bf",
+  "all_patients": 256,
+  "eligible_patients": 252,
+  "eligible_counts": {
+    "benign": 154,
+    "malignant": 98
+  },
+  "excluded": "4 normal cases without a lesion mask; outside the lesion malignancy task",
+  "locked_before_evaluation_at": "2026-08-30T12:05:00+0800"
+}

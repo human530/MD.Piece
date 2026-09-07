@@ -1,0 +1,1429 @@
+{
+ "_meta": {
+  "note": "真實公開資料 manifest——每個 URL 皆於 2026-08-30 經 NHANES datapage 逐頁驗證（wwwn.cdc.gov 檢索頁）。SSANA 涵蓋 1999-2004 三週期 surplus sera（n=4532；628 位 3+/4+ 有滴度與特異抗體）。",
+  "base": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public",
+  "verified_via": "datapage.aspx?Component=Laboratory/Questionnaire&CycleBeginYear=1999/2001/2003 ＋ SSANA_A.htm 文件頁",
+  "extended": "2026-08-30 第二批：脂質盤/重金屬/營養素/維生素D/胱蛋白酶抑制素C——腎臟相關指數全景（datapage 逐頁驗證）",
+  "extended_2005_2018": "2026-08-30 第三批：2005–2018 七個週期（T2/T3/T4 不需 ANA，可擴充樣本）。每個檔名皆以『HTTP 200 且內容開頭為 HEADER RECORD』實測驗證——注意 /Nchs/Nhanes/YYYY-YYYY/ 路徑對任何檔名都回 200＋HTML 錯誤頁，不可用於探測。CRP 僅至 2009-2010；hsCRP 自 2015-2016 起。",
+  "exposure_expansion": "2026-08-31 加入 14 個暴露通道（藥物／金屬／化學品／職業／體位／問卷）——轉向從上游找原因；先前僅有血液生化即下游狀態"
+ },
+ "files": {
+  "DEMO.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/DEMO.xpt",
+   "cycle": "1999-2000",
+   "role": "demographics"
+  },
+  "DEMO_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/DEMO_B.xpt",
+   "cycle": "2001-2002",
+   "role": "demographics"
+  },
+  "DEMO_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/DEMO_C.xpt",
+   "cycle": "2003-2004",
+   "role": "demographics"
+  },
+  "LAB18.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB18.xpt",
+   "cycle": "1999-2000",
+   "role": "biochem"
+  },
+  "L40_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L40_B.xpt",
+   "cycle": "2001-2002",
+   "role": "biochem"
+  },
+  "L40_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L40_C.xpt",
+   "cycle": "2003-2004",
+   "role": "biochem"
+  },
+  "LAB25.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB25.xpt",
+   "cycle": "1999-2000",
+   "role": "cbc"
+  },
+  "L25_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L25_B.xpt",
+   "cycle": "2001-2002",
+   "role": "cbc"
+  },
+  "L25_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L25_C.xpt",
+   "cycle": "2003-2004",
+   "role": "cbc"
+  },
+  "LAB11.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB11.xpt",
+   "cycle": "1999-2000",
+   "role": "crp"
+  },
+  "L11_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L11_B.xpt",
+   "cycle": "2001-2002",
+   "role": "crp"
+  },
+  "L11_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L11_C.xpt",
+   "cycle": "2003-2004",
+   "role": "crp"
+  },
+  "LAB16.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB16.xpt",
+   "cycle": "1999-2000",
+   "role": "urine_acr"
+  },
+  "L16_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L16_B.xpt",
+   "cycle": "2001-2002",
+   "role": "urine_acr"
+  },
+  "L16_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L16_C.xpt",
+   "cycle": "2003-2004",
+   "role": "urine_acr"
+  },
+  "LAB10.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB10.xpt",
+   "cycle": "1999-2000",
+   "role": "archive_metabolic_hba1c"
+  },
+  "L10_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L10_B.xpt",
+   "cycle": "2001-2002",
+   "role": "archive_metabolic_hba1c"
+  },
+  "L10_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L10_C.xpt",
+   "cycle": "2003-2004",
+   "role": "archive_metabolic_hba1c"
+  },
+  "LAB02.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB02.xpt",
+   "cycle": "1999-2000",
+   "role": "archive_infection_hepatitis"
+  },
+  "L02_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L02_B.xpt",
+   "cycle": "2001-2002",
+   "role": "archive_infection_hepatitis"
+  },
+  "L02_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L02_C.xpt",
+   "cycle": "2003-2004",
+   "role": "archive_infection_hepatitis"
+  },
+  "SSANA_A.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/SSANA_A.xpt",
+   "cycle": "1999-2004",
+   "role": "archive_immune_ana"
+  },
+  "SSANA2_A.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/SSANA2_A.xpt",
+   "cycle": "1999-2004",
+   "role": "archive_immune_ana2"
+  },
+  "DIQ.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/DIQ.xpt",
+   "cycle": "1999-2000",
+   "role": "archive_metabolic_diq"
+  },
+  "DIQ_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/DIQ_B.xpt",
+   "cycle": "2001-2002",
+   "role": "archive_metabolic_diq"
+  },
+  "DIQ_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/DIQ_C.xpt",
+   "cycle": "2003-2004",
+   "role": "archive_metabolic_diq"
+  },
+  "LAB13.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB13.xpt",
+   "cycle": "1999-2000",
+   "role": "lipids_tc_hdl"
+  },
+  "L13_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L13_B.xpt",
+   "cycle": "2001-2002",
+   "role": "lipids_tc_hdl"
+  },
+  "L13_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L13_C.xpt",
+   "cycle": "2003-2004",
+   "role": "lipids_tc_hdl"
+  },
+  "LAB13AM.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB13AM.xpt",
+   "cycle": "1999-2000",
+   "role": "lipids_ldl_tg"
+  },
+  "L13AM_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L13AM_B.xpt",
+   "cycle": "2001-2002",
+   "role": "lipids_ldl_tg"
+  },
+  "L13AM_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L13AM_C.xpt",
+   "cycle": "2003-2004",
+   "role": "lipids_ldl_tg"
+  },
+  "LAB06.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/LAB06.xpt",
+   "cycle": "1999-2000",
+   "role": "metals_nutrition"
+  },
+  "L06_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L06_B.xpt",
+   "cycle": "2001-2002",
+   "role": "metals_nutrition"
+  },
+  "L06BMT_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L06BMT_C.xpt",
+   "cycle": "2003-2004",
+   "role": "metals"
+  },
+  "L06NB_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L06NB_C.xpt",
+   "cycle": "2003-2004",
+   "role": "folate_b12"
+  },
+  "L06MH_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L06MH_C.xpt",
+   "cycle": "2003-2004",
+   "role": "homocysteine"
+  },
+  "L06TFR_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L06TFR_C.xpt",
+   "cycle": "2003-2004",
+   "role": "ferritin_tfr"
+  },
+  "VID_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/VID_B.xpt",
+   "cycle": "2001-2002",
+   "role": "vitamin_d"
+  },
+  "VID_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/VID_C.xpt",
+   "cycle": "2003-2004",
+   "role": "vitamin_d"
+  },
+  "SSCYST_A.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/SSCYST_A.xpt",
+   "cycle": "1999-2000",
+   "role": "cystatin_c_surplus"
+  },
+  "SSCYST_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/SSCYST_B.xpt",
+   "cycle": "2001-2002",
+   "role": "cystatin_c_surplus"
+  },
+  "DEMO_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/DEMO_D.xpt",
+   "cycle": "2005-2006",
+   "role": "demographics"
+  },
+  "BIOPRO_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BIOPRO_D.xpt",
+   "cycle": "2005-2006",
+   "role": "biochem"
+  },
+  "CBC_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/CBC_D.xpt",
+   "cycle": "2005-2006",
+   "role": "cbc"
+  },
+  "ALB_CR_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/ALB_CR_D.xpt",
+   "cycle": "2005-2006",
+   "role": "urine_acr"
+  },
+  "GHB_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/GHB_D.xpt",
+   "cycle": "2005-2006",
+   "role": "archive_metabolic_hba1c"
+  },
+  "DIQ_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/DIQ_D.xpt",
+   "cycle": "2005-2006",
+   "role": "archive_metabolic_diq"
+  },
+  "HEPBD_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/HEPBD_D.xpt",
+   "cycle": "2005-2006",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPC_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/HEPC_D.xpt",
+   "cycle": "2005-2006",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPB_S_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/HEPB_S_D.xpt",
+   "cycle": "2005-2006",
+   "role": "archive_infection_hepatitis"
+  },
+  "CRP_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/CRP_D.xpt",
+   "cycle": "2005-2006",
+   "role": "crp"
+  },
+  "TCHOL_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/TCHOL_D.xpt",
+   "cycle": "2005-2006",
+   "role": "lipids_tc"
+  },
+  "HDL_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/HDL_D.xpt",
+   "cycle": "2005-2006",
+   "role": "lipids_hdl"
+  },
+  "TRIGLY_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/TRIGLY_D.xpt",
+   "cycle": "2005-2006",
+   "role": "lipids_ldl_tg"
+  },
+  "DEMO_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/DEMO_E.xpt",
+   "cycle": "2007-2008",
+   "role": "demographics"
+  },
+  "BIOPRO_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/BIOPRO_E.xpt",
+   "cycle": "2007-2008",
+   "role": "biochem"
+  },
+  "CBC_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/CBC_E.xpt",
+   "cycle": "2007-2008",
+   "role": "cbc"
+  },
+  "ALB_CR_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/ALB_CR_E.xpt",
+   "cycle": "2007-2008",
+   "role": "urine_acr"
+  },
+  "GHB_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/GHB_E.xpt",
+   "cycle": "2007-2008",
+   "role": "archive_metabolic_hba1c"
+  },
+  "DIQ_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/DIQ_E.xpt",
+   "cycle": "2007-2008",
+   "role": "archive_metabolic_diq"
+  },
+  "HEPBD_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/HEPBD_E.xpt",
+   "cycle": "2007-2008",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPC_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/HEPC_E.xpt",
+   "cycle": "2007-2008",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPB_S_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/HEPB_S_E.xpt",
+   "cycle": "2007-2008",
+   "role": "archive_infection_hepatitis"
+  },
+  "CRP_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/CRP_E.xpt",
+   "cycle": "2007-2008",
+   "role": "crp"
+  },
+  "TCHOL_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/TCHOL_E.xpt",
+   "cycle": "2007-2008",
+   "role": "lipids_tc"
+  },
+  "HDL_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/HDL_E.xpt",
+   "cycle": "2007-2008",
+   "role": "lipids_hdl"
+  },
+  "TRIGLY_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/TRIGLY_E.xpt",
+   "cycle": "2007-2008",
+   "role": "lipids_ldl_tg"
+  },
+  "DEMO_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/DEMO_F.xpt",
+   "cycle": "2009-2010",
+   "role": "demographics"
+  },
+  "BIOPRO_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/BIOPRO_F.xpt",
+   "cycle": "2009-2010",
+   "role": "biochem"
+  },
+  "CBC_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/CBC_F.xpt",
+   "cycle": "2009-2010",
+   "role": "cbc"
+  },
+  "ALB_CR_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/ALB_CR_F.xpt",
+   "cycle": "2009-2010",
+   "role": "urine_acr"
+  },
+  "GHB_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/GHB_F.xpt",
+   "cycle": "2009-2010",
+   "role": "archive_metabolic_hba1c"
+  },
+  "DIQ_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/DIQ_F.xpt",
+   "cycle": "2009-2010",
+   "role": "archive_metabolic_diq"
+  },
+  "HEPBD_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/HEPBD_F.xpt",
+   "cycle": "2009-2010",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPC_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/HEPC_F.xpt",
+   "cycle": "2009-2010",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPB_S_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/HEPB_S_F.xpt",
+   "cycle": "2009-2010",
+   "role": "archive_infection_hepatitis"
+  },
+  "CRP_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/CRP_F.xpt",
+   "cycle": "2009-2010",
+   "role": "crp"
+  },
+  "TCHOL_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/TCHOL_F.xpt",
+   "cycle": "2009-2010",
+   "role": "lipids_tc"
+  },
+  "HDL_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/HDL_F.xpt",
+   "cycle": "2009-2010",
+   "role": "lipids_hdl"
+  },
+  "TRIGLY_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/TRIGLY_F.xpt",
+   "cycle": "2009-2010",
+   "role": "lipids_ldl_tg"
+  },
+  "DEMO_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DEMO_G.xpt",
+   "cycle": "2011-2012",
+   "role": "demographics"
+  },
+  "BIOPRO_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BIOPRO_G.xpt",
+   "cycle": "2011-2012",
+   "role": "biochem"
+  },
+  "CBC_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/CBC_G.xpt",
+   "cycle": "2011-2012",
+   "role": "cbc"
+  },
+  "ALB_CR_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/ALB_CR_G.xpt",
+   "cycle": "2011-2012",
+   "role": "urine_acr"
+  },
+  "GHB_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/GHB_G.xpt",
+   "cycle": "2011-2012",
+   "role": "archive_metabolic_hba1c"
+  },
+  "DIQ_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DIQ_G.xpt",
+   "cycle": "2011-2012",
+   "role": "archive_metabolic_diq"
+  },
+  "HEPBD_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/HEPBD_G.xpt",
+   "cycle": "2011-2012",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPC_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/HEPC_G.xpt",
+   "cycle": "2011-2012",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPB_S_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/HEPB_S_G.xpt",
+   "cycle": "2011-2012",
+   "role": "archive_infection_hepatitis"
+  },
+  "TCHOL_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/TCHOL_G.xpt",
+   "cycle": "2011-2012",
+   "role": "lipids_tc"
+  },
+  "HDL_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/HDL_G.xpt",
+   "cycle": "2011-2012",
+   "role": "lipids_hdl"
+  },
+  "TRIGLY_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/TRIGLY_G.xpt",
+   "cycle": "2011-2012",
+   "role": "lipids_ldl_tg"
+  },
+  "DEMO_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/DEMO_H.xpt",
+   "cycle": "2013-2014",
+   "role": "demographics"
+  },
+  "BIOPRO_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/BIOPRO_H.xpt",
+   "cycle": "2013-2014",
+   "role": "biochem"
+  },
+  "CBC_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/CBC_H.xpt",
+   "cycle": "2013-2014",
+   "role": "cbc"
+  },
+  "ALB_CR_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/ALB_CR_H.xpt",
+   "cycle": "2013-2014",
+   "role": "urine_acr"
+  },
+  "GHB_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/GHB_H.xpt",
+   "cycle": "2013-2014",
+   "role": "archive_metabolic_hba1c"
+  },
+  "DIQ_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/DIQ_H.xpt",
+   "cycle": "2013-2014",
+   "role": "archive_metabolic_diq"
+  },
+  "HEPBD_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/HEPBD_H.xpt",
+   "cycle": "2013-2014",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPC_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/HEPC_H.xpt",
+   "cycle": "2013-2014",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPB_S_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/HEPB_S_H.xpt",
+   "cycle": "2013-2014",
+   "role": "archive_infection_hepatitis"
+  },
+  "TCHOL_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/TCHOL_H.xpt",
+   "cycle": "2013-2014",
+   "role": "lipids_tc"
+  },
+  "HDL_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/HDL_H.xpt",
+   "cycle": "2013-2014",
+   "role": "lipids_hdl"
+  },
+  "TRIGLY_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/TRIGLY_H.xpt",
+   "cycle": "2013-2014",
+   "role": "lipids_ldl_tg"
+  },
+  "DEMO_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/DEMO_I.xpt",
+   "cycle": "2015-2016",
+   "role": "demographics"
+  },
+  "BIOPRO_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/BIOPRO_I.xpt",
+   "cycle": "2015-2016",
+   "role": "biochem"
+  },
+  "CBC_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/CBC_I.xpt",
+   "cycle": "2015-2016",
+   "role": "cbc"
+  },
+  "ALB_CR_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/ALB_CR_I.xpt",
+   "cycle": "2015-2016",
+   "role": "urine_acr"
+  },
+  "GHB_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/GHB_I.xpt",
+   "cycle": "2015-2016",
+   "role": "archive_metabolic_hba1c"
+  },
+  "DIQ_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/DIQ_I.xpt",
+   "cycle": "2015-2016",
+   "role": "archive_metabolic_diq"
+  },
+  "HEPBD_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/HEPBD_I.xpt",
+   "cycle": "2015-2016",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPC_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/HEPC_I.xpt",
+   "cycle": "2015-2016",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPB_S_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/HEPB_S_I.xpt",
+   "cycle": "2015-2016",
+   "role": "archive_infection_hepatitis"
+  },
+  "HSCRP_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/HSCRP_I.xpt",
+   "cycle": "2015-2016",
+   "role": "crp"
+  },
+  "TCHOL_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/TCHOL_I.xpt",
+   "cycle": "2015-2016",
+   "role": "lipids_tc"
+  },
+  "HDL_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/HDL_I.xpt",
+   "cycle": "2015-2016",
+   "role": "lipids_hdl"
+  },
+  "TRIGLY_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/TRIGLY_I.xpt",
+   "cycle": "2015-2016",
+   "role": "lipids_ldl_tg"
+  },
+  "DEMO_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DEMO_J.xpt",
+   "cycle": "2017-2018",
+   "role": "demographics"
+  },
+  "BIOPRO_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BIOPRO_J.xpt",
+   "cycle": "2017-2018",
+   "role": "biochem"
+  },
+  "CBC_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/CBC_J.xpt",
+   "cycle": "2017-2018",
+   "role": "cbc"
+  },
+  "ALB_CR_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/ALB_CR_J.xpt",
+   "cycle": "2017-2018",
+   "role": "urine_acr"
+  },
+  "GHB_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/GHB_J.xpt",
+   "cycle": "2017-2018",
+   "role": "archive_metabolic_hba1c"
+  },
+  "DIQ_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DIQ_J.xpt",
+   "cycle": "2017-2018",
+   "role": "archive_metabolic_diq"
+  },
+  "HEPBD_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/HEPBD_J.xpt",
+   "cycle": "2017-2018",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPC_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/HEPC_J.xpt",
+   "cycle": "2017-2018",
+   "role": "archive_infection_hepatitis"
+  },
+  "HEPB_S_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/HEPB_S_J.xpt",
+   "cycle": "2017-2018",
+   "role": "archive_infection_hepatitis"
+  },
+  "HSCRP_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/HSCRP_J.xpt",
+   "cycle": "2017-2018",
+   "role": "crp"
+  },
+  "TCHOL_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/TCHOL_J.xpt",
+   "cycle": "2017-2018",
+   "role": "lipids_tc"
+  },
+  "HDL_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/HDL_J.xpt",
+   "cycle": "2017-2018",
+   "role": "lipids_hdl"
+  },
+  "TRIGLY_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/TRIGLY_J.xpt",
+   "cycle": "2017-2018",
+   "role": "lipids_ldl_tg"
+  },
+  "RXQ_RX.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/RXQ_RX.xpt",
+   "cycle": "1999-2000",
+   "role": "exposure_drug",
+   "channel": "藥物"
+  },
+  "RXQ_RX_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/RXQ_RX_B.xpt",
+   "cycle": "2001-2002",
+   "role": "exposure_drug",
+   "channel": "藥物"
+  },
+  "RXQ_RX_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/RXQ_RX_C.xpt",
+   "cycle": "2003-2004",
+   "role": "exposure_drug",
+   "channel": "藥物"
+  },
+  "RXQ_RX_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/RXQ_RX_D.xpt",
+   "cycle": "2005-2006",
+   "role": "exposure_drug",
+   "channel": "藥物"
+  },
+  "RXQ_RX_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/RXQ_RX_E.xpt",
+   "cycle": "2007-2008",
+   "role": "exposure_drug",
+   "channel": "藥物"
+  },
+  "RXQ_RX_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/RXQ_RX_F.xpt",
+   "cycle": "2009-2010",
+   "role": "exposure_drug",
+   "channel": "藥物"
+  },
+  "RXQ_RX_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/RXQ_RX_G.xpt",
+   "cycle": "2011-2012",
+   "role": "exposure_drug",
+   "channel": "藥物"
+  },
+  "RXQ_RX_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/RXQ_RX_H.xpt",
+   "cycle": "2013-2014",
+   "role": "exposure_drug",
+   "channel": "藥物"
+  },
+  "RXQ_RX_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/RXQ_RX_I.xpt",
+   "cycle": "2015-2016",
+   "role": "exposure_drug",
+   "channel": "藥物"
+  },
+  "RXQ_RX_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/RXQ_RX_J.xpt",
+   "cycle": "2017-2018",
+   "role": "exposure_drug",
+   "channel": "藥物"
+  },
+  "PBCD_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PBCD_D.xpt",
+   "cycle": "2005-2006",
+   "role": "exposure_metal",
+   "channel": "血金屬"
+  },
+  "PBCD_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/PBCD_E.xpt",
+   "cycle": "2007-2008",
+   "role": "exposure_metal",
+   "channel": "血金屬"
+  },
+  "PBCD_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/PBCD_F.xpt",
+   "cycle": "2009-2010",
+   "role": "exposure_metal",
+   "channel": "血金屬"
+  },
+  "PBCD_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PBCD_G.xpt",
+   "cycle": "2011-2012",
+   "role": "exposure_metal",
+   "channel": "血金屬"
+  },
+  "PBCD_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/PBCD_H.xpt",
+   "cycle": "2013-2014",
+   "role": "exposure_metal",
+   "channel": "血金屬"
+  },
+  "PBCD_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/PBCD_I.xpt",
+   "cycle": "2015-2016",
+   "role": "exposure_metal",
+   "channel": "血金屬"
+  },
+  "PBCD_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/PBCD_J.xpt",
+   "cycle": "2017-2018",
+   "role": "exposure_metal",
+   "channel": "血金屬"
+  },
+  "UHM_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/UHM_D.xpt",
+   "cycle": "2005-2006",
+   "role": "exposure_metal",
+   "channel": "尿金屬"
+  },
+  "UHM_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/UHM_E.xpt",
+   "cycle": "2007-2008",
+   "role": "exposure_metal",
+   "channel": "尿金屬"
+  },
+  "UHM_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/UHM_F.xpt",
+   "cycle": "2009-2010",
+   "role": "exposure_metal",
+   "channel": "尿金屬"
+  },
+  "UHM_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/UHM_G.xpt",
+   "cycle": "2011-2012",
+   "role": "exposure_metal",
+   "channel": "尿金屬"
+  },
+  "UM_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/UM_H.xpt",
+   "cycle": "2013-2014",
+   "role": "exposure_metal",
+   "channel": "尿金屬"
+  },
+  "UM_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/UM_I.xpt",
+   "cycle": "2015-2016",
+   "role": "exposure_metal",
+   "channel": "尿金屬"
+  },
+  "UM_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/UM_J.xpt",
+   "cycle": "2017-2018",
+   "role": "exposure_metal",
+   "channel": "尿金屬"
+  },
+  "UAS_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/UAS_D.xpt",
+   "cycle": "2005-2006",
+   "role": "exposure_metal",
+   "channel": "尿砷"
+  },
+  "UAS_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/UAS_E.xpt",
+   "cycle": "2007-2008",
+   "role": "exposure_metal",
+   "channel": "尿砷"
+  },
+  "UAS_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/UAS_F.xpt",
+   "cycle": "2009-2010",
+   "role": "exposure_metal",
+   "channel": "尿砷"
+  },
+  "UAS_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/UAS_G.xpt",
+   "cycle": "2011-2012",
+   "role": "exposure_metal",
+   "channel": "尿砷"
+  },
+  "UAS_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/UAS_H.xpt",
+   "cycle": "2013-2014",
+   "role": "exposure_metal",
+   "channel": "尿砷"
+  },
+  "UAS_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/UAS_I.xpt",
+   "cycle": "2015-2016",
+   "role": "exposure_metal",
+   "channel": "尿砷"
+  },
+  "UAS_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/UAS_J.xpt",
+   "cycle": "2017-2018",
+   "role": "exposure_metal",
+   "channel": "尿砷"
+  },
+  "L24PFC_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L24PFC_C.xpt",
+   "cycle": "2003-2004",
+   "role": "exposure_chem",
+   "channel": "PFAS"
+  },
+  "PFC_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PFC_D.xpt",
+   "cycle": "2005-2006",
+   "role": "exposure_chem",
+   "channel": "PFAS"
+  },
+  "PFC_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/PFC_E.xpt",
+   "cycle": "2007-2008",
+   "role": "exposure_chem",
+   "channel": "PFAS"
+  },
+  "PFC_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/PFC_F.xpt",
+   "cycle": "2009-2010",
+   "role": "exposure_chem",
+   "channel": "PFAS"
+  },
+  "PFC_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PFC_G.xpt",
+   "cycle": "2011-2012",
+   "role": "exposure_chem",
+   "channel": "PFAS"
+  },
+  "PFAS_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/PFAS_H.xpt",
+   "cycle": "2013-2014",
+   "role": "exposure_chem",
+   "channel": "PFAS"
+  },
+  "PFAS_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/PFAS_I.xpt",
+   "cycle": "2015-2016",
+   "role": "exposure_chem",
+   "channel": "PFAS"
+  },
+  "PFAS_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/PFAS_J.xpt",
+   "cycle": "2017-2018",
+   "role": "exposure_chem",
+   "channel": "PFAS"
+  },
+  "PHPYPA.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/PHPYPA.xpt",
+   "cycle": "1999-2000",
+   "role": "exposure_chem",
+   "channel": "塑化劑"
+  },
+  "PHPYPA_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/PHPYPA_B.xpt",
+   "cycle": "2001-2002",
+   "role": "exposure_chem",
+   "channel": "塑化劑"
+  },
+  "L24PH_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/L24PH_C.xpt",
+   "cycle": "2003-2004",
+   "role": "exposure_chem",
+   "channel": "塑化劑"
+  },
+  "PHTHTE_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PHTHTE_D.xpt",
+   "cycle": "2005-2006",
+   "role": "exposure_chem",
+   "channel": "塑化劑"
+  },
+  "PHTHTE_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/PHTHTE_E.xpt",
+   "cycle": "2007-2008",
+   "role": "exposure_chem",
+   "channel": "塑化劑"
+  },
+  "PHTHTE_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/PHTHTE_F.xpt",
+   "cycle": "2009-2010",
+   "role": "exposure_chem",
+   "channel": "塑化劑"
+  },
+  "PHTHTE_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PHTHTE_G.xpt",
+   "cycle": "2011-2012",
+   "role": "exposure_chem",
+   "channel": "塑化劑"
+  },
+  "PHTHTE_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/PHTHTE_H.xpt",
+   "cycle": "2013-2014",
+   "role": "exposure_chem",
+   "channel": "塑化劑"
+  },
+  "PHTHTE_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/PHTHTE_I.xpt",
+   "cycle": "2015-2016",
+   "role": "exposure_chem",
+   "channel": "塑化劑"
+  },
+  "PHTHTE_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/PHTHTE_J.xpt",
+   "cycle": "2017-2018",
+   "role": "exposure_chem",
+   "channel": "塑化劑"
+  },
+  "L26PP_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/L26PP_B.xpt",
+   "cycle": "2001-2002",
+   "role": "exposure_chem",
+   "channel": "農藥"
+  },
+  "PP_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/PP_D.xpt",
+   "cycle": "2005-2006",
+   "role": "exposure_chem",
+   "channel": "農藥"
+  },
+  "PP_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/PP_E.xpt",
+   "cycle": "2007-2008",
+   "role": "exposure_chem",
+   "channel": "農藥"
+  },
+  "PP_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/PP_F.xpt",
+   "cycle": "2009-2010",
+   "role": "exposure_chem",
+   "channel": "農藥"
+  },
+  "PP_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PP_G.xpt",
+   "cycle": "2011-2012",
+   "role": "exposure_chem",
+   "channel": "農藥"
+  },
+  "UPHOPM_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/UPHOPM_H.xpt",
+   "cycle": "2013-2014",
+   "role": "exposure_chem",
+   "channel": "農藥"
+  },
+  "UPHOPM_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/UPHOPM_I.xpt",
+   "cycle": "2015-2016",
+   "role": "exposure_chem",
+   "channel": "農藥"
+  },
+  "UPHOPM_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/UPHOPM_J.xpt",
+   "cycle": "2017-2018",
+   "role": "exposure_chem",
+   "channel": "農藥"
+  },
+  "OCQ.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/OCQ.xpt",
+   "cycle": "1999-2000",
+   "role": "exposure_occ",
+   "channel": "職業"
+  },
+  "OCQ_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/OCQ_B.xpt",
+   "cycle": "2001-2002",
+   "role": "exposure_occ",
+   "channel": "職業"
+  },
+  "OCQ_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/OCQ_C.xpt",
+   "cycle": "2003-2004",
+   "role": "exposure_occ",
+   "channel": "職業"
+  },
+  "OCQ_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/OCQ_D.xpt",
+   "cycle": "2005-2006",
+   "role": "exposure_occ",
+   "channel": "職業"
+  },
+  "OCQ_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/OCQ_E.xpt",
+   "cycle": "2007-2008",
+   "role": "exposure_occ",
+   "channel": "職業"
+  },
+  "OCQ_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/OCQ_F.xpt",
+   "cycle": "2009-2010",
+   "role": "exposure_occ",
+   "channel": "職業"
+  },
+  "OCQ_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/OCQ_G.xpt",
+   "cycle": "2011-2012",
+   "role": "exposure_occ",
+   "channel": "職業"
+  },
+  "OCQ_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/OCQ_H.xpt",
+   "cycle": "2013-2014",
+   "role": "exposure_occ",
+   "channel": "職業"
+  },
+  "OCQ_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/OCQ_I.xpt",
+   "cycle": "2015-2016",
+   "role": "exposure_occ",
+   "channel": "職業"
+  },
+  "OCQ_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/OCQ_J.xpt",
+   "cycle": "2017-2018",
+   "role": "exposure_occ",
+   "channel": "職業"
+  },
+  "BPX.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/BPX.xpt",
+   "cycle": "1999-2000",
+   "role": "covariate",
+   "channel": "血壓"
+  },
+  "BPX_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BPX_B.xpt",
+   "cycle": "2001-2002",
+   "role": "covariate",
+   "channel": "血壓"
+  },
+  "BPX_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/BPX_C.xpt",
+   "cycle": "2003-2004",
+   "role": "covariate",
+   "channel": "血壓"
+  },
+  "BPX_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BPX_D.xpt",
+   "cycle": "2005-2006",
+   "role": "covariate",
+   "channel": "血壓"
+  },
+  "BPX_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/BPX_E.xpt",
+   "cycle": "2007-2008",
+   "role": "covariate",
+   "channel": "血壓"
+  },
+  "BPX_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/BPX_F.xpt",
+   "cycle": "2009-2010",
+   "role": "covariate",
+   "channel": "血壓"
+  },
+  "BPX_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BPX_G.xpt",
+   "cycle": "2011-2012",
+   "role": "covariate",
+   "channel": "血壓"
+  },
+  "BPX_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/BPX_H.xpt",
+   "cycle": "2013-2014",
+   "role": "covariate",
+   "channel": "血壓"
+  },
+  "BPX_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/BPX_I.xpt",
+   "cycle": "2015-2016",
+   "role": "covariate",
+   "channel": "血壓"
+  },
+  "BPX_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BPX_J.xpt",
+   "cycle": "2017-2018",
+   "role": "covariate",
+   "channel": "血壓"
+  },
+  "BMX.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/BMX.xpt",
+   "cycle": "1999-2000",
+   "role": "covariate",
+   "channel": "體位"
+  },
+  "BMX_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/BMX_B.xpt",
+   "cycle": "2001-2002",
+   "role": "covariate",
+   "channel": "體位"
+  },
+  "BMX_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/BMX_C.xpt",
+   "cycle": "2003-2004",
+   "role": "covariate",
+   "channel": "體位"
+  },
+  "BMX_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/BMX_D.xpt",
+   "cycle": "2005-2006",
+   "role": "covariate",
+   "channel": "體位"
+  },
+  "BMX_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/BMX_E.xpt",
+   "cycle": "2007-2008",
+   "role": "covariate",
+   "channel": "體位"
+  },
+  "BMX_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/BMX_F.xpt",
+   "cycle": "2009-2010",
+   "role": "covariate",
+   "channel": "體位"
+  },
+  "BMX_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BMX_G.xpt",
+   "cycle": "2011-2012",
+   "role": "covariate",
+   "channel": "體位"
+  },
+  "BMX_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/BMX_H.xpt",
+   "cycle": "2013-2014",
+   "role": "covariate",
+   "channel": "體位"
+  },
+  "BMX_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/BMX_I.xpt",
+   "cycle": "2015-2016",
+   "role": "covariate",
+   "channel": "體位"
+  },
+  "BMX_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BMX_J.xpt",
+   "cycle": "2017-2018",
+   "role": "covariate",
+   "channel": "體位"
+  },
+  "SMQ.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/SMQ.xpt",
+   "cycle": "1999-2000",
+   "role": "covariate",
+   "channel": "抽菸"
+  },
+  "SMQ_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/SMQ_B.xpt",
+   "cycle": "2001-2002",
+   "role": "covariate",
+   "channel": "抽菸"
+  },
+  "SMQ_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/SMQ_C.xpt",
+   "cycle": "2003-2004",
+   "role": "covariate",
+   "channel": "抽菸"
+  },
+  "SMQ_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/SMQ_D.xpt",
+   "cycle": "2005-2006",
+   "role": "covariate",
+   "channel": "抽菸"
+  },
+  "SMQ_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/SMQ_E.xpt",
+   "cycle": "2007-2008",
+   "role": "covariate",
+   "channel": "抽菸"
+  },
+  "SMQ_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/SMQ_F.xpt",
+   "cycle": "2009-2010",
+   "role": "covariate",
+   "channel": "抽菸"
+  },
+  "SMQ_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/SMQ_G.xpt",
+   "cycle": "2011-2012",
+   "role": "covariate",
+   "channel": "抽菸"
+  },
+  "SMQ_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/SMQ_H.xpt",
+   "cycle": "2013-2014",
+   "role": "covariate",
+   "channel": "抽菸"
+  },
+  "SMQ_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/SMQ_I.xpt",
+   "cycle": "2015-2016",
+   "role": "covariate",
+   "channel": "抽菸"
+  },
+  "SMQ_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/SMQ_J.xpt",
+   "cycle": "2017-2018",
+   "role": "covariate",
+   "channel": "抽菸"
+  },
+  "ALQ.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/ALQ.xpt",
+   "cycle": "1999-2000",
+   "role": "covariate",
+   "channel": "酒精"
+  },
+  "ALQ_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/ALQ_B.xpt",
+   "cycle": "2001-2002",
+   "role": "covariate",
+   "channel": "酒精"
+  },
+  "ALQ_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/ALQ_C.xpt",
+   "cycle": "2003-2004",
+   "role": "covariate",
+   "channel": "酒精"
+  },
+  "ALQ_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/ALQ_D.xpt",
+   "cycle": "2005-2006",
+   "role": "covariate",
+   "channel": "酒精"
+  },
+  "ALQ_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/ALQ_E.xpt",
+   "cycle": "2007-2008",
+   "role": "covariate",
+   "channel": "酒精"
+  },
+  "ALQ_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/ALQ_F.xpt",
+   "cycle": "2009-2010",
+   "role": "covariate",
+   "channel": "酒精"
+  },
+  "ALQ_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/ALQ_G.xpt",
+   "cycle": "2011-2012",
+   "role": "covariate",
+   "channel": "酒精"
+  },
+  "ALQ_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/ALQ_H.xpt",
+   "cycle": "2013-2014",
+   "role": "covariate",
+   "channel": "酒精"
+  },
+  "ALQ_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/ALQ_I.xpt",
+   "cycle": "2015-2016",
+   "role": "covariate",
+   "channel": "酒精"
+  },
+  "ALQ_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/ALQ_J.xpt",
+   "cycle": "2017-2018",
+   "role": "covariate",
+   "channel": "酒精"
+  },
+  "KIQ.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/KIQ.xpt",
+   "cycle": "1999-2000",
+   "role": "label_check",
+   "channel": "腎病問卷"
+  },
+  "KIQ_U_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/KIQ_U_B.xpt",
+   "cycle": "2001-2002",
+   "role": "label_check",
+   "channel": "腎病問卷"
+  },
+  "KIQ_U_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/KIQ_U_C.xpt",
+   "cycle": "2003-2004",
+   "role": "label_check",
+   "channel": "腎病問卷"
+  },
+  "KIQ_U_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/KIQ_U_D.xpt",
+   "cycle": "2005-2006",
+   "role": "label_check",
+   "channel": "腎病問卷"
+  },
+  "KIQ_U_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/KIQ_U_E.xpt",
+   "cycle": "2007-2008",
+   "role": "label_check",
+   "channel": "腎病問卷"
+  },
+  "KIQ_U_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/KIQ_U_F.xpt",
+   "cycle": "2009-2010",
+   "role": "label_check",
+   "channel": "腎病問卷"
+  },
+  "KIQ_U_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/KIQ_U_G.xpt",
+   "cycle": "2011-2012",
+   "role": "label_check",
+   "channel": "腎病問卷"
+  },
+  "KIQ_U_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/KIQ_U_H.xpt",
+   "cycle": "2013-2014",
+   "role": "label_check",
+   "channel": "腎病問卷"
+  },
+  "KIQ_U_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/KIQ_U_I.xpt",
+   "cycle": "2015-2016",
+   "role": "label_check",
+   "channel": "腎病問卷"
+  },
+  "KIQ_U_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/KIQ_U_J.xpt",
+   "cycle": "2017-2018",
+   "role": "label_check",
+   "channel": "腎病問卷"
+  },
+  "MCQ.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/MCQ.xpt",
+   "cycle": "1999-2000",
+   "role": "label_check",
+   "channel": "醫療狀況"
+  },
+  "MCQ_B.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2001/DataFiles/MCQ_B.xpt",
+   "cycle": "2001-2002",
+   "role": "label_check",
+   "channel": "醫療狀況"
+  },
+  "MCQ_C.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2003/DataFiles/MCQ_C.xpt",
+   "cycle": "2003-2004",
+   "role": "label_check",
+   "channel": "醫療狀況"
+  },
+  "MCQ_D.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2005/DataFiles/MCQ_D.xpt",
+   "cycle": "2005-2006",
+   "role": "label_check",
+   "channel": "醫療狀況"
+  },
+  "MCQ_E.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/MCQ_E.xpt",
+   "cycle": "2007-2008",
+   "role": "label_check",
+   "channel": "醫療狀況"
+  },
+  "MCQ_F.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/MCQ_F.xpt",
+   "cycle": "2009-2010",
+   "role": "label_check",
+   "channel": "醫療狀況"
+  },
+  "MCQ_G.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/MCQ_G.xpt",
+   "cycle": "2011-2012",
+   "role": "label_check",
+   "channel": "醫療狀況"
+  },
+  "MCQ_H.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/MCQ_H.xpt",
+   "cycle": "2013-2014",
+   "role": "label_check",
+   "channel": "醫療狀況"
+  },
+  "MCQ_I.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/MCQ_I.xpt",
+   "cycle": "2015-2016",
+   "role": "label_check",
+   "channel": "醫療狀況"
+  },
+  "MCQ_J.xpt": {
+   "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/MCQ_J.xpt",
+   "cycle": "2017-2018",
+   "role": "label_check",
+   "channel": "醫療狀況"
+  }
+ }
+}

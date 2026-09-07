@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>腎病病因階層模型——NHANES 真實資料</title>
+<style>
+:root{--ink:#16181d;--g1:#585c64;--g2:#9aa0a8;--g3:#d7dade;--bg:#f3f4f6;--card:#fff;--line:#e6e8eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:14px}
+.top{background:var(--ink);color:#fff;padding:14px 22px}
+.top h1{font-size:17px;font-weight:700}.top .sub{font-size:11.5px;color:#c8ccd2;margin-top:2px}
+.warn{background:#fff8f0;border-bottom:1px solid #e5c9a5;padding:8px 22px;font-size:12px;color:#7a5320}
+.wrap{max-width:1160px;margin:0 auto;padding:16px 18px 60px}
+nav{display:flex;gap:4px;margin:6px 0 14px;border-bottom:1px solid var(--g3);flex-wrap:wrap}
+nav button{border:0;background:none;font:inherit;font-size:14px;padding:8px 14px;cursor:pointer;color:var(--g1);border-bottom:2px solid transparent}
+nav button.on{color:var(--ink);font-weight:700;border-bottom-color:var(--ink)}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--g3);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.card h2{font-size:13px;font-weight:700;padding:10px 14px;border-bottom:1px solid var(--line);background:#fafbfc}
+.card .bd{padding:12px 14px}
+.note{font-size:11.5px;color:var(--g1)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.stat{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fcfcfd}
+.stat .lb{font-size:11px;color:var(--g1)}.stat .vl{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}.stat .sb{font-size:10.5px;color:var(--g2)}
+table{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:4px 8px;text-align:right}
+th{color:var(--g1);font-weight:600}th:first-child,td:first-child{text-align:left}
+td.l{text-align:left}
+svg{display:block;width:100%;height:auto}
+.axis{stroke:#999;stroke-width:1}.tick{font-size:10px;fill:#777}.lbl{font-size:11px;fill:#555}
+.tag{font-size:10.5px;border-radius:4px;padding:1px 6px;border:1px solid var(--g3);color:var(--g1);white-space:nowrap}
+.tag.known{border-color:#4a6;color:#274}.tag.adj{background:#fdf3e7;border-color:#c99a55;color:#7a5320}.tag.cand{border-style:dashed}.tag.neg{border-color:#a33;color:#a33}.tag.obs{border-color:#57c;color:#35a}.tag.rev{background:#f2ecff;border-color:#86c;color:#639}.tag.conf{background:#ffe9e9;border-color:#a33;color:#922;font-weight:700}
+footer{max-width:1160px;margin:0 auto;padding:0 18px 30px;font-size:11px;color:var(--g2)}
+.small{font-size:12px;color:var(--g1)}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>腎病病因階層模型（免疫／感染／代謝）</h1>
+  <div class="sub">NHANES 1999–2004 真實公開資料・用已知檢驗組合找病因關聯・<span id="date"></span></div>
+</div>
+<div class="warn" id="hon"></div>
+<div class="wrap">
+<nav id="nav">
+  <button data-s="s1" class="on">總覽與世代</button>
+  <button data-s="s2">三大病因判別（Level 1）</button>
+  <button data-s="s3">biomarker 歸因（Level 3）</button>
+  <button data-s="s4">類內細項（Level 2）</button>
+  <button data-s="s6">標記研究與疊代測試</button>
+  <button data-s="s5">資料出處帳本</button>
+</nav>
+
+<section id="s1" class="on">
+  <div class="card" id="proxyCard" style="border-color:#c99a55"><h2>⚠ 免疫代理標籤的修正（推翻 Level 1 的免疫欄位）</h2><div class="bd" id="proxyBox"></div></div>
+  <div class="card"><h2>研究問題與誠實界線</h2><div class="bd">
+    <p class="small">用「已知」（常規血液/尿液檢驗全景）找「未知」（哪些標記組合與哪一大類腎病病因相關），再往類內細項拆解。</p>
+    <ul class="note" id="honList" style="margin:8px 0 0 18px"></ul>
+  </div></div>
+  <div class="card"><h2>世代流程（全部真實個案）</h2><div class="bd">
+    <div class="kpi" id="flowKpi"></div>
+    <p class="note" id="flowNote" style="margin-top:8px"></p>
+  </div></div>
+</section>
+
+<section id="s2">
+  <div class="card"><h2>一對其餘 AUROC（重複分層 5 折 OOF；線＝bootstrap 95% CI；虛線＝設計目標 0.9）</h2><div class="bd">
+    <svg id="svgForest" width="960" height="430" viewBox="0 0 960 430"></svg>
+    <p class="note" id="aucNote"></p>
+  </div></div>
+  <div class="card"><h2>混淆矩陣（主分析 HGB）</h2><div class="bd"><div id="confWrap"></div></div></div>
+</section>
+
+<section id="s3">
+  <div class="card"><h2>各病因的驅動標記（單變量 AUC 前十；關聯非因果）</h2><div class="bd">
+    <p class="note">證據等級（錨點逐條經 PubMed 摘要原文比對，見 docs/verified_anchors_2026-08-30.json）：
+    <span class="tag known">因果級（支持）</span>MR／RCT 陽性・
+    <span class="tag neg">因果級（反對）</span>MR 陰性或介入 RCT 陰性——關聯在、因果不在・
+    <span class="tag obs">僅觀察性</span>・
+    <span class="tag rev">反向因果警告</span>腎功能→標記・
+    <span class="tag adj">標籤鄰近</span>・
+    <span class="tag conf">與文獻方向相反</span>・
+    <span class="tag cand">候選</span>待確認</p>
+    <div id="bio"></div>
+    <p class="note" style="margin-top:6px">讀法警語：免疫性的「血糖低／TG 低」是組成效應（其餘類以糖尿病為大宗），不是免疫疾病降血糖。</p>
+  </div></div>
+</section>
+
+<section id="s4">
+  <div class="card"><h2>免疫類內部（真實特異自體抗體標籤）</h2><div class="bd" id="l2i"></div></div>
+  <div class="card"><h2>感染類內部</h2><div class="bd" id="l2f"></div></div>
+  <div class="card"><h2>超音波佐證層</h2><div class="bd">
+    <p class="small">公開世界無上萬張可下載腎臟超音波。us_validation/ 已定義交換格式與一致性分析（Cohen's κ、逐類混淆、分歧解剖），
+    醫院影像到位即與 results/predictions.csv 併接執行；到位前該層拒跑，不產生任何假數字。</p>
+  </div></div>
+</section>
+
+<section id="s6">
+  <div class="card"><h2>疊代測試機制（防自欺三件套）</h2><div class="bd">
+    <p class="small">① 25% 保留集依病因分層抽出後<strong>鎖定</strong>（SHA 驗證），battery 永不觸碰、最終設定只能評一次；
+    ② 每個 run 全部追加到 runs_log.jsonl，不挑好看的；③ 標記全表列出每一個特徵，不是只列前十。</p>
+    <div class="kpi" id="labKpi" style="margin-top:8px"></div>
+  </div></div>
+  <div class="card"><h2>群組增量（開發集；依序加入特徵群的一對其餘 AUROC）</h2><div class="bd"><div id="incT"></div></div></div>
+  <div class="card"><h2>穩定性與時間外推</h2><div class="bd"><div id="stabT"></div></div></div>
+  <div class="card"><h2>鎖定保留集（最終評估，一生一次）</h2><div class="bd" id="holdBox"></div></div>
+  <div class="card"><h2>標記全表（每個特徵 × 三病因；單變量 AUC，方向＝該類相對其餘）</h2><div class="bd">
+    <div id="artifactNotes"></div>
+    <div style="overflow-x:auto"><table id="markerT"><thead><tr><th>群組</th><th>標記</th><th>缺值率</th><th>免疫性</th><th>感染性</th><th>代謝性</th></tr></thead><tbody></tbody></table></div>
+  </div></div>
+</section>
+
+<section id="s5">
+  <div class="card"><h2>真實資料出處帳本（逐檔可驗證）</h2><div class="bd">
+    <p class="note">每檔含下載 URL 與 SHA256；管線以 require_real() 驗證，未登錄或雜湊不符即拒跑——「不自製個案、不虛擬資料」的程式層保證。</p>
+    <div style="overflow-x:auto"><table id="provT"><thead><tr><th>檔案</th><th>大小</th><th>SHA256（前 16）</th><th>來源 URL</th></tr></thead><tbody></tbody></table></div>
+  </div></div>
+</section>
+</div>
+<footer id="foot"></footer>
+<script id="pack" type="application/json">__PACK_JSON__</script>
+<script>
+const K=JSON.parse(document.getElementById('pack').textContent);
+const R=K.report, $=id=>document.getElementById(id);
+const NS='http://www.w3.org/2000/svg';
+const CLS=["免疫性","感染性","代謝性"], G=['#16181d','#585c64','#9aa0a8'];
+const fmt=(v,d=3)=>v==null?'—':(+v).toFixed(d);
+$('date').textContent=R.date;
+$('hon').textContent='⚠ 標籤為共病代理（非切片病因）；主分析 AUC 未達 0.9 設計目標——照實報告，未做任何事後調整。';
+$('honList').innerHTML=R.honesty.map(h=>`<li>${h}</li>`).join('');
+$('foot').textContent='資料：NHANES 1999–2004（US CDC，公開）。分析協定事前鎖定；出處帳本 '+R.provenance.n_files+' 檔。';
+$('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.s));});
+
+/* 總覽 */
+const C=R.cohort;
+const labeled=Object.entries(C.secondary_all).filter(([k])=>k!=='其他/未歸類').reduce((a,[,v])=>a+v,0);
+$('flowKpi').innerHTML=[['三週期合併','31,126','1999–2000 / 2001–02 / 2003–04'],
+ ['腎損傷',C.n_kidney_damage.toLocaleString(),'eGFR<60 或 ACR≥30（成人）'],
+ ['有病因標籤',labeled,`免疫 ${C.secondary_all['免疫性']}｜感染 ${C.secondary_all['感染性']}｜代謝 ${C.secondary_all['代謝性']}`],
+ ['其他/未歸類',C.secondary_all['其他/未歸類'],'不硬塞三類，照實列出'],
+ ['特徵通道',K.report.features.n,'封存 '+C.archive_n+' 欄標籤來源檢驗']]
+ .map(([a,b,c])=>`<div class="stat"><div class="lb">${a}</div><div class="vl">${b}</div><div class="sb">${c}</div></div>`).join('');
+$('flowNote').textContent=`重疊（依 免疫>感染>代謝 順位歸類）：免疫∩感染 ${C.overlap.immune_and_infection}、免疫∩代謝 ${C.overlap.immune_and_metabolic}、感染∩代謝 ${C.overlap.infection_and_metabolic}；免疫標籤僅於 SSANA 隨機次樣本可判定（次樣本∩腎損傷 n=${C.n_primary}）。`;
+
+/* Level1 森林圖 */
+function el(t,a,p){const n=document.createElementNS(NS,t);for(const k in a)n.setAttribute(k,a[k]);if(p)p.appendChild(n);return n;}
+function txt(p,x,y,s,cls,an){const t=el('text',{x,y,class:cls||'lbl','text-anchor':an||'start'},p);t.textContent=s;return t;}
+(function(){
+  const svg=$('svgForest'); const W=960,H=430,ml=320,mr=24,mt=18,mb=40;
+  const sx=v=>ml+(v-0.45)/(1.0-0.45)*(W-ml-mr);
+  const blocks=[["主分析 LR",R.level1.models.LR],["主分析 HGB",R.level1.models.HGB],
+    ["排除重疊 HGB",R.sensitivity["排除重疊個案"].models.HGB],["排除血糖 HGB",R.sensitivity["排除血清葡萄糖"].models.HGB]];
+  let y=mt+10; const rows=[];
+  blocks.forEach(([tag,m])=>{CLS.forEach((c,ci)=>{const a=m.ovr_auc[c];if(!a||a.auc==null)return;rows.push({y,tag,c,ci,a});y+=26;});y+=14;});
+  el('line',{x1:sx(0.5),y1:mt,x2:sx(0.5),y2:y,stroke:'#ccc'},svg);
+  el('line',{x1:sx(0.9),y1:mt,x2:sx(0.9),y2:y,stroke:'#16181d','stroke-dasharray':'6 3'},svg);
+  txt(svg,sx(0.9)+4,mt+10,'設計目標 0.9','tick');
+  [0.5,0.6,0.7,0.8,0.9,1.0].forEach(v=>{txt(svg,sx(v),y+16,v.toFixed(1),'tick','middle');});
+  txt(svg,(ml+W-mr)/2,y+32,'一對其餘 AUROC（點＝實測；線＝bootstrap 95% CI）','lbl','middle');
+  rows.forEach(r=>{
+    el('line',{x1:sx(Math.max(r.a.lo,0.45)),y1:r.y,x2:sx(Math.min(r.a.hi,1)),y2:r.y,stroke:G[r.ci],'stroke-width':2.4},svg);
+    el('circle',{cx:sx(r.a.auc),cy:r.y,r:5,fill:G[r.ci],stroke:'#111'},svg);
+    txt(svg,ml-8,r.y+3,`${r.tag}｜${r.c}（n=${r.a.n_pos}）`,'tick','end');
+    txt(svg,sx(Math.min(r.a.hi,1))+6,r.y+3,fmt(r.a.auc),'tick');
+  });
+  svg.setAttribute('viewBox',`0 0 ${W} ${y+40}`);
+})();
+$('aucNote').textContent='⚠ 免疫欄位受標籤污染影響，修正後僅 0.584（見總覽頁）。主分析（HGB）：免疫 '+fmt(R.level1.models.HGB.ovr_auc['免疫性'].auc)+'、感染 '+fmt(R.level1.models.HGB.ovr_auc['感染性'].auc)+'、代謝 '+fmt(R.level1.models.HGB.ovr_auc['代謝性'].auc)+'——未達 0.9。排除重疊個案可達 0.87–0.93，但那是移除難分個案後的樂觀版本，列為敏感度而非主結果。到 0.9 的正路：切片/診斷碼等更強標籤＋更多感染與免疫樣本。';
+(function(){
+  const m=R.level1.models.HGB, cm=m.confusion;
+  let h='<table><thead><tr><th>真實＼預測</th>'+CLS.map(c=>`<th>${c}</th>`).join('')+'</tr></thead><tbody>';
+  cm.forEach((row,i)=>{h+=`<tr><td class="l">${CLS[i]}</td>`+row.map((v,j)=>`<td${i===j?' style="font-weight:700;background:#f0f1f3"':''}>${v}</td>`).join('')+'</tr>';});
+  $('confWrap').innerHTML=h+`</tbody></table><p class="note" style="margin-top:6px">平衡正確率 ${fmt(m.balanced_accuracy)}（三類、類別極不平衡——以平衡正確率與逐類 AUROC 為準）。</p>`;
+})();
+
+/* Level3 歸因 */
+(function(){
+  const AN=K.anchors||{}, LV=K.anchor_levels||{};
+  const clsOf=lv=>lv==='causal_pos'?'known':lv==='causal_neg'?'neg':lv==='observational'?'obs':lv==='reverse'?'rev':lv==='adjacent'?'adj':lv==='conflict'?'conf':'cand';
+  const look=(c,f)=>AN[c+'|'+f]||AN['*|'+f]||{level:'candidate',level_zh:'候選（待確認）',note:'本資料之發現，待文獻與前瞻確認'};
+  let h='';
+  CLS.forEach(c=>{
+    h+=`<h3 style="font-size:13px;margin:10px 0 4px">${c}</h3><table><thead><tr><th>標記</th><th>方向</th><th>AUC</th><th>95% CI</th><th>證據等級</th><th>說明</th></tr></thead><tbody>`;
+    (R.level3.univariate_top[c]||[]).slice(0,10).forEach(r=>{
+      const a=look(c,r.feature);
+      h+=`<tr><td class="l">${r.label}</td><td>${r.direction}</td><td>${fmt(r.auc)}</td><td>[${fmt(r.lo)}, ${fmt(r.hi)}]</td>`+
+         `<td class="l"><span class="tag ${clsOf(a.level)}">${a.level_zh}</span></td><td class="l" style="font-size:11px;color:#585c64">${a.note}</td></tr>`;});
+    h+='</tbody></table>';
+  });
+  $('bio').innerHTML=h;
+})();
+
+/* Level2 */
+(function(){
+  const li=R.level2_immune;
+  $('l2i').innerHTML=`<p class="small">n=${li.n}：</p><table><thead><tr><th>亞群（特異抗體）</th><th>n</th></tr></thead><tbody>`+
+    Object.entries(li.subgroups).map(([k,v])=>`<tr><td class="l">${k}</td><td>${v}</td></tr>`).join('')+
+    `</tbody></table><p class="note" style="margin-top:6px">${li.caveat}。</p>`;
+  const lf=R.level2_infection;
+  $('l2f').innerHTML=`<p class="small">n=${lf.n}：HBV ${lf.HBV}、HCV ${lf.HCV}（由封存之血清學標籤直接分流；此層不用模型）。</p>`;
+})();
+
+/* 免疫代理修正 */
+(function(){
+  const P=K.proxy;
+  if(!P){document.getElementById('proxyCard').style.display='none';return;}
+  let h=`<p class="small">三類模型把「未做 ANA 者」一併當成非免疫＝標籤污染（NHANES 只有 surplus sera 隨機次樣本做過 ANA，其餘是<b>未知</b>而非陰性）。`+
+        `改以「只納入實際做過 ANA 且有腎損傷者」重建二元代理（n=${P.cohort.n}，陽性 ${P.cohort.positive}／陰性 ${P.cohort.negative}），`+
+        `${P.protocol.repeats}×${P.protocol.outer_folds} 重複巢狀交叉驗證：</p>`;
+  h+='<table><thead><tr><th>模型</th><th>AUROC（95% CI）</th><th>AUPRC</th><th>平衡正確率</th></tr></thead><tbody>';
+  Object.entries(P.models).forEach(([mk,m])=>{h+=`<tr><td class="l">${mk}</td><td>${fmt(m.auroc)}（${fmt(m.ci[0])}–${fmt(m.ci[1])}）</td><td>${fmt(m.auprc)}</td><td>${fmt(m.balanced_accuracy)}</td></tr>`;});
+  h+='</tbody></table>';
+  const best=P.models.HGB||Object.values(P.models)[0];
+  h+=`<p class="note" style="margin-top:6px"><b>修正後免疫代理只有 AUROC ${fmt(best.auroc)}——接近隨機。</b>`+
+     `Level 1 表中的免疫欄位（0.81）是污染造成的樂觀值，<b>不應引用</b>。感染性／代謝性不受此影響。`+
+     (P.artifact&&P.artifact.path?` 研究用模型 <code>${P.artifact.path}</code>（SHA256 ${String(P.artifact.sha256).slice(0,24)}…），非活檢確診模型，不得臨床診斷。`:'')+'</p>';
+  document.getElementById('proxyBox').innerHTML=h;
+})();
+
+/* 標記研究 */
+(function(){
+  const L=K.lab;
+  if(!L){ $('labKpi').innerHTML='<p class="note">尚未執行 test_lab.py battery。</p>'; return; }
+  $('labKpi').innerHTML=[['開發集',L.dev_n,Object.entries(L.dev_counts).map(([k,v])=>`${k} ${v}`).join('｜')],
+    ['保留集（鎖定）',L.holdout_n,'battery 不觸碰'],
+    ['標記數',L.marker_table.length,'六群組'],
+    ['runs 全記錄','runs_log.jsonl','含每個設定與種子']]
+    .map(([a,b,c])=>`<div class="stat"><div class="lb">${a}</div><div class="vl">${b}</div><div class="sb">${c}</div></div>`).join('');
+  let h='<table><thead><tr><th>步驟</th><th>特徵數</th><th>免疫性</th><th>感染性</th><th>代謝性</th><th>三類平均</th></tr></thead><tbody>';
+  L.incremental.forEach(r=>{h+=`<tr><td class="l">${r.step}</td><td>${r.n_features}</td>`+CLS.map(c=>`<td>${fmt(r.ovr_auc[c].auc)}</td>`).join('')+`<td><b>${fmt(r.mean_auc)}</b></td></tr>`;});
+  h+='</tbody></table><p class="note" style="margin-top:6px">群組移除（full−一群）：'+L.group_drop.map(d=>`−${d.dropped} → ${fmt(d.mean_auc)}`).join('；')+'。</p>';
+  $('incT').innerHTML=h;
+  let sh='<p class="small">五種子穩定性（full）：'+Object.entries(L.seed_stability).map(([c,v])=>`${c} ${fmt(v.mean)}±${fmt(v.sd)}`).join('、')+'</p>';
+  sh+='<p class="small" style="margin-top:4px">留一週期外測（full）：</p><table><thead><tr><th>留出週期</th>'+CLS.map(c=>`<th>${c}</th>`).join('')+'</tr></thead><tbody>';
+  Object.entries(L.loco).forEach(([cy,d])=>{sh+=`<tr><td class="l">${cy}</td>`+CLS.map(c=>{const a=d[c];return `<td>${a&&a.auc!=null?fmt(a.auc)+' ['+fmt(a.lo)+','+fmt(a.hi)+']':'—'}</td>`;}).join('')+'</tr>';});
+  $('stabT').innerHTML=sh+'</tbody></table>';
+  const H=K.holdout;
+  $('holdBox').innerHTML=H?('<p class="small">已於 '+H.evaluated_once_at+' 評估設定 <code>'+H.config+'</code>（n='+H.holdout_n+'）：'+
+    CLS.map(c=>`${c} ${fmt(H.ovr_auc[c].auc)} [${fmt(H.ovr_auc[c].lo)},${fmt(H.ovr_auc[c].hi)}]`).join('、')+'；平衡正確率 '+fmt(H.balanced_accuracy)+'。此檔存在後不得再評。</p>')
+    :'<p class="note">尚未動用。疊代全部在開發集完成後，以 <code>python test_lab.py --final HGB_full</code> 評一次；評過即封存。</p>';
+  if(L.artifact_notes){$('artifactNotes').innerHTML=L.artifact_notes.map(n=>`<p class="note" style="background:#fdf3e7;border:1px solid #c99a55;border-radius:6px;padding:6px 10px;margin-bottom:6px">⚠ <b>${n.marker}</b>：${n.claim} → <b>${n.verdict}</b>。${n.dissection}</p>`).join('');}
+  const tb=document.querySelector('#markerT tbody');
+  L.marker_table.forEach(r=>{
+    const tr=document.createElement('tr');
+    const cell=c=>{const a=r[c];return a&&a.auc!=null?`${fmt(a.auc)}（${a.direction}）`:'—';};
+    tr.innerHTML=`<td class="l">${r.group}</td><td class="l">${r.label}</td><td>${(r.missing*100).toFixed(0)}%</td><td>${cell('免疫性')}</td><td>${cell('感染性')}</td><td>${cell('代謝性')}</td>`;
+    tb.appendChild(tr);});
+})();
+
+/* 出處帳本 */
+(function(){
+  const tb=document.querySelector('#provT tbody');
+  Object.entries(K.provenance_files).forEach(([k,v])=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="l"><code>${k}</code></td><td>${(v.bytes/1024).toFixed(0)} KB</td><td><code>${v.sha256}</code></td><td class="l" style="max-width:420px;word-break:break-all">${v.url}</td>`;
+    tb.appendChild(tr);});
+})();
+</script>
+</body>
+</html>

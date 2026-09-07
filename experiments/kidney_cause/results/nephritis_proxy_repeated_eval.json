@@ -1,0 +1,5713 @@
+{
+  "study_name": "immune-associated kidney-damage proxy repeated evaluation",
+  "target_warning": "research proxy; not biopsy-confirmed nephritis and not for clinical diagnosis",
+  "cohort": {
+    "source": "NHANES 1999-2004 surplus-sera ANA subsample",
+    "eligibility": "age>=20, eGFR<60 or ACR>=30, ANA actually measured",
+    "n": 488,
+    "positive": 91,
+    "negative": 397,
+    "patient_id_separation": "SEQN; every outer fold is patient-disjoint"
+  },
+  "protocol": {
+    "models": [
+      "LR",
+      "HGB"
+    ],
+    "outer_folds": 5,
+    "repeats": 5,
+    "total_outer_tests_per_model": 25,
+    "threshold_selection": "inner stratified CV only; maximizes balanced accuracy",
+    "selection": "highest patient-pooled repeated-CV AUROC; all candidates reported",
+    "untouched_holdout": "none for this new binary proxy; results are repeated nested CV, not external validation",
+    "legacy_three_class_holdout_reused": false
+  },
+  "evaluations": {
+    "LR": {
+      "split_metrics": [
+        {
+          "split": 0,
+          "repeat": 0,
+          "fold": 0,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.4506944444444444,
+          "auprc": 0.30101290021840926,
+          "balanced_accuracy": 0.4854166666666666,
+          "sensitivity": 0.3333333333333333,
+          "specificity": 0.6375,
+          "brier": 0.3456791200383965,
+          "threshold": 0.6170415971909412
+        },
+        {
+          "split": 1,
+          "repeat": 0,
+          "fold": 1,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.5284722222222222,
+          "auprc": 0.28688621259059405,
+          "balanced_accuracy": 0.4826388888888889,
+          "sensitivity": 0.7777777777777778,
+          "specificity": 0.1875,
+          "brier": 0.25319826808106866,
+          "threshold": 0.18507189352345443
+        },
+        {
+          "split": 2,
+          "repeat": 0,
+          "fold": 2,
+          "n_test": 98,
+          "positive_test": 19,
+          "auroc": 0.5762824783477681,
+          "auprc": 0.3583500695133329,
+          "balanced_accuracy": 0.5486342438374417,
+          "sensitivity": 0.8947368421052632,
+          "specificity": 0.20253164556962025,
+          "brier": 0.21995788571772748,
+          "threshold": 0.1523937442756337
+        },
+        {
+          "split": 3,
+          "repeat": 0,
+          "fold": 3,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5330520393811533,
+          "auprc": 0.21017109229383185,
+          "balanced_accuracy": 0.5137130801687764,
+          "sensitivity": 0.16666666666666666,
+          "specificity": 0.8607594936708861,
+          "brier": 0.28395529114453505,
+          "threshold": 0.8108135723834885
+        },
+        {
+          "split": 4,
+          "repeat": 0,
+          "fold": 4,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.6378340365682138,
+          "auprc": 0.27277596755346434,
+          "balanced_accuracy": 0.5239099859353024,
+          "sensitivity": 0.1111111111111111,
+          "specificity": 0.9367088607594937,
+          "brier": 0.22907054724556164,
+          "threshold": 0.7761588601086772
+        },
+        {
+          "split": 5,
+          "repeat": 1,
+          "fold": 0,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.5166666666666666,
+          "auprc": 0.2428616702228823,
+          "balanced_accuracy": 0.5215277777777778,
+          "sensitivity": 0.5555555555555556,
+          "specificity": 0.4875,
+          "brier": 0.2810418805562636,
+          "threshold": 0.3986993130157035
+        },
+        {
+          "split": 6,
+          "repeat": 1,
+          "fold": 1,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.38402777777777775,
+          "auprc": 0.22421477571685125,
+          "balanced_accuracy": 0.4736111111111111,
+          "sensitivity": 0.2222222222222222,
+          "specificity": 0.725,
+          "brier": 0.3325300575965159,
+          "threshold": 0.68217782791531
+        },
+        {
+          "split": 7,
+          "repeat": 1,
+          "fold": 2,
+          "n_test": 98,
+          "positive_test": 19,
+          "auroc": 0.5609593604263825,
+          "auprc": 0.22831927527396567,
+          "balanced_accuracy": 0.5632911392405063,
+          "sensitivity": 1.0,
+          "specificity": 0.12658227848101267,
+          "brier": 0.26925006865503787,
+          "threshold": 0.08650899995920788
+        },
+        {
+          "split": 8,
+          "repeat": 1,
+          "fold": 3,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.4838255977496484,
+          "auprc": 0.21823788349218842,
+          "balanced_accuracy": 0.46729957805907174,
+          "sensitivity": 0.8333333333333334,
+          "specificity": 0.10126582278481013,
+          "brier": 0.27119601567976565,
+          "threshold": 0.06772241701570789
+        },
+        {
+          "split": 9,
+          "repeat": 1,
+          "fold": 4,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5759493670886076,
+          "auprc": 0.38512629127707765,
+          "balanced_accuracy": 0.5383263009845288,
+          "sensitivity": 0.7222222222222222,
+          "specificity": 0.35443037974683544,
+          "brier": 0.2725623391398146,
+          "threshold": 0.2832173255417883
+        },
+        {
+          "split": 10,
+          "repeat": 2,
+          "fold": 0,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.47569444444444453,
+          "auprc": 0.18725238000433514,
+          "balanced_accuracy": 0.5180555555555556,
+          "sensitivity": 0.6111111111111112,
+          "specificity": 0.425,
+          "brier": 0.24072174299733445,
+          "threshold": 0.26186507637850115
+        },
+        {
+          "split": 11,
+          "repeat": 2,
+          "fold": 1,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.6402777777777777,
+          "auprc": 0.3627095109068528,
+          "balanced_accuracy": 0.6194444444444445,
+          "sensitivity": 0.3888888888888889,
+          "specificity": 0.85,
+          "brier": 0.27933665921287953,
+          "threshold": 0.7873237795548601
+        },
+        {
+          "split": 12,
+          "repeat": 2,
+          "fold": 2,
+          "n_test": 98,
+          "positive_test": 19,
+          "auroc": 0.6209193870752832,
+          "auprc": 0.3506825769807659,
+          "balanced_accuracy": 0.5399733510992671,
+          "sensitivity": 0.10526315789473684,
+          "specificity": 0.9746835443037974,
+          "brier": 0.25888913716416573,
+          "threshold": 0.9429011122823839
+        },
+        {
+          "split": 13,
+          "repeat": 2,
+          "fold": 3,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.4113924050632911,
+          "auprc": 0.2112406322434631,
+          "balanced_accuracy": 0.41736990154711673,
+          "sensitivity": 0.2777777777777778,
+          "specificity": 0.5569620253164557,
+          "brier": 0.3074951508367401,
+          "threshold": 0.41110318872910884
+        },
+        {
+          "split": 14,
+          "repeat": 2,
+          "fold": 4,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5295358649789029,
+          "auprc": 0.20205451056840346,
+          "balanced_accuracy": 0.5355133614627285,
+          "sensitivity": 0.9444444444444444,
+          "specificity": 0.12658227848101267,
+          "brier": 0.2540838425757352,
+          "threshold": 0.12056241913271969
+        },
+        {
+          "split": 15,
+          "repeat": 3,
+          "fold": 0,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.5006944444444444,
+          "auprc": 0.2594627213815096,
+          "balanced_accuracy": 0.4826388888888889,
+          "sensitivity": 0.7777777777777778,
+          "specificity": 0.1875,
+          "brier": 0.2717673646088536,
+          "threshold": 0.12453077008071904
+        },
+        {
+          "split": 16,
+          "repeat": 3,
+          "fold": 1,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.3993055555555556,
+          "auprc": 0.15295525552154537,
+          "balanced_accuracy": 0.4277777777777778,
+          "sensitivity": 0.05555555555555555,
+          "specificity": 0.8,
+          "brier": 0.32290396542208905,
+          "threshold": 0.7908566811754161
+        },
+        {
+          "split": 17,
+          "repeat": 3,
+          "fold": 2,
+          "n_test": 98,
+          "positive_test": 19,
+          "auroc": 0.6149233844103931,
+          "auprc": 0.3033114801778652,
+          "balanced_accuracy": 0.5956029313790806,
+          "sensitivity": 0.3684210526315789,
+          "specificity": 0.8227848101265823,
+          "brier": 0.244916274547156,
+          "threshold": 0.6504699915887167
+        },
+        {
+          "split": 18,
+          "repeat": 3,
+          "fold": 3,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5421940928270041,
+          "auprc": 0.2718196978191627,
+          "balanced_accuracy": 0.5084388185654009,
+          "sensitivity": 0.3333333333333333,
+          "specificity": 0.6835443037974683,
+          "brier": 0.26040440933317754,
+          "threshold": 0.5348425079252509
+        },
+        {
+          "split": 19,
+          "repeat": 3,
+          "fold": 4,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5161744022503516,
+          "auprc": 0.24165224078330827,
+          "balanced_accuracy": 0.4061181434599156,
+          "sensitivity": 0.16666666666666666,
+          "specificity": 0.6455696202531646,
+          "brier": 0.2785685456134618,
+          "threshold": 0.5539476454709747
+        },
+        {
+          "split": 20,
+          "repeat": 4,
+          "fold": 0,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.5298611111111111,
+          "auprc": 0.226828392900537,
+          "balanced_accuracy": 0.554861111111111,
+          "sensitivity": 0.2222222222222222,
+          "specificity": 0.8875,
+          "brier": 0.25886361930818724,
+          "threshold": 0.7579373295296943
+        },
+        {
+          "split": 21,
+          "repeat": 4,
+          "fold": 1,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.49375,
+          "auprc": 0.2548073500729051,
+          "balanced_accuracy": 0.5361111111111111,
+          "sensitivity": 0.7222222222222222,
+          "specificity": 0.35,
+          "brier": 0.28368108652677415,
+          "threshold": 0.26905923182035996
+        },
+        {
+          "split": 22,
+          "repeat": 4,
+          "fold": 2,
+          "n_test": 98,
+          "positive_test": 19,
+          "auroc": 0.603597601598934,
+          "auprc": 0.2898703867756481,
+          "balanced_accuracy": 0.5399733510992671,
+          "sensitivity": 0.10526315789473684,
+          "specificity": 0.9746835443037974,
+          "brier": 0.2372621849238184,
+          "threshold": 0.849850788170849
+        },
+        {
+          "split": 23,
+          "repeat": 4,
+          "fold": 3,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5358649789029536,
+          "auprc": 0.2387463444515534,
+          "balanced_accuracy": 0.4613220815752461,
+          "sensitivity": 0.5555555555555556,
+          "specificity": 0.3670886075949367,
+          "brier": 0.2495393646898782,
+          "threshold": 0.1989554313038453
+        },
+        {
+          "split": 24,
+          "repeat": 4,
+          "fold": 4,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.48030942334739796,
+          "auprc": 0.23247797298595674,
+          "balanced_accuracy": 0.48874824191279886,
+          "sensitivity": 0.8888888888888888,
+          "specificity": 0.08860759493670886,
+          "brier": 0.28906764453315137,
+          "threshold": 0.03382503359888577
+        }
+      ],
+      "split_summary": {
+        "auroc": {
+          "mean": 0.5256903545784293,
+          "sd": 0.0702569753133323
+        },
+        "auprc": {
+          "mean": 0.26055310366905643,
+          "sd": 0.05828613903448275
+        },
+        "balanced_accuracy": {
+          "mean": 0.5100127137463913,
+          "sd": 0.05171755684248231
+        },
+        "sensitivity": {
+          "mean": 0.48561403508771933,
+          "sd": 0.3098161227075483
+        },
+        "specificity": {
+          "mean": 0.5344113924050633,
+          "sd": 0.3091965379798133
+        },
+        "brier": {
+          "mean": 0.27183769864592355,
+          "sd": 0.030841485444354336
+        }
+      },
+      "patient_pooled": {
+        "auroc": 0.5220472222991115,
+        "auprc": 0.23375964969158136,
+        "balanced_accuracy": 0.5216320203725745,
+        "sensitivity": 0.06593406593406594,
+        "specificity": 0.9773299748110831,
+        "brier": 0.256804457510343,
+        "threshold": 0.8984500344274157,
+        "auroc_ci95_patient_bootstrap": [
+          0.4553886290032386,
+          0.5860768953967945
+        ]
+      },
+      "predictions": [
+        {
+          "SEQN": 46,
+          "target": 0,
+          "probability": 0.08429705637093607
+        },
+        {
+          "SEQN": 117,
+          "target": 0,
+          "probability": 0.21686546752016805
+        },
+        {
+          "SEQN": 372,
+          "target": 0,
+          "probability": 0.14159580209671974
+        },
+        {
+          "SEQN": 458,
+          "target": 0,
+          "probability": 0.5399003372168584
+        },
+        {
+          "SEQN": 460,
+          "target": 1,
+          "probability": 0.3103970711037455
+        },
+        {
+          "SEQN": 698,
+          "target": 0,
+          "probability": 0.12248966025496488
+        },
+        {
+          "SEQN": 788,
+          "target": 0,
+          "probability": 0.2601627964297689
+        },
+        {
+          "SEQN": 861,
+          "target": 0,
+          "probability": 0.21471044067009756
+        },
+        {
+          "SEQN": 898,
+          "target": 1,
+          "probability": 0.5502418706027821
+        },
+        {
+          "SEQN": 1031,
+          "target": 0,
+          "probability": 0.14380558521007883
+        },
+        {
+          "SEQN": 1196,
+          "target": 1,
+          "probability": 0.32635788752006634
+        },
+        {
+          "SEQN": 1203,
+          "target": 0,
+          "probability": 0.2044239430234463
+        },
+        {
+          "SEQN": 1237,
+          "target": 1,
+          "probability": 0.3950280018794018
+        },
+        {
+          "SEQN": 1299,
+          "target": 0,
+          "probability": 0.23377496841883785
+        },
+        {
+          "SEQN": 1316,
+          "target": 1,
+          "probability": 0.13193370912957061
+        },
+        {
+          "SEQN": 1351,
+          "target": 1,
+          "probability": 0.7437459184268149
+        },
+        {
+          "SEQN": 1383,
+          "target": 0,
+          "probability": 0.026676629317175276
+        },
+        {
+          "SEQN": 1442,
+          "target": 1,
+          "probability": 0.7558861312328571
+        },
+        {
+          "SEQN": 1464,
+          "target": 0,
+          "probability": 0.25311725108538474
+        },
+        {
+          "SEQN": 1488,
+          "target": 1,
+          "probability": 0.08331944419389281
+        },
+        {
+          "SEQN": 1777,
+          "target": 0,
+          "probability": 0.09368512404658268
+        },
+        {
+          "SEQN": 1861,
+          "target": 0,
+          "probability": 0.4015465557344431
+        },
+        {
+          "SEQN": 1873,
+          "target": 0,
+          "probability": 0.12934562343208647
+        },
+        {
+          "SEQN": 1885,
+          "target": 0,
+          "probability": 0.14375595532325364
+        },
+        {
+          "SEQN": 2094,
+          "target": 0,
+          "probability": 0.12852877940006407
+        },
+        {
+          "SEQN": 2121,
+          "target": 0,
+          "probability": 0.3781039519849759
+        },
+        {
+          "SEQN": 2213,
+          "target": 0,
+          "probability": 0.2528870779699087
+        },
+        {
+          "SEQN": 2225,
+          "target": 0,
+          "probability": 0.07127850097718383
+        },
+        {
+          "SEQN": 2275,
+          "target": 1,
+          "probability": 0.01419569669924609
+        },
+        {
+          "SEQN": 2328,
+          "target": 0,
+          "probability": 0.5797793934377072
+        },
+        {
+          "SEQN": 2331,
+          "target": 0,
+          "probability": 0.20520670144197567
+        },
+        {
+          "SEQN": 2362,
+          "target": 0,
+          "probability": 0.2155996060797945
+        },
+        {
+          "SEQN": 2473,
+          "target": 1,
+          "probability": 0.4282814074945208
+        },
+        {
+          "SEQN": 2552,
+          "target": 0,
+          "probability": 0.4212529573702997
+        },
+        {
+          "SEQN": 2620,
+          "target": 0,
+          "probability": 0.20501211469692385
+        },
+        {
+          "SEQN": 2643,
+          "target": 0,
+          "probability": 0.9649707775719311
+        },
+        {
+          "SEQN": 2659,
+          "target": 0,
+          "probability": 0.536573496132398
+        },
+        {
+          "SEQN": 2732,
+          "target": 0,
+          "probability": 0.3372116937228637
+        },
+        {
+          "SEQN": 2762,
+          "target": 0,
+          "probability": 0.04760790737395236
+        },
+        {
+          "SEQN": 2768,
+          "target": 0,
+          "probability": 0.5266554425861913
+        },
+        {
+          "SEQN": 2830,
+          "target": 0,
+          "probability": 0.8429425349585589
+        },
+        {
+          "SEQN": 2933,
+          "target": 0,
+          "probability": 0.08859485787836018
+        },
+        {
+          "SEQN": 3085,
+          "target": 0,
+          "probability": 0.1354083455410196
+        },
+        {
+          "SEQN": 3097,
+          "target": 0,
+          "probability": 0.5751912179241161
+        },
+        {
+          "SEQN": 3098,
+          "target": 0,
+          "probability": 0.7597723908122717
+        },
+        {
+          "SEQN": 3293,
+          "target": 0,
+          "probability": 0.6033522449983121
+        },
+        {
+          "SEQN": 3294,
+          "target": 0,
+          "probability": 0.7908447048249713
+        },
+        {
+          "SEQN": 3350,
+          "target": 0,
+          "probability": 0.20394647496203736
+        },
+        {
+          "SEQN": 3370,
+          "target": 0,
+          "probability": 0.24138295918219707
+        },
+        {
+          "SEQN": 3382,
+          "target": 0,
+          "probability": 0.256063477145695
+        },
+        {
+          "SEQN": 3462,
+          "target": 0,
+          "probability": 0.046251509678402754
+        },
+        {
+          "SEQN": 3545,
+          "target": 0,
+          "probability": 0.5176051174040338
+        },
+        {
+          "SEQN": 3559,
+          "target": 0,
+          "probability": 0.18800120220259492
+        },
+        {
+          "SEQN": 3753,
+          "target": 0,
+          "probability": 0.6314766651639471
+        },
+        {
+          "SEQN": 3780,
+          "target": 0,
+          "probability": 0.7123516218938845
+        },
+        {
+          "SEQN": 3793,
+          "target": 0,
+          "probability": 0.7508093945187213
+        },
+        {
+          "SEQN": 3955,
+          "target": 1,
+          "probability": 0.7916049945095514
+        },
+        {
+          "SEQN": 3991,
+          "target": 1,
+          "probability": 0.31154514256678356
+        },
+        {
+          "SEQN": 4074,
+          "target": 0,
+          "probability": 0.2445188145024225
+        },
+        {
+          "SEQN": 4092,
+          "target": 0,
+          "probability": 0.27511875626118665
+        },
+        {
+          "SEQN": 4108,
+          "target": 0,
+          "probability": 0.5503645995042007
+        },
+        {
+          "SEQN": 4113,
+          "target": 0,
+          "probability": 0.11119267604322439
+        },
+        {
+          "SEQN": 4119,
+          "target": 0,
+          "probability": 0.2315831983382664
+        },
+        {
+          "SEQN": 4187,
+          "target": 0,
+          "probability": 0.6853461486756014
+        },
+        {
+          "SEQN": 4192,
+          "target": 0,
+          "probability": 0.37120020105654306
+        },
+        {
+          "SEQN": 4276,
+          "target": 0,
+          "probability": 0.026565854797084242
+        },
+        {
+          "SEQN": 4378,
+          "target": 0,
+          "probability": 0.7038764497984697
+        },
+        {
+          "SEQN": 4390,
+          "target": 0,
+          "probability": 0.31355193474685256
+        },
+        {
+          "SEQN": 4461,
+          "target": 0,
+          "probability": 0.12068473960172973
+        },
+        {
+          "SEQN": 4564,
+          "target": 0,
+          "probability": 0.5004008314699692
+        },
+        {
+          "SEQN": 4565,
+          "target": 0,
+          "probability": 0.8799744723950977
+        },
+        {
+          "SEQN": 4583,
+          "target": 0,
+          "probability": 0.818721721499147
+        },
+        {
+          "SEQN": 4624,
+          "target": 0,
+          "probability": 0.24163545944831605
+        },
+        {
+          "SEQN": 4636,
+          "target": 0,
+          "probability": 0.7119908690252026
+        },
+        {
+          "SEQN": 4727,
+          "target": 0,
+          "probability": 0.5620036315248682
+        },
+        {
+          "SEQN": 4793,
+          "target": 0,
+          "probability": 0.265898362540561
+        },
+        {
+          "SEQN": 4982,
+          "target": 0,
+          "probability": 0.4317007683596561
+        },
+        {
+          "SEQN": 4995,
+          "target": 0,
+          "probability": 0.22696995386544808
+        },
+        {
+          "SEQN": 5195,
+          "target": 0,
+          "probability": 0.46920001110623033
+        },
+        {
+          "SEQN": 5426,
+          "target": 0,
+          "probability": 0.33743687484920837
+        },
+        {
+          "SEQN": 5448,
+          "target": 0,
+          "probability": 0.00011436471157993302
+        },
+        {
+          "SEQN": 5595,
+          "target": 0,
+          "probability": 0.40077314391864344
+        },
+        {
+          "SEQN": 5830,
+          "target": 0,
+          "probability": 0.27386671131923657
+        },
+        {
+          "SEQN": 5860,
+          "target": 0,
+          "probability": 0.7141633498809454
+        },
+        {
+          "SEQN": 5894,
+          "target": 0,
+          "probability": 0.13229472587370983
+        },
+        {
+          "SEQN": 5924,
+          "target": 0,
+          "probability": 0.6912063266238779
+        },
+        {
+          "SEQN": 5941,
+          "target": 0,
+          "probability": 0.1159595142875526
+        },
+        {
+          "SEQN": 6094,
+          "target": 0,
+          "probability": 0.31871071675838986
+        },
+        {
+          "SEQN": 6121,
+          "target": 0,
+          "probability": 0.4748251237182128
+        },
+        {
+          "SEQN": 6179,
+          "target": 0,
+          "probability": 0.1034623196676931
+        },
+        {
+          "SEQN": 6348,
+          "target": 0,
+          "probability": 0.288702169898984
+        },
+        {
+          "SEQN": 6368,
+          "target": 0,
+          "probability": 0.46714859805817055
+        },
+        {
+          "SEQN": 6414,
+          "target": 0,
+          "probability": 0.26593661180370454
+        },
+        {
+          "SEQN": 6605,
+          "target": 0,
+          "probability": 0.33309349625069745
+        },
+        {
+          "SEQN": 6627,
+          "target": 1,
+          "probability": 0.43593968913731374
+        },
+        {
+          "SEQN": 6662,
+          "target": 1,
+          "probability": 0.005343413280797773
+        },
+        {
+          "SEQN": 6812,
+          "target": 0,
+          "probability": 0.258174362415705
+        },
+        {
+          "SEQN": 6861,
+          "target": 0,
+          "probability": 0.062443461518753664
+        },
+        {
+          "SEQN": 6867,
+          "target": 0,
+          "probability": 0.20286289614960312
+        },
+        {
+          "SEQN": 6898,
+          "target": 0,
+          "probability": 0.3936679362843332
+        },
+        {
+          "SEQN": 7024,
+          "target": 0,
+          "probability": 0.5207539079106682
+        },
+        {
+          "SEQN": 7167,
+          "target": 0,
+          "probability": 0.3027484967643136
+        },
+        {
+          "SEQN": 7184,
+          "target": 0,
+          "probability": 0.7032006393458494
+        },
+        {
+          "SEQN": 7210,
+          "target": 1,
+          "probability": 0.39944272714831
+        },
+        {
+          "SEQN": 7244,
+          "target": 1,
+          "probability": 0.696424057764044
+        },
+        {
+          "SEQN": 7269,
+          "target": 0,
+          "probability": 0.13251093494389896
+        },
+        {
+          "SEQN": 7377,
+          "target": 0,
+          "probability": 0.4707208287322836
+        },
+        {
+          "SEQN": 7613,
+          "target": 1,
+          "probability": 0.8439369947958386
+        },
+        {
+          "SEQN": 7686,
+          "target": 0,
+          "probability": 0.15804043979569776
+        },
+        {
+          "SEQN": 7696,
+          "target": 0,
+          "probability": 0.23139504961483945
+        },
+        {
+          "SEQN": 7782,
+          "target": 0,
+          "probability": 0.21018036748683624
+        },
+        {
+          "SEQN": 7792,
+          "target": 0,
+          "probability": 0.31788756271846885
+        },
+        {
+          "SEQN": 7825,
+          "target": 0,
+          "probability": 0.5610695693346895
+        },
+        {
+          "SEQN": 7868,
+          "target": 0,
+          "probability": 0.023613465096101346
+        },
+        {
+          "SEQN": 8076,
+          "target": 0,
+          "probability": 0.5905925970990651
+        },
+        {
+          "SEQN": 8299,
+          "target": 1,
+          "probability": 0.09843747193467058
+        },
+        {
+          "SEQN": 8340,
+          "target": 0,
+          "probability": 0.18719366968007148
+        },
+        {
+          "SEQN": 8399,
+          "target": 1,
+          "probability": 0.07385260939927452
+        },
+        {
+          "SEQN": 8412,
+          "target": 0,
+          "probability": 0.5348980375578345
+        },
+        {
+          "SEQN": 8511,
+          "target": 0,
+          "probability": 0.20405443365205822
+        },
+        {
+          "SEQN": 8514,
+          "target": 0,
+          "probability": 0.24599239108998971
+        },
+        {
+          "SEQN": 8616,
+          "target": 0,
+          "probability": 0.7407675278745868
+        },
+        {
+          "SEQN": 8944,
+          "target": 0,
+          "probability": 0.12017545619558243
+        },
+        {
+          "SEQN": 9040,
+          "target": 0,
+          "probability": 0.18392186731604676
+        },
+        {
+          "SEQN": 9044,
+          "target": 0,
+          "probability": 0.4337840533511058
+        },
+        {
+          "SEQN": 9056,
+          "target": 1,
+          "probability": 0.41733266502176214
+        },
+        {
+          "SEQN": 9130,
+          "target": 0,
+          "probability": 0.8067974565627958
+        },
+        {
+          "SEQN": 9194,
+          "target": 0,
+          "probability": 0.810080968248171
+        },
+        {
+          "SEQN": 9234,
+          "target": 0,
+          "probability": 0.44156376561955374
+        },
+        {
+          "SEQN": 9240,
+          "target": 0,
+          "probability": 0.7360530265059909
+        },
+        {
+          "SEQN": 9316,
+          "target": 0,
+          "probability": 0.24936359407773168
+        },
+        {
+          "SEQN": 9405,
+          "target": 0,
+          "probability": 0.026331876291515073
+        },
+        {
+          "SEQN": 9412,
+          "target": 0,
+          "probability": 0.483092682447117
+        },
+        {
+          "SEQN": 9463,
+          "target": 1,
+          "probability": 0.3080739873062396
+        },
+        {
+          "SEQN": 9483,
+          "target": 0,
+          "probability": 0.139529180717416
+        },
+        {
+          "SEQN": 9516,
+          "target": 1,
+          "probability": 0.5008479830094417
+        },
+        {
+          "SEQN": 9595,
+          "target": 0,
+          "probability": 0.2803932012346219
+        },
+        {
+          "SEQN": 9749,
+          "target": 0,
+          "probability": 0.31963732121553823
+        },
+        {
+          "SEQN": 9793,
+          "target": 0,
+          "probability": 0.7445107043428483
+        },
+        {
+          "SEQN": 9826,
+          "target": 0,
+          "probability": 0.5597439830892562
+        },
+        {
+          "SEQN": 9838,
+          "target": 1,
+          "probability": 0.4282221591066035
+        },
+        {
+          "SEQN": 9879,
+          "target": 0,
+          "probability": 0.3850570438831256
+        },
+        {
+          "SEQN": 9903,
+          "target": 0,
+          "probability": 0.2666978956011171
+        },
+        {
+          "SEQN": 9926,
+          "target": 0,
+          "probability": 0.0890248957489915
+        },
+        {
+          "SEQN": 9965,
+          "target": 0,
+          "probability": 0.8372953166007683
+        },
+        {
+          "SEQN": 10249,
+          "target": 1,
+          "probability": 0.5742379909306222
+        },
+        {
+          "SEQN": 10315,
+          "target": 0,
+          "probability": 0.08675712620591584
+        },
+        {
+          "SEQN": 10373,
+          "target": 1,
+          "probability": 0.3166207086569356
+        },
+        {
+          "SEQN": 10393,
+          "target": 0,
+          "probability": 0.5997414146766034
+        },
+        {
+          "SEQN": 10442,
+          "target": 0,
+          "probability": 0.5237541358475918
+        },
+        {
+          "SEQN": 10518,
+          "target": 0,
+          "probability": 0.11182932683935967
+        },
+        {
+          "SEQN": 10625,
+          "target": 0,
+          "probability": 0.6818582150355683
+        },
+        {
+          "SEQN": 10781,
+          "target": 1,
+          "probability": 0.4712040782212291
+        },
+        {
+          "SEQN": 10906,
+          "target": 0,
+          "probability": 0.7520606453875087
+        },
+        {
+          "SEQN": 11024,
+          "target": 1,
+          "probability": 0.09576048787003091
+        },
+        {
+          "SEQN": 11082,
+          "target": 1,
+          "probability": 0.11943662355669718
+        },
+        {
+          "SEQN": 11108,
+          "target": 0,
+          "probability": 0.040557820388024635
+        },
+        {
+          "SEQN": 11118,
+          "target": 0,
+          "probability": 0.186571261825391
+        },
+        {
+          "SEQN": 11126,
+          "target": 1,
+          "probability": 0.025107084048806495
+        },
+        {
+          "SEQN": 11230,
+          "target": 0,
+          "probability": 0.5125806961632302
+        },
+        {
+          "SEQN": 11292,
+          "target": 0,
+          "probability": 0.6269100396562634
+        },
+        {
+          "SEQN": 11293,
+          "target": 1,
+          "probability": 0.43980818469690935
+        },
+        {
+          "SEQN": 11295,
+          "target": 1,
+          "probability": 0.37227516622703216
+        },
+        {
+          "SEQN": 11354,
+          "target": 0,
+          "probability": 0.438677268672663
+        },
+        {
+          "SEQN": 11395,
+          "target": 0,
+          "probability": 0.2601209749080766
+        },
+        {
+          "SEQN": 11429,
+          "target": 0,
+          "probability": 0.10560772913634589
+        },
+        {
+          "SEQN": 11549,
+          "target": 0,
+          "probability": 0.4281297560979448
+        },
+        {
+          "SEQN": 11591,
+          "target": 0,
+          "probability": 0.4422394197511613
+        },
+        {
+          "SEQN": 11602,
+          "target": 1,
+          "probability": 0.7309531851124607
+        },
+        {
+          "SEQN": 11709,
+          "target": 1,
+          "probability": 0.31100341288931926
+        },
+        {
+          "SEQN": 11722,
+          "target": 0,
+          "probability": 0.5925970342171231
+        },
+        {
+          "SEQN": 11869,
+          "target": 0,
+          "probability": 0.5698275228633987
+        },
+        {
+          "SEQN": 11876,
+          "target": 0,
+          "probability": 0.6315298017276192
+        },
+        {
+          "SEQN": 12131,
+          "target": 0,
+          "probability": 0.11696185534481543
+        },
+        {
+          "SEQN": 12148,
+          "target": 1,
+          "probability": 0.999999999940124
+        },
+        {
+          "SEQN": 12201,
+          "target": 0,
+          "probability": 0.8001971694214907
+        },
+        {
+          "SEQN": 12404,
+          "target": 1,
+          "probability": 0.05560492743809433
+        },
+        {
+          "SEQN": 12528,
+          "target": 0,
+          "probability": 0.3834761221494605
+        },
+        {
+          "SEQN": 12678,
+          "target": 1,
+          "probability": 0.5550352745871964
+        },
+        {
+          "SEQN": 12684,
+          "target": 0,
+          "probability": 0.7355678229507697
+        },
+        {
+          "SEQN": 12770,
+          "target": 0,
+          "probability": 0.12258869723379036
+        },
+        {
+          "SEQN": 12810,
+          "target": 0,
+          "probability": 0.04742291074464223
+        },
+        {
+          "SEQN": 12834,
+          "target": 0,
+          "probability": 0.6883842468040633
+        },
+        {
+          "SEQN": 13242,
+          "target": 1,
+          "probability": 0.8099992638110496
+        },
+        {
+          "SEQN": 13385,
+          "target": 0,
+          "probability": 0.32213903864777843
+        },
+        {
+          "SEQN": 13481,
+          "target": 0,
+          "probability": 0.09835992915597994
+        },
+        {
+          "SEQN": 13644,
+          "target": 0,
+          "probability": 0.6008669975209354
+        },
+        {
+          "SEQN": 13665,
+          "target": 0,
+          "probability": 0.5077749120072463
+        },
+        {
+          "SEQN": 13715,
+          "target": 0,
+          "probability": 0.7629231700826045
+        },
+        {
+          "SEQN": 13767,
+          "target": 0,
+          "probability": 0.06492826898325899
+        },
+        {
+          "SEQN": 13833,
+          "target": 0,
+          "probability": 0.5750707467701643
+        },
+        {
+          "SEQN": 13838,
+          "target": 0,
+          "probability": 0.13041046544636614
+        },
+        {
+          "SEQN": 13936,
+          "target": 0,
+          "probability": 0.6240409484981932
+        },
+        {
+          "SEQN": 14255,
+          "target": 0,
+          "probability": 0.26654483172055426
+        },
+        {
+          "SEQN": 14303,
+          "target": 0,
+          "probability": 0.4813358651480592
+        },
+        {
+          "SEQN": 14326,
+          "target": 0,
+          "probability": 0.04858082809847543
+        },
+        {
+          "SEQN": 14471,
+          "target": 0,
+          "probability": 0.1852349642964282
+        },
+        {
+          "SEQN": 14587,
+          "target": 0,
+          "probability": 0.6997225580994852
+        },
+        {
+          "SEQN": 14734,
+          "target": 0,
+          "probability": 0.7652710468670699
+        },
+        {
+          "SEQN": 14735,
+          "target": 1,
+          "probability": 0.2517982212874498
+        },
+        {
+          "SEQN": 14837,
+          "target": 0,
+          "probability": 0.45190584780366266
+        },
+        {
+          "SEQN": 14910,
+          "target": 1,
+          "probability": 0.327369556743581
+        },
+        {
+          "SEQN": 14940,
+          "target": 0,
+          "probability": 0.7787220196358452
+        },
+        {
+          "SEQN": 14999,
+          "target": 0,
+          "probability": 0.3650100120039095
+        },
+        {
+          "SEQN": 15001,
+          "target": 0,
+          "probability": 0.3716535441578864
+        },
+        {
+          "SEQN": 15073,
+          "target": 0,
+          "probability": 0.36599451110788334
+        },
+        {
+          "SEQN": 15121,
+          "target": 1,
+          "probability": 0.08951549299193713
+        },
+        {
+          "SEQN": 15179,
+          "target": 0,
+          "probability": 0.4351946241488863
+        },
+        {
+          "SEQN": 15313,
+          "target": 0,
+          "probability": 0.6262535804589064
+        },
+        {
+          "SEQN": 15444,
+          "target": 1,
+          "probability": 0.9447430938923762
+        },
+        {
+          "SEQN": 15571,
+          "target": 0,
+          "probability": 0.5519392643132742
+        },
+        {
+          "SEQN": 15614,
+          "target": 0,
+          "probability": 0.18622203787254388
+        },
+        {
+          "SEQN": 15641,
+          "target": 0,
+          "probability": 0.7803843145116063
+        },
+        {
+          "SEQN": 15642,
+          "target": 0,
+          "probability": 0.53997204949166
+        },
+        {
+          "SEQN": 15655,
+          "target": 0,
+          "probability": 0.6224945991882338
+        },
+        {
+          "SEQN": 15828,
+          "target": 0,
+          "probability": 0.13840305444642956
+        },
+        {
+          "SEQN": 15856,
+          "target": 0,
+          "probability": 0.5955630469059777
+        },
+        {
+          "SEQN": 15937,
+          "target": 0,
+          "probability": 0.5150150647051115
+        },
+        {
+          "SEQN": 16239,
+          "target": 0,
+          "probability": 0.2562517543472619
+        },
+        {
+          "SEQN": 16288,
+          "target": 1,
+          "probability": 0.2720397708804083
+        },
+        {
+          "SEQN": 16301,
+          "target": 0,
+          "probability": 0.7086414012200233
+        },
+        {
+          "SEQN": 16346,
+          "target": 0,
+          "probability": 0.4733284632041195
+        },
+        {
+          "SEQN": 16372,
+          "target": 1,
+          "probability": 0.17928703758251557
+        },
+        {
+          "SEQN": 16386,
+          "target": 0,
+          "probability": 0.12170614143346965
+        },
+        {
+          "SEQN": 16527,
+          "target": 0,
+          "probability": 0.2769722049778407
+        },
+        {
+          "SEQN": 16661,
+          "target": 0,
+          "probability": 0.46847228149458814
+        },
+        {
+          "SEQN": 16672,
+          "target": 0,
+          "probability": 0.12678868615945382
+        },
+        {
+          "SEQN": 16761,
+          "target": 0,
+          "probability": 0.35544169207236775
+        },
+        {
+          "SEQN": 16808,
+          "target": 0,
+          "probability": 0.2743789280961909
+        },
+        {
+          "SEQN": 16965,
+          "target": 0,
+          "probability": 0.2994870848651052
+        },
+        {
+          "SEQN": 17107,
+          "target": 0,
+          "probability": 0.6041088308426592
+        },
+        {
+          "SEQN": 17202,
+          "target": 0,
+          "probability": 0.7368004044373025
+        },
+        {
+          "SEQN": 17258,
+          "target": 0,
+          "probability": 0.8524364205818437
+        },
+        {
+          "SEQN": 17268,
+          "target": 0,
+          "probability": 0.21411582760469097
+        },
+        {
+          "SEQN": 17369,
+          "target": 1,
+          "probability": 0.39100685375511407
+        },
+        {
+          "SEQN": 17569,
+          "target": 0,
+          "probability": 0.47402796516102474
+        },
+        {
+          "SEQN": 17632,
+          "target": 0,
+          "probability": 0.2588541042240992
+        },
+        {
+          "SEQN": 17633,
+          "target": 0,
+          "probability": 0.2935905423015522
+        },
+        {
+          "SEQN": 17644,
+          "target": 0,
+          "probability": 0.7360277897991828
+        },
+        {
+          "SEQN": 17649,
+          "target": 0,
+          "probability": 0.9075158535853431
+        },
+        {
+          "SEQN": 17804,
+          "target": 0,
+          "probability": 0.20769312050908645
+        },
+        {
+          "SEQN": 17813,
+          "target": 0,
+          "probability": 0.5382074964216652
+        },
+        {
+          "SEQN": 17841,
+          "target": 0,
+          "probability": 0.8535148389386527
+        },
+        {
+          "SEQN": 17989,
+          "target": 0,
+          "probability": 0.18286800285858532
+        },
+        {
+          "SEQN": 18032,
+          "target": 0,
+          "probability": 0.389499825710366
+        },
+        {
+          "SEQN": 18046,
+          "target": 0,
+          "probability": 0.8033129595149129
+        },
+        {
+          "SEQN": 18109,
+          "target": 0,
+          "probability": 0.7652512783841131
+        },
+        {
+          "SEQN": 18206,
+          "target": 1,
+          "probability": 0.41520108215227786
+        },
+        {
+          "SEQN": 18304,
+          "target": 1,
+          "probability": 0.32950077497499436
+        },
+        {
+          "SEQN": 18516,
+          "target": 1,
+          "probability": 0.7055408360690616
+        },
+        {
+          "SEQN": 18617,
+          "target": 1,
+          "probability": 0.6404896092142647
+        },
+        {
+          "SEQN": 18673,
+          "target": 0,
+          "probability": 0.13796203422860664
+        },
+        {
+          "SEQN": 18696,
+          "target": 0,
+          "probability": 0.27975983454278547
+        },
+        {
+          "SEQN": 18757,
+          "target": 0,
+          "probability": 0.5352225445918986
+        },
+        {
+          "SEQN": 18817,
+          "target": 1,
+          "probability": 0.3328182637522875
+        },
+        {
+          "SEQN": 18906,
+          "target": 0,
+          "probability": 0.16253645416484222
+        },
+        {
+          "SEQN": 19051,
+          "target": 0,
+          "probability": 0.7251321091117436
+        },
+        {
+          "SEQN": 19055,
+          "target": 0,
+          "probability": 0.032217823657114605
+        },
+        {
+          "SEQN": 19059,
+          "target": 0,
+          "probability": 0.9319392026836624
+        },
+        {
+          "SEQN": 19112,
+          "target": 0,
+          "probability": 0.7215998306197522
+        },
+        {
+          "SEQN": 19122,
+          "target": 0,
+          "probability": 0.5190114451575547
+        },
+        {
+          "SEQN": 19126,
+          "target": 0,
+          "probability": 0.3170382089945925
+        },
+        {
+          "SEQN": 19132,
+          "target": 0,
+          "probability": 0.6113970735863616
+        },
+        {
+          "SEQN": 19140,
+          "target": 0,
+          "probability": 0.46359230837291127
+        },
+        {
+          "SEQN": 19257,
+          "target": 0,
+          "probability": 0.1630349278858414
+        },
+        {
+          "SEQN": 19303,
+          "target": 0,
+          "probability": 0.40417692430057545
+        },
+        {
+          "SEQN": 19343,
+          "target": 0,
+          "probability": 0.6813290429217344
+        },
+        {
+          "SEQN": 19452,
+          "target": 0,
+          "probability": 0.23658655671067166
+        },
+        {
+          "SEQN": 19560,
+          "target": 0,
+          "probability": 0.176287268178186
+        },
+        {
+          "SEQN": 19717,
+          "target": 1,
+          "probability": 0.23134822416973738
+        },
+        {
+          "SEQN": 19868,
+          "target": 0,
+          "probability": 0.1863486753373475
+        },
+        {
+          "SEQN": 20249,
+          "target": 0,
+          "probability": 0.7854119032137887
+        },
+        {
+          "SEQN": 20272,
+          "target": 0,
+          "probability": 0.06117429494427211
+        },
+        {
+          "SEQN": 20425,
+          "target": 0,
+          "probability": 0.23832797349752285
+        },
+        {
+          "SEQN": 20496,
+          "target": 0,
+          "probability": 0.17424850586846802
+        },
+        {
+          "SEQN": 20537,
+          "target": 0,
+          "probability": 0.4064460540184429
+        },
+        {
+          "SEQN": 20541,
+          "target": 0,
+          "probability": 0.7738152073643596
+        },
+        {
+          "SEQN": 20807,
+          "target": 0,
+          "probability": 0.7624095981289042
+        },
+        {
+          "SEQN": 20870,
+          "target": 0,
+          "probability": 0.4121402841292907
+        },
+        {
+          "SEQN": 20919,
+          "target": 0,
+          "probability": 0.41250563943789587
+        },
+        {
+          "SEQN": 20965,
+          "target": 0,
+          "probability": 0.205769540782993
+        },
+        {
+          "SEQN": 20996,
+          "target": 0,
+          "probability": 0.19800682816496049
+        },
+        {
+          "SEQN": 21099,
+          "target": 0,
+          "probability": 0.559424077160947
+        },
+        {
+          "SEQN": 21113,
+          "target": 0,
+          "probability": 0.6104080766425916
+        },
+        {
+          "SEQN": 21134,
+          "target": 0,
+          "probability": 0.08865776586205124
+        },
+        {
+          "SEQN": 21143,
+          "target": 0,
+          "probability": 0.2454063808192139
+        },
+        {
+          "SEQN": 21156,
+          "target": 1,
+          "probability": 0.5302865518918264
+        },
+        {
+          "SEQN": 21199,
+          "target": 0,
+          "probability": 0.08223515095182417
+        },
+        {
+          "SEQN": 21216,
+          "target": 0,
+          "probability": 0.3556219407699843
+        },
+        {
+          "SEQN": 21253,
+          "target": 0,
+          "probability": 0.17031013528912564
+        },
+        {
+          "SEQN": 21272,
+          "target": 0,
+          "probability": 0.33343742752155264
+        },
+        {
+          "SEQN": 21305,
+          "target": 0,
+          "probability": 0.47956168896813167
+        },
+        {
+          "SEQN": 21395,
+          "target": 0,
+          "probability": 0.7976038617771415
+        },
+        {
+          "SEQN": 21413,
+          "target": 0,
+          "probability": 0.19561932479541505
+        },
+        {
+          "SEQN": 21455,
+          "target": 0,
+          "probability": 0.22755550867079974
+        },
+        {
+          "SEQN": 21489,
+          "target": 0,
+          "probability": 0.7062457782645771
+        },
+        {
+          "SEQN": 21542,
+          "target": 0,
+          "probability": 0.21004767567321858
+        },
+        {
+          "SEQN": 21571,
+          "target": 0,
+          "probability": 0.3775008390003759
+        },
+        {
+          "SEQN": 21621,
+          "target": 0,
+          "probability": 0.6707531029127832
+        },
+        {
+          "SEQN": 21652,
+          "target": 0,
+          "probability": 0.3117552165958635
+        },
+        {
+          "SEQN": 21768,
+          "target": 1,
+          "probability": 0.9152492467867066
+        },
+        {
+          "SEQN": 21874,
+          "target": 0,
+          "probability": 0.3262282858068374
+        },
+        {
+          "SEQN": 21978,
+          "target": 0,
+          "probability": 0.6368570905792102
+        },
+        {
+          "SEQN": 21993,
+          "target": 1,
+          "probability": 0.23056692849152474
+        },
+        {
+          "SEQN": 22069,
+          "target": 1,
+          "probability": 0.9125439177364786
+        },
+        {
+          "SEQN": 22109,
+          "target": 0,
+          "probability": 0.6764058087849012
+        },
+        {
+          "SEQN": 22134,
+          "target": 0,
+          "probability": 0.4761732629203895
+        },
+        {
+          "SEQN": 22317,
+          "target": 0,
+          "probability": 0.24419250033945844
+        },
+        {
+          "SEQN": 22363,
+          "target": 0,
+          "probability": 0.3850270879497665
+        },
+        {
+          "SEQN": 22407,
+          "target": 0,
+          "probability": 0.38183124268611274
+        },
+        {
+          "SEQN": 22413,
+          "target": 0,
+          "probability": 0.0694556412892145
+        },
+        {
+          "SEQN": 22501,
+          "target": 0,
+          "probability": 0.4859800491554712
+        },
+        {
+          "SEQN": 22506,
+          "target": 0,
+          "probability": 0.7312657235696102
+        },
+        {
+          "SEQN": 22537,
+          "target": 0,
+          "probability": 0.5789158093511372
+        },
+        {
+          "SEQN": 22551,
+          "target": 0,
+          "probability": 0.2239238965762343
+        },
+        {
+          "SEQN": 22608,
+          "target": 1,
+          "probability": 0.407107434735526
+        },
+        {
+          "SEQN": 22629,
+          "target": 1,
+          "probability": 0.8658011822373451
+        },
+        {
+          "SEQN": 22762,
+          "target": 0,
+          "probability": 0.55341016821695
+        },
+        {
+          "SEQN": 22828,
+          "target": 0,
+          "probability": 0.1398258782977722
+        },
+        {
+          "SEQN": 22850,
+          "target": 0,
+          "probability": 0.5747369779907376
+        },
+        {
+          "SEQN": 22867,
+          "target": 1,
+          "probability": 0.16898647668221592
+        },
+        {
+          "SEQN": 22868,
+          "target": 0,
+          "probability": 0.6436593953946249
+        },
+        {
+          "SEQN": 22917,
+          "target": 0,
+          "probability": 0.6077146234766017
+        },
+        {
+          "SEQN": 22930,
+          "target": 0,
+          "probability": 0.6367219753848741
+        },
+        {
+          "SEQN": 22937,
+          "target": 0,
+          "probability": 0.40067140020438885
+        },
+        {
+          "SEQN": 23024,
+          "target": 0,
+          "probability": 0.22733700855636232
+        },
+        {
+          "SEQN": 23061,
+          "target": 1,
+          "probability": 0.49542874673273546
+        },
+        {
+          "SEQN": 23062,
+          "target": 0,
+          "probability": 0.405456885000838
+        },
+        {
+          "SEQN": 23163,
+          "target": 0,
+          "probability": 0.8072466814864642
+        },
+        {
+          "SEQN": 23225,
+          "target": 0,
+          "probability": 0.8110188252570334
+        },
+        {
+          "SEQN": 23245,
+          "target": 0,
+          "probability": 0.25016949719411496
+        },
+        {
+          "SEQN": 23247,
+          "target": 0,
+          "probability": 0.449338409687534
+        },
+        {
+          "SEQN": 23264,
+          "target": 0,
+          "probability": 0.5080570635190468
+        },
+        {
+          "SEQN": 23265,
+          "target": 1,
+          "probability": 0.5058425708947807
+        },
+        {
+          "SEQN": 23282,
+          "target": 0,
+          "probability": 0.2841437411928447
+        },
+        {
+          "SEQN": 23367,
+          "target": 0,
+          "probability": 0.4323317310204306
+        },
+        {
+          "SEQN": 23413,
+          "target": 0,
+          "probability": 0.8612833430442344
+        },
+        {
+          "SEQN": 23457,
+          "target": 0,
+          "probability": 0.22707998874548913
+        },
+        {
+          "SEQN": 23472,
+          "target": 0,
+          "probability": 0.8602704985252364
+        },
+        {
+          "SEQN": 23505,
+          "target": 1,
+          "probability": 0.9560101421231744
+        },
+        {
+          "SEQN": 23521,
+          "target": 0,
+          "probability": 0.43388565340431884
+        },
+        {
+          "SEQN": 23628,
+          "target": 0,
+          "probability": 0.17970985499907283
+        },
+        {
+          "SEQN": 23697,
+          "target": 0,
+          "probability": 0.09438837501260791
+        },
+        {
+          "SEQN": 23828,
+          "target": 0,
+          "probability": 0.30149289593011847
+        },
+        {
+          "SEQN": 23914,
+          "target": 0,
+          "probability": 0.5856593655770689
+        },
+        {
+          "SEQN": 23959,
+          "target": 0,
+          "probability": 0.6767316845887021
+        },
+        {
+          "SEQN": 23969,
+          "target": 0,
+          "probability": 0.25442211896940725
+        },
+        {
+          "SEQN": 23980,
+          "target": 0,
+          "probability": 0.6426611361918777
+        },
+        {
+          "SEQN": 24002,
+          "target": 0,
+          "probability": 0.590906322313353
+        },
+        {
+          "SEQN": 24058,
+          "target": 1,
+          "probability": 0.7754655100250283
+        },
+        {
+          "SEQN": 24075,
+          "target": 0,
+          "probability": 0.43557593504519365
+        },
+        {
+          "SEQN": 24085,
+          "target": 0,
+          "probability": 0.3867722893850434
+        },
+        {
+          "SEQN": 24159,
+          "target": 0,
+          "probability": 0.1902931525226809
+        },
+        {
+          "SEQN": 24165,
+          "target": 0,
+          "probability": 0.5635038749838822
+        },
+        {
+          "SEQN": 24169,
+          "target": 0,
+          "probability": 0.9208080932532269
+        },
+        {
+          "SEQN": 24184,
+          "target": 0,
+          "probability": 0.10075171359887727
+        },
+        {
+          "SEQN": 24189,
+          "target": 0,
+          "probability": 0.4466614736894893
+        },
+        {
+          "SEQN": 24192,
+          "target": 1,
+          "probability": 0.12059017313201004
+        },
+        {
+          "SEQN": 24193,
+          "target": 0,
+          "probability": 0.8501470809486108
+        },
+        {
+          "SEQN": 24228,
+          "target": 0,
+          "probability": 0.6183011012262929
+        },
+        {
+          "SEQN": 24340,
+          "target": 0,
+          "probability": 0.1754698068305059
+        },
+        {
+          "SEQN": 24348,
+          "target": 0,
+          "probability": 0.5459356977042242
+        },
+        {
+          "SEQN": 24350,
+          "target": 0,
+          "probability": 0.5331892411253488
+        },
+        {
+          "SEQN": 24589,
+          "target": 0,
+          "probability": 0.003928779672200268
+        },
+        {
+          "SEQN": 24611,
+          "target": 0,
+          "probability": 0.5359039764132172
+        },
+        {
+          "SEQN": 24701,
+          "target": 0,
+          "probability": 0.6368098366467526
+        },
+        {
+          "SEQN": 24768,
+          "target": 0,
+          "probability": 0.5853909847262747
+        },
+        {
+          "SEQN": 24823,
+          "target": 0,
+          "probability": 0.396554434599239
+        },
+        {
+          "SEQN": 24862,
+          "target": 0,
+          "probability": 0.3116615862304524
+        },
+        {
+          "SEQN": 24879,
+          "target": 0,
+          "probability": 0.06314084650252814
+        },
+        {
+          "SEQN": 24892,
+          "target": 0,
+          "probability": 0.19108155123913842
+        },
+        {
+          "SEQN": 24934,
+          "target": 0,
+          "probability": 0.8306729580864325
+        },
+        {
+          "SEQN": 25028,
+          "target": 0,
+          "probability": 0.6342993643826719
+        },
+        {
+          "SEQN": 25043,
+          "target": 1,
+          "probability": 0.9535765689136104
+        },
+        {
+          "SEQN": 25060,
+          "target": 1,
+          "probability": 0.34584120172425414
+        },
+        {
+          "SEQN": 25071,
+          "target": 0,
+          "probability": 0.24197359455139722
+        },
+        {
+          "SEQN": 25123,
+          "target": 0,
+          "probability": 0.28834954476717667
+        },
+        {
+          "SEQN": 25135,
+          "target": 0,
+          "probability": 0.1801746580591737
+        },
+        {
+          "SEQN": 25141,
+          "target": 0,
+          "probability": 0.2252467484795507
+        },
+        {
+          "SEQN": 25427,
+          "target": 0,
+          "probability": 0.5754021442416647
+        },
+        {
+          "SEQN": 25469,
+          "target": 1,
+          "probability": 0.5279445380468317
+        },
+        {
+          "SEQN": 25485,
+          "target": 0,
+          "probability": 0.3241858160136656
+        },
+        {
+          "SEQN": 25536,
+          "target": 0,
+          "probability": 0.40962105151556605
+        },
+        {
+          "SEQN": 25618,
+          "target": 1,
+          "probability": 0.5231950939916118
+        },
+        {
+          "SEQN": 25629,
+          "target": 0,
+          "probability": 0.10961976272321161
+        },
+        {
+          "SEQN": 25634,
+          "target": 0,
+          "probability": 0.1462514837470202
+        },
+        {
+          "SEQN": 25638,
+          "target": 0,
+          "probability": 0.09410932545343714
+        },
+        {
+          "SEQN": 25665,
+          "target": 1,
+          "probability": 0.792466396345924
+        },
+        {
+          "SEQN": 25786,
+          "target": 0,
+          "probability": 0.13517348970679433
+        },
+        {
+          "SEQN": 26002,
+          "target": 0,
+          "probability": 0.19299592409480826
+        },
+        {
+          "SEQN": 26064,
+          "target": 1,
+          "probability": 0.45442748366849894
+        },
+        {
+          "SEQN": 26297,
+          "target": 0,
+          "probability": 0.487155407006797
+        },
+        {
+          "SEQN": 26304,
+          "target": 0,
+          "probability": 0.5487481578223459
+        },
+        {
+          "SEQN": 26317,
+          "target": 0,
+          "probability": 0.29428196608642887
+        },
+        {
+          "SEQN": 26343,
+          "target": 0,
+          "probability": 0.8451979014438706
+        },
+        {
+          "SEQN": 26428,
+          "target": 0,
+          "probability": 0.34675793502869656
+        },
+        {
+          "SEQN": 26483,
+          "target": 0,
+          "probability": 0.24448618513385534
+        },
+        {
+          "SEQN": 26530,
+          "target": 0,
+          "probability": 0.26931319274669546
+        },
+        {
+          "SEQN": 26728,
+          "target": 1,
+          "probability": 0.40644286970106924
+        },
+        {
+          "SEQN": 26744,
+          "target": 0,
+          "probability": 0.29841776685943006
+        },
+        {
+          "SEQN": 26768,
+          "target": 0,
+          "probability": 0.5727681797130892
+        },
+        {
+          "SEQN": 26803,
+          "target": 0,
+          "probability": 0.44116282302284315
+        },
+        {
+          "SEQN": 26890,
+          "target": 0,
+          "probability": 0.8272938915177332
+        },
+        {
+          "SEQN": 26913,
+          "target": 1,
+          "probability": 0.12959233475803578
+        },
+        {
+          "SEQN": 26956,
+          "target": 0,
+          "probability": 0.14765894478357247
+        },
+        {
+          "SEQN": 26964,
+          "target": 0,
+          "probability": 0.10921823214685941
+        },
+        {
+          "SEQN": 26974,
+          "target": 1,
+          "probability": 0.41109425606092564
+        },
+        {
+          "SEQN": 27177,
+          "target": 0,
+          "probability": 0.30053654681165465
+        },
+        {
+          "SEQN": 27215,
+          "target": 0,
+          "probability": 0.5034753476176801
+        },
+        {
+          "SEQN": 27349,
+          "target": 0,
+          "probability": 0.6787630253993372
+        },
+        {
+          "SEQN": 27359,
+          "target": 0,
+          "probability": 0.3566833380753246
+        },
+        {
+          "SEQN": 27415,
+          "target": 0,
+          "probability": 0.8057215262583182
+        },
+        {
+          "SEQN": 27418,
+          "target": 0,
+          "probability": 0.28632161377958354
+        },
+        {
+          "SEQN": 27462,
+          "target": 0,
+          "probability": 0.8154765848069024
+        },
+        {
+          "SEQN": 27480,
+          "target": 0,
+          "probability": 0.15870647087678869
+        },
+        {
+          "SEQN": 27484,
+          "target": 0,
+          "probability": 0.5597519424398888
+        },
+        {
+          "SEQN": 27504,
+          "target": 0,
+          "probability": 0.17092821684767406
+        },
+        {
+          "SEQN": 27516,
+          "target": 0,
+          "probability": 0.040344638676158444
+        },
+        {
+          "SEQN": 27570,
+          "target": 1,
+          "probability": 0.3142974402243773
+        },
+        {
+          "SEQN": 27601,
+          "target": 0,
+          "probability": 0.9081508060998462
+        },
+        {
+          "SEQN": 27642,
+          "target": 1,
+          "probability": 0.33877544224025613
+        },
+        {
+          "SEQN": 27643,
+          "target": 0,
+          "probability": 0.10598828511130931
+        },
+        {
+          "SEQN": 27659,
+          "target": 1,
+          "probability": 0.03422087070348353
+        },
+        {
+          "SEQN": 27669,
+          "target": 0,
+          "probability": 0.11180427059917555
+        },
+        {
+          "SEQN": 27671,
+          "target": 0,
+          "probability": 0.9160165986002037
+        },
+        {
+          "SEQN": 27743,
+          "target": 1,
+          "probability": 0.11448146711094634
+        },
+        {
+          "SEQN": 27766,
+          "target": 0,
+          "probability": 0.36859980486898963
+        },
+        {
+          "SEQN": 27848,
+          "target": 0,
+          "probability": 0.3542921219103297
+        },
+        {
+          "SEQN": 27859,
+          "target": 1,
+          "probability": 0.37904066055672186
+        },
+        {
+          "SEQN": 27963,
+          "target": 1,
+          "probability": 0.5078883277340662
+        },
+        {
+          "SEQN": 28018,
+          "target": 1,
+          "probability": 0.0267409074952565
+        },
+        {
+          "SEQN": 28093,
+          "target": 0,
+          "probability": 0.6297655112056191
+        },
+        {
+          "SEQN": 28174,
+          "target": 0,
+          "probability": 0.5395759646686368
+        },
+        {
+          "SEQN": 28248,
+          "target": 0,
+          "probability": 0.769678700373503
+        },
+        {
+          "SEQN": 28253,
+          "target": 0,
+          "probability": 0.8755002443864962
+        },
+        {
+          "SEQN": 28269,
+          "target": 0,
+          "probability": 0.30387037581139664
+        },
+        {
+          "SEQN": 28443,
+          "target": 1,
+          "probability": 0.2021355172417258
+        },
+        {
+          "SEQN": 28458,
+          "target": 0,
+          "probability": 0.5383484401763392
+        },
+        {
+          "SEQN": 28467,
+          "target": 0,
+          "probability": 0.509726805203801
+        },
+        {
+          "SEQN": 28541,
+          "target": 1,
+          "probability": 0.20306523250270345
+        },
+        {
+          "SEQN": 28573,
+          "target": 1,
+          "probability": 0.7923252708144133
+        },
+        {
+          "SEQN": 28669,
+          "target": 0,
+          "probability": 0.497332695901186
+        },
+        {
+          "SEQN": 28698,
+          "target": 0,
+          "probability": 0.3610880453350499
+        },
+        {
+          "SEQN": 28712,
+          "target": 0,
+          "probability": 0.4514469993240239
+        },
+        {
+          "SEQN": 28746,
+          "target": 0,
+          "probability": 0.9487856388621803
+        },
+        {
+          "SEQN": 28769,
+          "target": 0,
+          "probability": 0.2958761847677875
+        },
+        {
+          "SEQN": 28792,
+          "target": 1,
+          "probability": 0.35456398694304664
+        },
+        {
+          "SEQN": 28794,
+          "target": 0,
+          "probability": 0.9551551294295566
+        },
+        {
+          "SEQN": 28898,
+          "target": 0,
+          "probability": 0.14224071062255153
+        },
+        {
+          "SEQN": 28948,
+          "target": 0,
+          "probability": 0.3863724553525788
+        },
+        {
+          "SEQN": 29054,
+          "target": 0,
+          "probability": 0.7477425594290696
+        },
+        {
+          "SEQN": 29081,
+          "target": 0,
+          "probability": 0.8869973021227338
+        },
+        {
+          "SEQN": 29095,
+          "target": 0,
+          "probability": 0.4131151728786809
+        },
+        {
+          "SEQN": 29096,
+          "target": 0,
+          "probability": 0.04211606826814425
+        },
+        {
+          "SEQN": 29218,
+          "target": 0,
+          "probability": 0.45996458521091776
+        },
+        {
+          "SEQN": 29232,
+          "target": 0,
+          "probability": 0.3104792866779205
+        },
+        {
+          "SEQN": 29249,
+          "target": 0,
+          "probability": 0.20601117920536596
+        },
+        {
+          "SEQN": 29307,
+          "target": 0,
+          "probability": 0.37051812127612527
+        },
+        {
+          "SEQN": 29352,
+          "target": 1,
+          "probability": 0.8277265478452034
+        },
+        {
+          "SEQN": 29390,
+          "target": 0,
+          "probability": 0.32250996342859994
+        },
+        {
+          "SEQN": 29456,
+          "target": 1,
+          "probability": 0.47999364292365226
+        },
+        {
+          "SEQN": 29490,
+          "target": 0,
+          "probability": 0.5780896064733021
+        },
+        {
+          "SEQN": 29518,
+          "target": 0,
+          "probability": 0.02743195835178742
+        },
+        {
+          "SEQN": 29724,
+          "target": 0,
+          "probability": 0.4998330499346319
+        },
+        {
+          "SEQN": 29778,
+          "target": 0,
+          "probability": 0.08826999316142564
+        },
+        {
+          "SEQN": 29803,
+          "target": 0,
+          "probability": 0.31161917082143786
+        },
+        {
+          "SEQN": 29878,
+          "target": 1,
+          "probability": 0.3715753516296254
+        },
+        {
+          "SEQN": 29916,
+          "target": 1,
+          "probability": 0.8688255060978264
+        },
+        {
+          "SEQN": 29932,
+          "target": 0,
+          "probability": 0.6179325105959771
+        },
+        {
+          "SEQN": 29943,
+          "target": 0,
+          "probability": 0.1439672206080868
+        },
+        {
+          "SEQN": 29969,
+          "target": 0,
+          "probability": 0.612744345133784
+        },
+        {
+          "SEQN": 30170,
+          "target": 0,
+          "probability": 0.46946683361861963
+        },
+        {
+          "SEQN": 30186,
+          "target": 0,
+          "probability": 0.616339179365976
+        },
+        {
+          "SEQN": 30264,
+          "target": 0,
+          "probability": 0.27984569330088027
+        },
+        {
+          "SEQN": 30270,
+          "target": 0,
+          "probability": 0.05886968731875887
+        },
+        {
+          "SEQN": 30403,
+          "target": 1,
+          "probability": 0.7685319597580913
+        },
+        {
+          "SEQN": 30405,
+          "target": 0,
+          "probability": 0.2869132044541115
+        },
+        {
+          "SEQN": 30589,
+          "target": 1,
+          "probability": 0.3114092312115432
+        },
+        {
+          "SEQN": 30610,
+          "target": 0,
+          "probability": 0.9560687917599727
+        },
+        {
+          "SEQN": 30682,
+          "target": 1,
+          "probability": 0.23265104482632645
+        },
+        {
+          "SEQN": 30723,
+          "target": 1,
+          "probability": 0.2374694729532008
+        },
+        {
+          "SEQN": 30786,
+          "target": 1,
+          "probability": 0.5766396197831056
+        },
+        {
+          "SEQN": 30844,
+          "target": 0,
+          "probability": 0.16324280030772473
+        },
+        {
+          "SEQN": 30890,
+          "target": 0,
+          "probability": 0.6536392120999243
+        },
+        {
+          "SEQN": 30986,
+          "target": 0,
+          "probability": 0.47438235135298107
+        },
+        {
+          "SEQN": 31033,
+          "target": 0,
+          "probability": 0.32825486781989294
+        },
+        {
+          "SEQN": 31061,
+          "target": 0,
+          "probability": 0.13390251283102725
+        },
+        {
+          "SEQN": 31098,
+          "target": 0,
+          "probability": 0.3556567519250332
+        }
+      ]
+    },
+    "HGB": {
+      "split_metrics": [
+        {
+          "split": 0,
+          "repeat": 0,
+          "fold": 0,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.49444444444444446,
+          "auprc": 0.20210948973358045,
+          "balanced_accuracy": 0.5131944444444444,
+          "sensitivity": 0.3888888888888889,
+          "specificity": 0.6375,
+          "brier": 0.2062523574676162,
+          "threshold": 0.28009140991034
+        },
+        {
+          "split": 1,
+          "repeat": 0,
+          "fold": 1,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.4986111111111111,
+          "auprc": 0.3214228458085091,
+          "balanced_accuracy": 0.4840277777777778,
+          "sensitivity": 0.5555555555555556,
+          "specificity": 0.4125,
+          "brier": 0.19437539641175108,
+          "threshold": 0.1338678355835326
+        },
+        {
+          "split": 2,
+          "repeat": 0,
+          "fold": 2,
+          "n_test": 98,
+          "positive_test": 19,
+          "auroc": 0.7528314457028648,
+          "auprc": 0.5135998323549245,
+          "balanced_accuracy": 0.6109260493004663,
+          "sensitivity": 0.8421052631578947,
+          "specificity": 0.379746835443038,
+          "brier": 0.13022846607631205,
+          "threshold": 0.1172438187202167
+        },
+        {
+          "split": 3,
+          "repeat": 0,
+          "fold": 3,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5886075949367088,
+          "auprc": 0.23717696909139108,
+          "balanced_accuracy": 0.5991561181434599,
+          "sensitivity": 0.6666666666666666,
+          "specificity": 0.5316455696202531,
+          "brier": 0.1888692492388831,
+          "threshold": 0.19872393097602548
+        },
+        {
+          "split": 4,
+          "repeat": 0,
+          "fold": 4,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.6997187060478199,
+          "auprc": 0.41227877183525286,
+          "balanced_accuracy": 0.5857946554149085,
+          "sensitivity": 0.2222222222222222,
+          "specificity": 0.9493670886075949,
+          "brier": 0.144466064247167,
+          "threshold": 0.45938832474470725
+        },
+        {
+          "split": 5,
+          "repeat": 1,
+          "fold": 0,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.5854166666666667,
+          "auprc": 0.27973697995142466,
+          "balanced_accuracy": 0.6152777777777778,
+          "sensitivity": 0.5555555555555556,
+          "specificity": 0.675,
+          "brier": 0.1693181779214941,
+          "threshold": 0.2818558480705179
+        },
+        {
+          "split": 6,
+          "repeat": 1,
+          "fold": 1,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.40694444444444444,
+          "auprc": 0.16944834570847783,
+          "balanced_accuracy": 0.49930555555555556,
+          "sensitivity": 0.1111111111111111,
+          "specificity": 0.8875,
+          "brier": 0.2028522223512756,
+          "threshold": 0.48016405267766327
+        },
+        {
+          "split": 7,
+          "repeat": 1,
+          "fold": 2,
+          "n_test": 98,
+          "positive_test": 19,
+          "auroc": 0.6502331778814123,
+          "auprc": 0.3277654176596806,
+          "balanced_accuracy": 0.6299133910726182,
+          "sensitivity": 0.8421052631578947,
+          "specificity": 0.4177215189873418,
+          "brier": 0.17254009563623238,
+          "threshold": 0.11529326239935433
+        },
+        {
+          "split": 8,
+          "repeat": 1,
+          "fold": 3,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.6118143459915613,
+          "auprc": 0.29187257998196314,
+          "balanced_accuracy": 0.539732770745429,
+          "sensitivity": 0.6111111111111112,
+          "specificity": 0.46835443037974683,
+          "brier": 0.17769831760055158,
+          "threshold": 0.1788045468023549
+        },
+        {
+          "split": 9,
+          "repeat": 1,
+          "fold": 4,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.6673699015471167,
+          "auprc": 0.35198102300533185,
+          "balanced_accuracy": 0.629746835443038,
+          "sensitivity": 0.5,
+          "specificity": 0.759493670886076,
+          "brier": 0.1611703132770924,
+          "threshold": 0.3914778415905736
+        },
+        {
+          "split": 10,
+          "repeat": 2,
+          "fold": 0,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.5493055555555555,
+          "auprc": 0.2887367515486523,
+          "balanced_accuracy": 0.5854166666666667,
+          "sensitivity": 0.3333333333333333,
+          "specificity": 0.8375,
+          "brier": 0.1666509692627294,
+          "threshold": 0.38656272000626385
+        },
+        {
+          "split": 11,
+          "repeat": 2,
+          "fold": 1,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.6222222222222222,
+          "auprc": 0.31657625161806224,
+          "balanced_accuracy": 0.5611111111111111,
+          "sensitivity": 0.7222222222222222,
+          "specificity": 0.4,
+          "brier": 0.16907639884707054,
+          "threshold": 0.13802418027726204
+        },
+        {
+          "split": 12,
+          "repeat": 2,
+          "fold": 2,
+          "n_test": 98,
+          "positive_test": 19,
+          "auroc": 0.5762824783477681,
+          "auprc": 0.3114927021506872,
+          "balanced_accuracy": 0.5043304463690873,
+          "sensitivity": 0.8947368421052632,
+          "specificity": 0.11392405063291139,
+          "brier": 0.18156996165702688,
+          "threshold": 0.07349104667070443
+        },
+        {
+          "split": 13,
+          "repeat": 2,
+          "fold": 3,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5752461322081575,
+          "auprc": 0.26154413964976897,
+          "balanced_accuracy": 0.5520393811533052,
+          "sensitivity": 0.8888888888888888,
+          "specificity": 0.21518987341772153,
+          "brier": 0.18052950512447746,
+          "threshold": 0.07516516508420983
+        },
+        {
+          "split": 14,
+          "repeat": 2,
+          "fold": 4,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.45850914205344584,
+          "auprc": 0.18366077741450512,
+          "balanced_accuracy": 0.479254571026723,
+          "sensitivity": 0.3888888888888889,
+          "specificity": 0.569620253164557,
+          "brier": 0.2060292441418477,
+          "threshold": 0.2069663865507217
+        },
+        {
+          "split": 15,
+          "repeat": 3,
+          "fold": 0,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.5354166666666667,
+          "auprc": 0.286964243596099,
+          "balanced_accuracy": 0.5590277777777778,
+          "sensitivity": 0.5555555555555556,
+          "specificity": 0.5625,
+          "brier": 0.1719993770671148,
+          "threshold": 0.17871839026025746
+        },
+        {
+          "split": 16,
+          "repeat": 3,
+          "fold": 1,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.5576388888888889,
+          "auprc": 0.23903206111313385,
+          "balanced_accuracy": 0.5638888888888889,
+          "sensitivity": 0.7777777777777778,
+          "specificity": 0.35,
+          "brier": 0.18864312894703295,
+          "threshold": 0.09827227374276123
+        },
+        {
+          "split": 17,
+          "repeat": 3,
+          "fold": 2,
+          "n_test": 98,
+          "positive_test": 19,
+          "auroc": 0.6349100599600267,
+          "auprc": 0.2793608864988044,
+          "balanced_accuracy": 0.5686209193870753,
+          "sensitivity": 0.9473684210526315,
+          "specificity": 0.189873417721519,
+          "brier": 0.17682281494610796,
+          "threshold": 0.059613693677131485
+        },
+        {
+          "split": 18,
+          "repeat": 3,
+          "fold": 3,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.6729957805907173,
+          "auprc": 0.32935762838217353,
+          "balanced_accuracy": 0.609353023909986,
+          "sensitivity": 0.6111111111111112,
+          "specificity": 0.6075949367088608,
+          "brier": 0.1652403761462522,
+          "threshold": 0.25508677466273677
+        },
+        {
+          "split": 19,
+          "repeat": 3,
+          "fold": 4,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5365682137834037,
+          "auprc": 0.27088324917184337,
+          "balanced_accuracy": 0.4883966244725738,
+          "sensitivity": 0.16666666666666666,
+          "specificity": 0.810126582278481,
+          "brier": 0.17897816791221646,
+          "threshold": 0.42677117845110524
+        },
+        {
+          "split": 20,
+          "repeat": 4,
+          "fold": 0,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.6430555555555556,
+          "auprc": 0.345206248002079,
+          "balanced_accuracy": 0.5826388888888889,
+          "sensitivity": 0.7777777777777778,
+          "specificity": 0.3875,
+          "brier": 0.16083861876615055,
+          "threshold": 0.11248060030911078
+        },
+        {
+          "split": 21,
+          "repeat": 4,
+          "fold": 1,
+          "n_test": 98,
+          "positive_test": 18,
+          "auroc": 0.48333333333333334,
+          "auprc": 0.18993371706434004,
+          "balanced_accuracy": 0.5041666666666667,
+          "sensitivity": 0.8333333333333334,
+          "specificity": 0.175,
+          "brier": 0.21949362556755583,
+          "threshold": 0.07022361427142498
+        },
+        {
+          "split": 22,
+          "repeat": 4,
+          "fold": 2,
+          "n_test": 98,
+          "positive_test": 19,
+          "auroc": 0.5196535642904729,
+          "auprc": 0.3393971913805092,
+          "balanced_accuracy": 0.5662891405729513,
+          "sensitivity": 0.15789473684210525,
+          "specificity": 0.9746835443037974,
+          "brier": 0.1746682512805029,
+          "threshold": 0.5121619068530459
+        },
+        {
+          "split": 23,
+          "repeat": 4,
+          "fold": 3,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5639943741209563,
+          "auprc": 0.3036653580148335,
+          "balanced_accuracy": 0.5763009845288326,
+          "sensitivity": 0.7222222222222222,
+          "specificity": 0.43037974683544306,
+          "brier": 0.16938087481970668,
+          "threshold": 0.13451423255807837
+        },
+        {
+          "split": 24,
+          "repeat": 4,
+          "fold": 4,
+          "n_test": 97,
+          "positive_test": 18,
+          "auroc": 0.5,
+          "auprc": 0.18424384261479027,
+          "balanced_accuracy": 0.5559071729957806,
+          "sensitivity": 0.8333333333333334,
+          "specificity": 0.27848101265822783,
+          "brier": 0.22508081990224652,
+          "threshold": 0.056458035245500485
+        }
+      ],
+      "split_summary": {
+        "auroc": {
+          "mean": 0.5754049522540527,
+          "sd": 0.08124712899760574
+        },
+        "auprc": {
+          "mean": 0.2894978921340327,
+          "sd": 0.07668900599598254
+        },
+        "balanced_accuracy": {
+          "mean": 0.5585527056036717,
+          "sd": 0.04634090586022194
+        },
+        "sensitivity": {
+          "mean": 0.5962573099415205,
+          "sd": 0.2545972213256784
+        },
+        "specificity": {
+          "mean": 0.5208481012658228,
+          "sd": 0.24797234541865032
+        },
+        "brier": {
+          "mean": 0.17931091178465658,
+          "sd": 0.02160265536658326
+        }
+      },
+      "patient_pooled": {
+        "auroc": 0.5840783901237302,
+        "auprc": 0.27156603741928764,
+        "balanced_accuracy": 0.5517203199822847,
+        "sensitivity": 0.27472527472527475,
+        "specificity": 0.8287153652392947,
+        "brier": 0.16644086219988696,
+        "threshold": 0.40847051211379354,
+        "auroc_ci95_patient_bootstrap": [
+          0.5169803747889391,
+          0.649406953248263
+        ]
+      },
+      "predictions": [
+        {
+          "SEQN": 46,
+          "target": 0,
+          "probability": 0.1381743443344504
+        },
+        {
+          "SEQN": 117,
+          "target": 0,
+          "probability": 0.10410274514106095
+        },
+        {
+          "SEQN": 372,
+          "target": 0,
+          "probability": 0.07667157156084728
+        },
+        {
+          "SEQN": 458,
+          "target": 0,
+          "probability": 0.3462806724330838
+        },
+        {
+          "SEQN": 460,
+          "target": 1,
+          "probability": 0.35511507421029737
+        },
+        {
+          "SEQN": 698,
+          "target": 0,
+          "probability": 0.016690726622551312
+        },
+        {
+          "SEQN": 788,
+          "target": 0,
+          "probability": 0.10701808931834071
+        },
+        {
+          "SEQN": 861,
+          "target": 0,
+          "probability": 0.16502010859576294
+        },
+        {
+          "SEQN": 898,
+          "target": 1,
+          "probability": 0.22670364896458936
+        },
+        {
+          "SEQN": 1031,
+          "target": 0,
+          "probability": 0.17423463218083773
+        },
+        {
+          "SEQN": 1196,
+          "target": 1,
+          "probability": 0.14857878107333516
+        },
+        {
+          "SEQN": 1203,
+          "target": 0,
+          "probability": 0.08096551364467443
+        },
+        {
+          "SEQN": 1237,
+          "target": 1,
+          "probability": 0.17182813407275996
+        },
+        {
+          "SEQN": 1299,
+          "target": 0,
+          "probability": 0.1941892136896894
+        },
+        {
+          "SEQN": 1316,
+          "target": 1,
+          "probability": 0.0728021346641959
+        },
+        {
+          "SEQN": 1351,
+          "target": 1,
+          "probability": 0.17687311350047324
+        },
+        {
+          "SEQN": 1383,
+          "target": 0,
+          "probability": 0.0249962224319848
+        },
+        {
+          "SEQN": 1442,
+          "target": 1,
+          "probability": 0.382476955630589
+        },
+        {
+          "SEQN": 1464,
+          "target": 0,
+          "probability": 0.31796966903201823
+        },
+        {
+          "SEQN": 1488,
+          "target": 1,
+          "probability": 0.34039815630253384
+        },
+        {
+          "SEQN": 1777,
+          "target": 0,
+          "probability": 0.03824547751095948
+        },
+        {
+          "SEQN": 1861,
+          "target": 0,
+          "probability": 0.23172958764492746
+        },
+        {
+          "SEQN": 1873,
+          "target": 0,
+          "probability": 0.10565717944465076
+        },
+        {
+          "SEQN": 1885,
+          "target": 0,
+          "probability": 0.30382425313978156
+        },
+        {
+          "SEQN": 2094,
+          "target": 0,
+          "probability": 0.05796525471900954
+        },
+        {
+          "SEQN": 2121,
+          "target": 0,
+          "probability": 0.18081520048437935
+        },
+        {
+          "SEQN": 2213,
+          "target": 0,
+          "probability": 0.05166780172836601
+        },
+        {
+          "SEQN": 2225,
+          "target": 0,
+          "probability": 0.06263371144303267
+        },
+        {
+          "SEQN": 2275,
+          "target": 1,
+          "probability": 0.1125124510147428
+        },
+        {
+          "SEQN": 2328,
+          "target": 0,
+          "probability": 0.1724168127786534
+        },
+        {
+          "SEQN": 2331,
+          "target": 0,
+          "probability": 0.11019001514442636
+        },
+        {
+          "SEQN": 2362,
+          "target": 0,
+          "probability": 0.10419163417194459
+        },
+        {
+          "SEQN": 2473,
+          "target": 1,
+          "probability": 0.3586231806269701
+        },
+        {
+          "SEQN": 2552,
+          "target": 0,
+          "probability": 0.3784785373780656
+        },
+        {
+          "SEQN": 2620,
+          "target": 0,
+          "probability": 0.15930009232296513
+        },
+        {
+          "SEQN": 2643,
+          "target": 0,
+          "probability": 0.39037813721831166
+        },
+        {
+          "SEQN": 2659,
+          "target": 0,
+          "probability": 0.2140305113045832
+        },
+        {
+          "SEQN": 2732,
+          "target": 0,
+          "probability": 0.20910789891023057
+        },
+        {
+          "SEQN": 2762,
+          "target": 0,
+          "probability": 0.13727464147796062
+        },
+        {
+          "SEQN": 2768,
+          "target": 0,
+          "probability": 0.40647282829798004
+        },
+        {
+          "SEQN": 2830,
+          "target": 0,
+          "probability": 0.3910247848134075
+        },
+        {
+          "SEQN": 2933,
+          "target": 0,
+          "probability": 0.1466337156809763
+        },
+        {
+          "SEQN": 3085,
+          "target": 0,
+          "probability": 0.10443768035985401
+        },
+        {
+          "SEQN": 3097,
+          "target": 0,
+          "probability": 0.2024652615119059
+        },
+        {
+          "SEQN": 3098,
+          "target": 0,
+          "probability": 0.3459037445723839
+        },
+        {
+          "SEQN": 3293,
+          "target": 0,
+          "probability": 0.2844854234030866
+        },
+        {
+          "SEQN": 3294,
+          "target": 0,
+          "probability": 0.5975184226942251
+        },
+        {
+          "SEQN": 3350,
+          "target": 0,
+          "probability": 0.20390901704398914
+        },
+        {
+          "SEQN": 3370,
+          "target": 0,
+          "probability": 0.3728029935418771
+        },
+        {
+          "SEQN": 3382,
+          "target": 0,
+          "probability": 0.10277060549083088
+        },
+        {
+          "SEQN": 3462,
+          "target": 0,
+          "probability": 0.06354541337356297
+        },
+        {
+          "SEQN": 3545,
+          "target": 0,
+          "probability": 0.5100306091632564
+        },
+        {
+          "SEQN": 3559,
+          "target": 0,
+          "probability": 0.03594416745372321
+        },
+        {
+          "SEQN": 3753,
+          "target": 0,
+          "probability": 0.38389955619244304
+        },
+        {
+          "SEQN": 3780,
+          "target": 0,
+          "probability": 0.11386137423280315
+        },
+        {
+          "SEQN": 3793,
+          "target": 0,
+          "probability": 0.5041799973269026
+        },
+        {
+          "SEQN": 3955,
+          "target": 1,
+          "probability": 0.23449486137352427
+        },
+        {
+          "SEQN": 3991,
+          "target": 1,
+          "probability": 0.11202918148985977
+        },
+        {
+          "SEQN": 4074,
+          "target": 0,
+          "probability": 0.13941830015528728
+        },
+        {
+          "SEQN": 4092,
+          "target": 0,
+          "probability": 0.18088575000750615
+        },
+        {
+          "SEQN": 4108,
+          "target": 0,
+          "probability": 0.10925942553180483
+        },
+        {
+          "SEQN": 4113,
+          "target": 0,
+          "probability": 0.12372975093734229
+        },
+        {
+          "SEQN": 4119,
+          "target": 0,
+          "probability": 0.06327011124434631
+        },
+        {
+          "SEQN": 4187,
+          "target": 0,
+          "probability": 0.09789811754888753
+        },
+        {
+          "SEQN": 4192,
+          "target": 0,
+          "probability": 0.15734546481260867
+        },
+        {
+          "SEQN": 4276,
+          "target": 0,
+          "probability": 0.18251668138459112
+        },
+        {
+          "SEQN": 4378,
+          "target": 0,
+          "probability": 0.558122235009087
+        },
+        {
+          "SEQN": 4390,
+          "target": 0,
+          "probability": 0.13054073696397633
+        },
+        {
+          "SEQN": 4461,
+          "target": 0,
+          "probability": 0.015494159856371845
+        },
+        {
+          "SEQN": 4564,
+          "target": 0,
+          "probability": 0.15364639357666762
+        },
+        {
+          "SEQN": 4565,
+          "target": 0,
+          "probability": 0.4031027360505101
+        },
+        {
+          "SEQN": 4583,
+          "target": 0,
+          "probability": 0.5382323353821878
+        },
+        {
+          "SEQN": 4624,
+          "target": 0,
+          "probability": 0.08753940460415496
+        },
+        {
+          "SEQN": 4636,
+          "target": 0,
+          "probability": 0.5935033365873404
+        },
+        {
+          "SEQN": 4727,
+          "target": 0,
+          "probability": 0.4750817811794457
+        },
+        {
+          "SEQN": 4793,
+          "target": 0,
+          "probability": 0.4292673897050851
+        },
+        {
+          "SEQN": 4982,
+          "target": 0,
+          "probability": 0.15120604163856166
+        },
+        {
+          "SEQN": 4995,
+          "target": 0,
+          "probability": 0.2643035720715229
+        },
+        {
+          "SEQN": 5195,
+          "target": 0,
+          "probability": 0.03139849878536477
+        },
+        {
+          "SEQN": 5426,
+          "target": 0,
+          "probability": 0.46191197815919116
+        },
+        {
+          "SEQN": 5448,
+          "target": 0,
+          "probability": 0.09583573307260368
+        },
+        {
+          "SEQN": 5595,
+          "target": 0,
+          "probability": 0.24078017455008024
+        },
+        {
+          "SEQN": 5830,
+          "target": 0,
+          "probability": 0.23969064465402132
+        },
+        {
+          "SEQN": 5860,
+          "target": 0,
+          "probability": 0.1260195472383461
+        },
+        {
+          "SEQN": 5894,
+          "target": 0,
+          "probability": 0.07776060015273392
+        },
+        {
+          "SEQN": 5924,
+          "target": 0,
+          "probability": 0.5020287060431801
+        },
+        {
+          "SEQN": 5941,
+          "target": 0,
+          "probability": 0.014886550155612865
+        },
+        {
+          "SEQN": 6094,
+          "target": 0,
+          "probability": 0.16192107024916
+        },
+        {
+          "SEQN": 6121,
+          "target": 0,
+          "probability": 0.12538157451005524
+        },
+        {
+          "SEQN": 6179,
+          "target": 0,
+          "probability": 0.10386179985347208
+        },
+        {
+          "SEQN": 6348,
+          "target": 0,
+          "probability": 0.04730618227972916
+        },
+        {
+          "SEQN": 6368,
+          "target": 0,
+          "probability": 0.2764236383426299
+        },
+        {
+          "SEQN": 6414,
+          "target": 0,
+          "probability": 0.03185204008433564
+        },
+        {
+          "SEQN": 6605,
+          "target": 0,
+          "probability": 0.07962555851326603
+        },
+        {
+          "SEQN": 6627,
+          "target": 1,
+          "probability": 0.11174896255471545
+        },
+        {
+          "SEQN": 6662,
+          "target": 1,
+          "probability": 0.026233065018655438
+        },
+        {
+          "SEQN": 6812,
+          "target": 0,
+          "probability": 0.1312796335461775
+        },
+        {
+          "SEQN": 6861,
+          "target": 0,
+          "probability": 0.05597951838987001
+        },
+        {
+          "SEQN": 6867,
+          "target": 0,
+          "probability": 0.043282230313989034
+        },
+        {
+          "SEQN": 6898,
+          "target": 0,
+          "probability": 0.45351758337781184
+        },
+        {
+          "SEQN": 7024,
+          "target": 0,
+          "probability": 0.09832436065019427
+        },
+        {
+          "SEQN": 7167,
+          "target": 0,
+          "probability": 0.07173130935220096
+        },
+        {
+          "SEQN": 7184,
+          "target": 0,
+          "probability": 0.471730206215576
+        },
+        {
+          "SEQN": 7210,
+          "target": 1,
+          "probability": 0.12641282081209432
+        },
+        {
+          "SEQN": 7244,
+          "target": 1,
+          "probability": 0.25589131841842583
+        },
+        {
+          "SEQN": 7269,
+          "target": 0,
+          "probability": 0.06638897623208131
+        },
+        {
+          "SEQN": 7377,
+          "target": 0,
+          "probability": 0.15396362567059363
+        },
+        {
+          "SEQN": 7613,
+          "target": 1,
+          "probability": 0.32893346653681144
+        },
+        {
+          "SEQN": 7686,
+          "target": 0,
+          "probability": 0.053522347096609135
+        },
+        {
+          "SEQN": 7696,
+          "target": 0,
+          "probability": 0.2893171459885317
+        },
+        {
+          "SEQN": 7782,
+          "target": 0,
+          "probability": 0.07554525825724612
+        },
+        {
+          "SEQN": 7792,
+          "target": 0,
+          "probability": 0.04547689349018132
+        },
+        {
+          "SEQN": 7825,
+          "target": 0,
+          "probability": 0.27676871632365424
+        },
+        {
+          "SEQN": 7868,
+          "target": 0,
+          "probability": 0.03426994201623544
+        },
+        {
+          "SEQN": 8076,
+          "target": 0,
+          "probability": 0.5125251691782957
+        },
+        {
+          "SEQN": 8299,
+          "target": 1,
+          "probability": 0.12173245089574272
+        },
+        {
+          "SEQN": 8340,
+          "target": 0,
+          "probability": 0.11648903143577613
+        },
+        {
+          "SEQN": 8399,
+          "target": 1,
+          "probability": 0.08829351048573064
+        },
+        {
+          "SEQN": 8412,
+          "target": 0,
+          "probability": 0.1681606619399999
+        },
+        {
+          "SEQN": 8511,
+          "target": 0,
+          "probability": 0.10391000236850871
+        },
+        {
+          "SEQN": 8514,
+          "target": 0,
+          "probability": 0.12471493935003423
+        },
+        {
+          "SEQN": 8616,
+          "target": 0,
+          "probability": 0.6045125038009915
+        },
+        {
+          "SEQN": 8944,
+          "target": 0,
+          "probability": 0.12817803953635837
+        },
+        {
+          "SEQN": 9040,
+          "target": 0,
+          "probability": 0.06489294448574437
+        },
+        {
+          "SEQN": 9044,
+          "target": 0,
+          "probability": 0.2888665394682717
+        },
+        {
+          "SEQN": 9056,
+          "target": 1,
+          "probability": 0.35780260880388703
+        },
+        {
+          "SEQN": 9130,
+          "target": 0,
+          "probability": 0.09680383071173408
+        },
+        {
+          "SEQN": 9194,
+          "target": 0,
+          "probability": 0.436416637352813
+        },
+        {
+          "SEQN": 9234,
+          "target": 0,
+          "probability": 0.15501086443292317
+        },
+        {
+          "SEQN": 9240,
+          "target": 0,
+          "probability": 0.23778492034252113
+        },
+        {
+          "SEQN": 9316,
+          "target": 0,
+          "probability": 0.10555457325656596
+        },
+        {
+          "SEQN": 9405,
+          "target": 0,
+          "probability": 0.19062030299549174
+        },
+        {
+          "SEQN": 9412,
+          "target": 0,
+          "probability": 0.35191714855362227
+        },
+        {
+          "SEQN": 9463,
+          "target": 1,
+          "probability": 0.11469268901205418
+        },
+        {
+          "SEQN": 9483,
+          "target": 0,
+          "probability": 0.21575910245245358
+        },
+        {
+          "SEQN": 9516,
+          "target": 1,
+          "probability": 0.48151419645089144
+        },
+        {
+          "SEQN": 9595,
+          "target": 0,
+          "probability": 0.2009804995235338
+        },
+        {
+          "SEQN": 9749,
+          "target": 0,
+          "probability": 0.22821033452072564
+        },
+        {
+          "SEQN": 9793,
+          "target": 0,
+          "probability": 0.10027414946002182
+        },
+        {
+          "SEQN": 9826,
+          "target": 0,
+          "probability": 0.27624517521227115
+        },
+        {
+          "SEQN": 9838,
+          "target": 1,
+          "probability": 0.6541872733222401
+        },
+        {
+          "SEQN": 9879,
+          "target": 0,
+          "probability": 0.09269213071818164
+        },
+        {
+          "SEQN": 9903,
+          "target": 0,
+          "probability": 0.060848666396424556
+        },
+        {
+          "SEQN": 9926,
+          "target": 0,
+          "probability": 0.20312624878245805
+        },
+        {
+          "SEQN": 9965,
+          "target": 0,
+          "probability": 0.23800175190040243
+        },
+        {
+          "SEQN": 10249,
+          "target": 1,
+          "probability": 0.2635492454140692
+        },
+        {
+          "SEQN": 10315,
+          "target": 0,
+          "probability": 0.08613716824207825
+        },
+        {
+          "SEQN": 10373,
+          "target": 1,
+          "probability": 0.27084881849064
+        },
+        {
+          "SEQN": 10393,
+          "target": 0,
+          "probability": 0.23185397708932104
+        },
+        {
+          "SEQN": 10442,
+          "target": 0,
+          "probability": 0.49532737169452173
+        },
+        {
+          "SEQN": 10518,
+          "target": 0,
+          "probability": 0.155092590999515
+        },
+        {
+          "SEQN": 10625,
+          "target": 0,
+          "probability": 0.46291811058544025
+        },
+        {
+          "SEQN": 10781,
+          "target": 1,
+          "probability": 0.5040040061880195
+        },
+        {
+          "SEQN": 10906,
+          "target": 0,
+          "probability": 0.26791117751709054
+        },
+        {
+          "SEQN": 11024,
+          "target": 1,
+          "probability": 0.38074968700332795
+        },
+        {
+          "SEQN": 11082,
+          "target": 1,
+          "probability": 0.07774024150358269
+        },
+        {
+          "SEQN": 11108,
+          "target": 0,
+          "probability": 0.14208586094633366
+        },
+        {
+          "SEQN": 11118,
+          "target": 0,
+          "probability": 0.3410776994087876
+        },
+        {
+          "SEQN": 11126,
+          "target": 1,
+          "probability": 0.1994635470076454
+        },
+        {
+          "SEQN": 11230,
+          "target": 0,
+          "probability": 0.16134493473634726
+        },
+        {
+          "SEQN": 11292,
+          "target": 0,
+          "probability": 0.05733094646664906
+        },
+        {
+          "SEQN": 11293,
+          "target": 1,
+          "probability": 0.30294539591608116
+        },
+        {
+          "SEQN": 11295,
+          "target": 1,
+          "probability": 0.35768478285195915
+        },
+        {
+          "SEQN": 11354,
+          "target": 0,
+          "probability": 0.6034421954960247
+        },
+        {
+          "SEQN": 11395,
+          "target": 0,
+          "probability": 0.5209225327474555
+        },
+        {
+          "SEQN": 11429,
+          "target": 0,
+          "probability": 0.06656235326167506
+        },
+        {
+          "SEQN": 11549,
+          "target": 0,
+          "probability": 0.3130837510622603
+        },
+        {
+          "SEQN": 11591,
+          "target": 0,
+          "probability": 0.45533679795627835
+        },
+        {
+          "SEQN": 11602,
+          "target": 1,
+          "probability": 0.721923553779454
+        },
+        {
+          "SEQN": 11709,
+          "target": 1,
+          "probability": 0.1574531271912472
+        },
+        {
+          "SEQN": 11722,
+          "target": 0,
+          "probability": 0.27201278085540814
+        },
+        {
+          "SEQN": 11869,
+          "target": 0,
+          "probability": 0.1761240968850461
+        },
+        {
+          "SEQN": 11876,
+          "target": 0,
+          "probability": 0.38893132602171476
+        },
+        {
+          "SEQN": 12131,
+          "target": 0,
+          "probability": 0.1282366100580533
+        },
+        {
+          "SEQN": 12148,
+          "target": 1,
+          "probability": 0.4352192975569604
+        },
+        {
+          "SEQN": 12201,
+          "target": 0,
+          "probability": 0.29821143491123564
+        },
+        {
+          "SEQN": 12404,
+          "target": 1,
+          "probability": 0.0373150146770042
+        },
+        {
+          "SEQN": 12528,
+          "target": 0,
+          "probability": 0.44211830925493345
+        },
+        {
+          "SEQN": 12678,
+          "target": 1,
+          "probability": 0.37100716239534276
+        },
+        {
+          "SEQN": 12684,
+          "target": 0,
+          "probability": 0.4656037105429142
+        },
+        {
+          "SEQN": 12770,
+          "target": 0,
+          "probability": 0.2808114472933351
+        },
+        {
+          "SEQN": 12810,
+          "target": 0,
+          "probability": 0.07795128804050325
+        },
+        {
+          "SEQN": 12834,
+          "target": 0,
+          "probability": 0.3484705000105306
+        },
+        {
+          "SEQN": 13242,
+          "target": 1,
+          "probability": 0.47478695210725325
+        },
+        {
+          "SEQN": 13385,
+          "target": 0,
+          "probability": 0.15699174158458334
+        },
+        {
+          "SEQN": 13481,
+          "target": 0,
+          "probability": 0.1512017618884299
+        },
+        {
+          "SEQN": 13644,
+          "target": 0,
+          "probability": 0.3552579999908455
+        },
+        {
+          "SEQN": 13665,
+          "target": 0,
+          "probability": 0.8039492959670118
+        },
+        {
+          "SEQN": 13715,
+          "target": 0,
+          "probability": 0.34302914730574013
+        },
+        {
+          "SEQN": 13767,
+          "target": 0,
+          "probability": 0.11771207620786409
+        },
+        {
+          "SEQN": 13833,
+          "target": 0,
+          "probability": 0.46607490254602746
+        },
+        {
+          "SEQN": 13838,
+          "target": 0,
+          "probability": 0.18738361998866018
+        },
+        {
+          "SEQN": 13936,
+          "target": 0,
+          "probability": 0.2623350828083355
+        },
+        {
+          "SEQN": 14255,
+          "target": 0,
+          "probability": 0.052377441749634865
+        },
+        {
+          "SEQN": 14303,
+          "target": 0,
+          "probability": 0.17402311948089882
+        },
+        {
+          "SEQN": 14326,
+          "target": 0,
+          "probability": 0.09613208301861412
+        },
+        {
+          "SEQN": 14471,
+          "target": 0,
+          "probability": 0.17958700244515252
+        },
+        {
+          "SEQN": 14587,
+          "target": 0,
+          "probability": 0.6558256867716409
+        },
+        {
+          "SEQN": 14734,
+          "target": 0,
+          "probability": 0.23977007524942776
+        },
+        {
+          "SEQN": 14735,
+          "target": 1,
+          "probability": 0.44433001084095974
+        },
+        {
+          "SEQN": 14837,
+          "target": 0,
+          "probability": 0.18972900899590367
+        },
+        {
+          "SEQN": 14910,
+          "target": 1,
+          "probability": 0.1594579046503374
+        },
+        {
+          "SEQN": 14940,
+          "target": 0,
+          "probability": 0.3548400749796075
+        },
+        {
+          "SEQN": 14999,
+          "target": 0,
+          "probability": 0.4248751789544115
+        },
+        {
+          "SEQN": 15001,
+          "target": 0,
+          "probability": 0.11730274459741516
+        },
+        {
+          "SEQN": 15073,
+          "target": 0,
+          "probability": 0.33608929352515027
+        },
+        {
+          "SEQN": 15121,
+          "target": 1,
+          "probability": 0.08026297981550581
+        },
+        {
+          "SEQN": 15179,
+          "target": 0,
+          "probability": 0.12211125453621882
+        },
+        {
+          "SEQN": 15313,
+          "target": 0,
+          "probability": 0.2850170322904194
+        },
+        {
+          "SEQN": 15444,
+          "target": 1,
+          "probability": 0.19103404740392144
+        },
+        {
+          "SEQN": 15571,
+          "target": 0,
+          "probability": 0.15738345951639604
+        },
+        {
+          "SEQN": 15614,
+          "target": 0,
+          "probability": 0.32656694985883516
+        },
+        {
+          "SEQN": 15641,
+          "target": 0,
+          "probability": 0.19957150643894578
+        },
+        {
+          "SEQN": 15642,
+          "target": 0,
+          "probability": 0.04357899834570982
+        },
+        {
+          "SEQN": 15655,
+          "target": 0,
+          "probability": 0.28519452766493514
+        },
+        {
+          "SEQN": 15828,
+          "target": 0,
+          "probability": 0.10439444224500471
+        },
+        {
+          "SEQN": 15856,
+          "target": 0,
+          "probability": 0.4135953580623193
+        },
+        {
+          "SEQN": 15937,
+          "target": 0,
+          "probability": 0.1161348343046559
+        },
+        {
+          "SEQN": 16239,
+          "target": 0,
+          "probability": 0.4043392310813064
+        },
+        {
+          "SEQN": 16288,
+          "target": 1,
+          "probability": 0.17692273292227195
+        },
+        {
+          "SEQN": 16301,
+          "target": 0,
+          "probability": 0.16251788519695184
+        },
+        {
+          "SEQN": 16346,
+          "target": 0,
+          "probability": 0.2523389963200164
+        },
+        {
+          "SEQN": 16372,
+          "target": 1,
+          "probability": 0.029789902920731685
+        },
+        {
+          "SEQN": 16386,
+          "target": 0,
+          "probability": 0.20805402568783657
+        },
+        {
+          "SEQN": 16527,
+          "target": 0,
+          "probability": 0.2650234061644416
+        },
+        {
+          "SEQN": 16661,
+          "target": 0,
+          "probability": 0.14960893902085176
+        },
+        {
+          "SEQN": 16672,
+          "target": 0,
+          "probability": 0.07835073982279975
+        },
+        {
+          "SEQN": 16761,
+          "target": 0,
+          "probability": 0.5013074074854366
+        },
+        {
+          "SEQN": 16808,
+          "target": 0,
+          "probability": 0.2383710867654644
+        },
+        {
+          "SEQN": 16965,
+          "target": 0,
+          "probability": 0.3334504847524756
+        },
+        {
+          "SEQN": 17107,
+          "target": 0,
+          "probability": 0.2807286781020726
+        },
+        {
+          "SEQN": 17202,
+          "target": 0,
+          "probability": 0.2539022971516899
+        },
+        {
+          "SEQN": 17258,
+          "target": 0,
+          "probability": 0.563131225328182
+        },
+        {
+          "SEQN": 17268,
+          "target": 0,
+          "probability": 0.11069667880773734
+        },
+        {
+          "SEQN": 17369,
+          "target": 1,
+          "probability": 0.45299566001805786
+        },
+        {
+          "SEQN": 17569,
+          "target": 0,
+          "probability": 0.6449273571624579
+        },
+        {
+          "SEQN": 17632,
+          "target": 0,
+          "probability": 0.19817625647695167
+        },
+        {
+          "SEQN": 17633,
+          "target": 0,
+          "probability": 0.07031428784025025
+        },
+        {
+          "SEQN": 17644,
+          "target": 0,
+          "probability": 0.29550837204945374
+        },
+        {
+          "SEQN": 17649,
+          "target": 0,
+          "probability": 0.3260142410193482
+        },
+        {
+          "SEQN": 17804,
+          "target": 0,
+          "probability": 0.16272940355080734
+        },
+        {
+          "SEQN": 17813,
+          "target": 0,
+          "probability": 0.14411264505702792
+        },
+        {
+          "SEQN": 17841,
+          "target": 0,
+          "probability": 0.28759192131652933
+        },
+        {
+          "SEQN": 17989,
+          "target": 0,
+          "probability": 0.0680672989251484
+        },
+        {
+          "SEQN": 18032,
+          "target": 0,
+          "probability": 0.2762783414229383
+        },
+        {
+          "SEQN": 18046,
+          "target": 0,
+          "probability": 0.3393515474110911
+        },
+        {
+          "SEQN": 18109,
+          "target": 0,
+          "probability": 0.5996786898358923
+        },
+        {
+          "SEQN": 18206,
+          "target": 1,
+          "probability": 0.5377034176881267
+        },
+        {
+          "SEQN": 18304,
+          "target": 1,
+          "probability": 0.5433087507557506
+        },
+        {
+          "SEQN": 18516,
+          "target": 1,
+          "probability": 0.8146168705853292
+        },
+        {
+          "SEQN": 18617,
+          "target": 1,
+          "probability": 0.11345156032393233
+        },
+        {
+          "SEQN": 18673,
+          "target": 0,
+          "probability": 0.21512366708796632
+        },
+        {
+          "SEQN": 18696,
+          "target": 0,
+          "probability": 0.4953948203092097
+        },
+        {
+          "SEQN": 18757,
+          "target": 0,
+          "probability": 0.26342001141387994
+        },
+        {
+          "SEQN": 18817,
+          "target": 1,
+          "probability": 0.04339579190162019
+        },
+        {
+          "SEQN": 18906,
+          "target": 0,
+          "probability": 0.2650861058596427
+        },
+        {
+          "SEQN": 19051,
+          "target": 0,
+          "probability": 0.1380117315967831
+        },
+        {
+          "SEQN": 19055,
+          "target": 0,
+          "probability": 0.07930100446821348
+        },
+        {
+          "SEQN": 19059,
+          "target": 0,
+          "probability": 0.062416576997679774
+        },
+        {
+          "SEQN": 19112,
+          "target": 0,
+          "probability": 0.6131400292335745
+        },
+        {
+          "SEQN": 19122,
+          "target": 0,
+          "probability": 0.4162405905723392
+        },
+        {
+          "SEQN": 19126,
+          "target": 0,
+          "probability": 0.26473616735618427
+        },
+        {
+          "SEQN": 19132,
+          "target": 0,
+          "probability": 0.5551949295097602
+        },
+        {
+          "SEQN": 19140,
+          "target": 0,
+          "probability": 0.37622379530347355
+        },
+        {
+          "SEQN": 19257,
+          "target": 0,
+          "probability": 0.06920743066532224
+        },
+        {
+          "SEQN": 19303,
+          "target": 0,
+          "probability": 0.10399111296990282
+        },
+        {
+          "SEQN": 19343,
+          "target": 0,
+          "probability": 0.5172665835454066
+        },
+        {
+          "SEQN": 19452,
+          "target": 0,
+          "probability": 0.09086671453293826
+        },
+        {
+          "SEQN": 19560,
+          "target": 0,
+          "probability": 0.06230629348101975
+        },
+        {
+          "SEQN": 19717,
+          "target": 1,
+          "probability": 0.08386820550314317
+        },
+        {
+          "SEQN": 19868,
+          "target": 0,
+          "probability": 0.2507793155525766
+        },
+        {
+          "SEQN": 20249,
+          "target": 0,
+          "probability": 0.40770180699258984
+        },
+        {
+          "SEQN": 20272,
+          "target": 0,
+          "probability": 0.12307790375504286
+        },
+        {
+          "SEQN": 20425,
+          "target": 0,
+          "probability": 0.36216879580889116
+        },
+        {
+          "SEQN": 20496,
+          "target": 0,
+          "probability": 0.044055596731541156
+        },
+        {
+          "SEQN": 20537,
+          "target": 0,
+          "probability": 0.3469704933733392
+        },
+        {
+          "SEQN": 20541,
+          "target": 0,
+          "probability": 0.16260706989355886
+        },
+        {
+          "SEQN": 20807,
+          "target": 0,
+          "probability": 0.11848286532261629
+        },
+        {
+          "SEQN": 20870,
+          "target": 0,
+          "probability": 0.5316033157871098
+        },
+        {
+          "SEQN": 20919,
+          "target": 0,
+          "probability": 0.2386064591378878
+        },
+        {
+          "SEQN": 20965,
+          "target": 0,
+          "probability": 0.3821390988275185
+        },
+        {
+          "SEQN": 20996,
+          "target": 0,
+          "probability": 0.1596023953764249
+        },
+        {
+          "SEQN": 21099,
+          "target": 0,
+          "probability": 0.2590692862515539
+        },
+        {
+          "SEQN": 21113,
+          "target": 0,
+          "probability": 0.12340973355802476
+        },
+        {
+          "SEQN": 21134,
+          "target": 0,
+          "probability": 0.0873910754586035
+        },
+        {
+          "SEQN": 21143,
+          "target": 0,
+          "probability": 0.18770097483481257
+        },
+        {
+          "SEQN": 21156,
+          "target": 1,
+          "probability": 0.17323063253934495
+        },
+        {
+          "SEQN": 21199,
+          "target": 0,
+          "probability": 0.08342679082752204
+        },
+        {
+          "SEQN": 21216,
+          "target": 0,
+          "probability": 0.11744767460084775
+        },
+        {
+          "SEQN": 21253,
+          "target": 0,
+          "probability": 0.45484634265892304
+        },
+        {
+          "SEQN": 21272,
+          "target": 0,
+          "probability": 0.21899920137011594
+        },
+        {
+          "SEQN": 21305,
+          "target": 0,
+          "probability": 0.09740730756747974
+        },
+        {
+          "SEQN": 21395,
+          "target": 0,
+          "probability": 0.407604323641117
+        },
+        {
+          "SEQN": 21413,
+          "target": 0,
+          "probability": 0.04405057090747021
+        },
+        {
+          "SEQN": 21455,
+          "target": 0,
+          "probability": 0.04542197157762716
+        },
+        {
+          "SEQN": 21489,
+          "target": 0,
+          "probability": 0.04029660004055176
+        },
+        {
+          "SEQN": 21542,
+          "target": 0,
+          "probability": 0.1806590670515096
+        },
+        {
+          "SEQN": 21571,
+          "target": 0,
+          "probability": 0.2504919857424429
+        },
+        {
+          "SEQN": 21621,
+          "target": 0,
+          "probability": 0.3596068820840961
+        },
+        {
+          "SEQN": 21652,
+          "target": 0,
+          "probability": 0.21749284613896497
+        },
+        {
+          "SEQN": 21768,
+          "target": 1,
+          "probability": 0.5816646364436356
+        },
+        {
+          "SEQN": 21874,
+          "target": 0,
+          "probability": 0.08633190645711966
+        },
+        {
+          "SEQN": 21978,
+          "target": 0,
+          "probability": 0.6134849061386249
+        },
+        {
+          "SEQN": 21993,
+          "target": 1,
+          "probability": 0.5260423412403583
+        },
+        {
+          "SEQN": 22069,
+          "target": 1,
+          "probability": 0.6379203327069269
+        },
+        {
+          "SEQN": 22109,
+          "target": 0,
+          "probability": 0.6227516157529769
+        },
+        {
+          "SEQN": 22134,
+          "target": 0,
+          "probability": 0.2545123103127501
+        },
+        {
+          "SEQN": 22317,
+          "target": 0,
+          "probability": 0.199981413628011
+        },
+        {
+          "SEQN": 22363,
+          "target": 0,
+          "probability": 0.522440012458216
+        },
+        {
+          "SEQN": 22407,
+          "target": 0,
+          "probability": 0.12677563348951268
+        },
+        {
+          "SEQN": 22413,
+          "target": 0,
+          "probability": 0.3518012383505142
+        },
+        {
+          "SEQN": 22501,
+          "target": 0,
+          "probability": 0.19730112357827248
+        },
+        {
+          "SEQN": 22506,
+          "target": 0,
+          "probability": 0.23946405544967134
+        },
+        {
+          "SEQN": 22537,
+          "target": 0,
+          "probability": 0.23476612285931386
+        },
+        {
+          "SEQN": 22551,
+          "target": 0,
+          "probability": 0.12313771916929558
+        },
+        {
+          "SEQN": 22608,
+          "target": 1,
+          "probability": 0.4554417487690932
+        },
+        {
+          "SEQN": 22629,
+          "target": 1,
+          "probability": 0.3677895451887976
+        },
+        {
+          "SEQN": 22762,
+          "target": 0,
+          "probability": 0.4301119615352362
+        },
+        {
+          "SEQN": 22828,
+          "target": 0,
+          "probability": 0.2160855949216419
+        },
+        {
+          "SEQN": 22850,
+          "target": 0,
+          "probability": 0.0578872562349653
+        },
+        {
+          "SEQN": 22867,
+          "target": 1,
+          "probability": 0.05265031483639726
+        },
+        {
+          "SEQN": 22868,
+          "target": 0,
+          "probability": 0.13184320106139774
+        },
+        {
+          "SEQN": 22917,
+          "target": 0,
+          "probability": 0.4754130306595263
+        },
+        {
+          "SEQN": 22930,
+          "target": 0,
+          "probability": 0.2784173171351947
+        },
+        {
+          "SEQN": 22937,
+          "target": 0,
+          "probability": 0.1175508715393758
+        },
+        {
+          "SEQN": 23024,
+          "target": 0,
+          "probability": 0.43627457721758595
+        },
+        {
+          "SEQN": 23061,
+          "target": 1,
+          "probability": 0.059709276730553616
+        },
+        {
+          "SEQN": 23062,
+          "target": 0,
+          "probability": 0.1538035982132674
+        },
+        {
+          "SEQN": 23163,
+          "target": 0,
+          "probability": 0.5914247271345656
+        },
+        {
+          "SEQN": 23225,
+          "target": 0,
+          "probability": 0.5188350926849769
+        },
+        {
+          "SEQN": 23245,
+          "target": 0,
+          "probability": 0.3834161657350975
+        },
+        {
+          "SEQN": 23247,
+          "target": 0,
+          "probability": 0.2286319050789678
+        },
+        {
+          "SEQN": 23264,
+          "target": 0,
+          "probability": 0.1521747701313465
+        },
+        {
+          "SEQN": 23265,
+          "target": 1,
+          "probability": 0.0909938498022711
+        },
+        {
+          "SEQN": 23282,
+          "target": 0,
+          "probability": 0.3365753699243882
+        },
+        {
+          "SEQN": 23367,
+          "target": 0,
+          "probability": 0.15315955690200575
+        },
+        {
+          "SEQN": 23413,
+          "target": 0,
+          "probability": 0.3680574028845391
+        },
+        {
+          "SEQN": 23457,
+          "target": 0,
+          "probability": 0.2076392984291464
+        },
+        {
+          "SEQN": 23472,
+          "target": 0,
+          "probability": 0.4566937297399626
+        },
+        {
+          "SEQN": 23505,
+          "target": 1,
+          "probability": 0.40612578345577327
+        },
+        {
+          "SEQN": 23521,
+          "target": 0,
+          "probability": 0.29760244679150694
+        },
+        {
+          "SEQN": 23628,
+          "target": 0,
+          "probability": 0.1343106296316478
+        },
+        {
+          "SEQN": 23697,
+          "target": 0,
+          "probability": 0.06600219852936143
+        },
+        {
+          "SEQN": 23828,
+          "target": 0,
+          "probability": 0.28450977109222875
+        },
+        {
+          "SEQN": 23914,
+          "target": 0,
+          "probability": 0.1541941708049397
+        },
+        {
+          "SEQN": 23959,
+          "target": 0,
+          "probability": 0.37272771074886324
+        },
+        {
+          "SEQN": 23969,
+          "target": 0,
+          "probability": 0.19896233249133402
+        },
+        {
+          "SEQN": 23980,
+          "target": 0,
+          "probability": 0.4220052877788906
+        },
+        {
+          "SEQN": 24002,
+          "target": 0,
+          "probability": 0.20785732596801482
+        },
+        {
+          "SEQN": 24058,
+          "target": 1,
+          "probability": 0.48103121171383095
+        },
+        {
+          "SEQN": 24075,
+          "target": 0,
+          "probability": 0.20986411431831745
+        },
+        {
+          "SEQN": 24085,
+          "target": 0,
+          "probability": 0.10871871170349745
+        },
+        {
+          "SEQN": 24159,
+          "target": 0,
+          "probability": 0.12092789008694052
+        },
+        {
+          "SEQN": 24165,
+          "target": 0,
+          "probability": 0.24063635135976283
+        },
+        {
+          "SEQN": 24169,
+          "target": 0,
+          "probability": 0.38884781014114334
+        },
+        {
+          "SEQN": 24184,
+          "target": 0,
+          "probability": 0.050189585454767524
+        },
+        {
+          "SEQN": 24189,
+          "target": 0,
+          "probability": 0.3305759474581762
+        },
+        {
+          "SEQN": 24192,
+          "target": 1,
+          "probability": 0.09254753279649175
+        },
+        {
+          "SEQN": 24193,
+          "target": 0,
+          "probability": 0.6242396691831515
+        },
+        {
+          "SEQN": 24228,
+          "target": 0,
+          "probability": 0.3406198464009812
+        },
+        {
+          "SEQN": 24340,
+          "target": 0,
+          "probability": 0.2164515307242898
+        },
+        {
+          "SEQN": 24348,
+          "target": 0,
+          "probability": 0.18415572956724877
+        },
+        {
+          "SEQN": 24350,
+          "target": 0,
+          "probability": 0.7511662632470661
+        },
+        {
+          "SEQN": 24589,
+          "target": 0,
+          "probability": 0.07909833734809753
+        },
+        {
+          "SEQN": 24611,
+          "target": 0,
+          "probability": 0.28002750464588555
+        },
+        {
+          "SEQN": 24701,
+          "target": 0,
+          "probability": 0.2568211494643329
+        },
+        {
+          "SEQN": 24768,
+          "target": 0,
+          "probability": 0.17934940126452187
+        },
+        {
+          "SEQN": 24823,
+          "target": 0,
+          "probability": 0.15641679434861172
+        },
+        {
+          "SEQN": 24862,
+          "target": 0,
+          "probability": 0.20102539952678092
+        },
+        {
+          "SEQN": 24879,
+          "target": 0,
+          "probability": 0.05683157842333535
+        },
+        {
+          "SEQN": 24892,
+          "target": 0,
+          "probability": 0.11481536647499199
+        },
+        {
+          "SEQN": 24934,
+          "target": 0,
+          "probability": 0.2147249194714079
+        },
+        {
+          "SEQN": 25028,
+          "target": 0,
+          "probability": 0.488612171535744
+        },
+        {
+          "SEQN": 25043,
+          "target": 1,
+          "probability": 0.6008324361972168
+        },
+        {
+          "SEQN": 25060,
+          "target": 1,
+          "probability": 0.21857213912436158
+        },
+        {
+          "SEQN": 25071,
+          "target": 0,
+          "probability": 0.39848059647843925
+        },
+        {
+          "SEQN": 25123,
+          "target": 0,
+          "probability": 0.06774598715869232
+        },
+        {
+          "SEQN": 25135,
+          "target": 0,
+          "probability": 0.06183206070897233
+        },
+        {
+          "SEQN": 25141,
+          "target": 0,
+          "probability": 0.1561561953291482
+        },
+        {
+          "SEQN": 25427,
+          "target": 0,
+          "probability": 0.14881786545917947
+        },
+        {
+          "SEQN": 25469,
+          "target": 1,
+          "probability": 0.21288356122944724
+        },
+        {
+          "SEQN": 25485,
+          "target": 0,
+          "probability": 0.4424177599095559
+        },
+        {
+          "SEQN": 25536,
+          "target": 0,
+          "probability": 0.3007404900362827
+        },
+        {
+          "SEQN": 25618,
+          "target": 1,
+          "probability": 0.6023334608028458
+        },
+        {
+          "SEQN": 25629,
+          "target": 0,
+          "probability": 0.03743655175279542
+        },
+        {
+          "SEQN": 25634,
+          "target": 0,
+          "probability": 0.11373086508041737
+        },
+        {
+          "SEQN": 25638,
+          "target": 0,
+          "probability": 0.08109429989590758
+        },
+        {
+          "SEQN": 25665,
+          "target": 1,
+          "probability": 0.5302326424941652
+        },
+        {
+          "SEQN": 25786,
+          "target": 0,
+          "probability": 0.12389788097923563
+        },
+        {
+          "SEQN": 26002,
+          "target": 0,
+          "probability": 0.10829368904266856
+        },
+        {
+          "SEQN": 26064,
+          "target": 1,
+          "probability": 0.23929897321347465
+        },
+        {
+          "SEQN": 26297,
+          "target": 0,
+          "probability": 0.10700288988001368
+        },
+        {
+          "SEQN": 26304,
+          "target": 0,
+          "probability": 0.22439307463347027
+        },
+        {
+          "SEQN": 26317,
+          "target": 0,
+          "probability": 0.42738492948101847
+        },
+        {
+          "SEQN": 26343,
+          "target": 0,
+          "probability": 0.5166462542174529
+        },
+        {
+          "SEQN": 26428,
+          "target": 0,
+          "probability": 0.4181948965580939
+        },
+        {
+          "SEQN": 26483,
+          "target": 0,
+          "probability": 0.062197171430977916
+        },
+        {
+          "SEQN": 26530,
+          "target": 0,
+          "probability": 0.07614169502588593
+        },
+        {
+          "SEQN": 26728,
+          "target": 1,
+          "probability": 0.41447124726951634
+        },
+        {
+          "SEQN": 26744,
+          "target": 0,
+          "probability": 0.0796001737742194
+        },
+        {
+          "SEQN": 26768,
+          "target": 0,
+          "probability": 0.12877003495125164
+        },
+        {
+          "SEQN": 26803,
+          "target": 0,
+          "probability": 0.08404409001994503
+        },
+        {
+          "SEQN": 26890,
+          "target": 0,
+          "probability": 0.42004371691668646
+        },
+        {
+          "SEQN": 26913,
+          "target": 1,
+          "probability": 0.2946077179510608
+        },
+        {
+          "SEQN": 26956,
+          "target": 0,
+          "probability": 0.061388807434328486
+        },
+        {
+          "SEQN": 26964,
+          "target": 0,
+          "probability": 0.3193095693982036
+        },
+        {
+          "SEQN": 26974,
+          "target": 1,
+          "probability": 0.09377378811391764
+        },
+        {
+          "SEQN": 27177,
+          "target": 0,
+          "probability": 0.20040552110424575
+        },
+        {
+          "SEQN": 27215,
+          "target": 0,
+          "probability": 0.11032789451462552
+        },
+        {
+          "SEQN": 27349,
+          "target": 0,
+          "probability": 0.5265969676055807
+        },
+        {
+          "SEQN": 27359,
+          "target": 0,
+          "probability": 0.45042197403357837
+        },
+        {
+          "SEQN": 27415,
+          "target": 0,
+          "probability": 0.2804570726582952
+        },
+        {
+          "SEQN": 27418,
+          "target": 0,
+          "probability": 0.11246266690368031
+        },
+        {
+          "SEQN": 27462,
+          "target": 0,
+          "probability": 0.19981108433835737
+        },
+        {
+          "SEQN": 27480,
+          "target": 0,
+          "probability": 0.056818925561164
+        },
+        {
+          "SEQN": 27484,
+          "target": 0,
+          "probability": 0.3458311876570729
+        },
+        {
+          "SEQN": 27504,
+          "target": 0,
+          "probability": 0.10848467298322358
+        },
+        {
+          "SEQN": 27516,
+          "target": 0,
+          "probability": 0.13419298383607747
+        },
+        {
+          "SEQN": 27570,
+          "target": 1,
+          "probability": 0.4176919971601019
+        },
+        {
+          "SEQN": 27601,
+          "target": 0,
+          "probability": 0.4828617095965682
+        },
+        {
+          "SEQN": 27642,
+          "target": 1,
+          "probability": 0.34297526574715087
+        },
+        {
+          "SEQN": 27643,
+          "target": 0,
+          "probability": 0.082959339889816
+        },
+        {
+          "SEQN": 27659,
+          "target": 1,
+          "probability": 0.2905007724615887
+        },
+        {
+          "SEQN": 27669,
+          "target": 0,
+          "probability": 0.24321238987877444
+        },
+        {
+          "SEQN": 27671,
+          "target": 0,
+          "probability": 0.2723649347621117
+        },
+        {
+          "SEQN": 27743,
+          "target": 1,
+          "probability": 0.1952422263519166
+        },
+        {
+          "SEQN": 27766,
+          "target": 0,
+          "probability": 0.19779546086081862
+        },
+        {
+          "SEQN": 27848,
+          "target": 0,
+          "probability": 0.17541405813216873
+        },
+        {
+          "SEQN": 27859,
+          "target": 1,
+          "probability": 0.0728451810201425
+        },
+        {
+          "SEQN": 27963,
+          "target": 1,
+          "probability": 0.3692155559748109
+        },
+        {
+          "SEQN": 28018,
+          "target": 1,
+          "probability": 0.2540540935569896
+        },
+        {
+          "SEQN": 28093,
+          "target": 0,
+          "probability": 0.27541393337689946
+        },
+        {
+          "SEQN": 28174,
+          "target": 0,
+          "probability": 0.21988377132166784
+        },
+        {
+          "SEQN": 28248,
+          "target": 0,
+          "probability": 0.17263245854298073
+        },
+        {
+          "SEQN": 28253,
+          "target": 0,
+          "probability": 0.6244511398164184
+        },
+        {
+          "SEQN": 28269,
+          "target": 0,
+          "probability": 0.45369437138937785
+        },
+        {
+          "SEQN": 28443,
+          "target": 1,
+          "probability": 0.11839859855082875
+        },
+        {
+          "SEQN": 28458,
+          "target": 0,
+          "probability": 0.16417995347759343
+        },
+        {
+          "SEQN": 28467,
+          "target": 0,
+          "probability": 0.26795751743795965
+        },
+        {
+          "SEQN": 28541,
+          "target": 1,
+          "probability": 0.17640626475064305
+        },
+        {
+          "SEQN": 28573,
+          "target": 1,
+          "probability": 0.5436336720888134
+        },
+        {
+          "SEQN": 28669,
+          "target": 0,
+          "probability": 0.13606739294065834
+        },
+        {
+          "SEQN": 28698,
+          "target": 0,
+          "probability": 0.08970636060907222
+        },
+        {
+          "SEQN": 28712,
+          "target": 0,
+          "probability": 0.1360504182604321
+        },
+        {
+          "SEQN": 28746,
+          "target": 0,
+          "probability": 0.44869637858523126
+        },
+        {
+          "SEQN": 28769,
+          "target": 0,
+          "probability": 0.4239670085714852
+        },
+        {
+          "SEQN": 28792,
+          "target": 1,
+          "probability": 0.018039321337455606
+        },
+        {
+          "SEQN": 28794,
+          "target": 0,
+          "probability": 0.3317949400637318
+        },
+        {
+          "SEQN": 28898,
+          "target": 0,
+          "probability": 0.2047630722237607
+        },
+        {
+          "SEQN": 28948,
+          "target": 0,
+          "probability": 0.09060623990444268
+        },
+        {
+          "SEQN": 29054,
+          "target": 0,
+          "probability": 0.17085452136478513
+        },
+        {
+          "SEQN": 29081,
+          "target": 0,
+          "probability": 0.38551309483379237
+        },
+        {
+          "SEQN": 29095,
+          "target": 0,
+          "probability": 0.20872662757539878
+        },
+        {
+          "SEQN": 29096,
+          "target": 0,
+          "probability": 0.06810828734623124
+        },
+        {
+          "SEQN": 29218,
+          "target": 0,
+          "probability": 0.35577677761510795
+        },
+        {
+          "SEQN": 29232,
+          "target": 0,
+          "probability": 0.29543136657950714
+        },
+        {
+          "SEQN": 29249,
+          "target": 0,
+          "probability": 0.09450127807215207
+        },
+        {
+          "SEQN": 29307,
+          "target": 0,
+          "probability": 0.17248288422929542
+        },
+        {
+          "SEQN": 29352,
+          "target": 1,
+          "probability": 0.3408694186635714
+        },
+        {
+          "SEQN": 29390,
+          "target": 0,
+          "probability": 0.046265049212597206
+        },
+        {
+          "SEQN": 29456,
+          "target": 1,
+          "probability": 0.6345900115180012
+        },
+        {
+          "SEQN": 29490,
+          "target": 0,
+          "probability": 0.4000831910386339
+        },
+        {
+          "SEQN": 29518,
+          "target": 0,
+          "probability": 0.04451962917023129
+        },
+        {
+          "SEQN": 29724,
+          "target": 0,
+          "probability": 0.19685438871323144
+        },
+        {
+          "SEQN": 29778,
+          "target": 0,
+          "probability": 0.09666019556242862
+        },
+        {
+          "SEQN": 29803,
+          "target": 0,
+          "probability": 0.18851093988174578
+        },
+        {
+          "SEQN": 29878,
+          "target": 1,
+          "probability": 0.3528760918315208
+        },
+        {
+          "SEQN": 29916,
+          "target": 1,
+          "probability": 0.7809210847372742
+        },
+        {
+          "SEQN": 29932,
+          "target": 0,
+          "probability": 0.7315362520020716
+        },
+        {
+          "SEQN": 29943,
+          "target": 0,
+          "probability": 0.1262957371004966
+        },
+        {
+          "SEQN": 29969,
+          "target": 0,
+          "probability": 0.4557301413742252
+        },
+        {
+          "SEQN": 30170,
+          "target": 0,
+          "probability": 0.40334408594766435
+        },
+        {
+          "SEQN": 30186,
+          "target": 0,
+          "probability": 0.11687516404408127
+        },
+        {
+          "SEQN": 30264,
+          "target": 0,
+          "probability": 0.06650037077668527
+        },
+        {
+          "SEQN": 30270,
+          "target": 0,
+          "probability": 0.28043608898598793
+        },
+        {
+          "SEQN": 30403,
+          "target": 1,
+          "probability": 0.22675328166142653
+        },
+        {
+          "SEQN": 30405,
+          "target": 0,
+          "probability": 0.07689547349333524
+        },
+        {
+          "SEQN": 30589,
+          "target": 1,
+          "probability": 0.4004075546310169
+        },
+        {
+          "SEQN": 30610,
+          "target": 0,
+          "probability": 0.7116424260161212
+        },
+        {
+          "SEQN": 30682,
+          "target": 1,
+          "probability": 0.05822545866471983
+        },
+        {
+          "SEQN": 30723,
+          "target": 1,
+          "probability": 0.3258689248957697
+        },
+        {
+          "SEQN": 30786,
+          "target": 1,
+          "probability": 0.511536386727005
+        },
+        {
+          "SEQN": 30844,
+          "target": 0,
+          "probability": 0.11579863096347257
+        },
+        {
+          "SEQN": 30890,
+          "target": 0,
+          "probability": 0.42672370591887737
+        },
+        {
+          "SEQN": 30986,
+          "target": 0,
+          "probability": 0.34081791273490725
+        },
+        {
+          "SEQN": 31033,
+          "target": 0,
+          "probability": 0.2810509565861718
+        },
+        {
+          "SEQN": 31061,
+          "target": 0,
+          "probability": 0.03008664297674705
+        },
+        {
+          "SEQN": 31098,
+          "target": 0,
+          "probability": 0.47018030260771215
+        }
+      ]
+    }
+  },
+  "selected_model": "HGB",
+  "final_threshold": 0.32939198460676844,
+  "final_threshold_oof_metrics": {
+    "auroc": 0.5271680460597337,
+    "auprc": 0.2077490867519127,
+    "balanced_accuracy": 0.5394580230852271,
+    "sensitivity": 0.37362637362637363,
+    "specificity": 0.7052896725440806,
+    "brier": 0.19412364838988963,
+    "threshold": 0.32939198460676844
+  },
+  "artifact": {
+    "path": "models/immune_kidney_proxy.joblib",
+    "sha256": "8b57fb76b91e869213886405cb6f2dd78e31080453f797b546bde5c94668952f"
+  },
+  "created_utc": "2026-08-30T05:00:41.151323+00:00"
+}

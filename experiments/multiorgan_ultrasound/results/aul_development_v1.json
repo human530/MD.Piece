@@ -1,0 +1,203 @@
+{
+  "dataset": "Annotated Ultrasound Liver (AUL)",
+  "source": "https://doi.org/10.5281/zenodo.7272660",
+  "task": "benign versus malignant liver lesion",
+  "archives": {
+    "Benign.zip": {
+      "md5": "c37fef0cb2730236a79ef57e5315995e",
+      "sha256": "8f07a4d9f4c90e6cb7e080579822e36d8f60b5bafd3faa19a2cb98a1ef6e0d62"
+    },
+    "Malignant.zip": {
+      "md5": "63894a9e5654a69c3b94bda84071dfb0",
+      "sha256": "2c1491d61f3e8f71ec60c4aa406ad5321d1915165a1ad8a64867987751d021f7"
+    },
+    "Normal.zip": {
+      "md5": "a7e16299b2cf12ca4a6c3468d2e4978f",
+      "sha256": "2eb16a965a30feed102412e3e73e54002ae22e352f439744108b2c9df94b7b16"
+    }
+  },
+  "development_patients": 508,
+  "development_counts": {
+    "Malignant": 348,
+    "Benign": 160
+  },
+  "holdout_patients_unopened": 127,
+  "model": "frozen ImageNet ResNet-18 whole/20%-padded expert mass ROI and/or 18 mask features + balanced L2 logistic",
+  "mask_features": [
+    "area_fraction",
+    "bbox_extent",
+    "bbox_aspect",
+    "centroid_x",
+    "centroid_y",
+    "perimeter_normalized",
+    "compactness",
+    "eccentricity",
+    "radial_irregularity",
+    "lesion_mean",
+    "lesion_std",
+    "lesion_p10",
+    "lesion_p50",
+    "lesion_p90",
+    "lesion_entropy",
+    "lesion_gradient_mean",
+    "ring_mean",
+    "lesion_ring_contrast"
+  ],
+  "runs": [
+    {
+      "variant": "whole_image_primary",
+      "patients": 508,
+      "auc": 0.7877693965517242,
+      "auc_ci_95": [
+        0.7460847372801792,
+        0.8296953796503618
+      ],
+      "balanced_accuracy_at_0_5": 0.7217313218390804,
+      "brier": 0.20482119194340265,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7745535714285714
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.7714285714285714
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.8620535714285715
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.786231884057971
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7395833333333333
+        }
+      ]
+    },
+    {
+      "variant": "expert_mass_roi_sensitivity",
+      "patients": 508,
+      "auc": 0.7705459770114941,
+      "auc_ci_95": [
+        0.7232358677896823,
+        0.8147727988620698
+      ],
+      "balanced_accuracy_at_0_5": 0.6881106321839081,
+      "brier": 0.2095668541850407,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7799107142857142
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8044642857142857
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7375
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.764945652173913
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7667572463768116
+        }
+      ]
+    },
+    {
+      "variant": "expert_mass_features_sensitivity",
+      "patients": 508,
+      "auc": 0.777514367816092,
+      "auc_ci_95": [
+        0.7287327656412531,
+        0.8226809261265922
+      ],
+      "balanced_accuracy_at_0_5": 0.7345545977011494,
+      "brier": 0.18394398146579768,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7049107142857143
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8553571428571428
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7825892857142858
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.8365036231884058
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.7436594202898551
+        }
+      ]
+    },
+    {
+      "variant": "roi_plus_mass_features_sensitivity",
+      "patients": 508,
+      "auc": 0.7955459770114943,
+      "auc_ci_95": [
+        0.7489005625013863,
+        0.8368780215369696
+      ],
+      "balanced_accuracy_at_0_5": 0.7286637931034483,
+      "brier": 0.19243633717296102,
+      "folds": [
+        {
+          "fold": 1,
+          "patients": 102,
+          "auc": 0.7986607142857143
+        },
+        {
+          "fold": 2,
+          "patients": 102,
+          "auc": 0.8370535714285714
+        },
+        {
+          "fold": 3,
+          "patients": 102,
+          "auc": 0.7464285714285714
+        },
+        {
+          "fold": 4,
+          "patients": 101,
+          "auc": 0.7989130434782609
+        },
+        {
+          "fold": 5,
+          "patients": 101,
+          "auc": 0.8034420289855073
+        }
+      ]
+    }
+  ],
+  "selected_variant": "roi_plus_mass_features_sensitivity",
+  "claim_boundary": "single-source development only; expert variants require manual mass annotation",
+  "created_at": "2026-08-30T13:30:57+0800"
+}

@@ -1,0 +1,151 @@
+{
+ "_meta": {
+  "title": "免疫性腎病標記——文獻判別效能錨點（2026-08-31）",
+  "purpose": "NHANES 缺 C3/C4/免疫球蛋白/ESR，免疫任務只做到 0.575。本帳本量化『這些標記實際能換來多少判別力』，作為醫院資料研究的事前效能預期。",
+  "source": "PubMed（MCP search_articles / get_article_metadata）",
+  "method": "數字逐條與 PubMed 摘要原文比對，只保留逐字吻合者；未在摘要中出現的數字一律不填（null），不由內文推估。",
+  "attribution": "依 PubMed 使用條款，每條錨點均附 PMID 與 DOI。"
+ },
+ "headline": {
+  "claim": "免疫性腎病的判別力幾乎全部來自 NHANES 沒有的那幾個檢驗。",
+  "evidence": "最接近的類比研究（PMID 38919623）在具備 anti-dsDNA＋補體的情況下達 AUC 0.880；其確認的關鍵特徵正是 anti-dsDNA、補體、血清肌酸酐、尿液紅白血球——前兩項 NHANES 完全沒有。",
+  "caveat": "該研究族群為『已確診 SLE 且有腎侵犯並接受切片者』，題目比本研究窄（本研究是在一般族群腎損傷者中判斷病因是否為免疫）。因此 0.880 不是本研究題目的直接天花板，而是下游子題的效能參考。"
+ },
+ "anchors": [
+  {
+   "id": "ml-proliferative-LN",
+   "pmid": "38919623", "doi": "10.3389/fimmu.2024.1413569",
+   "cite": "Yang P et al. Front Immunol. 2024;15:1413569",
+   "relevance": "★最高——與本研究同型（機器學習＋臨床檢驗判別免疫性腎病亞型），且用了本研究缺的標記",
+   "task": "在 SLE 腎侵犯者中判別增殖型狼瘡腎炎（PLN）vs 非增殖型",
+   "design": "單中心回溯（華西醫院 2011–2021），切片確診；1312 名 LN 患者、780 例納入分析；訓練 547／測試 233；九種模型",
+   "performance": {
+    "best_model": "random forest",
+    "auroc": 0.880, "auroc_ci": [0.835, 0.926],
+    "note_verbatim": "「random forest model showed the highest discriminatory ability (AUC: 0.880, 95% CI: 0.835-0.926)」；另述 logistic regression 校準最佳、random forest 臨床淨效益最大"
+   },
+   "key_features_confirmed": ["anti-dsDNA 抗體", "補體", "血清肌酸酐", "尿液紅血球", "尿液白血球"],
+   "key_features_novel": ["血氯", "嗜中性球百分比", "cystatin C", "血比容", "尿液 pH", "血液紅血球", "IgM"],
+   "nhanes_availability": "anti-dsDNA ❌、補體 ❌、IgM ❌、cystatin C ❌（僅部分週期）；血氯／嗜中性球／血比容／尿液紅白血球 ✅",
+   "verified": "摘要逐字吻合",
+   "limits": "單中心、無外部驗證、族群已限定為 SLE 腎侵犯者（盛行率遠高於一般族群）"
+  },
+  {
+   "id": "pla2r-meta-2015",
+   "pmid": "25740009", "doi": "10.1038/srep08803",
+   "cite": "Dai H, Zhang H, He Y. Sci Rep. 2015;5:8803",
+   "relevance": "膜性腎病——免疫性腎病中血清學最成熟的一支",
+   "task": "血清 anti-PLA2R 區辨原發性 vs 續發性膜性腎病",
+   "design": "統合分析，19 篇研究、1160 名患者",
+   "performance": {
+    "sensitivity": 0.68, "sensitivity_ci": [0.61, 0.74],
+    "specificity": 0.97, "specificity_ci": [0.85, 1.00],
+    "dor": 73.75, "dor_ci": [12.56, 432.96],
+    "auroc": 0.82, "auroc_ci": [0.78, 0.85],
+    "heterogeneity": "I²=86.42%（高）"
+   },
+   "secondary": {
+    "test": "腎絲球 PLA2R 染色（組織）",
+    "sensitivity": 0.78, "specificity": 0.91, "auroc": 0.84, "auroc_ci": [0.81, 0.87],
+    "heterogeneity": "I²=0%"
+   },
+   "verified": "摘要逐字吻合",
+   "reading": "特異度極高（0.97）但敏感度僅 0.68——**適合確認、不適合排除**。這正是本研究缺的那種標記：一驗就定調。"
+  },
+  {
+   "id": "pla2r-meta-2014",
+   "pmid": "24500886", "doi": "10.1007/s40620-014-0042-7",
+   "cite": "Hu SL et al. J Nephrol. 2014;27(2):111-6",
+   "relevance": "PLA2R 第二篇統合分析（獨立佐證）",
+   "design": "10 篇研究、1550 名參與者",
+   "performance": {
+    "dor_all_stages": 247.41, "sensitivity": 0.69, "specificity": 0.99,
+    "active_stage": {"sensitivity": 0.740, "specificity": 0.950, "dor": 54.22},
+    "biopsy_pla2r": {"sensitivity": 0.730, "specificity": 0.830, "dor": 13.75},
+    "auroc": null
+   },
+   "verified": "摘要逐字吻合（AUROC 未於摘要報告→留 null）",
+   "reading": "與 2015 年那篇方向一致：敏感度約 0.69、特異度 0.99。兩篇獨立統合分析結論相符。"
+  },
+  {
+   "id": "anti-gbm-meta",
+   "pmid": "34515033", "doi": "10.1159/000518362",
+   "cite": "Shiroshita A et al. Am J Nephrol. 2021;52(7):531-538",
+   "relevance": "抗腎絲球基底膜病——免疫性腎病中判別力最高的一支",
+   "design": "統合分析，6 篇研究、1691 名患者、11 個索引試驗；雙變量隨機效應模型",
+   "performance": {
+    "sensitivity": 0.93, "sensitivity_ci": [0.84, 0.97],
+    "specificity": 0.97, "specificity_ci": [0.94, 0.99],
+    "auroc": null
+   },
+   "verified": "摘要逐字吻合",
+   "limits_verbatim": "作者自述證據確定性**低**（low）——67% 納入研究為病例對照設計，偏誤風險高且有間接性",
+   "reading": "敏感度與特異度雙高（0.93／0.97），但證據等級低。即使打折，仍遠高於本研究用常規檢驗能達到的水準。"
+  },
+  {
+   "id": "gd-iga1-trfia",
+   "pmid": "42394720", "doi": "10.1016/j.ekir.2026.106642",
+   "cite": "Kao S et al. Kidney Int Rep. 2026;11(8):106642",
+   "relevance": "IgA 腎病——非侵入性血清標記",
+   "task": "以新型 anti-Gd-IgA1 單株抗體（MH33）之 TRFIA 區辨 IgAN vs 對照（健康＋非 IgAN 腎病）",
+   "performance": {
+    "auroc": 0.90, "auroc_ci": [0.86, 0.93],
+    "comparator_km55_auroc": 0.78, "comparator_km55_ci": [0.71, 0.86],
+    "at_cutoff": {"cutoff": "22.0 RU/ml", "specificity": 0.9382, "sensitivity": 0.6444}
+  },
+   "verified": "摘要逐字吻合",
+   "reading": "AUC 0.90——但注意作者開宗明義說既有 Gd-IgA1 血清標記『diagnostic performance 有限』，0.90 是新抗體才達到的，且為單一研究未經獨立複製。"
+  },
+  {
+   "id": "urinary-atp6v1d-igan",
+   "pmid": "40911183", "doi": "10.1007/s11596-025-00088-2",
+   "cite": "Peng L et al. Curr Med Sci. 2025;45(5):1172-1181",
+   "relevance": "候選級（尚未複製）",
+   "performance": {"urinary_atp6v1d_auroc": 0.972, "gd_iga1_auroc": 0.952,
+                   "task": "區辨 IgAN vs MCD 與 MN"},
+   "verified": "摘要逐字吻合",
+   "grade_for_model": "**候選，不可當既定效能**——單中心、樣本數未於摘要報告、無外部驗證，AUC 0.97 的量級須以複製為前提看待"
+  },
+  {
+   "id": "routine-labs-predict-pathology-igan",
+   "pmid": "37600788", "doi": "10.3389/fimmu.2023.1224631",
+   "cite": "Xu LL et al. Front Immunol. 2023;14:1224631",
+   "relevance": "★次高——直接測試『常規臨床變數能否取代病理資訊』，與本研究核心問題同型",
+   "task": "以常規臨床變數預測 IgA 腎病 Oxford 分類之 T 分數（腎小管萎縮／間質纖維化）",
+   "design": "訓練 690 例、獨立測試 1168 例、外部驗證 355 例；stacking 演算法",
+   "features_selected": ["年齡", "收縮壓", "舒張壓", "蛋白尿", "eGFR", "血清 IgA", "尿酸"],
+   "performance": {
+    "auroc_independent_test": 0.82, "auroc_ci": [0.80, 0.85],
+    "downstream_eskd_base_model": 0.86, "downstream_eskd_base_ci": [0.75, 0.97],
+    "downstream_eskd_plus_predicted_T": 0.92, "downstream_eskd_plus_T_ci": [0.85, 0.98],
+    "p_improvement": 0.03,
+    "external_validation_auroc": 0.93, "external_validation_ci": [0.87, 0.99]
+   },
+   "verified": "摘要逐字吻合",
+   "reading": "常規變數預測病理分數達 0.82，且加入預測值後 ESKD 預測從 0.86 升到 0.92（P=0.03）——**證明『用常規檢驗代替部分病理資訊』這個路線本身可行**。但注意其特徵含血清 IgA（NHANES 無）與蛋白尿定量，且題目是嚴重度不是病因。"
+  },
+  {
+   "id": "ln-prognostic-review",
+   "pmid": "34907831", "doi": "10.1177/09612033211061475",
+   "cite": "Rodríguez-Almaraz E et al. Lupus. 2021;30(14):2256-2267",
+   "relevance": "背景——狼瘡腎炎預後因子系統性回顧",
+   "design": "1221 篇篩出 25 篇（15 回溯／9 前瞻／1 試驗延伸）",
+   "performance": {"auroc": null, "note": "因設計與結果定義異質性過大，統合分析無法進行（meta-analysis precluded）"},
+   "key_predictors_verbatim": ["血清肌酸酐", "腎絲球過濾率", "C3 濃度", "anti-C1q 效價", "anti-dsDNA 抗體"],
+   "verified": "摘要逐字吻合",
+   "reading": "作者結論：『目前沒有新的生物標記能建立狼瘡腎炎的腎臟預後』，仍靠傳統臨床／腎臟／組織學指標。這支持本研究的判斷——瓶頸在標籤與專項檢驗，不在演算法。"
+  }
+ ],
+ "not_applicable": [
+  {"pmid": "37852515", "reason": "主題為 SLE 孕期補體波動與孕產併發症，非腎病病因判別"},
+  {"pmid": "31440948", "reason": "主題為 SLE 瀰漫性肺泡出血，非腎病病因判別"},
+  {"pmid": "29482604", "reason": "anti-MDA IgG 與疾病活動度相關；摘要未報告判別效能（AUC／敏感特異度），無法作為效能錨點"}
+ ],
+ "implications": [
+  "① 免疫任務的 0.575 與文獻上有補體＋anti-dsDNA 的 0.880（PMID 38919623）之間的落差，指向的是**檢驗項目缺席**而非模型能力——該研究確認的關鍵特徵中，anti-dsDNA 與補體 NHANES 皆無。",
+  "② 免疫性腎病的血清標記多為**高特異度、中敏感度**（PLA2R 0.97/0.68、anti-GBM 0.97/0.93）——性質是『確認』而非『篩除』。這與本研究原始設計意圖（在開專項單前縮小範圍）方向相反：免疫這條線本來就沒有可篩除的常規替代品。",
+  "③ 『用常規檢驗代替部分病理資訊』的路線有文獻支持（PMID 37600788，AUC 0.82），但其成功案例是**嚴重度分級**不是病因判別，且仍需血清 IgA 等 NHANES 沒有的項目。",
+  "④ 若取得含補體／anti-dsDNA／免疫球蛋白的醫院世代，事前效能預期應設在 0.85–0.88 區間（依 PMID 38919623），而非原始目標的 0.90——且該預期是在**族群已限定為 SLE 腎侵犯者**的條件下取得，一般族群會更低。"
+ ],
+ "created": "2026-08-31"
+}

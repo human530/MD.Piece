@@ -1,0 +1,156 @@
+{
+  "as_of": "2026-08-30",
+  "rules": {
+    "real_data_only": true,
+    "patient_level_split_required": true,
+    "label_source_must_not_be_feature": true,
+    "auc_target": 0.9,
+    "auc_target_note": "設計目標；不得以測試集反覆調整來湊數字",
+    "cross_dataset_claim": "每個器官與任務分開報告；禁止把其他器官 AUC 當成腎病病因效能"
+  },
+  "datasets": [
+    {
+      "id": "bus_bra",
+      "organ": "breast",
+      "task": "biopsy-supported benign vs malignant classification",
+      "patients": 1064,
+      "images": 1875,
+      "source": "https://zenodo.org/records/8231412",
+      "doi": "10.5281/zenodo.8231412",
+      "license": "CC-BY-4.0",
+      "access": "downloaded_and_checksum_verified",
+      "archive_md5": "1f8b2be6476d58fc97bfb5e5a1ea9bab",
+      "role": "phase_1_disease_classification_baseline"
+    },
+    {
+      "id": "tcia_breast_lesions_usg",
+      "organ": "breast",
+      "task": "external benign vs malignant lesion classification",
+      "patients": 256,
+      "eligible_lesion_patients": 252,
+      "images": 256,
+      "source": "https://www.cancerimagingarchive.net/collection/breast-lesions-usg/",
+      "doi": "10.7937/9WKK-Q141",
+      "license": "CC-BY-4.0",
+      "access": "downloaded_checksum_verified_and_locked",
+      "role": "independent_external_test"
+    },
+    {
+      "id": "bus_uclm",
+      "organ": "breast",
+      "task": "benign vs malignant lesion classification and segmentation",
+      "patients": 38,
+      "images": 683,
+      "source": "https://doi.org/10.17632/7fvgj4jsp7.3",
+      "mirror": "https://huggingface.co/datasets/MedOtter/BUS-UCLM",
+      "mirror_revision": "5874ae42ce98f0e403a916981773db8e5fea4c32",
+      "license": "CC-BY-4.0",
+      "access": "downloaded_from_revision_pinned_public_mirror",
+      "role": "cross_device_method_development",
+      "warning": "4 lesion images from patient HESN have mismatched image/mask dimensions and are excluded"
+    },
+    {
+      "id": "oasbud",
+      "organ": "breast",
+      "task": "raw RF and expert-ROI benign vs malignant external validation",
+      "lesions": 100,
+      "patients_reported": 78,
+      "source": "https://zenodo.org/records/545928",
+      "doi": "10.5281/zenodo.545928",
+      "license": "CC-BY-4.0",
+      "access": "official_downloaded_and_checksum_verified_but_patient_mapping_missing",
+      "expected_md5": "e2b770a6ee2f06ebe480ed0962252100",
+      "archive_sha256": "698eadeabe451d8af3b6c8e205d2a8cbc590ab1275d188614916bceb501bcd48",
+      "role": "rf_method_development_only",
+      "warning": "MAT file does not expose the reported 78-woman patient mapping; not eligible for strict patient-level external testing"
+    },
+    {
+      "id": "thyroid_pathology_ultrasound",
+      "organ": "thyroid",
+      "task": "case-level histopathologic benign vs malignant classification",
+      "patients": 842,
+      "images": 8508,
+      "source": "https://doi.org/10.6084/m9.figshare.27021604.v1",
+      "paper": "https://doi.org/10.1038/s41597-024-04156-5",
+      "license": "CC-BY-4.0 on Figshare",
+      "access": "both_archives_downloaded_and_md5_verified",
+      "role": "multi_organ_case_level_development_and_locked_external_test",
+      "warning": "8 Batch 2 images from case number 200 have no pathology row and are excluded before evaluation"
+    },
+    {
+      "id": "aul_liver",
+      "organ": "liver",
+      "task": "normal, benign mass, malignant mass classification and segmentation",
+      "patients": 735,
+      "images": 735,
+      "source": "https://doi.org/10.5281/zenodo.7272660",
+      "archive_md5": {
+        "Benign.zip": "c37fef0cb2730236a79ef57e5315995e",
+        "Malignant.zip": "63894a9e5654a69c3b94bda84071dfb0",
+        "Normal.zip": "a7e16299b2cf12ca4a6c3468d2e4978f"
+      },
+      "access": "official_archives_downloaded_and_checksum_verified",
+      "role": "liver lesion development plus preregistered same-source patient holdout",
+      "rights_warning": "Zenodo record requests author contact, publication citation, and appropriate credit; do not redistribute raw data"
+    },
+    {
+      "id": "usf_mae_100ep",
+      "organ": "multi-organ ultrasound representation",
+      "task": "self-supervised frozen feature extraction",
+      "pretraining_images": 370000,
+      "pretraining_datasets": 46,
+      "source": "https://github.com/Yusufii9/USF-MAE",
+      "source_commit": "e58c29127e1a0e707fbc4e754db4eb67fbb964f6",
+      "checkpoint": "USF-MAE 100 epochs",
+      "checkpoint_sha256": "f815c629878c17136985af9f4fdc81c2cfa02a94e4d992c026699957f75ccb66",
+      "facebook_mae_commit": "efb2a8062c206524e35e47d04501ed4f544c0ae8",
+      "access": "official_checkpoint_downloaded_and_checksum_locked",
+      "role": "thyroid Batch 1 representation development only; Batch 2 remains locked"
+    },
+    {
+      "id": "fmc_uia_2026",
+      "organ": "multi-organ",
+      "task": "27 ultrasound segmentation/classification/detection/regression tasks",
+      "source": "https://github.com/lijiake2408/Foundation-Model-Challenge-for-Ultrasound-Image-Analysis",
+      "paper": "https://arxiv.org/abs/2602.01055",
+      "license": "not_stated_in_repository",
+      "access": "public_links_found_license_review_required",
+      "role": "shared_encoder_pretraining",
+      "warning": "論文所報分類 mean AUC 0.9155 是官方 baseline，不是本研究結果"
+    },
+    {
+      "id": "uri_cads",
+      "organ": "kidney",
+      "task": "healthy and renal pathology classification/segmentation",
+      "images": 1985,
+      "source": "https://github.com/miguel55/URI-CADS",
+      "doi": "10.21950/0E0CTF",
+      "license": "CC-BY-NC-4.0 for code; dataset supplied on request",
+      "access": "manual_request_required",
+      "role": "kidney_pathology_validation"
+    },
+    {
+      "id": "open_kidney_ultrasound",
+      "organ": "kidney",
+      "task": "kidney structure segmentation and view/native-transplant labels",
+      "patients": 514,
+      "images": 514,
+      "source": "https://rsingla.ca/kidneyUS/",
+      "paper": "https://arxiv.org/abs/2206.06657",
+      "license": "CC-BY-NC-SA",
+      "access": "manual_registration_required",
+      "role": "kidney_encoder_and_segmentation_validation"
+    },
+    {
+      "id": "echonet_dynamic",
+      "organ": "heart",
+      "task": "ejection fraction and ventricular tracing",
+      "patients": 10030,
+      "source": "https://echonet.github.io/dynamic/",
+      "doi": "10.71718/yqp5-y078",
+      "license": "Stanford non-commercial research use agreement",
+      "access": "manual_registration_and_agreement_required",
+      "role": "cardiorenal_ultrasound_representation_pretraining"
+    }
+  ]
+}
